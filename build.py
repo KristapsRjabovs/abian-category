@@ -11,6 +11,15 @@ from pathlib import Path
 
 import build_categories as bc
 
+# state.json committed to the repo takes priority over output/tree_state.json
+_state_file = Path(__file__).parent / "state.json"
+if _state_file.exists():
+    _s = json.loads(_state_file.read_text(encoding="utf-8"))
+    bc.DELETED_CODES   = set(_s.get("deleted", []))
+    bc.CONFIRMED_CODES = set(_s.get("confirmed", []))
+    bc.ORDER           = dict(_s.get("order", {}))
+    bc.OVERRIDES       = dict(_s.get("overrides", {}))
+
 RAW_DIR  = Path(__file__).parent / "raw"
 OUT_HTML = Path(__file__).parent / "public" / "index.html"
 OUT_DATA = Path(__file__).parent / "netlify" / "functions" / "_data.json"

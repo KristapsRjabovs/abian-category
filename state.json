@@ -1,0 +1,465 @@
+{
+  "deleted": [
+    "computers/ereaders"
+  ],
+  "overrides": {
+    "Smartphones & Tablets > Tablets & E-Readers > E-Readers": [
+      "computers/tablets"
+    ]
+  },
+  "confirmed": [
+    "av/headsets/accessories",
+    "computers",
+    "computers/desktops",
+    "computers/desktops/aio",
+    "computers/desktops/standard",
+    "computers/notebook-accessories",
+    "computers/notebook-accessories/bags",
+    "computers/notebook-accessories/chargers",
+    "computers/notebook-accessories/docks",
+    "computers/notebook-accessories/other",
+    "computers/notebooks",
+    "computers/pos",
+    "computers/pos/accessories",
+    "computers/pos/terminals",
+    "computers/servers",
+    "computers/servers/components",
+    "computers/servers/components/controllers",
+    "computers/servers/components/cpu",
+    "computers/servers/components/memory",
+    "computers/servers/components/motherboards",
+    "computers/servers/components/psu",
+    "computers/servers/rack-tower",
+    "computers/servers/racks",
+    "computers/servers/racks/accessories",
+    "computers/tablet-accessories",
+    "computers/tablets",
+    "displays",
+    "displays/large-format",
+    "displays/monitors",
+    "displays/monitors/accessories",
+    "displays/projectors",
+    "displays/projectors/mounting",
+    "displays/projectors/standard"
+  ],
+  "order": {
+    "__root__": [
+      "computers",
+      "displays",
+      "components",
+      "networking",
+      "phones-radios",
+      "print-scan",
+      "av",
+      "navigation",
+      "cameras",
+      "software-apps",
+      "other"
+    ],
+    "computers": [
+      "computers/notebooks",
+      "computers/desktops",
+      "computers/servers",
+      "computers/tablets",
+      "computers/pos",
+      "computers/notebook-accessories",
+      "computers/tablet-accessories"
+    ],
+    "computers/desktops": [
+      "computers/desktops/standard",
+      "computers/desktops/aio",
+      "computers/desktops/mini"
+    ],
+    "computers/servers": [
+      "computers/servers/rack-tower",
+      "computers/servers/racks",
+      "computers/servers/components"
+    ],
+    "computers/servers/racks": [
+      "computers/servers/racks/standard",
+      "computers/servers/racks/accessories"
+    ],
+    "computers/servers/components": [
+      "computers/servers/components/cpu",
+      "computers/servers/components/memory",
+      "computers/servers/components/motherboards",
+      "computers/servers/components/psu",
+      "computers/servers/components/controllers",
+      "computers/servers/components/other"
+    ],
+    "computers/pos": [
+      "computers/pos/accessories",
+      "computers/pos/terminals"
+    ],
+    "computers/notebook-accessories": [
+      "computers/notebook-accessories/bags",
+      "computers/notebook-accessories/chargers",
+      "computers/notebook-accessories/docks",
+      "computers/notebook-accessories/batteries",
+      "computers/notebook-accessories/other"
+    ],
+    "displays": [
+      "displays/large-format",
+      "displays/monitors",
+      "displays/projectors"
+    ],
+    "displays/monitors": [
+      "displays/monitors/accessories"
+    ],
+    "displays/monitors/accessories": [
+      "displays/monitors/accessories/mounts",
+      "displays/monitors/accessories/privacy",
+      "displays/monitors/accessories/usb-adapters",
+      "displays/monitors/accessories/other"
+    ],
+    "displays/projectors": [
+      "displays/projectors/lamps",
+      "displays/projectors/standard",
+      "displays/projectors/mounting",
+      "displays/projectors/other"
+    ],
+    "components": [
+      "components/storage",
+      "components/cpu",
+      "components/motherboards",
+      "components/psu",
+      "components/keyboards-mice",
+      "components/gpu",
+      "components/cooling",
+      "components/cases",
+      "components/power-protection",
+      "components/controllers",
+      "components/cables",
+      "components/kvm",
+      "components/batteries",
+      "components/sound-cards",
+      "components/webcams",
+      "components/cases-accessories"
+    ],
+    "components/storage": [
+      "components/storage/ssd",
+      "components/storage/hdd",
+      "components/storage/ram",
+      "components/storage/arrays",
+      "components/storage/flash",
+      "components/storage/optical",
+      "components/storage/media",
+      "components/storage/tape"
+    ],
+    "components/storage/ssd": [
+      "components/storage/ssd/internal",
+      "components/storage/ssd/enterprise"
+    ],
+    "components/storage/hdd": [
+      "components/storage/hdd/internal",
+      "components/storage/hdd/external"
+    ],
+    "components/storage/ram": [
+      "components/storage/ram/desktop",
+      "components/storage/ram/notebook"
+    ],
+    "components/cpu": [
+      "components/cpu/desktop"
+    ],
+    "components/keyboards-mice": [
+      "components/keyboards-mice/mousepads",
+      "components/keyboards-mice/numeric",
+      "components/keyboards-mice/presenters",
+      "components/keyboards-mice/digitizers"
+    ],
+    "components/power-protection": [
+      "components/power-protection/ups",
+      "components/power-protection/pdu",
+      "components/power-protection/accessories"
+    ],
+    "components/cables": [
+      "components/cables/data",
+      "components/cables/power",
+      "components/cables/hubs",
+      "components/cables/card-readers"
+    ],
+    "components/batteries": [
+      "components/batteries/chargers"
+    ],
+    "components/cases-accessories": [
+      "components/cases-accessories/internal-cables",
+      "components/cases-accessories/tpm",
+      "components/cases-accessories/other"
+    ],
+    "networking": [
+      "networking/switches",
+      "networking/routers",
+      "networking/wireless",
+      "networking/modems",
+      "networking/adapters",
+      "networking/transceivers",
+      "networking/security",
+      "networking/cabling"
+    ],
+    "networking/switches": [
+      "networking/switches/poe"
+    ],
+    "networking/routers": [
+      "networking/routers/cellular"
+    ],
+    "networking/wireless": [
+      "networking/wireless/standard",
+      "networking/wireless/mesh",
+      "networking/wireless/extenders",
+      "networking/wireless/outdoor",
+      "networking/wireless/antennas"
+    ],
+    "networking/modems": [
+      "networking/modems/powerline"
+    ],
+    "networking/transceivers": [
+      "networking/transceivers/standard",
+      "networking/transceivers/media-converters"
+    ],
+    "networking/security": [
+      "networking/security/firewalls"
+    ],
+    "phones-radios": [
+      "phones-radios/mobile",
+      "phones-radios/telephones",
+      "phones-radios/wearables"
+    ],
+    "phones-radios/mobile": [
+      "phones-radios/mobile/accessories"
+    ],
+    "phones-radios/mobile/accessories": [
+      "phones-radios/mobile/accessories/chargers",
+      "phones-radios/mobile/accessories/cables",
+      "phones-radios/mobile/accessories/cases",
+      "phones-radios/mobile/accessories/holders",
+      "phones-radios/mobile/accessories/headsets",
+      "phones-radios/mobile/accessories/protectors",
+      "phones-radios/mobile/accessories/other"
+    ],
+    "phones-radios/telephones": [
+      "phones-radios/telephones/standard",
+      "phones-radios/telephones/conferencing",
+      "phones-radios/telephones/accessories"
+    ],
+    "phones-radios/wearables": [
+      "phones-radios/wearables/smartwatches",
+      "phones-radios/wearables/fitness",
+      "phones-radios/wearables/accessories"
+    ],
+    "print-scan": [
+      "print-scan/printers",
+      "print-scan/consumables",
+      "print-scan/scanners",
+      "print-scan/office-products",
+      "print-scan/trays"
+    ],
+    "print-scan/printers": [
+      "print-scan/printers/mfp",
+      "print-scan/printers/lfp",
+      "print-scan/printers/3d"
+    ],
+    "print-scan/consumables": [
+      "print-scan/consumables/toner",
+      "print-scan/consumables/ink",
+      "print-scan/consumables/drums",
+      "print-scan/consumables/paper",
+      "print-scan/consumables/other"
+    ],
+    "print-scan/scanners": [
+      "print-scan/scanners/standard"
+    ],
+    "print-scan/office-products": [
+      "print-scan/office-products/shredders",
+      "print-scan/office-products/binding"
+    ],
+    "av": [
+      "av/tvs",
+      "av/surveillance",
+      "av/speakers",
+      "av/headsets",
+      "av/home",
+      "av/portable",
+      "av/car",
+      "av/games",
+      "av/accessories"
+    ],
+    "av/tvs": [
+      "av/tvs/specialty",
+      "av/tvs/mounts",
+      "av/tvs/media-players",
+      "av/tvs/accessories"
+    ],
+    "av/surveillance": [
+      "av/surveillance/cameras",
+      "av/surveillance/nvr-dvr",
+      "av/surveillance/accessories",
+      "av/surveillance/access-control",
+      "av/surveillance/door-entry",
+      "av/surveillance/alarms",
+      "av/surveillance/software"
+    ],
+    "av/headsets": [
+      "av/headsets/accessories"
+    ],
+    "av/home": [
+      "av/home/audio"
+    ],
+    "av/portable": [
+      "av/portable/speakers",
+      "av/portable/mp3"
+    ],
+    "av/car": [
+      "av/car/audio",
+      "av/car/dashcams"
+    ],
+    "av/games": [
+      "av/games/consoles",
+      "av/games/games",
+      "av/games/peripherals",
+      "av/games/furniture"
+    ],
+    "av/accessories": [
+      "av/accessories/cables",
+      "av/accessories/microphones"
+    ],
+    "navigation": [
+      "navigation/accessories",
+      "navigation/two-way"
+    ],
+    "navigation/two-way": [
+      "navigation/two-way/portable",
+      "navigation/two-way/accessories"
+    ],
+    "cameras": [
+      "cameras/digital",
+      "cameras/camera-accessories",
+      "cameras/camcorders"
+    ],
+    "cameras/digital": [
+      "cameras/digital/action",
+      "cameras/digital/instant"
+    ],
+    "cameras/camera-accessories": [
+      "cameras/camera-accessories/memory",
+      "cameras/camera-accessories/drones",
+      "cameras/camera-accessories/gimbals",
+      "cameras/camera-accessories/optical",
+      "cameras/camera-accessories/other"
+    ],
+    "software-apps": [
+      "software-apps/os",
+      "software-apps/antivirus",
+      "software-apps/business",
+      "software-apps/network",
+      "software-apps/office"
+    ],
+    "software-apps/os": [
+      "software-apps/os/windows",
+      "software-apps/os/linux"
+    ],
+    "software-apps/business": [
+      "software-apps/business/server",
+      "software-apps/business/backup",
+      "software-apps/business/cloud",
+      "software-apps/business/virtualization"
+    ],
+    "software-apps/network": [
+      "software-apps/network/management",
+      "software-apps/network/webconf"
+    ],
+    "other": [
+      "other/smart-home",
+      "other/office",
+      "other/home",
+      "other/tools",
+      "other/energy",
+      "other/education",
+      "other/medical",
+      "other/service-support"
+    ],
+    "other/smart-home": [
+      "other/smart-home/iot",
+      "other/smart-home/security",
+      "other/smart-home/lighting",
+      "other/smart-home/energy"
+    ],
+    "other/office": [
+      "other/office/furniture",
+      "other/office/ergonomics",
+      "other/office/charging-carts",
+      "other/office/stationery"
+    ],
+    "other/home": [
+      "other/home/kitchen",
+      "other/home/cleaning",
+      "other/home/personal-care",
+      "other/home/sports",
+      "other/home/household",
+      "other/home/climate",
+      "other/home/garment",
+      "other/home/pet-care"
+    ],
+    "other/home/kitchen": [
+      "other/home/kitchen/coffee",
+      "other/home/kitchen/kettles",
+      "other/home/kitchen/fryers",
+      "other/home/kitchen/microwaves",
+      "other/home/kitchen/refrigerators",
+      "other/home/kitchen/blenders",
+      "other/home/kitchen/cookware",
+      "other/home/kitchen/grills",
+      "other/home/kitchen/toasters"
+    ],
+    "other/home/cleaning": [
+      "other/home/cleaning/accessories",
+      "other/home/cleaning/floor-care",
+      "other/home/cleaning/robots"
+    ],
+    "other/home/personal-care": [
+      "other/home/personal-care/dental",
+      "other/home/personal-care/hair",
+      "other/home/personal-care/shavers",
+      "other/home/personal-care/other"
+    ],
+    "other/home/sports": [
+      "other/home/sports/e-mobility",
+      "other/home/sports/illumination",
+      "other/home/sports/pool",
+      "other/home/sports/other"
+    ],
+    "other/home/household": [
+      "other/home/household/clocks",
+      "other/home/household/lamps",
+      "other/home/household/other"
+    ],
+    "other/tools": [
+      "other/tools/garden",
+      "other/tools/power-tools"
+    ],
+    "other/tools/garden": [
+      "other/tools/garden/trimmers",
+      "other/tools/garden/mowers",
+      "other/tools/garden/washers",
+      "other/tools/garden/pumps"
+    ],
+    "other/energy": [
+      "other/energy/panels",
+      "other/energy/inverters",
+      "other/energy/accessories",
+      "other/energy/batteries",
+      "other/energy/ev",
+      "other/energy/stations"
+    ],
+    "other/education": [
+      "other/education/accessories"
+    ],
+    "other/medical": [
+      "other/medical/mounting",
+      "other/medical/it",
+      "other/medical/workstations"
+    ],
+    "other/service-support": [
+      "other/service-support/hardware"
+    ]
+  }
+}
