@@ -40,8 +40,7 @@
   .tree > ul { padding-left: 0; }
   .node { padding: 3px 0; user-select: none; line-height: 1.45; }
   .toggle { display: inline-block; width: 16px; text-align: center; cursor: pointer;
-            color: #6b7280; font-size: 10px; margin-right: 2px;
-            vertical-align: top; line-height: 1.55; }
+            color: #6b7280; font-size: 10px; margin-right: 2px; vertical-align: top; line-height: 1.55; }
   .toggle.leaf { cursor: default; color: transparent; }
   .label { cursor: pointer; padding: 2px 6px; border-radius: 4px; font-size: 13.5px;
            display: inline; word-break: break-word; overflow-wrap: anywhere;
@@ -73,8 +72,7 @@
                      font-size: 12px; cursor: pointer; color: #374151; }
   .controls button:hover { background: #d1d5db; }
   .legend { font-size: 12px; color: #6b7280; margin-bottom: 8px; }
-
-  /* ---- Edit mode ---- */
+  /* Edit mode */
   .edit-on tr.drag-row { cursor: grab; }
   .edit-on tr.drag-row:active { cursor: grabbing; }
   tr.drag-row.dragging { opacity: .4; }
@@ -85,7 +83,7 @@
                         font-size: 11px; border-radius: 4px; cursor: pointer; color: #6b7280; }
   .row-actions button:hover { background: #fee2e2; border-color: #f87171; color: #b91c1c; }
   .pending { color: #d97706; font-weight: 600; }
-  .saved { color: #10b981; font-weight: 600; }
+  .saved  { color: #10b981; font-weight: 600; }
   .help { background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 10px 14px;
           margin-bottom: 12px; font-size: 12.5px; color: #78350f; display: none; }
   .edit-on .help { display: block; }
@@ -99,23 +97,25 @@
                cursor: pointer; font-weight: 700; line-height: 1.4; vertical-align: middle; }
   .edit-on .node-move { display: inline-block; }
   .node-move:hover { background: #c7d2fe; border-color: #6366f1; }
-  .node-move:disabled { opacity: .3; cursor: not-allowed; }
   .node-chk { display: inline-block; width: 14px; height: 14px; margin-right: 4px;
               vertical-align: top; margin-top: 3px; cursor: pointer; accent-color: #10b981; }
   .label.confirmed { background: #ecfdf5; border-left: 3px solid #10b981; padding-left: 4px; }
   .label.confirmed:hover { background: #d1fae5; }
-  .label.selected,
-  .label.selected.confirmed,
-  .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }
+  .label.selected, .label.selected.confirmed, .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }
   .label.selected.confirmed { border-left-color: #10b981; }
   .hide-confirmed li.node.confirmed-node { display: none; }
-  .confirmed-node > .label.confirmed { background: #ecfdf5; }
+  /* Loading overlay */
+  #loadingOverlay { position: fixed; inset: 0; background: rgba(30,58,138,.85); color: #fff;
+                    display: flex; align-items: center; justify-content: center;
+                    font-size: 18px; font-weight: 600; z-index: 9999; }
+  #loadingOverlay.done { display: none; }
 </style>
 </head>
 <body>
+<div id="loadingOverlay">Loading saved state…</div>
 <header>
   <div>
-    <h1>B2B Unified Category Tree <span class="edit-badge" id="editBadge">EDIT MODE</span></h1>
+    <h1>B2B Unified Category Tree <span class="edit-badge">EDIT MODE</span></h1>
     <div class="sub">also_data + elko mapped to unified leaves. Toggle edit mode to drag supplier categories between nodes.</div>
   </div>
   <div class="actions">
@@ -146,42 +146,98 @@
   <main class="panel detail" id="detail">
     <div class="help">
       <strong>Edit mode active.</strong>
-      Drag any supplier row from the detail pane onto a category in the tree to <strong>move</strong> it there.
-      Hold <kbd>Ctrl</kbd> while dropping to <strong>copy</strong> (add as cross-mapping) instead of moving.
-      Use the <strong>&times;</strong> button to remove a mapping from the current category.
+      Drag any supplier row onto a category to <strong>move</strong> it.
+      Hold <kbd>Ctrl</kbd> while dropping to <strong>copy</strong> instead.
+      Use <strong>&times;</strong> to remove a mapping.
     </div>
     <div class="empty">Click any category on the left to see supplier mappings.</div>
   </main>
 </div>
 <script>
-const TREE_DATA     = {{ tree_json | safe }};
-const STATS         = {{ stats_json | safe }};
-const COV           = {{ cov_json | safe }};
-const SOURCES       = {{ sources_json | safe }};  // supplier -> [[supplier, category], ...]
-let   SUPMAP        = {{ supmap_json | safe }};   // "supplier||category" -> [code, ...]
-const INITIAL_SUPMAP  = JSON.parse(JSON.stringify(SUPMAP));
-const INITIAL_TREE    = JSON.parse(JSON.stringify(TREE_DATA));
-const PATHS           = {{ paths_json | safe }};
-const deletedCodes    = new Set({{ deleted_json | safe }});
-const confirmedCodes  = new Set({{ confirmed_json | safe }});
-const INITIAL_CONFIRMED = new Set(confirmedCodes);
+// --- Data embedded at build time ---
+const TREE_DATA_INIT = {{ tree_json | safe }};
+const STATS          = {{ stats_json | safe }};
+const COV            = {{ cov_json | safe }};
+const SOURCES        = {{ sources_json | safe }};
+const PATHS          = {{ paths_json | safe }};
+const SUPMAP_INIT    = {{ supmap_json | safe }};
+const CONFIRMED_INIT = {{ confirmed_json | safe }};
+const DELETED_INIT   = {{ deleted_json | safe }};
+
+// Mutable working copies — will be replaced with saved state from /api/state
+let TREE_DATA     = JSON.parse(JSON.stringify(TREE_DATA_INIT));
+let SUPMAP        = JSON.parse(JSON.stringify(SUPMAP_INIT));
+const confirmedCodes = new Set(CONFIRMED_INIT);
+const deletedCodes   = new Set(DELETED_INIT);
+
+let INITIAL_SUPMAP    = null;  // set after state load
+let INITIAL_TREE      = null;
+let INITIAL_CONFIRMED = null;
 
 let MAP = {};
 let editMode = false;
 let pendingChanges = 0;
+const nodeIdx = new Map();
 
 function deriveMap() {
   MAP = {};
   for (const key of Object.keys(SUPMAP)) {
     const sep = key.indexOf("||");
-    const supplier = key.slice(0, sep);
-    const category = key.slice(sep + 2);
+    const supplier = key.slice(0, sep), category = key.slice(sep + 2);
     for (const code of SUPMAP[key]) {
-      (MAP[code] = MAP[code] || []).push({supplier, category, key});
+      (MAP[code] = MAP[code] || []).push({ supplier, category, key });
     }
   }
 }
-deriveMap();
+
+function applyDeletions(nodes, delSet) {
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    if (delSet.has(nodes[i].code)) { nodes.splice(i, 1); }
+    else if (nodes[i].children) applyDeletions(nodes[i].children, delSet);
+  }
+}
+
+function applyOrder(nodes, order, parentKey) {
+  const saved = order[parentKey || "__root__"];
+  if (saved && saved.length) {
+    const pos = Object.fromEntries(saved.map((c, i) => [c, i]));
+    nodes.sort((a, b) => {
+      const ia = pos[a.code] ?? 9999, ib = pos[b.code] ?? 9999;
+      return ia - ib;
+    });
+  }
+  for (const n of nodes) if (n.children && n.children.length) applyOrder(n.children, order, n.code);
+}
+
+async function init() {
+  try {
+    const r = await fetch("/api/state");
+    if (r.ok) {
+      const state = await r.json();
+      if (state.supmap && Object.keys(state.supmap).length)  SUPMAP = state.supmap;
+      if (state.confirmed && state.confirmed.length) {
+        confirmedCodes.clear();
+        state.confirmed.forEach(c => confirmedCodes.add(c));
+      }
+      if (state.deleted && state.deleted.length) {
+        deletedCodes.clear();
+        state.deleted.forEach(c => deletedCodes.add(c));
+        applyDeletions(TREE_DATA.tree, deletedCodes);
+      }
+      if (state.order && Object.keys(state.order).length) applyOrder(TREE_DATA.tree, state.order);
+    }
+  } catch {}
+
+  INITIAL_SUPMAP    = JSON.parse(JSON.stringify(SUPMAP));
+  INITIAL_TREE      = JSON.parse(JSON.stringify(TREE_DATA));
+  INITIAL_CONFIRMED = new Set(confirmedCodes);
+
+  deriveMap();
+  render(document.getElementById("tree"), TREE_DATA.tree, []);
+  updateStats();
+  updateDeletableBadges();
+  document.getElementById("loadingOverlay").classList.add("done");
+}
 
 function updateStats() {
   const leafSups = {};
@@ -196,20 +252,19 @@ function updateStats() {
     else if (s.has("also_data")) only_also++;
     else only_elko++;
   }
-  const rows = Object.values(MAP).reduce((a, v) => a + v.length, 0);
-  const total = nodeIdx.size || STATS.categories;
-  const confirmed = [...confirmedCodes].filter(c => nodeIdx.has(c)).length;
-  const pct = total ? Math.round(100 * confirmed / total) : 0;
-  document.getElementById('stats').innerHTML =
-    '<span class="stat">' + total + ' categories</span>' +
-    '<span class="stat" style="background:#d1fae5;color:#065f46;">\u2713 ' + confirmed + ' / ' + total + ' confirmed (' + pct + '%)</span>' +
-    '<span class="stat">' + rows + ' supplier mappings</span>' +
-    '<span class="stat">' + both + ' leaves covered by BOTH</span>' +
-    '<span class="stat warn">' + only_also + ' also-only</span>' +
-    '<span class="stat warn">' + only_elko + ' elko-only</span>';
+  const rows    = Object.values(MAP).reduce((a, v) => a + v.length, 0);
+  const total   = nodeIdx.size || STATS.categories;
+  const conf    = [...confirmedCodes].filter(c => nodeIdx.has(c)).length;
+  const pct     = total ? Math.round(100 * conf / total) : 0;
+  document.getElementById("stats").innerHTML =
+    `<span class="stat">${total} categories</span>` +
+    `<span class="stat" style="background:#d1fae5;color:#065f46;">\u2713 ${conf} / ${total} confirmed (${pct}%)</span>` +
+    `<span class="stat">${rows} supplier mappings</span>` +
+    `<span class="stat">${both} leaves covered by BOTH</span>` +
+    `<span class="stat warn">${only_also} also-only</span>` +
+    `<span class="stat warn">${only_elko} elko-only</span>`;
 }
 
-const nodeIdx = new Map();
 function hasDescendantMapping(node) {
   if ((MAP[node.code] || []).length) return true;
   for (const c of (node.children || [])) if (hasDescendantMapping(c)) return true;
@@ -221,21 +276,19 @@ function collectSuppliers(node) {
   for (const c of (node.children || [])) for (const s of collectSuppliers(c)) set.add(s);
   return set;
 }
-
 function refreshLabel(code) {
-  const entry = nodeIdx.get(code);
-  if (!entry) return;
-  const node = entry.node;
-  const sups = collectSuppliers(node);
+  const entry = nodeIdx.get(code); if (!entry) return;
+  const node  = entry.node;
+  const sups  = collectSuppliers(node);
   const mapped = (MAP[code] || []).length;
-  entry.labelEl.innerHTML = '';
+  entry.labelEl.innerHTML = "";
   entry.labelEl.appendChild(document.createTextNode(node.label));
-  if (sups.size === 1 && hasDescendantMapping(node)) entry.labelEl.classList.add('only-one');
-  else entry.labelEl.classList.remove('only-one');
-  for (const sup of ['also_data', 'elko']) {
-    if (sups.has(sup)) { const d = document.createElement('span'); d.className = 'dot ' + sup; entry.labelEl.appendChild(d); }
+  if (sups.size === 1 && hasDescendantMapping(node)) entry.labelEl.classList.add("only-one");
+  else entry.labelEl.classList.remove("only-one");
+  for (const sup of ["also_data", "elko"]) {
+    if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; entry.labelEl.appendChild(d); }
   }
-  if (mapped) { const c = document.createElement('span'); c.className = 'count'; c.textContent = '(' + mapped + ')'; entry.labelEl.appendChild(c); }
+  if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; entry.labelEl.appendChild(c); }
   entry.labelEl.appendChild(entry.delBtn);
 }
 function refreshLabelsRecursively(code) {
@@ -245,60 +298,56 @@ function refreshLabelsRecursively(code) {
 }
 
 function render(parentEl, nodes, ancestors) {
-  const ul = document.createElement('ul');
+  const ul = document.createElement("ul");
   for (const node of nodes) {
-    const li = document.createElement('li'); li.className = 'node'; li.dataset.code = node.code;
-    if (confirmedCodes.has(node.code)) li.classList.add('confirmed-node');
+    const li = document.createElement("li"); li.className = "node"; li.dataset.code = node.code;
+    if (confirmedCodes.has(node.code)) li.classList.add("confirmed-node");
     const hasCh = node.children && node.children.length > 0;
-    const tog = document.createElement('span'); tog.className = 'toggle' + (hasCh ? '' : ' leaf');
-    tog.textContent = hasCh ? '\u25B6' : '\u2022'; li.appendChild(tog);
+    const tog = document.createElement("span"); tog.className = "toggle" + (hasCh ? "" : " leaf");
+    tog.textContent = hasCh ? "\u25B6" : "\u2022"; li.appendChild(tog);
 
-    const chk = document.createElement('input');
-    chk.type = 'checkbox'; chk.className = 'node-chk';
-    chk.title = 'Mark this category as reviewed & confirmed';
+    const chk = document.createElement("input");
+    chk.type = "checkbox"; chk.className = "node-chk";
     chk.checked = confirmedCodes.has(node.code);
     chk.onclick = ev => { ev.stopPropagation(); toggleConfirmed(node.code, chk.checked); };
     li.appendChild(chk);
 
-    const lbl = document.createElement('span'); lbl.className = 'label'; lbl.dataset.code = node.code;
-    if (confirmedCodes.has(node.code)) lbl.classList.add('confirmed');
+    const lbl = document.createElement("span"); lbl.className = "label"; lbl.dataset.code = node.code;
+    if (confirmedCodes.has(node.code)) lbl.classList.add("confirmed");
     lbl.textContent = node.label;
-    lbl.addEventListener('dragover', ev => { if (!editMode) return; ev.preventDefault(); lbl.classList.add('drop-hover'); ev.dataTransfer.dropEffect = ev.ctrlKey ? 'copy' : 'move'; });
-    lbl.addEventListener('dragleave', () => lbl.classList.remove('drop-hover'));
-    lbl.addEventListener('drop', ev => {
+    lbl.addEventListener("dragover", ev => { if (!editMode) return; ev.preventDefault(); lbl.classList.add("drop-hover"); ev.dataTransfer.dropEffect = ev.ctrlKey ? "copy" : "move"; });
+    lbl.addEventListener("dragleave", () => lbl.classList.remove("drop-hover"));
+    lbl.addEventListener("drop", ev => {
       if (!editMode) return;
-      ev.preventDefault(); lbl.classList.remove('drop-hover');
-      const data = ev.dataTransfer.getData('application/json');
-      if (!data) return;
-      const {key, fromCode} = JSON.parse(data);
-      if (ev.ctrlKey) addMapping(key, node.code);
-      else moveMapping(key, fromCode, node.code);
+      ev.preventDefault(); lbl.classList.remove("drop-hover");
+      const data = ev.dataTransfer.getData("application/json"); if (!data) return;
+      const { key, fromCode } = JSON.parse(data);
+      if (ev.ctrlKey) addMapping(key, node.code); else moveMapping(key, fromCode, node.code);
     });
     lbl.onclick = () => selectNode(node, ancestors);
     li.appendChild(lbl);
     const sups = collectSuppliers(node);
-    if (sups.size === 1 && hasDescendantMapping(node)) lbl.classList.add('only-one');
-    for (const sup of ['also_data', 'elko']) {
-      if (sups.has(sup)) { const d = document.createElement('span'); d.className = 'dot ' + sup; lbl.appendChild(d); }
+    if (sups.size === 1 && hasDescendantMapping(node)) lbl.classList.add("only-one");
+    for (const sup of ["also_data", "elko"]) {
+      if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; lbl.appendChild(d); }
     }
     const mapped = (MAP[node.code] || []).length;
-    if (mapped) { const c = document.createElement('span'); c.className = 'count'; c.textContent = '(' + mapped + ')'; lbl.appendChild(c); }
+    if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; lbl.appendChild(c); }
 
-    const del = document.createElement('button'); del.className = 'node-del'; del.textContent = 'delete'; del.title = 'Delete this empty category';
+    const del = document.createElement("button"); del.className = "node-del"; del.textContent = "delete";
     del.onclick = ev => { ev.stopPropagation(); deleteNode(node); };
     lbl.appendChild(del);
-
-    const upBtn = document.createElement('button'); upBtn.className = 'node-move'; upBtn.textContent = '\u25B2'; upBtn.title = 'Move up';
+    const upBtn = document.createElement("button"); upBtn.className = "node-move"; upBtn.textContent = "\u25B2";
     upBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, -1); };
-    const dnBtn = document.createElement('button'); dnBtn.className = 'node-move'; dnBtn.textContent = '\u25BC'; dnBtn.title = 'Move down';
+    const dnBtn = document.createElement("button"); dnBtn.className = "node-move"; dnBtn.textContent = "\u25BC";
     dnBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, +1); };
     lbl.appendChild(upBtn); lbl.appendChild(dnBtn);
 
     let childUl = null;
     if (hasCh) {
       childUl = render(li, node.children, [...ancestors, node]);
-      childUl.classList.add('hidden');
-      tog.onclick = () => { const h = childUl.classList.toggle('hidden'); tog.textContent = h ? '\u25B6' : '\u25BC'; };
+      childUl.classList.add("hidden");
+      tog.onclick = () => { const h = childUl.classList.toggle("hidden"); tog.textContent = h ? "\u25B6" : "\u25BC"; };
     }
     nodeIdx.set(node.code, { node, labelEl: lbl, li, toggle: tog, childUl, ancestors: [...ancestors], delBtn: del, chkEl: chk, upBtn, dnBtn });
     ul.appendChild(li);
@@ -306,44 +355,34 @@ function render(parentEl, nodes, ancestors) {
   parentEl.appendChild(ul); return ul;
 }
 
-function toggleConfirmed(code, isChecked) {
-  if (isChecked) confirmedCodes.add(code); else confirmedCodes.delete(code);
+function toggleConfirmed(code, on) {
+  if (on) confirmedCodes.add(code); else confirmedCodes.delete(code);
   const entry = nodeIdx.get(code);
-  if (entry) {
-    entry.labelEl.classList.toggle('confirmed', isChecked);
-    entry.li.classList.toggle('confirmed-node', isChecked);
-  }
+  if (entry) { entry.labelEl.classList.toggle("confirmed", on); entry.li.classList.toggle("confirmed-node", on); }
   pendingChanges++; markPending(); updateStats();
 }
-
 function updateDeletableBadges() {
-  nodeIdx.forEach((entry, code) => {
-    const deletable = !hasDescendantMapping(entry.node);
-    entry.delBtn.classList.toggle('visible', deletable);
-  });
+  nodeIdx.forEach((entry) => entry.delBtn.classList.toggle("visible", !hasDescendantMapping(entry.node)));
 }
-
 function moveSibling(code, dir) {
   const entry = nodeIdx.get(code); if (!entry) return;
-  const parentNode = entry.ancestors.length > 0 ? nodeIdx.get(entry.ancestors[entry.ancestors.length - 1].code).node : null;
+  const parentNode = entry.ancestors.length ? nodeIdx.get(entry.ancestors[entry.ancestors.length - 1].code).node : null;
   const siblings = parentNode ? parentNode.children : TREE_DATA.tree;
-  const idx = siblings.findIndex(c => c.code === code);
-  const newIdx = idx + dir;
+  const idx = siblings.findIndex(c => c.code === code), newIdx = idx + dir;
   if (idx < 0 || newIdx < 0 || newIdx >= siblings.length) return;
   const [moved] = siblings.splice(idx, 1); siblings.splice(newIdx, 0, moved);
   const parentLi = parentNode ? nodeIdx.get(parentNode.code).li : null;
-  const ul = parentLi ? parentLi.querySelector(':scope > ul') : document.querySelector('#tree > ul');
-  if (ul) { for (const child of siblings) { const ce = nodeIdx.get(child.code); if (ce) ul.appendChild(ce.li); } }
+  const ul = parentLi ? parentLi.querySelector(":scope > ul") : document.querySelector("#tree > ul");
+  if (ul) for (const child of siblings) { const ce = nodeIdx.get(child.code); if (ce) ul.appendChild(ce.li); }
   pendingChanges++; markPending();
 }
-
 function deleteNode(node) {
-  if ((MAP[node.code] || []).length > 0 || hasDescendantMapping(node)) {
-    alert('Cannot delete: category (or its descendants) still has supplier mappings.'); return;
+  if ((MAP[node.code] || []).length || hasDescendantMapping(node)) {
+    alert("Cannot delete: category still has supplier mappings."); return;
   }
-  if (!confirm('Delete category "' + node.label + '"?')) return;
+  if (!confirm('Delete "' + node.label + '"?')) return;
   const entry = nodeIdx.get(node.code); if (!entry) return;
-  const parentNode = entry.ancestors.length > 0 ? nodeIdx.get(entry.ancestors[entry.ancestors.length - 1].code).node : null;
+  const parentNode = entry.ancestors.length ? nodeIdx.get(entry.ancestors[entry.ancestors.length - 1].code).node : null;
   if (parentNode) parentNode.children = parentNode.children.filter(c => c.code !== node.code);
   else TREE_DATA.tree = TREE_DATA.tree.filter(c => c.code !== node.code);
   function removeFromIdx(n) { nodeIdx.delete(n.code); (n.children || []).forEach(removeFromIdx); }
@@ -355,48 +394,46 @@ function deleteNode(node) {
 
 let selected = null, currentNode = null, currentAncestors = null;
 function selectNode(node, ancestors) {
-  if (selected) selected.classList.remove('selected');
-  const entry = nodeIdx.get(node.code); entry.labelEl.classList.add('selected'); selected = entry.labelEl;
-  for (const a of ancestors) { const e = nodeIdx.get(a.code);
-    if (e && e.childUl && e.childUl.classList.contains('hidden')) { e.childUl.classList.remove('hidden'); e.toggle.textContent = '\u25BC'; } }
+  if (selected) selected.classList.remove("selected");
+  const entry = nodeIdx.get(node.code); entry.labelEl.classList.add("selected"); selected = entry.labelEl;
+  for (const a of ancestors) {
+    const e = nodeIdx.get(a.code);
+    if (e && e.childUl && e.childUl.classList.contains("hidden")) { e.childUl.classList.remove("hidden"); e.toggle.textContent = "\u25BC"; }
+  }
   currentNode = node; currentAncestors = ancestors; showDetail(node, ancestors);
 }
-
-function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
+function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function showDetail(node, ancestors) {
-  const d = document.getElementById('detail');
-  const breadcrumbs = [...ancestors, node].map(a => a.label).join(' \u203A ');
+  const d = document.getElementById("detail");
+  const breadcrumbs = [...ancestors, node].map(a => a.label).join(" \u203A ");
   const mappings = MAP[node.code] || [];
-  const subs = (node.children || []).map(c => '<a href="#" data-code="' + c.code + '">' + escapeHtml(c.label) + '</a>').join('');
+  const subs = (node.children || []).map(c => `<a href="#" data-code="${c.code}">${escapeHtml(c.label)}</a>`).join("");
   const rowsHtml = mappings.map((m, i) =>
-    '<tr class="drag-row" draggable="true" data-key="' + escapeHtml(m.key) + '" data-idx="' + i + '">' +
-      '<td><span class="supplier-tag ' + m.supplier + '">' + m.supplier + '</span></td>' +
-      '<td>' + escapeHtml(m.category) + '</td>' +
-      '<td><span class="row-actions"><button class="rm" title="Remove from this category">&times;</button></span></td>' +
-    '</tr>').join('');
-  const helpHtml = '<div class="help"><strong>Edit mode active.</strong> Drag rows to move/copy mappings. Hold <kbd>Ctrl</kbd> while dropping to copy.</div>';
-  d.innerHTML = helpHtml +
-    '<h2>' + escapeHtml(node.label) + '</h2>' +
-    '<div class="crumbs">' + escapeHtml(breadcrumbs) + '</div>' +
-    '<div class="code">code: ' + node.code + '</div>' +
-    (subs ? '<div class="subs"><strong>Subcategories:</strong> ' + subs + '</div>' : '') +
+    `<tr class="drag-row" draggable="true" data-key="${escapeHtml(m.key)}" data-idx="${i}">` +
+      `<td><span class="supplier-tag ${m.supplier}">${m.supplier}</span></td>` +
+      `<td>${escapeHtml(m.category)}</td>` +
+      `<td><span class="row-actions"><button class="rm">&times;</button></span></td>` +
+    `</tr>`).join("");
+  d.innerHTML =
+    `<div class="help"><strong>Edit mode active.</strong> Drag rows to move/copy. Hold <kbd>Ctrl</kbd> to copy.</div>` +
+    `<h2>${escapeHtml(node.label)}</h2>` +
+    `<div class="crumbs">${escapeHtml(breadcrumbs)}</div>` +
+    `<div class="code">code: ${node.code}</div>` +
+    (subs ? `<div class="subs"><strong>Subcategories:</strong> ${subs}</div>` : "") +
     (mappings.length
-       ? '<table><thead><tr><th>Supplier</th><th>Supplier category</th><th></th></tr></thead><tbody>' + rowsHtml + '</tbody></table>'
-       : '<div class="empty">No direct supplier mappings at this level (see subcategories).</div>');
-
-  d.querySelectorAll('.subs a').forEach(a => { a.onclick = e => {
-    e.preventDefault(); const code = a.getAttribute('data-code'); const entry = nodeIdx.get(code);
+      ? `<table><thead><tr><th>Supplier</th><th>Supplier category</th><th></th></tr></thead><tbody>${rowsHtml}</tbody></table>`
+      : `<div class="empty">No direct supplier mappings at this level (see subcategories).</div>`);
+  d.querySelectorAll(".subs a").forEach(a => { a.onclick = e => {
+    e.preventDefault(); const entry = nodeIdx.get(a.getAttribute("data-code"));
     if (entry) selectNode(entry.node, entry.ancestors); }; });
-
-  d.querySelectorAll('tr.drag-row').forEach(tr => {
-    tr.addEventListener('dragstart', ev => {
+  d.querySelectorAll("tr.drag-row").forEach(tr => {
+    tr.addEventListener("dragstart", ev => {
       if (!editMode) { ev.preventDefault(); return; }
-      ev.dataTransfer.setData('application/json', JSON.stringify({key: tr.dataset.key, fromCode: node.code}));
-      ev.dataTransfer.effectAllowed = 'copyMove'; tr.classList.add('dragging');
+      ev.dataTransfer.setData("application/json", JSON.stringify({ key: tr.dataset.key, fromCode: node.code }));
+      ev.dataTransfer.effectAllowed = "copyMove"; tr.classList.add("dragging");
     });
-    tr.addEventListener('dragend', () => tr.classList.remove('dragging'));
-    tr.querySelector('.rm').onclick = ev => { ev.stopPropagation(); removeMapping(tr.dataset.key, node.code); };
+    tr.addEventListener("dragend", () => tr.classList.remove("dragging"));
+    tr.querySelector(".rm").onclick = ev => { ev.stopPropagation(); removeMapping(tr.dataset.key, node.code); };
   });
 }
 
@@ -407,8 +444,7 @@ function moveMapping(key, fromCode, toCode) {
   onMappingChanged([fromCode, toCode]);
 }
 function addMapping(key, toCode) {
-  const codes = SUPMAP[key] || [];
-  if (!codes.includes(toCode)) SUPMAP[key] = codes.concat([toCode]);
+  if (!(SUPMAP[key] || []).includes(toCode)) SUPMAP[key] = (SUPMAP[key] || []).concat([toCode]);
   onMappingChanged([toCode]);
 }
 function removeMapping(key, fromCode) {
@@ -416,119 +452,95 @@ function removeMapping(key, fromCode) {
   onMappingChanged([fromCode]);
 }
 function markPending() {
-  document.getElementById('pendingCounter').innerHTML = pendingChanges > 0
-    ? '<span class="pending">' + pendingChanges + ' change' + (pendingChanges === 1 ? '' : 's') + ' pending</span>' : '';
-  document.getElementById('resetBtn').style.display = pendingChanges > 0 ? 'inline-block' : 'none';
+  document.getElementById("pendingCounter").innerHTML = pendingChanges > 0
+    ? `<span class="pending">${pendingChanges} change${pendingChanges === 1 ? "" : "s"} pending</span>` : "";
+  document.getElementById("resetBtn").style.display = pendingChanges > 0 ? "inline-block" : "none";
 }
-function onMappingChanged(affectedCodes) {
+function onMappingChanged(codes) {
   pendingChanges++; markPending(); deriveMap(); updateStats();
-  for (const c of affectedCodes) refreshLabelsRecursively(c);
+  for (const c of codes) refreshLabelsRecursively(c);
   if (currentNode) showDetail(currentNode, currentAncestors);
   updateDeletableBadges();
 }
-
 function computeOrder() {
   const order = {};
-  function walk(nodes, parentCode) {
-    order[parentCode] = nodes.map(n => n.code);
+  function walk(nodes, pk) {
+    order[pk] = nodes.map(n => n.code);
     for (const n of nodes) if (n.children && n.children.length) walk(n.children, n.code);
   }
-  walk(TREE_DATA.tree, '__root__');
-  return order;
+  walk(TREE_DATA.tree, "__root__"); return order;
 }
 
-render(document.getElementById('tree'), TREE_DATA.tree, []);
-updateStats();
-updateDeletableBadges();
-
 // Save
-document.getElementById('saveBtn').onclick = async () => {
-  const payload = {
-    supmap: SUPMAP,
-    deleted: Array.from(deletedCodes),
-    confirmed: Array.from(confirmedCodes),
-    order: computeOrder(),
-  };
-  const pc = document.getElementById('pendingCounter');
+document.getElementById("saveBtn").onclick = async () => {
+  const payload = { supmap: SUPMAP, deleted: Array.from(deletedCodes), confirmed: Array.from(confirmedCodes), order: computeOrder() };
+  const pc = document.getElementById("pendingCounter");
   pc.innerHTML = '<span style="color:#fde68a;">Saving\u2026</span>';
   try {
-    const r = await fetch('/save', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload),
-    });
-    if (!r.ok) { const t = await r.text(); throw new Error(r.status + ' ' + t); }
-    const result = await r.json();
+    const r = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    if (!r.ok) { const t = await r.text(); throw new Error(r.status + " " + t); }
+    const res = await r.json();
     pendingChanges = 0;
-    pc.innerHTML = '<span class="saved">\u2713 Saved — ' + result.confirmed + ' confirmed, ' + result.deleted + ' deleted</span>';
-    document.getElementById('resetBtn').style.display = 'none';
-    setTimeout(() => { if (pendingChanges === 0) pc.innerHTML = ''; }, 4000);
-  } catch (e) {
-    pc.innerHTML = '<span style="color:#fca5a5;">Save failed: ' + e.message + '</span>';
-  }
+    pc.innerHTML = `<span class="saved">\u2713 Saved — ${res.confirmed} confirmed, ${res.deleted} deleted</span>`;
+    document.getElementById("resetBtn").style.display = "none";
+    setTimeout(() => { if (!pendingChanges) pc.innerHTML = ""; }, 4000);
+  } catch (e) { pc.innerHTML = `<span style="color:#fca5a5;">Save failed: ${e.message}</span>`; }
 };
 
 // Downloads
-document.getElementById('dlAlsoBtn').onclick = () => { window.location.href = '/download/also'; };
-document.getElementById('dlElkoBtn').onclick = () => { window.location.href = '/download/elko'; };
+document.getElementById("dlAlsoBtn").onclick = () => { window.location.href = "/api/download?supplier=also_data"; };
+document.getElementById("dlElkoBtn").onclick = () => { window.location.href = "/api/download?supplier=elko"; };
 
 // Reset
-document.getElementById('resetBtn').onclick = () => {
-  if (!confirm('Discard all pending changes?')) return;
+document.getElementById("resetBtn").onclick = () => {
+  if (!confirm("Discard all pending changes?")) return;
   SUPMAP = JSON.parse(JSON.stringify(INITIAL_SUPMAP));
   confirmedCodes.clear(); INITIAL_CONFIRMED.forEach(c => confirmedCodes.add(c));
   if (deletedCodes.size > 0) {
     deletedCodes.clear();
     Object.assign(TREE_DATA, JSON.parse(JSON.stringify(INITIAL_TREE)));
-    document.getElementById('tree').innerHTML = ''; nodeIdx.clear();
-    render(document.getElementById('tree'), TREE_DATA.tree, []);
+    document.getElementById("tree").innerHTML = ""; nodeIdx.clear();
+    render(document.getElementById("tree"), TREE_DATA.tree, []);
   }
   nodeIdx.forEach((entry, code) => {
     const on = confirmedCodes.has(code);
-    entry.chkEl.checked = on;
-    entry.labelEl.classList.toggle('confirmed', on);
-    entry.li.classList.toggle('confirmed-node', on);
+    entry.chkEl.checked = on; entry.labelEl.classList.toggle("confirmed", on); entry.li.classList.toggle("confirmed-node", on);
   });
-  pendingChanges = 0;
-  document.getElementById('pendingCounter').innerHTML = '';
-  document.getElementById('resetBtn').style.display = 'none';
+  pendingChanges = 0; document.getElementById("pendingCounter").innerHTML = ""; document.getElementById("resetBtn").style.display = "none";
   deriveMap(); updateStats(); nodeIdx.forEach((_, c) => refreshLabel(c)); updateDeletableBadges();
   if (currentNode) {
     if (nodeIdx.has(currentNode.code)) showDetail(currentNode, currentAncestors);
-    else document.getElementById('detail').innerHTML = '<div class="empty">Click any category on the left to see supplier mappings.</div>';
+    else document.getElementById("detail").innerHTML = '<div class="empty">Click any category on the left to see supplier mappings.</div>';
   }
 };
 
-// Search
-const q = document.getElementById('q');
-q.oninput = () => {
-  const t = q.value.trim().toLowerCase();
-  nodeIdx.forEach(e => { e.labelEl.classList.remove('match'); e.li.classList.remove('hidden'); });
-  if (!t) { nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add('hidden'); e.toggle.textContent = '\u25B6'; } }); return; }
+// Search + tree controls
+document.getElementById("q").oninput = function() {
+  const t = this.value.trim().toLowerCase();
+  nodeIdx.forEach(e => { e.labelEl.classList.remove("match"); e.li.classList.remove("hidden"); });
+  if (!t) { nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add("hidden"); e.toggle.textContent = "\u25B6"; } }); return; }
   const m = new Set();
-  nodeIdx.forEach((e, c) => { if (e.node.label.toLowerCase().includes(t) || c.includes(t)) { m.add(c); e.labelEl.classList.add('match'); for (const a of e.ancestors) m.add(a.code); } });
-  nodeIdx.forEach((e, c) => { if (!m.has(c)) e.li.classList.add('hidden'); else if (e.childUl) { e.childUl.classList.remove('hidden'); e.toggle.textContent = '\u25BC'; } });
+  nodeIdx.forEach((e, c) => { if (e.node.label.toLowerCase().includes(t) || c.includes(t)) { m.add(c); e.labelEl.classList.add("match"); for (const a of e.ancestors) m.add(a.code); } });
+  nodeIdx.forEach((e, c) => { if (!m.has(c)) e.li.classList.add("hidden"); else if (e.childUl) { e.childUl.classList.remove("hidden"); e.toggle.textContent = "\u25BC"; } });
 };
-document.getElementById('expand-all').onclick = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.remove('hidden'); e.toggle.textContent = '\u25BC'; } });
-document.getElementById('collapse-all').onclick = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add('hidden'); e.toggle.textContent = '\u25B6'; } });
-document.getElementById('show-roots').onclick = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add('hidden'); e.toggle.textContent = '\u25B6'; } });
-
-const hideConfBtn = document.getElementById('hide-confirmed-btn');
-hideConfBtn.onclick = () => {
-  const tree = document.getElementById('tree');
-  const hiding = !tree.classList.contains('hide-confirmed');
-  tree.classList.toggle('hide-confirmed', hiding);
-  hideConfBtn.textContent = hiding ? 'Show confirmed' : 'Hide confirmed';
+document.getElementById("expand-all").onclick   = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.remove("hidden"); e.toggle.textContent = "\u25BC"; } });
+document.getElementById("collapse-all").onclick  = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add("hidden"); e.toggle.textContent = "\u25B6"; } });
+document.getElementById("show-roots").onclick    = () => nodeIdx.forEach(e => { if (e.childUl) { e.childUl.classList.add("hidden"); e.toggle.textContent = "\u25B6"; } });
+document.getElementById("hide-confirmed-btn").onclick = function() {
+  const tree = document.getElementById("tree");
+  const hiding = !tree.classList.contains("hide-confirmed");
+  tree.classList.toggle("hide-confirmed", hiding);
+  this.textContent = hiding ? "Show confirmed" : "Hide confirmed";
 };
-
-// Edit mode
-document.getElementById('toggleEdit').onclick = () => {
+document.getElementById("toggleEdit").onclick = function() {
   editMode = !editMode;
-  document.body.classList.toggle('edit-on', editMode);
-  document.getElementById('toggleEdit').textContent = editMode ? 'Exit edit mode' : 'Enable edit mode';
+  document.body.classList.toggle("edit-on", editMode);
+  this.textContent = editMode ? "Exit edit mode" : "Enable edit mode";
   updateDeletableBadges();
   if (currentNode) showDetail(currentNode, currentAncestors);
 };
+
+init();
 </script>
 </body>
 </html>

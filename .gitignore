@@ -5,3 +5,7 @@ __pycache__/
 output/
 E:\
 .env
+public/
+netlify/functions/_data.json
+node_modules/
+
