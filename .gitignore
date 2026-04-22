@@ -1,0 +1,7 @@
+category.db
+__pycache__/
+*.pyc
+*.pyo
+output/
+E:\
+.env
