@@ -111,6 +111,34 @@ def update_node_labels(renames: dict):
             conn.execute("UPDATE tree_nodes SET label = ? WHERE code = ?", (label, code))
 
 
+def sync_tree_nodes(nodes: list):
+    """Sync tree structure: insert new nodes, update parent_code + label for existing ones.
+    nodes is a list of {code, label, parent_code} dicts (parent_code may be None).
+    """
+    if not nodes:
+        return
+    with get_conn() as conn:
+        existing = {r["code"] for r in conn.execute("SELECT code FROM tree_nodes").fetchall()}
+        to_insert = [
+            (n["code"], n["label"], n.get("parent_code"))
+            for n in nodes if n["code"] not in existing
+        ]
+        to_update = [
+            (n["label"], n.get("parent_code"), n["code"])
+            for n in nodes if n["code"] in existing
+        ]
+        if to_insert:
+            conn.executemany(
+                "INSERT INTO tree_nodes(code, label, parent_code) VALUES (?,?,?)",
+                to_insert,
+            )
+        if to_update:
+            conn.executemany(
+                "UPDATE tree_nodes SET label=?, parent_code=? WHERE code=?",
+                to_update,
+            )
+
+
 def save_state(key: str, value):
     with get_conn() as conn:
         conn.execute(

@@ -282,6 +282,37 @@ function computeOrder() {
   walk(TREE_DATA.tree, "__root__"); return order;
 }
 
+function computeTreeNodes() {
+  // Flat list of every live node: {code, label, parent_code}
+  const nodes = [];
+  function walk(children, parentCode) {
+    for (const n of children) {
+      nodes.push({ code: n.code, label: n.label, parent_code: parentCode || null });
+      if (n.children && n.children.length) walk(n.children, n.code);
+    }
+  }
+  walk(TREE_DATA.tree, null);
+  return nodes;
+}
+
+function buildTreeFromNodes(flatNodes) {
+  // Rebuild nested TREE_DATA from a flat {code, label, parent_code} list
+  const byCode = {};
+  const childMap = {};
+  for (const n of flatNodes) {
+    byCode[n.code] = { code: n.code, label: n.label, children: [] };
+    const p = n.parent_code || null;
+    (childMap[p] = childMap[p] || []).push(n.code);
+  }
+  function build(parentCode) {
+    return (childMap[parentCode] || []).map(code => {
+      byCode[code].children = build(code);
+      return byCode[code];
+    });
+  }
+  return { tree: build(null) };
+}
+
 function computePaths() {
   const paths = {};
   function walk(nodes, prefix) {
@@ -312,11 +343,20 @@ async function init() {
     const r = await fetch("/api/state");
     if (r.ok) {
       const s = await r.json();
+      // Restore tree structure first (new nodes + reparenting)
+      if (s.tree_nodes && s.tree_nodes.length) {
+        TREE_DATA = buildTreeFromNodes(s.tree_nodes);
+      }
       if (s.supmap && Object.keys(s.supmap).length) SUPMAP = s.supmap;
       if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.forEach(c => confirmedCodes.add(c)); }
       if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
       if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
       if (s.renames) Object.assign(renames, s.renames);
+      // Apply renames to rebuilt tree labels
+      for (const [code, label] of Object.entries(renames)) {
+        const applyLabel = nodes => { for (const n of nodes) { if (n.code === code) n.label = label; if (n.children) applyLabel(n.children); } };
+        applyLabel(TREE_DATA.tree);
+      }
       // Backfill: the saved supmap only contains entries with codes assigned.
       // Re-add every known supplier category so unmapped ones (empty []) are visible.
       for (const cats of Object.values(SOURCES))
@@ -803,12 +843,13 @@ function onMappingChanged(codes) {
 
 document.getElementById("saveBtn").onclick = async () => {
   const payload = {
-    supmap:    SUPMAP,
-    deleted:   Array.from(deletedCodes),
-    confirmed: Array.from(confirmedCodes),
-    order:     computeOrder(),
-    renames:   renames,
-    paths:     computePaths(),
+    supmap:     SUPMAP,
+    deleted:    Array.from(deletedCodes),
+    confirmed:  Array.from(confirmedCodes),
+    order:      computeOrder(),
+    renames:    renames,
+    paths:      computePaths(),
+    tree_nodes: computeTreeNodes(),
   };
   const pc = document.getElementById("pendingCounter");
   pc.innerHTML = '<span style="color:#fde68a;">Saving\u2026</span>';
