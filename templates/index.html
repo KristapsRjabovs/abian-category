@@ -317,6 +317,10 @@ async function init() {
       if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
       if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
       if (s.renames) Object.assign(renames, s.renames);
+      // Backfill: the saved supmap only contains entries with codes assigned.
+      // Re-add every known supplier category so unmapped ones (empty []) are visible.
+      for (const cats of Object.values(SOURCES))
+        for (const [sup, cat] of cats) { const k = sup + "||" + cat; if (!(k in SUPMAP)) SUPMAP[k] = []; }
       // Apply renames to tree labels
       for (const [code, label] of Object.entries(renames)) {
         const applyLabel = (nodes) => { for (const n of nodes) { if (n.code === code) n.label = label; if (n.children) applyLabel(n.children); } };
