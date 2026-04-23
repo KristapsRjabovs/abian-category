@@ -20,8 +20,9 @@ export default async (req, context) => {
     state = (await store.get("state", { type: "json" })) || {};
   } catch {}
 
-  const supmap     = state.supmap || {};
-  const { paths, sources } = appData;
+  const supmap  = state.supmap || {};
+  const paths   = state.paths  || appData.paths;
+  const { sources } = appData;
   const categories = sources[supplier] || [];
 
   const lines = [csvRow(["supplier_name", "supplier_category", "client_category_code", "client_category_label"])];

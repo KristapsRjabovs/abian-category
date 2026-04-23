@@ -21,11 +21,9 @@
   header button.warn:hover { background: #d97706; }
   header button.dl { background: #2563eb; color: #fff; }
   header button.dl:hover { background: #1d4ed8; }
-  header button:disabled { opacity: .5; cursor: not-allowed; }
   .edit-badge { background: #10b981; color: #fff; padding: 4px 10px; border-radius: 999px;
                 font-size: 12px; font-weight: 600; display: none; }
   .edit-on .edit-badge { display: inline-block; }
-  .edit-on .label { cursor: copy; }
   .wrap { max-width: 1500px; margin: 0 auto; padding: 24px;
           display: grid; grid-template-columns: 400px 1fr; gap: 24px; }
   @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; } }
@@ -42,6 +40,14 @@
   .toggle { display: inline-block; width: 16px; text-align: center; cursor: pointer;
             color: #6b7280; font-size: 10px; margin-right: 2px; vertical-align: top; line-height: 1.55; }
   .toggle.leaf { cursor: default; color: transparent; }
+  /* drag handle — only visible in edit mode */
+  .node-drag-handle { display: none; cursor: grab; color: #9ca3af; font-size: 13px;
+                      margin-right: 3px; vertical-align: middle; line-height: 1;
+                      padding: 1px 2px; border-radius: 3px; }
+  .node-drag-handle:hover { color: #6b7280; background: #e5e7eb; }
+  .node-drag-handle:active { cursor: grabbing; }
+  .edit-on .node-drag-handle { display: inline-block; }
+  .dragging-node > .label { opacity: .35; }
   .label { cursor: pointer; padding: 2px 6px; border-radius: 4px; font-size: 13.5px;
            display: inline; word-break: break-word; overflow-wrap: anywhere;
            -webkit-box-decoration-break: clone; box-decoration-break: clone; }
@@ -49,6 +55,11 @@
   .label.selected { background: #1e3a8a; color: #fff; }
   .label.match { background: #fef08a; }
   .label.only-one { border-left: 3px solid #f59e0b; padding-left: 4px; }
+  /* inline rename input */
+  .label-text[contenteditable="true"] {
+    outline: 2px solid #1e3a8a; border-radius: 3px; padding: 0 3px;
+    background: #fff; color: #1f2937; cursor: text; min-width: 60px; display: inline-block;
+  }
   .count { color: #6b7280; font-size: 11.5px; margin-left: 4px; }
   .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-left: 4px; vertical-align: middle; }
   .dot.also_data { background: #2563eb; }
@@ -72,7 +83,13 @@
                      font-size: 12px; cursor: pointer; color: #374151; }
   .controls button:hover { background: #d1d5db; }
   .legend { font-size: 12px; color: #6b7280; margin-bottom: 8px; }
-  /* Edit mode */
+  /* root drop zone */
+  .root-drop-zone { display: none; border: 2px dashed #d1d5db; border-radius: 6px;
+                    padding: 6px 10px; margin-bottom: 8px; font-size: 12px; color: #9ca3af;
+                    text-align: center; }
+  .edit-on .root-drop-zone { display: block; }
+  .root-drop-zone.drop-hover { border-color: #10b981; background: #d1fae5; color: #065f46; }
+  /* edit mode misc */
   .edit-on tr.drag-row { cursor: grab; }
   .edit-on tr.drag-row:active { cursor: grabbing; }
   tr.drag-row.dragging { opacity: .4; }
@@ -104,7 +121,6 @@
   .label.selected, .label.selected.confirmed, .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }
   .label.selected.confirmed { border-left-color: #10b981; }
   .hide-confirmed li.node.confirmed-node { display: none; }
-  /* Loading overlay */
   #loadingOverlay { position: fixed; inset: 0; background: rgba(30,58,138,.85); color: #fff;
                     display: flex; align-items: center; justify-content: center;
                     font-size: 18px; font-weight: 600; z-index: 9999; }
@@ -116,7 +132,7 @@
 <header>
   <div>
     <h1>B2B Unified Category Tree <span class="edit-badge">EDIT MODE</span></h1>
-    <div class="sub">also_data + elko mapped to unified leaves. Toggle edit mode to drag supplier categories between nodes.</div>
+    <div class="sub">also_data + elko mapped to unified leaves. In edit mode: drag ⠿ to reparent, double-click label to rename.</div>
   </div>
   <div class="actions">
     <span id="pendingCounter" style="color:#fde68a; font-size:12px;"></span>
@@ -141,20 +157,20 @@
       <button id="show-roots">Show only roots</button>
       <button id="hide-confirmed-btn">Hide confirmed</button>
     </div>
+    <div id="root-drop" class="root-drop-zone">⠿ Drop here to move to root level</div>
     <div class="tree" id="tree"></div>
   </aside>
   <main class="panel detail" id="detail">
     <div class="help">
-      <strong>Edit mode active.</strong>
-      Drag any supplier row onto a category to <strong>move</strong> it.
-      Hold <kbd>Ctrl</kbd> while dropping to <strong>copy</strong> instead.
-      Use <strong>&times;</strong> to remove a mapping.
+      <strong>Edit mode active.</strong><br>
+      • <strong>Drag ⠿ handle</strong> onto any category label to reparent it there. Drop on <em>root drop zone</em> above to move to top level.<br>
+      • <strong>Double-click</strong> a label to rename it (Enter to save, Esc to cancel).<br>
+      • <strong>Drag supplier rows</strong> to move mappings. Hold <kbd>Ctrl</kbd> to copy instead of move.
     </div>
     <div class="empty">Click any category on the left to see supplier mappings.</div>
   </main>
 </div>
 <script>
-// --- Data embedded at build time ---
 const TREE_DATA_INIT = {{ tree_json | safe }};
 const STATS          = {{ stats_json | safe }};
 const COV            = {{ cov_json | safe }};
@@ -164,13 +180,13 @@ const SUPMAP_INIT    = {{ supmap_json | safe }};
 const CONFIRMED_INIT = {{ confirmed_json | safe }};
 const DELETED_INIT   = {{ deleted_json | safe }};
 
-// Mutable working copies — will be replaced with saved state from /api/state
 let TREE_DATA     = JSON.parse(JSON.stringify(TREE_DATA_INIT));
 let SUPMAP        = JSON.parse(JSON.stringify(SUPMAP_INIT));
 const confirmedCodes = new Set(CONFIRMED_INIT);
 const deletedCodes   = new Set(DELETED_INIT);
+const renames        = {};   // code -> new label (tracked for server persistence)
 
-let INITIAL_SUPMAP    = null;  // set after state load
+let INITIAL_SUPMAP    = null;
 let INITIAL_TREE      = null;
 let INITIAL_CONFIRMED = null;
 
@@ -179,52 +195,82 @@ let editMode = false;
 let pendingChanges = 0;
 const nodeIdx = new Map();
 
+// ── helpers ──────────────────────────────────────────────────────────────────
+
 function deriveMap() {
   MAP = {};
   for (const key of Object.keys(SUPMAP)) {
     const sep = key.indexOf("||");
     const supplier = key.slice(0, sep), category = key.slice(sep + 2);
-    for (const code of SUPMAP[key]) {
+    for (const code of SUPMAP[key])
       (MAP[code] = MAP[code] || []).push({ supplier, category, key });
-    }
   }
 }
 
 function applyDeletions(nodes, delSet) {
-  for (let i = nodes.length - 1; i >= 0; i--) {
-    if (delSet.has(nodes[i].code)) { nodes.splice(i, 1); }
+  for (let i = nodes.length - 1; i >= 0; i--)
+    if (delSet.has(nodes[i].code)) nodes.splice(i, 1);
     else if (nodes[i].children) applyDeletions(nodes[i].children, delSet);
-  }
 }
 
 function applyOrder(nodes, order, parentKey) {
   const saved = order[parentKey || "__root__"];
   if (saved && saved.length) {
     const pos = Object.fromEntries(saved.map((c, i) => [c, i]));
-    nodes.sort((a, b) => {
-      const ia = pos[a.code] ?? 9999, ib = pos[b.code] ?? 9999;
-      return ia - ib;
-    });
+    nodes.sort((a, b) => (pos[a.code] ?? 9999) - (pos[b.code] ?? 9999));
   }
   for (const n of nodes) if (n.children && n.children.length) applyOrder(n.children, order, n.code);
 }
+
+function computeOrder() {
+  const order = {};
+  function walk(nodes, pk) {
+    order[pk] = nodes.map(n => n.code);
+    for (const n of nodes) if (n.children && n.children.length) walk(n.children, n.code);
+  }
+  walk(TREE_DATA.tree, "__root__"); return order;
+}
+
+function computePaths() {
+  const paths = {};
+  function walk(nodes, prefix) {
+    for (const n of nodes) {
+      const p = prefix ? prefix + " > " + n.label : n.label;
+      paths[n.code] = p;
+      if (n.children && n.children.length) walk(n.children, p);
+    }
+  }
+  walk(TREE_DATA.tree, ""); return paths;
+}
+
+function isDescendant(candidateCode, ofCode) {
+  const e = nodeIdx.get(candidateCode);
+  return e ? e.ancestors.some(a => a.code === ofCode) : false;
+}
+
+function updateAncestors(node, ancestors) {
+  const e = nodeIdx.get(node.code);
+  if (e) e.ancestors = [...ancestors];
+  for (const c of (node.children || [])) updateAncestors(c, [...ancestors, node]);
+}
+
+// ── state load ────────────────────────────────────────────────────────────────
 
 async function init() {
   try {
     const r = await fetch("/api/state");
     if (r.ok) {
-      const state = await r.json();
-      if (state.supmap && Object.keys(state.supmap).length)  SUPMAP = state.supmap;
-      if (state.confirmed && state.confirmed.length) {
-        confirmedCodes.clear();
-        state.confirmed.forEach(c => confirmedCodes.add(c));
+      const s = await r.json();
+      if (s.supmap && Object.keys(s.supmap).length) SUPMAP = s.supmap;
+      if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.forEach(c => confirmedCodes.add(c)); }
+      if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
+      if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
+      if (s.renames) Object.assign(renames, s.renames);
+      // Apply renames to tree labels
+      for (const [code, label] of Object.entries(renames)) {
+        const applyLabel = (nodes) => { for (const n of nodes) { if (n.code === code) n.label = label; if (n.children) applyLabel(n.children); } };
+        applyLabel(TREE_DATA.tree);
       }
-      if (state.deleted && state.deleted.length) {
-        deletedCodes.clear();
-        state.deleted.forEach(c => deletedCodes.add(c));
-        applyDeletions(TREE_DATA.tree, deletedCodes);
-      }
-      if (state.order && Object.keys(state.order).length) applyOrder(TREE_DATA.tree, state.order);
     }
   } catch {}
 
@@ -234,10 +280,11 @@ async function init() {
 
   deriveMap();
   render(document.getElementById("tree"), TREE_DATA.tree, []);
-  updateStats();
-  updateDeletableBadges();
+  updateStats(); updateDeletableBadges();
   document.getElementById("loadingOverlay").classList.add("done");
 }
+
+// ── stats ──────────────────────────────────────────────────────────────────────
 
 function updateStats() {
   const leafSups = {};
@@ -248,14 +295,12 @@ function updateStats() {
   let both = 0, only_also = 0, only_elko = 0;
   for (const c in leafSups) {
     const s = leafSups[c];
-    if (s.size >= 2) both++;
-    else if (s.has("also_data")) only_also++;
-    else only_elko++;
+    if (s.size >= 2) both++; else if (s.has("also_data")) only_also++; else only_elko++;
   }
-  const rows    = Object.values(MAP).reduce((a, v) => a + v.length, 0);
-  const total   = nodeIdx.size || STATS.categories;
-  const conf    = [...confirmedCodes].filter(c => nodeIdx.has(c)).length;
-  const pct     = total ? Math.round(100 * conf / total) : 0;
+  const rows  = Object.values(MAP).reduce((a, v) => a + v.length, 0);
+  const total = nodeIdx.size || STATS.categories;
+  const conf  = [...confirmedCodes].filter(c => nodeIdx.has(c)).length;
+  const pct   = total ? Math.round(100 * conf / total) : 0;
   document.getElementById("stats").innerHTML =
     `<span class="stat">${total} categories</span>` +
     `<span class="stat" style="background:#d1fae5;color:#065f46;">\u2713 ${conf} / ${total} confirmed (${pct}%)</span>` +
@@ -276,26 +321,32 @@ function collectSuppliers(node) {
   for (const c of (node.children || [])) for (const s of collectSuppliers(c)) set.add(s);
   return set;
 }
+
+// ── label refresh ──────────────────────────────────────────────────────────────
+
 function refreshLabel(code) {
   const entry = nodeIdx.get(code); if (!entry) return;
-  const node  = entry.node;
+  const node  = entry.node, lbl = entry.labelEl;
   const sups  = collectSuppliers(node);
   const mapped = (MAP[code] || []).length;
-  entry.labelEl.innerHTML = "";
-  entry.labelEl.appendChild(document.createTextNode(node.label));
-  if (sups.size === 1 && hasDescendantMapping(node)) entry.labelEl.classList.add("only-one");
-  else entry.labelEl.classList.remove("only-one");
-  for (const sup of ["also_data", "elko"]) {
-    if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; entry.labelEl.appendChild(d); }
-  }
-  if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; entry.labelEl.appendChild(c); }
-  entry.labelEl.appendChild(entry.delBtn);
+  // Update text span only (preserve contenteditable state if active)
+  const ts = lbl.querySelector(".label-text");
+  if (ts && ts.contentEditable !== "true") ts.textContent = node.label;
+  if (sups.size === 1 && hasDescendantMapping(node)) lbl.classList.add("only-one");
+  else lbl.classList.remove("only-one");
+  // dots & count — rebuild only the non-persistent children
+  lbl.querySelectorAll(".dot, .count").forEach(el => el.remove());
+  for (const sup of ["also_data", "elko"])
+    if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; entry.delBtn.before(d); }
+  if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; entry.delBtn.before(c); }
 }
 function refreshLabelsRecursively(code) {
   refreshLabel(code);
-  const entry = nodeIdx.get(code);
-  if (entry) for (const a of entry.ancestors) refreshLabel(a.code);
+  const e = nodeIdx.get(code);
+  if (e) for (const a of e.ancestors) refreshLabel(a.code);
 }
+
+// ── render ────────────────────────────────────────────────────────────────────
 
 function render(parentEl, nodes, ancestors) {
   const ul = document.createElement("ul");
@@ -303,45 +354,84 @@ function render(parentEl, nodes, ancestors) {
     const li = document.createElement("li"); li.className = "node"; li.dataset.code = node.code;
     if (confirmedCodes.has(node.code)) li.classList.add("confirmed-node");
     const hasCh = node.children && node.children.length > 0;
+
+    // drag handle
+    const handle = document.createElement("span");
+    handle.className = "node-drag-handle"; handle.textContent = "⠿"; handle.title = "Drag to reparent";
+    handle.setAttribute("draggable", "true");
+    handle.addEventListener("dragstart", ev => {
+      if (!editMode) { ev.preventDefault(); return; }
+      ev.stopPropagation();
+      ev.dataTransfer.setData("application/json", JSON.stringify({ type: "node", nodeCode: node.code }));
+      ev.dataTransfer.effectAllowed = "move";
+      li.classList.add("dragging-node");
+    });
+    handle.addEventListener("dragend", () => li.classList.remove("dragging-node"));
+    li.appendChild(handle);
+
+    // toggle
     const tog = document.createElement("span"); tog.className = "toggle" + (hasCh ? "" : " leaf");
     tog.textContent = hasCh ? "\u25B6" : "\u2022"; li.appendChild(tog);
 
+    // checkbox
     const chk = document.createElement("input");
-    chk.type = "checkbox"; chk.className = "node-chk";
-    chk.checked = confirmedCodes.has(node.code);
+    chk.type = "checkbox"; chk.className = "node-chk"; chk.checked = confirmedCodes.has(node.code);
     chk.onclick = ev => { ev.stopPropagation(); toggleConfirmed(node.code, chk.checked); };
     li.appendChild(chk);
 
+    // label
     const lbl = document.createElement("span"); lbl.className = "label"; lbl.dataset.code = node.code;
     if (confirmedCodes.has(node.code)) lbl.classList.add("confirmed");
-    lbl.textContent = node.label;
-    lbl.addEventListener("dragover", ev => { if (!editMode) return; ev.preventDefault(); lbl.classList.add("drop-hover"); ev.dataTransfer.dropEffect = ev.ctrlKey ? "copy" : "move"; });
+
+    const textSpan = document.createElement("span"); textSpan.className = "label-text";
+    textSpan.textContent = node.label; lbl.appendChild(textSpan);
+
+    // supplier dots
+    const sups = collectSuppliers(node);
+    if (sups.size === 1 && hasDescendantMapping(node)) lbl.classList.add("only-one");
+    for (const sup of ["also_data", "elko"])
+      if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; lbl.appendChild(d); }
+    const mapped = (MAP[node.code] || []).length;
+    if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; lbl.appendChild(c); }
+
+    // delete button
+    const del = document.createElement("button"); del.className = "node-del"; del.textContent = "delete";
+    del.onclick = ev => { ev.stopPropagation(); deleteNode(node); };
+    lbl.appendChild(del);
+
+    // up/down buttons
+    const upBtn = document.createElement("button"); upBtn.className = "node-move"; upBtn.textContent = "\u25B2"; upBtn.title = "Move up among siblings";
+    upBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, -1); };
+    const dnBtn = document.createElement("button"); dnBtn.className = "node-move"; dnBtn.textContent = "\u25BC"; dnBtn.title = "Move down among siblings";
+    dnBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, +1); };
+    lbl.appendChild(upBtn); lbl.appendChild(dnBtn);
+
+    // drop: accept both supplier-row drops AND node reparent drops
+    lbl.addEventListener("dragover", ev => {
+      if (!editMode) return;
+      ev.preventDefault(); lbl.classList.add("drop-hover");
+      ev.dataTransfer.dropEffect = ev.ctrlKey ? "copy" : "move";
+    });
     lbl.addEventListener("dragleave", () => lbl.classList.remove("drop-hover"));
     lbl.addEventListener("drop", ev => {
       if (!editMode) return;
       ev.preventDefault(); lbl.classList.remove("drop-hover");
-      const data = ev.dataTransfer.getData("application/json"); if (!data) return;
-      const { key, fromCode } = JSON.parse(data);
-      if (ev.ctrlKey) addMapping(key, node.code); else moveMapping(key, fromCode, node.code);
+      const raw = ev.dataTransfer.getData("application/json"); if (!raw) return;
+      const payload = JSON.parse(raw);
+      if (payload.type === "node") reparentNode(payload.nodeCode, node.code);
+      else if (ev.ctrlKey) addMapping(payload.key, node.code);
+      else moveMapping(payload.key, payload.fromCode, node.code);
     });
+
+    // double-click to rename
+    lbl.addEventListener("dblclick", ev => {
+      if (!editMode) return;
+      ev.stopPropagation();
+      startLabelEdit(node, nodeIdx.get(node.code));
+    });
+
     lbl.onclick = () => selectNode(node, ancestors);
     li.appendChild(lbl);
-    const sups = collectSuppliers(node);
-    if (sups.size === 1 && hasDescendantMapping(node)) lbl.classList.add("only-one");
-    for (const sup of ["also_data", "elko"]) {
-      if (sups.has(sup)) { const d = document.createElement("span"); d.className = "dot " + sup; lbl.appendChild(d); }
-    }
-    const mapped = (MAP[node.code] || []).length;
-    if (mapped) { const c = document.createElement("span"); c.className = "count"; c.textContent = "(" + mapped + ")"; lbl.appendChild(c); }
-
-    const del = document.createElement("button"); del.className = "node-del"; del.textContent = "delete";
-    del.onclick = ev => { ev.stopPropagation(); deleteNode(node); };
-    lbl.appendChild(del);
-    const upBtn = document.createElement("button"); upBtn.className = "node-move"; upBtn.textContent = "\u25B2";
-    upBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, -1); };
-    const dnBtn = document.createElement("button"); dnBtn.className = "node-move"; dnBtn.textContent = "\u25BC";
-    dnBtn.onclick = ev => { ev.stopPropagation(); moveSibling(node.code, +1); };
-    lbl.appendChild(upBtn); lbl.appendChild(dnBtn);
 
     let childUl = null;
     if (hasCh) {
@@ -355,14 +445,133 @@ function render(parentEl, nodes, ancestors) {
   parentEl.appendChild(ul); return ul;
 }
 
+// ── reparent ──────────────────────────────────────────────────────────────────
+
+function reparentNode(movingCode, targetCode) {
+  if (movingCode === targetCode) return;
+  if (isDescendant(targetCode, movingCode)) { alert("Cannot move a category into its own descendant."); return; }
+  const mEntry = nodeIdx.get(movingCode), tEntry = nodeIdx.get(targetCode);
+  if (!mEntry || !tEntry) return;
+
+  // Remove from current parent
+  const oldParentCode = mEntry.ancestors.length ? mEntry.ancestors[mEntry.ancestors.length - 1].code : null;
+  if (oldParentCode) {
+    const op = nodeIdx.get(oldParentCode);
+    if (op) op.node.children = op.node.children.filter(c => c.code !== movingCode);
+  } else {
+    TREE_DATA.tree = TREE_DATA.tree.filter(c => c.code !== movingCode);
+  }
+
+  // Add to target's children
+  if (!tEntry.node.children) tEntry.node.children = [];
+  tEntry.node.children.push(mEntry.node);
+
+  // DOM: ensure target has a childUl
+  if (!tEntry.childUl) {
+    tEntry.childUl = document.createElement("ul");
+    tEntry.li.appendChild(tEntry.childUl);
+    tEntry.toggle.classList.remove("leaf"); tEntry.toggle.textContent = "\u25BC";
+    tEntry.toggle.onclick = () => { const h = tEntry.childUl.classList.toggle("hidden"); tEntry.toggle.textContent = h ? "\u25B6" : "\u25BC"; };
+  }
+  tEntry.childUl.classList.remove("hidden"); tEntry.toggle.textContent = "\u25BC";
+  tEntry.childUl.appendChild(mEntry.li);
+
+  // Fix old parent toggle if now childless
+  if (oldParentCode) {
+    const op = nodeIdx.get(oldParentCode);
+    if (op && (!op.node.children || op.node.children.length === 0)) {
+      op.toggle.classList.add("leaf"); op.toggle.textContent = "\u2022"; op.toggle.onclick = null; op.childUl = null;
+    }
+  } else if (TREE_DATA.tree.length === 0) {
+    // root became empty — nothing to do
+  }
+
+  // Update ancestors for moved subtree
+  updateAncestors(mEntry.node, [...tEntry.ancestors, tEntry.node]);
+  refreshLabelsRecursively(targetCode);
+  if (oldParentCode) refreshLabelsRecursively(oldParentCode);
+  pendingChanges++; markPending(); updateStats(); updateDeletableBadges();
+}
+
+function reparentToRoot(movingCode) {
+  const mEntry = nodeIdx.get(movingCode); if (!mEntry) return;
+  if (!mEntry.ancestors.length) return; // already at root
+
+  const oldParentCode = mEntry.ancestors[mEntry.ancestors.length - 1].code;
+  const op = nodeIdx.get(oldParentCode);
+  if (op) op.node.children = op.node.children.filter(c => c.code !== movingCode);
+
+  TREE_DATA.tree.push(mEntry.node);
+
+  // DOM: move li to root ul
+  const rootUl = document.querySelector("#tree > ul");
+  if (rootUl) rootUl.appendChild(mEntry.li);
+
+  if (op && (!op.node.children || op.node.children.length === 0)) {
+    op.toggle.classList.add("leaf"); op.toggle.textContent = "\u2022"; op.toggle.onclick = null; op.childUl = null;
+  }
+  updateAncestors(mEntry.node, []);
+  refreshLabelsRecursively(movingCode);
+  refreshLabelsRecursively(oldParentCode);
+  pendingChanges++; markPending(); updateStats(); updateDeletableBadges();
+}
+
+// Root drop zone
+const rootDrop = document.getElementById("root-drop");
+rootDrop.addEventListener("dragover", ev => {
+  const raw = ev.dataTransfer.types.includes("application/json");
+  if (!editMode || !raw) return;
+  ev.preventDefault(); rootDrop.classList.add("drop-hover");
+});
+rootDrop.addEventListener("dragleave", () => rootDrop.classList.remove("drop-hover"));
+rootDrop.addEventListener("drop", ev => {
+  ev.preventDefault(); rootDrop.classList.remove("drop-hover");
+  const raw = ev.dataTransfer.getData("application/json"); if (!raw) return;
+  const payload = JSON.parse(raw);
+  if (payload.type === "node") reparentToRoot(payload.nodeCode);
+});
+
+// ── rename ────────────────────────────────────────────────────────────────────
+
+function startLabelEdit(node, entry) {
+  if (!entry) return;
+  const ts = entry.labelEl.querySelector(".label-text");
+  if (!ts || ts.contentEditable === "true") return;
+
+  ts.contentEditable = "true"; ts.focus();
+  // select all text
+  const sel = window.getSelection(), range = document.createRange();
+  range.selectNodeContents(ts); sel.removeAllRanges(); sel.addRange(range);
+
+  function finish() {
+    ts.contentEditable = "false";
+    const newLabel = ts.textContent.trim();
+    if (newLabel && newLabel !== node.label) {
+      node.label = newLabel;
+      renames[node.code] = newLabel;
+      pendingChanges++; markPending();
+    } else {
+      ts.textContent = node.label; // restore on empty/unchanged
+    }
+  }
+
+  ts.addEventListener("keydown", ev => {
+    if (ev.key === "Enter") { ev.preventDefault(); ts.blur(); }
+    if (ev.key === "Escape") { ts.textContent = node.label; ts.contentEditable = "false"; }
+  });
+  ts.addEventListener("blur", finish, { once: true });
+}
+
+// ── confirmed / deleted / siblings ──────────────────────────────────────────────
+
 function toggleConfirmed(code, on) {
   if (on) confirmedCodes.add(code); else confirmedCodes.delete(code);
-  const entry = nodeIdx.get(code);
-  if (entry) { entry.labelEl.classList.toggle("confirmed", on); entry.li.classList.toggle("confirmed-node", on); }
+  const e = nodeIdx.get(code);
+  if (e) { e.labelEl.classList.toggle("confirmed", on); e.li.classList.toggle("confirmed-node", on); }
   pendingChanges++; markPending(); updateStats();
 }
 function updateDeletableBadges() {
-  nodeIdx.forEach((entry) => entry.delBtn.classList.toggle("visible", !hasDescendantMapping(entry.node)));
+  nodeIdx.forEach(entry => entry.delBtn.classList.toggle("visible", !hasDescendantMapping(entry.node)));
 }
 function moveSibling(code, dir) {
   const entry = nodeIdx.get(code); if (!entry) return;
@@ -392,13 +601,15 @@ function deleteNode(node) {
   updateDeletableBadges();
 }
 
+// ── detail panel ─────────────────────────────────────────────────────────────
+
 let selected = null, currentNode = null, currentAncestors = null;
 function selectNode(node, ancestors) {
   if (selected) selected.classList.remove("selected");
-  const entry = nodeIdx.get(node.code); entry.labelEl.classList.add("selected"); selected = entry.labelEl;
+  const e = nodeIdx.get(node.code); e.labelEl.classList.add("selected"); selected = e.labelEl;
   for (const a of ancestors) {
-    const e = nodeIdx.get(a.code);
-    if (e && e.childUl && e.childUl.classList.contains("hidden")) { e.childUl.classList.remove("hidden"); e.toggle.textContent = "\u25BC"; }
+    const ae = nodeIdx.get(a.code);
+    if (ae && ae.childUl && ae.childUl.classList.contains("hidden")) { ae.childUl.classList.remove("hidden"); ae.toggle.textContent = "\u25BC"; }
   }
   currentNode = node; currentAncestors = ancestors; showDetail(node, ancestors);
 }
@@ -415,7 +626,7 @@ function showDetail(node, ancestors) {
       `<td><span class="row-actions"><button class="rm">&times;</button></span></td>` +
     `</tr>`).join("");
   d.innerHTML =
-    `<div class="help"><strong>Edit mode active.</strong> Drag rows to move/copy. Hold <kbd>Ctrl</kbd> to copy.</div>` +
+    `<div class="help"><strong>Edit mode active.</strong> Drag ⠿ to reparent nodes. Double-click labels to rename. Drag rows to move mappings.</div>` +
     `<h2>${escapeHtml(node.label)}</h2>` +
     `<div class="crumbs">${escapeHtml(breadcrumbs)}</div>` +
     `<div class="code">code: ${node.code}</div>` +
@@ -436,6 +647,8 @@ function showDetail(node, ancestors) {
     tr.querySelector(".rm").onclick = ev => { ev.stopPropagation(); removeMapping(tr.dataset.key, node.code); };
   });
 }
+
+// ── mapping ops ───────────────────────────────────────────────────────────────
 
 function moveMapping(key, fromCode, toCode) {
   const codes = SUPMAP[key] || [];
@@ -462,18 +675,18 @@ function onMappingChanged(codes) {
   if (currentNode) showDetail(currentNode, currentAncestors);
   updateDeletableBadges();
 }
-function computeOrder() {
-  const order = {};
-  function walk(nodes, pk) {
-    order[pk] = nodes.map(n => n.code);
-    for (const n of nodes) if (n.children && n.children.length) walk(n.children, n.code);
-  }
-  walk(TREE_DATA.tree, "__root__"); return order;
-}
 
-// Save
+// ── save / download / reset ───────────────────────────────────────────────────
+
 document.getElementById("saveBtn").onclick = async () => {
-  const payload = { supmap: SUPMAP, deleted: Array.from(deletedCodes), confirmed: Array.from(confirmedCodes), order: computeOrder() };
+  const payload = {
+    supmap:    SUPMAP,
+    deleted:   Array.from(deletedCodes),
+    confirmed: Array.from(confirmedCodes),
+    order:     computeOrder(),
+    renames:   renames,
+    paths:     computePaths(),
+  };
   const pc = document.getElementById("pendingCounter");
   pc.innerHTML = '<span style="color:#fde68a;">Saving\u2026</span>';
   try {
@@ -487,11 +700,9 @@ document.getElementById("saveBtn").onclick = async () => {
   } catch (e) { pc.innerHTML = `<span style="color:#fca5a5;">Save failed: ${e.message}</span>`; }
 };
 
-// Downloads
 document.getElementById("dlAlsoBtn").onclick = () => { window.location.href = "/api/download?supplier=also_data"; };
 document.getElementById("dlElkoBtn").onclick = () => { window.location.href = "/api/download?supplier=elko"; };
 
-// Reset
 document.getElementById("resetBtn").onclick = () => {
   if (!confirm("Discard all pending changes?")) return;
   SUPMAP = JSON.parse(JSON.stringify(INITIAL_SUPMAP));
@@ -514,7 +725,8 @@ document.getElementById("resetBtn").onclick = () => {
   }
 };
 
-// Search + tree controls
+// ── search + controls ────────────────────────────────────────────────────────
+
 document.getElementById("q").oninput = function() {
   const t = this.value.trim().toLowerCase();
   nodeIdx.forEach(e => { e.labelEl.classList.remove("match"); e.li.classList.remove("hidden"); });

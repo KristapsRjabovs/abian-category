@@ -45,8 +45,9 @@ def api_state():
     deleted   = db.load_state("deleted", [])
     confirmed = db.load_state("confirmed", [])
     order     = db.load_state("order", {})
+    renames   = db.load_state("renames", {})
     supmap    = db.build_supmap()
-    return jsonify(dict(supmap=supmap, deleted=deleted, confirmed=confirmed, order=order))
+    return jsonify(dict(supmap=supmap, deleted=deleted, confirmed=confirmed, order=order, renames=renames))
 
 
 @app.route("/api/save", methods=["POST"])
@@ -56,10 +57,13 @@ def api_save():
     deleted   = payload.get("deleted") or []
     confirmed = payload.get("confirmed") or []
     order     = payload.get("order") or {}
+    renames = payload.get("renames") or {}
     db.save_mappings(supmap)
+    db.update_node_labels(renames)
     db.save_state("deleted",   sorted(set(deleted)))
     db.save_state("confirmed", sorted(set(confirmed)))
     db.save_state("order",     order)
+    db.save_state("renames",   renames)
     return jsonify(ok=True, confirmed=len(confirmed), deleted=len(deleted))
 
 

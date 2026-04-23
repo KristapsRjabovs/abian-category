@@ -102,6 +102,15 @@ def save_mappings(supmap: dict):
         )
 
 
+def update_node_labels(renames: dict):
+    """Apply {code: new_label} renames to tree_nodes."""
+    if not renames:
+        return
+    with get_conn() as conn:
+        for code, label in renames.items():
+            conn.execute("UPDATE tree_nodes SET label = ? WHERE code = ?", (label, code))
+
+
 def save_state(key: str, value):
     with get_conn() as conn:
         conn.execute(
