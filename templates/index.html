@@ -1089,47 +1089,46 @@ const SUGGESTIONS = [
     id: "s-renames",
     icon: "✎",
     badge: "Rename", badgeColor: "#4338ca", badgeBg: "#eef2ff",
-    title: "Rename 17 generic 'new-category' nodes",
-    summary: "Categories created during editing still have placeholder names like 'new-category-2'. Apply descriptive labels so the tree is readable at a glance.",
-    details: [
-      "cameras/new-category  →  Drones",
-      "av/tvs/new-category-2  →  LED & Smart TVs",
-      "av/surveillance/new-category  →  Access Readers",
-      "av/surveillance/new-category-2  →  NVR, DVR & Accessories",
-      "displays/large-format/new-category  →  Video Walls",
-      "displays/large-format/new-category-2  →  Signage Displays",
-      "components/keyboards-mice/new-category  →  Keyboards",
-      "components/keyboards-mice/new-category-2  →  Mice",
-      "components/new-category  →  Legacy Storage",
-      "components/new-category/new-category  →  Optical & Tape",
-      "components/new-category-2  →  Components Misc",
-      "components/new-category-2/new-category  →  Drive Mounting",
-      "components/new-category-3  →  Memory (RAM) — duplicate, see suggestion #2",
-      "components/new-category-3/new-category  →  Desktop Memory (DIMM)",
-      "components/new-category-3/new-category-2  →  Notebook Memory (SODIMM)",
-      "components/new-category-4  →  Storage (Duplicate) — see suggestion #3",
-      "components/new-category-5  →  Components Accessories",
-    ],
-    apply() {
-      applyLabelRenames({
-        "cameras/new-category": "Drones",
-        "av/tvs/new-category-2": "LED & Smart TVs",
-        "av/surveillance/new-category": "Access Readers",
-        "av/surveillance/new-category-2": "NVR, DVR & Accessories",
-        "displays/large-format/new-category": "Video Walls",
-        "displays/large-format/new-category-2": "Signage Displays",
-        "components/keyboards-mice/new-category": "Keyboards",
-        "components/keyboards-mice/new-category-2": "Mice",
-        "components/new-category": "Legacy Storage",
-        "components/new-category/new-category": "Optical & Tape",
-        "components/new-category-2": "Components Misc",
-        "components/new-category-2/new-category": "Drive Mounting",
-        "components/new-category-3": "Memory (RAM)",
-        "components/new-category-3/new-category": "Desktop Memory (DIMM)",
-        "components/new-category-3/new-category-2": "Notebook Memory (SODIMM)",
-        "components/new-category-4": "Storage (Duplicate)",
-        "components/new-category-5": "Components Accessories",
+    title: "Rename remaining generic 'new-category' nodes",
+    summary: "Some categories still have placeholder names like 'New Category 3'. The list below shows only the ones that still need a proper label — already-named nodes are skipped.",
+    // Full proposed rename map — details + apply filter dynamically to only unset ones
+    _renameMap: {
+      "cameras/new-category": "Drones",
+      "av/tvs/new-category-2": "LED & Smart TVs",
+      "av/surveillance/new-category": "Access Readers",
+      "av/surveillance/new-category-2": "NVR, DVR & Accessories",
+      "displays/large-format/new-category": "Video Walls",
+      "displays/large-format/new-category-2": "Signage Displays",
+      "components/keyboards-mice/new-category": "Keyboards",
+      "components/keyboards-mice/new-category-2": "Mice",
+      "components/new-category": "Legacy Storage",
+      "components/new-category/new-category": "Optical & Tape",
+      "components/new-category-2": "Components Misc",
+      "components/new-category-2/new-category": "Drive Mounting",
+      "components/new-category-3": "Memory (RAM)",
+      "components/new-category-3/new-category": "Desktop (DIMM)",
+      "components/new-category-3/new-category-2": "Notebook (SODIMM)",
+      "components/new-category-4": "Storage (Duplicate)",
+      "components/new-category-5": "Components Accessories",
+    },
+    get details() {
+      // Only show nodes whose current label still looks generic
+      const needed = Object.entries(this._renameMap).filter(([code, proposed]) => {
+        const e = nodeIdx.get(code); if (!e) return false;
+        const cur = e.node.label;
+        return /new.?category/i.test(cur) || cur === proposed;
       });
+      if (!needed.length) return ["✓ All nodes already have proper names."];
+      return needed.map(([code, proposed]) => `${code}  →  ${proposed}`);
+    },
+    apply() {
+      const needed = Object.fromEntries(
+        Object.entries(this._renameMap).filter(([code, proposed]) => {
+          const e = nodeIdx.get(code); if (!e) return false;
+          return /new.?category/i.test(e.node.label);
+        })
+      );
+      applyLabelRenames(needed);
     },
   },
   {
