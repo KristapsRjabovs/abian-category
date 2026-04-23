@@ -913,7 +913,9 @@ document.getElementById("hide-confirmed-btn").onclick = function() {
 function updateUnmapped() {
   const unmapped = { also_data: [], elko: [] };
   for (const [key, codes] of Object.entries(SUPMAP)) {
-    if (codes.length > 0) continue;
+    // Unmapped = no codes assigned, OR all assigned codes are missing from the live tree
+    const activeCodes = codes.filter(c => nodeIdx.has(c));
+    if (activeCodes.length > 0) continue;
     const sep = key.indexOf("||");
     const sup = key.slice(0, sep), cat = key.slice(sep + 2);
     if (unmapped[sup] !== undefined) unmapped[sup].push(cat);
