@@ -1,12 +1,20 @@
 {
   "deleted": [
-    "computers/ereaders"
+    "components/new-category-3",
+    "components/new-category-3/new-category",
+    "components/new-category-3/new-category-2",
+    "components/new-category-4",
+    "components/new-category-4/new-category",
+    "components/new-category-4/new-category-2",
+    "components/new-category-4/new-category-2/new-category",
+    "components/new-category-4/new-category-2/new-category-2",
+    "components/new-category-4/new-category-3",
+    "components/new-category-4/new-category-4",
+    "components/new-category-4/new-category/new-category",
+    "components/new-category-4/new-category/new-category-2",
+    "computers/ereaders",
+    "displays/projectors/lamps"
   ],
-  "overrides": {
-    "Smartphones & Tablets > Tablets & E-Readers > E-Readers": [
-      "computers/tablets"
-    ]
-  },
   "confirmed": [
     "av/headsets/accessories",
     "computers",
@@ -113,7 +121,6 @@
       "displays/monitors/accessories/other"
     ],
     "displays/projectors": [
-      "displays/projectors/lamps",
       "displays/projectors/standard",
       "displays/projectors/mounting",
       "displays/projectors/other"
@@ -460,6 +467,2021 @@
     ],
     "other/service-support": [
       "other/service-support/hardware"
+    ]
+  },
+  "overrides": {
+    "Audio, Video, Display & TV - Audio & Video Systems - Digital AV Systems": [
+      "av/speakers"
+    ],
+    "Audio, Video, Display & TV - Cameras & Optical Systems - Binocular, Microscope & Telescope": [
+      "cameras/camera-accessories"
+    ],
+    "Audio, Video, Display & TV - Cameras & Optical Systems - Camcorders": [
+      "av/car/dashcams"
+    ],
+    "Audio, Video, Display & TV - Cameras & Optical Systems - Digital Cameras": [
+      "cameras/digital"
+    ],
+    "Audio, Video, Display & TV - Cameras & Optical Systems - Network Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Audio, Video, Display & TV - Cameras & Optical Systems - Webcams": [
+      "components/webcams"
+    ],
+    "Audio, Video, Display & TV - Displays - Business Monitors": [
+      "displays/monitors"
+    ],
+    "Audio, Video, Display & TV - Displays - Consumer & Gaming Monitors": [
+      "displays/monitors"
+    ],
+    "Audio, Video, Display & TV - Displays - Portable Monitors": [
+      "displays/monitors"
+    ],
+    "Audio, Video, Display & TV - Headsets & Microphones - Business Headsets": [
+      "av/headsets"
+    ],
+    "Audio, Video, Display & TV - Headsets & Microphones - Consumer & Gaming Headsets": [
+      "av/headsets"
+    ],
+    "Audio, Video, Display & TV - Headsets & Microphones - Microphones & Dictaphones": [
+      "av/accessories/microphones"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Audio & Video Accessories": [
+      "av/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Audio, Video Adapters & Cables": [
+      "av/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Camera, Drone, Webcam - Accessories": [
+      "cameras/drones"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Floor Stands & Trolleys": [
+      "av/tvs/mounts",
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Headset & Microphone Accessories": [
+      "av/headsets/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Mounts - Ceiling": [
+      "av/tvs/mounts",
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Mounts - Desk Stand": [
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Mounts - Other": [
+      "av/tvs/mounts",
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Mounts - Video Wall": [
+      "displays/large-format/video-walls",
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Mounts - Wall": [
+      "av/tvs/mounts",
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Options & Accessories - Privacy Filters": [
+      "displays/monitors/accessories"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Lamps": [
+      "displays/projectors/other"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Lens": [
+      "displays/projectors/other"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Accessories - Other": [
+      "displays/projectors/other"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Mounting": [
+      "displays/projectors/mounting"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Screens - Electric": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Screens - Manual": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Screens - Options": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projector Accessories - Projector Screens - Portable": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projectors - Business Projectors": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projectors - Consumer Projectors": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Projectors - Installation Projectors": [
+      "displays/projectors/standard"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - Digital Signage Displays": [
+      "displays/large-format/signage"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - Digital Signage Displays - Outdoors": [
+      "displays/large-format/signage"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - Digital Signage Displays - TouchScreen": [
+      "displays/large-format/signage"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - Hotel TVs": [
+      "displays/large-format/signage"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - LED Wall Systems": [
+      "displays/large-format/video-walls"
+    ],
+    "Audio, Video, Display & TV - Public Display & Signage - Signage software": [
+      "software-apps/business"
+    ],
+    "Audio, Video, Display & TV - Radios - Car & Consumer Radios": [
+      "av/car/audio",
+      "navigation"
+    ],
+    "Audio, Video, Display & TV - Speakers - PC Speakers & Sound Bars": [
+      "av/speakers"
+    ],
+    "Audio, Video, Display & TV - Speakers - Portable & Wireless Speakers": [
+      "av/portable/speakers",
+      "av/speakers"
+    ],
+    "Audio, Video, Display & TV - Televisions - TVs": [
+      "av/tvs/led-smart"
+    ],
+    "Audio, Video, Display & TV - Televisions - TVs Accessories": [
+      "av/tvs/accessories"
+    ],
+    "Components - Chassis & System Cases - PC Chassis & System Cases": [
+      "components/cases"
+    ],
+    "Components - Chassis & System Cases - Server System Cases": [
+      "computers/servers/components/other"
+    ],
+    "Components - Components Accessories - Components Accessories - Other": [
+      "components/cases-accessories/other"
+    ],
+    "Components - Components Accessories - Graphic Card Accessories": [
+      "components/cases-accessories/other"
+    ],
+    "Components - Components Accessories - Storage Drive Accessories": [
+      "components/storage/arrays"
+    ],
+    "Components - Controllers - Host Bus Adapters (HBA)": [
+      "computers/servers/components/controllers"
+    ],
+    "Components - Controllers - Raid Controllers": [
+      "components/storage/arrays",
+      "computers/servers/components/controllers"
+    ],
+    "Components - Fans & Cooling Systems - Computer Coolers": [
+      "components/cooling"
+    ],
+    "Components - Fans & Cooling Systems - Computer Fans": [
+      "components/cooling"
+    ],
+    "Components - Fans & Cooling Systems - Fans & Cooling Systems": [
+      "components/cooling"
+    ],
+    "Components - Graphic Cards (GPU) - Graphic Cards - Consumer & Gaming": [
+      "components/gpu"
+    ],
+    "Components - Graphic Cards (GPU) - Graphic Cards - Server": [
+      "components/gpu",
+      "computers/servers/components/other"
+    ],
+    "Components - Graphic Cards (GPU) - Graphic Cards - Workstation": [
+      "components/gpu"
+    ],
+    "Components - Memory": [
+      "components/storage/ram/desktop"
+    ],
+    "Components - Memory - Desktop Memory": [
+      "components/storage/ram/desktop"
+    ],
+    "Components - Memory - Flash Memory": [
+      "components/storage/flash"
+    ],
+    "Components - Memory - Notebook Memory": [
+      "components/storage/ram/notebook"
+    ],
+    "Components - Memory - Server Memory": [
+      "computers/servers/components/memory"
+    ],
+    "Components - Memory - USB Flash Drives": [
+      "components/storage/flash"
+    ],
+    "Components - Motherboards": [
+      "components/motherboards"
+    ],
+    "Components - Motherboards - Motherboards - AMD": [
+      "components/motherboards"
+    ],
+    "Components - Motherboards - Motherboards - INTEL": [
+      "components/motherboards"
+    ],
+    "Components - Motherboards - Motherboards - Servers": [
+      "components/motherboards",
+      "computers/servers/components/motherboards"
+    ],
+    "Components - Power Supplies (PSU) - Power Supply - PC": [
+      "components/psu"
+    ],
+    "Components - Power Supplies (PSU) - Power Supply - Server": [
+      "computers/servers/components/psu"
+    ],
+    "Components - Processors (CPU) - Desktop Processors": [
+      "components/cpu"
+    ],
+    "Components - Processors (CPU) - Server & Workstation Processors": [
+      "computers/servers/components/cpu"
+    ],
+    "Components - Sound Cards - Sound Cards": [
+      "components/sound-cards"
+    ],
+    "Components - Storage Drives - External HDDs": [
+      "components/storage/hdd/external"
+    ],
+    "Components - Storage Drives - External SSDs": [
+      "components/storage/hdd/external"
+    ],
+    "Components - Storage Drives - Internal HDDs": [
+      "components/storage/hdd/internal"
+    ],
+    "Components - Storage Drives - Internal SSDs": [
+      "components/storage/ssd/internal"
+    ],
+    "Conferencing Systems - Audio Conferencing - Audio Conferencing": [
+      "phones-radios/telephones/conferencing"
+    ],
+    "Conferencing Systems - Audio Conferencing - IP Phones": [
+      "phones-radios/telephones/standard"
+    ],
+    "Conferencing Systems - Conferencing PC - Conferencing PCs": [
+      "phones-radios/telephones/conferencing"
+    ],
+    "Conferencing Systems - Conferencing Systems Accessories - Conferencing Systems Accessories": [
+      "phones-radios/telephones/conferencing"
+    ],
+    "Conferencing Systems - Video Conferencing - Video Conferencing": [
+      "phones-radios/telephones/conferencing"
+    ],
+    "Education - Computer Accessory EDU - Input Pen EDU": [
+      "components/keyboards-mice/digitizers",
+      "displays/projectors/other"
+    ],
+    "Education - Computer Accessory EDU - Notebook & Tablet Trolley EDU": [
+      "computers/notebook-accessories/other"
+    ],
+    "Education - Presentation EDU - Presentation Accessory EDU": [
+      "displays/projectors/other"
+    ],
+    "Electrical Energy Products - Battery Storage - Battery Storage": [
+      "other/energy",
+      "other/energy/batteries"
+    ],
+    "Electrical Energy Products - Battery Storage - Battery Storage Accessories": [
+      "other/energy/accessories"
+    ],
+    "Electrical Energy Products - Chargers - Chargers": [
+      "components/batteries/chargers"
+    ],
+    "Electrical Energy Products - Panels - Panels": [
+      "other/energy",
+      "other/energy/panels"
+    ],
+    "Electrical Energy Products - Solar Energy Components - Inverters": [
+      "other/energy",
+      "other/energy/inverters"
+    ],
+    "Electrical Energy Products - Solar Energy Components - Optimizers": [
+      "other/energy",
+      "other/energy/inverters"
+    ],
+    "Electrical Energy Products - Solar Energy Components - Solar Energy Components Accessories": [
+      "other/energy/accessories"
+    ],
+    "Electrical Energy Products - Solar Energy Components - Tools": [
+      "other/energy/accessories",
+      "other/tools/power-tools"
+    ],
+    "Gaming - Gaming Accessories - Gamepads & Joysticks": [
+      "av/games/peripherals"
+    ],
+    "Gaming - Gaming Accessories - Gaming Chairs & Tables": [
+      "av/games/furniture",
+      "other/office/furniture"
+    ],
+    "Gaming - Gaming Accessories - Gaming Headsets & Speakers": [
+      "av/headsets"
+    ],
+    "Gaming - Gaming Accessories - Gaming Mouse & Keyboards": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Gaming - Gaming Accessories - Gaming Mousepads": [
+      "components/keyboards-mice/mousepads"
+    ],
+    "Gaming - Gaming Components - Gaming CPU Coolers & Fans": [
+      "components/cooling"
+    ],
+    "Gaming - Gaming Components - Gaming Cases & Chassis": [
+      "components/cases"
+    ],
+    "Gaming - Gaming Components - Gaming Graphics cards": [
+      "components/gpu"
+    ],
+    "Gaming - Gaming Components - Gaming Motherboards": [
+      "components/motherboards"
+    ],
+    "Gaming - Gaming Components - Gaming Power Supply Unit (PSU)": [
+      "components/psu"
+    ],
+    "Gaming - Gaming Components - Gaming Storage & Memory": [
+      "components/storage/ram/desktop",
+      "components/storage/ssd/internal"
+    ],
+    "Gaming - Gaming Computers - Gaming Notebooks": [
+      "computers/notebooks"
+    ],
+    "Gaming - Gaming Computers - Gaming PCs": [
+      "computers/desktops/standard"
+    ],
+    "Gaming - Gaming Displays - Gaming Monitors": [
+      "displays/monitors"
+    ],
+    "Gaming - Video Games - Console Games": [
+      "av/games/games"
+    ],
+    "Household Products - Ironing & Cleaning - Cleaning - Chemical Products": [
+      "other/home/cleaning/accessories"
+    ],
+    "Household Products - Ironing & Cleaning - Vacuum Cleaners & Accessories": [
+      "other/home/cleaning/accessories"
+    ],
+    "Household Products - Kitchen Appliances - Blenders & Slicing Machines": [
+      "other/home/kitchen/blenders"
+    ],
+    "Household Products - Kitchen Appliances - Other Kitchen Appliances": [
+      "other/home/kitchen/cookware"
+    ],
+    "Household Products - Small Household Products - Clocks": [
+      "other/home/household/clocks"
+    ],
+    "Household Products - Small Household Products - Home Tools & Accessories": [
+      "other/home/household/other",
+      "other/tools/power-tools"
+    ],
+    "Household Products - Small Household Products - Light Bulbs & Lamps": [
+      "other/home/household/lamps"
+    ],
+    "Household Products - Sport & Hobbies - Sport & Hobbies Product Accessories": [
+      "other/home/sports/other"
+    ],
+    "Internet of Things (IoT) - IoT Applications & Services - IoT Services": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Connectivity Services - IoT Connectivity Services": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Devices - IoT Accessories": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Devices - IoT Devices (Sensors & Actuators)": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Devices - IoT Gateways": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Devices - IoT Switches": [
+      "other/smart-home/iot"
+    ],
+    "Internet of Things (IoT) - IoT Devices - IoT Wearables": [
+      "phones-radios/wearables",
+      "phones-radios/wearables/smartwatches"
+    ],
+    "Medical Equipment - Medical IT Accessories - Medical IT Accessories": [
+      "other/medical"
+    ],
+    "Medical Equipment - Medical Mounting Systems - Medical Display Mounts": [
+      "other/medical"
+    ],
+    "Medical Equipment - Medical Workstation & Trolleys - Medical Trolleys": [
+      "other/medical"
+    ],
+    "Medical Equipment - Medical Workstation & Trolleys - Medical Workstations": [
+      "other/medical"
+    ],
+    "Network & Smart Home - Network - Accesspoints & Controllers": [
+      "networking/wireless/standard"
+    ],
+    "Network & Smart Home - Network - Firewalls": [
+      "networking/routers"
+    ],
+    "Network & Smart Home - Network - Modems": [
+      "networking/modems"
+    ],
+    "Network & Smart Home - Network - Network Antennas": [
+      "networking/wireless/antennas"
+    ],
+    "Network & Smart Home - Network - Powerline Adapters": [
+      "networking/modems/powerline"
+    ],
+    "Network & Smart Home - Network - Routers": [
+      "networking/routers"
+    ],
+    "Network & Smart Home - Network - Switch - CLI Managed": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network - Switch - Cabled": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network - Switch - Chassis": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network - Switch - PoE": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network - Switch - Unmanaged": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network - Switch - Webmanaged": [
+      "networking/switches"
+    ],
+    "Network & Smart Home - Network Accessories - Network & DAC Cables": [
+      "networking/cabling"
+    ],
+    "Network & Smart Home - Network Accessories - Network Cards & Adapters": [
+      "networking/adapters",
+      "networking/transceivers/media-converters"
+    ],
+    "Network & Smart Home - Network Accessories - Network Other Accessories": [
+      "networking/adapters",
+      "networking/transceivers/standard"
+    ],
+    "Network & Smart Home - Network Accessories - Network Power Supply": [
+      "networking/adapters"
+    ],
+    "Network & Smart Home - Smart Home - Smart Energy Products": [
+      "other/smart-home/energy"
+    ],
+    "Network & Smart Home - Smart Home - Smart Home Devices Accessories & Parts": [
+      "other/smart-home/iot"
+    ],
+    "Network & Smart Home - Smart Home - Smart Lighting & Electrical Products": [
+      "other/home/household/lamps",
+      "other/smart-home/lighting"
+    ],
+    "Network & Smart Home - Smart Home - Smart Security & Assisted Living": [
+      "other/smart-home/iot"
+    ],
+    "Notebook, PC & Tablet - Notebooks - Business Notebooks": [
+      "computers/notebooks"
+    ],
+    "Notebook, PC & Tablet - Notebooks - Consumer & Gaming Notebooks": [
+      "computers/notebooks"
+    ],
+    "Notebook, PC & Tablet - Notebooks - Refurbished Notebooks": [
+      "computers/notebooks"
+    ],
+    "Notebook, PC & Tablet - Notebooks - Workstation Notebooks": [
+      "computers/notebooks"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - Docking - Notebooks & Tablets": [
+      "computers/notebook-accessories/docks"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - Notebook Batteries": [
+      "computers/notebook-accessories/other"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - Notebook Power Adapters": [
+      "computers/notebook-accessories/chargers"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - PC Accessories": [
+      "computers/notebook-accessories/other"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - Point Of Sale (POS) Accessories": [
+      "computers/pos/accessories"
+    ],
+    "Notebook, PC & Tablet - Options & Accessories - Tablet Accessories": [
+      "computers/tablet-accessories"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - All In One Desktops": [
+      "computers/desktops/aio"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Barebones": [
+      "computers/desktops/standard"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Business Desktops": [
+      "computers/desktops/standard"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Consumer & Gaming Desktops": [
+      "computers/desktops/standard"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Refurbished PCs": [
+      "computers/desktops/standard"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Terminal & Thin Client PC": [
+      "computers/desktops/mini"
+    ],
+    "Notebook, PC & Tablet - Personal Computers (PC) - Workstation Desktops": [
+      "computers/desktops/standard"
+    ],
+    "Notebook, PC & Tablet - Tablets - Tablets - Android": [
+      "computers/tablets"
+    ],
+    "Notebook, PC & Tablet - Tablets - Tablets - Windows": [
+      "computers/tablets"
+    ],
+    "Office Equipment - Furniture - Charging Stations & Carts": [
+      "other/office/stationery"
+    ],
+    "Office Equipment - Furniture - Trolleys, Desks & Chairs": [
+      "other/office/furniture"
+    ],
+    "Office Equipment - Office Supplies - Batteries & Chargers": [
+      "components/batteries/chargers"
+    ],
+    "Office Equipment - Office Supplies - Small Office Stationery": [
+      "other/office/stationery"
+    ],
+    "Office Equipment - Office Supplies - Storage Media, CD, DVD, Bluray, Floppy": [
+      "components/storage/arrays"
+    ],
+    "Office Equipment - Office Supplies - Work Ergonomic Products": [
+      "components/keyboards-mice/mousepads",
+      "other/office/ergonomics"
+    ],
+    "Peripherals & Accessories - Bag & Cases - Backpacks": [
+      "computers/notebook-accessories/bags"
+    ],
+    "Peripherals & Accessories - Bag & Cases - Notebook Bags & Cases": [
+      "computers/notebook-accessories/bags"
+    ],
+    "Peripherals & Accessories - Bag & Cases - Notebook Sleeves": [
+      "computers/notebook-accessories/bags"
+    ],
+    "Peripherals & Accessories - Bag & Cases - Tablet Cases & Sleeves": [
+      "computers/tablet-accessories"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - Adapters": [
+      "components/cables/data"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - Cable - Locks": [
+      "components/cables/data"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - Cable - Others": [
+      "components/cables/data"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - Cable - Power": [
+      "components/cables/power"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - Cable - USB & Thunderbolt": [
+      "components/cables/data"
+    ],
+    "Peripherals & Accessories - Cable & Adapters - USB Hub": [
+      "components/cables/hubs"
+    ],
+    "Peripherals & Accessories - Desktop & Combos - Mouse & Keyboard - Wired": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Desktop & Combos - Mouse & Keyboard - Wireless": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Digitizers - Digitizer Pens & Stylus": [
+      "components/keyboards-mice/digitizers"
+    ],
+    "Peripherals & Accessories - KVM - KVM Accessories": [
+      "components/kvm"
+    ],
+    "Peripherals & Accessories - KVM - KVM Switches": [
+      "components/kvm"
+    ],
+    "Peripherals & Accessories - Keyboards - Keyboards - Ergonomic": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Keyboards - Keyboards - Wired": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Keyboards - Keyboards - Wireless": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Keyboards - Numeric Keypads": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Ergonomic": [
+      "components/keyboards-mice/mice"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Wired": [
+      "components/keyboards-mice/mice"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Wireless": [
+      "components/keyboards-mice/mice"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Mousepads": [
+      "components/keyboards-mice/mousepads"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Multimedia Controllers": [
+      "components/keyboards-mice/digitizers"
+    ],
+    "Peripherals & Accessories - Mouse, Trackballs & Presenters - Presenters": [
+      "displays/projectors/other"
+    ],
+    "Peripherals & Accessories - Power Protection - Power Protection & Surge Outlets": [
+      "components/power-protection/pdu"
+    ],
+    "Peripherals & Accessories - USB & Card Readers - Flash Card Readers": [
+      "cameras/camera-accessories/memory",
+      "components/cables/card-readers"
+    ],
+    "Peripherals & Accessories - USB & Card Readers - USB Card Readers": [
+      "components/cables/card-readers"
+    ],
+    "Print, Scan & Supplies - 3D Printer & Scanner Accessories - 3D Supplies & Filaments": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Copier & Telefax - Copier & Telefax Accessories": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Large Format Printer (LFP) - Large Format Accessories": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Large Format Printer (LFP) - Plotter & Scanners": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Multifunction Printers - Ink": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Multifunction Printers - Laser Color": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Multifunction Printers - Laser Mono": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Ink": [
+      "print-scan/consumables/ink"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Ink Photo": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Label": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Laser Color": [
+      "print-scan/consumables/toner"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Laser Mono": [
+      "print-scan/consumables/toner"
+    ],
+    "Print, Scan & Supplies - Printers & Multifunction (MFP) - Printers - Matrix": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Matrix Printer Accessories": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Print Server Adaptors": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Printer Accessories - Other": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Scanner Accessories - Other": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Stackers & Staplers": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Stands": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Printers, Scanner, Copier Accessories - Trays": [
+      "print-scan/trays"
+    ],
+    "Print, Scan & Supplies - Scanners - Barcode Scanners": [
+      "computers/pos/terminals",
+      "print-scan/scanners"
+    ],
+    "Print, Scan & Supplies - Scanners - Document Scanners": [
+      "print-scan/scanners"
+    ],
+    "Print, Scan & Supplies - Scanners - Photo Scanners": [
+      "print-scan/scanners"
+    ],
+    "Print, Scan & Supplies - Supplies - Ink - Inks & Ink Printheads": [
+      "print-scan/consumables/ink"
+    ],
+    "Print, Scan & Supplies - Supplies - Ink - Other Inkjet Accessories": [
+      "print-scan/consumables/ink"
+    ],
+    "Print, Scan & Supplies - Supplies - Label Printer - Tapes & Labels": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Supplies - Large Format Printer (LFP) - LFP Inks & LFP Printheads": [
+      "print-scan/consumables/ink"
+    ],
+    "Print, Scan & Supplies - Supplies - Large Format Printer (LFP) - LFP Maintenance & Cleaning Kits": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Laser Drums": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Laser Maintenance Kit": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Laser Photoconductors": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Printer Fuser Kits": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Staples": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Toners": [
+      "print-scan/consumables/toner"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Transfer Belt Units & Kits": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Laser - Waste Toner Boxes": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Matrix Printer - Ribbons": [
+      "print-scan/printers"
+    ],
+    "Print, Scan & Supplies - Supplies - Paper - Labels, Receipts & Matrix": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Paper - Large Format Papers": [
+      "print-scan/consumables/other"
+    ],
+    "Print, Scan & Supplies - Supplies - Paper - Office & Photo Papers": [
+      "print-scan/consumables/other"
+    ],
+    "Professional Radios & Repeaters - Portable Radios - License-free Radios": [
+      "navigation"
+    ],
+    "Professional Radios & Repeaters - Professional Radios - Accessories - Chargers and accessories": [
+      "navigation"
+    ],
+    "Professional Radios & Repeaters - Repeaters - accessories - Other accessories": [
+      "navigation"
+    ],
+    "Server, Storage & UPS - Power Distribution Units (PDU) - PDU Basic": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Power Distribution Units (PDU) - PDU Managed": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Power Distribution Units (PDU) - PDU Metered": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Power Distribution Units (PDU) - PDU Monitored": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Power Distribution Units (PDU) - PDU Switched": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Rack Enclosures - Rack Cabinets": [
+      "computers/servers/racks"
+    ],
+    "Server, Storage & UPS - Server, Storage & UPS Accessories - PDU Options": [
+      "components/power-protection/pdu"
+    ],
+    "Server, Storage & UPS - Server, Storage & UPS Accessories - Rack Cabinet Accessories": [
+      "computers/servers/racks"
+    ],
+    "Server, Storage & UPS - Server, Storage & UPS Accessories - Server, Storage - Other Accessories": [
+      "computers/servers/components/other"
+    ],
+    "Server, Storage & UPS - Server, Storage & UPS Accessories - UPS Accessories & Battery Packs": [
+      "components/power-protection/ups"
+    ],
+    "Server, Storage & UPS - Servers - Rack Servers": [
+      "computers/servers/rack-tower"
+    ],
+    "Server, Storage & UPS - Servers - Tower Servers": [
+      "computers/servers/rack-tower"
+    ],
+    "Server, Storage & UPS - Storage - Disk Shelves": [
+      "components/storage/arrays"
+    ],
+    "Server, Storage & UPS - Storage - Infrastructure Storage": [
+      "components/storage/arrays"
+    ],
+    "Server, Storage & UPS - Storage - JBOD & SANs": [
+      "components/storage/arrays"
+    ],
+    "Server, Storage & UPS - Storage - NAS": [
+      "components/storage/arrays"
+    ],
+    "Server, Storage & UPS - Storage - Server HDD": [
+      "components/storage/hdd/internal"
+    ],
+    "Server, Storage & UPS - Storage - Server SSD": [
+      "components/storage/ssd/enterprise",
+      "components/storage/ssd/internal"
+    ],
+    "Server, Storage & UPS - Storage - Tape Storage": [
+      "components/storage/arrays"
+    ],
+    "Server, Storage & UPS - Uninterruptible Power Supply (UPS) - Line Interactive Rack Mounts": [
+      "components/power-protection/ups"
+    ],
+    "Server, Storage & UPS - Uninterruptible Power Supply (UPS) - Line Interactive Towers": [
+      "components/power-protection/ups"
+    ],
+    "Server, Storage & UPS - Uninterruptible Power Supply (UPS) - Off Line UPS": [
+      "components/power-protection/ups"
+    ],
+    "Server, Storage & UPS - Uninterruptible Power Supply (UPS) - Online Rack Mounts": [
+      "components/power-protection/ups"
+    ],
+    "Server, Storage & UPS - Uninterruptible Power Supply (UPS) - Online Towers": [
+      "components/power-protection/ups"
+    ],
+    "Software & Cloud - Antivirus & Security Software - Authentication Software": [
+      "software-apps/antivirus"
+    ],
+    "Software & Cloud - Antivirus & Security Software - Firewall Software": [
+      "software-apps/network"
+    ],
+    "Software & Cloud - Antivirus & Security Software - Security Suites Software": [
+      "software-apps/antivirus"
+    ],
+    "Software & Cloud - Antivirus & Security Software - VPN Software": [
+      "software-apps/network"
+    ],
+    "Software & Cloud - Network Software - Network & Enterprise Management Software": [
+      "software-apps/network"
+    ],
+    "Software & Cloud - Network Software - Network Appliance Software": [
+      "software-apps/network"
+    ],
+    "Software & Cloud - Network Software - Web Conferencing Software": [
+      "software-apps/business"
+    ],
+    "Software & Cloud - Office Software - Office Application Suites": [
+      "software-apps/business"
+    ],
+    "Software & Cloud - Operating Systems - Linux & Unix Software": [
+      "software-apps/os"
+    ],
+    "Software & Cloud - Operating Systems - Microsoft Windows Software": [
+      "software-apps/os"
+    ],
+    "Software & Cloud - Server Software & Licences - Server CAL": [
+      "software-apps/business/server"
+    ],
+    "Software & Cloud - Server Software & Licences - Server Software": [
+      "software-apps/business/server"
+    ],
+    "Software & Cloud - Utilities Software - Cloud Software & Services": [
+      "software-apps/network"
+    ],
+    "Software & Cloud - Utilities Software - Recovery, Backup & Storage Software": [
+      "software-apps/business/server"
+    ],
+    "Software & Cloud - Utilities Software - Virtualization Software": [
+      "software-apps/business"
+    ],
+    "Telecom & Wearables - Landline Telephones - Desk Phone analog & SIP": [
+      "phones-radios/telephones/standard"
+    ],
+    "Telecom & Wearables - Landline Telephones - Landline Telephone Accessories": [
+      "phones-radios/telephones/standard"
+    ],
+    "Telecom & Wearables - Mobile Phones - Classic Mobile Phones": [
+      "phones-radios/mobile"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Cables & Adapters": [
+      "phones-radios/mobile/accessories/cables"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Case & Bags": [
+      "phones-radios/mobile/accessories/cases"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Chargers & Powerbank": [
+      "phones-radios/mobile/accessories/chargers"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Headsets": [
+      "av/headsets"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Holders": [
+      "phones-radios/mobile/accessories/holders"
+    ],
+    "Telecom & Wearables - Smartphone Accessories - Smartphone - Screen Filter & Protectors": [
+      "phones-radios/mobile/accessories/other"
+    ],
+    "Telecom & Wearables - Smartphones - Android Smartphones": [
+      "phones-radios/mobile"
+    ],
+    "Telecom & Wearables - Smartphones - iPhone": [
+      "phones-radios/mobile"
+    ],
+    "Telecom & Wearables - Wearable Accessories - Wearable Accessories": [
+      "phones-radios/wearables",
+      "phones-radios/wearables/accessories"
+    ],
+    "Telecom & Wearables - Wearables - Smartwatches": [
+      "phones-radios/wearables/smartwatches"
+    ],
+    "Video Surveillance - Access Control - Access Control - Controllers": [
+      "av/surveillance/access-control"
+    ],
+    "Video Surveillance - Access Control - Access Control - Others": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Video Surveillance - Access Control - Access Control - Readers": [
+      "av/surveillance/readers"
+    ],
+    "Video Surveillance - Security Cameras - IP Bullet Security Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Video Surveillance - Security Cameras - IP Cube Security Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Video Surveillance - Security Cameras - IP Outdoor Security Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Video Surveillance - Security Cameras - IP Wireless Security Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Video Surveillance - Security Cameras - Security Camera Accessories": [
+      "av/surveillance/accessories"
+    ],
+    "Video Surveillance - Security Cameras - Security Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Warranty & Services - Warranty & Support - Conferencing System Warranty  & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Digital Signage Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Display Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Large Format Printer Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Network Product Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Notebook Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - PC Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Printer & MFP Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Projector Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Scanner Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Server Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Storage Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - Tablet Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Warranty & Services - Warranty & Support - UPS Warranty & Licences": [
+      "other/service-support/hardware"
+    ],
+    "Gadgets & Mobility > E-mobility > Scooters": [
+      "other/home/sports/e-mobility"
+    ],
+    "Gadgets & Mobility > Navigation & Car Electronics > Car Accessories": [
+      "navigation"
+    ],
+    "Gadgets & Mobility > Navigation & Car Electronics > Navigation Accessories": [
+      "navigation"
+    ],
+    "Gadgets & Mobility > Navigation & Car Electronics > Navigation Systems": [
+      "navigation"
+    ],
+    "Gadgets & Mobility > Smart Home > Light Fixtures & Bulbs": [
+      "other/home/household/lamps",
+      "other/smart-home/lighting"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Camping Lanterns": [
+      "other/home/sports/illumination"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Fitness Bands": [
+      "phones-radios/wearables/smartwatches"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Illumination": [
+      "other/home/sports/illumination"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Illumination Accessories": [
+      "other/home/sports/illumination"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Robots": [
+      "other/smart-home/iot"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Smartwatches": [
+      "phones-radios/wearables/smartwatches"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Sports and Watches Accessories": [
+      "phones-radios/wearables/accessories"
+    ],
+    "Gadgets & Mobility > Sports & Wearables > Swimming Pool Accessories": [
+      "other/home/sports/pool"
+    ],
+    "Gadgets & Mobility > Tools & Workwear > Tools": [
+      "other/tools/power-tools"
+    ],
+    "Gardening & Power Tools > Garden Products > Grass Trimmers": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > High Pressure Washers": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > Lawn Mower Accessories": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > Lawn Mowers": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > Leaf Blowers": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > Sweepers": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Garden Products > Water Pumps": [
+      "other/tools/garden"
+    ],
+    "Gardening & Power Tools > Power Products > Generators": [
+      "other/tools/power-tools"
+    ],
+    "Gardening & Power Tools > Power Tools > Car Air Compressors": [
+      "other/tools/power-tools"
+    ],
+    "Gardening & Power Tools > Power Tools > Cordless Tool Batteries": [
+      "other/tools/power-tools"
+    ],
+    "Gardening & Power Tools > Power Tools > Screwdrivers": [
+      "other/tools/power-tools"
+    ],
+    "Home Appliances > Kitchen Appliances > Air Fryer Accessories": [
+      "other/home/kitchen/fryers"
+    ],
+    "Home Appliances > Kitchen Appliances > Air Fryers": [
+      "other/home/kitchen/fryers"
+    ],
+    "Home Appliances > Kitchen Appliances > Bakeware": [
+      "other/home/kitchen/cookware"
+    ],
+    "Home Appliances > Kitchen Appliances > Blenders": [
+      "other/home/kitchen/blenders"
+    ],
+    "Home Appliances > Kitchen Appliances > Casseroles": [
+      "other/home/kitchen/cookware"
+    ],
+    "Home Appliances > Kitchen Appliances > Coffee Maker Accessories": [
+      "other/home/kitchen/coffee"
+    ],
+    "Home Appliances > Kitchen Appliances > Coffee Makers": [
+      "other/home/kitchen/coffee"
+    ],
+    "Home Appliances > Kitchen Appliances > Electric Grills": [
+      "other/home/kitchen/grills"
+    ],
+    "Home Appliances > Kitchen Appliances > Electric Kettles": [
+      "other/home/kitchen/kettles"
+    ],
+    "Home Appliances > Kitchen Appliances > Food Processors": [
+      "other/home/kitchen/blenders"
+    ],
+    "Home Appliances > Kitchen Appliances > French Presses": [
+      "other/home/kitchen/coffee"
+    ],
+    "Home Appliances > Kitchen Appliances > Frying Pans": [
+      "other/home/kitchen/cookware"
+    ],
+    "Home Appliances > Kitchen Appliances > Juice Extractors": [
+      "other/home/kitchen/blenders"
+    ],
+    "Home Appliances > Kitchen Appliances > Kettles": [
+      "other/home/kitchen/kettles"
+    ],
+    "Home Appliances > Kitchen Appliances > Kitchenware": [
+      "other/home/kitchen/cookware"
+    ],
+    "Home Appliances > Kitchen Appliances > Microwaves": [
+      "other/home/kitchen/microwaves"
+    ],
+    "Home Appliances > Kitchen Appliances > Milk Frothers & Warmers": [
+      "other/home/kitchen/coffee"
+    ],
+    "Home Appliances > Kitchen Appliances > Mixers": [
+      "other/home/kitchen/blenders"
+    ],
+    "Home Appliances > Kitchen Appliances > Multicookers": [
+      "other/home/kitchen/microwaves"
+    ],
+    "Home Appliances > Kitchen Appliances > Refrigerators": [
+      "other/home/kitchen/refrigerators"
+    ],
+    "Home Appliances > Kitchen Appliances > Sandwich Makers": [
+      "other/home/kitchen/grills"
+    ],
+    "Home Appliances > Kitchen Appliances > Teapots": [
+      "other/home/kitchen/kettles"
+    ],
+    "Home Appliances > Kitchen Appliances > Toasters": [
+      "other/home/kitchen/toasters"
+    ],
+    "Home Appliances > Kitchen Appliances > Waffle Irons": [
+      "other/home/kitchen/toasters"
+    ],
+    "Home Appliances > Personal Care > Beard Trimmers": [
+      "other/home/personal-care/shavers"
+    ],
+    "Home Appliances > Personal Care > Body Groomers / Shavers": [
+      "other/home/personal-care/shavers"
+    ],
+    "Home Appliances > Personal Care > Electric Toothbrushes": [
+      "other/home/personal-care/dental"
+    ],
+    "Home Appliances > Personal Care > Epilators": [
+      "other/home/personal-care/other"
+    ],
+    "Home Appliances > Personal Care > Hair Clippers": [
+      "other/home/personal-care/hair"
+    ],
+    "Home Appliances > Personal Care > Hair Dryers": [
+      "other/home/personal-care/hair"
+    ],
+    "Home Appliances > Personal Care > Hair Straighteners": [
+      "other/home/personal-care/hair"
+    ],
+    "Home Appliances > Personal Care > Hair Stylers": [
+      "other/home/personal-care/hair"
+    ],
+    "Home Appliances > Personal Care > Oral Irrigators": [
+      "other/home/personal-care/dental"
+    ],
+    "Home Appliances > Personal Care > Other Beauty Appliances": [
+      "other/home/personal-care/other"
+    ],
+    "Home Appliances > Personal Care > Precision Trimmers": [
+      "other/home/personal-care/shavers"
+    ],
+    "Home Appliances > Personal Care > Shavers": [
+      "other/home/personal-care/shavers"
+    ],
+    "Home Appliances > Personal Care > Toothbrush Heads": [
+      "other/home/personal-care/dental"
+    ],
+    "Home Appliances > Pet Care > Pet Cameras": [
+      "other/home/pet-care"
+    ],
+    "Home Appliances > Pet Care > Pet Care & Hygiene": [
+      "other/home/pet-care"
+    ],
+    "Home Appliances > Pet Care > Pet Feeders & Drinkers": [
+      "other/home/pet-care"
+    ],
+    "Home Appliances > Small Household Appliances > Air Conditioners": [
+      "other/home/climate"
+    ],
+    "Home Appliances > Small Household Appliances > Ash Vacuums": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Carpet Cleaning Machines": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Electric Patio Cleaners": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Garment Steamers": [
+      "other/home/garment"
+    ],
+    "Home Appliances > Small Household Appliances > Handheld Vacuums": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Irons": [
+      "other/home/garment"
+    ],
+    "Home Appliances > Small Household Appliances > Mops": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Other Appliances": [
+      "other/home/household/other"
+    ],
+    "Home Appliances > Small Household Appliances > Portable lamps": [
+      "other/home/household/lamps"
+    ],
+    "Home Appliances > Small Household Appliances > Shoe & Clothes Care": [
+      "other/home/garment"
+    ],
+    "Home Appliances > Small Household Appliances > Smart Light Fixtures": [
+      "other/home/household/lamps",
+      "other/smart-home/lighting"
+    ],
+    "Home Appliances > Small Household Appliances > Steam Ironing Stations": [
+      "other/home/garment"
+    ],
+    "Home Appliances > Small Household Appliances > Stick Vacuums &Electric Brooms": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Vacuum Cleaner Accessories": [
+      "other/home/cleaning/accessories"
+    ],
+    "Home Appliances > Small Household Appliances > Vacuum Cleaners": [
+      "other/home/cleaning/floor-care"
+    ],
+    "Home Appliances > Small Household Appliances > Vacuum Cleaners Robots": [
+      "other/home/cleaning/robots"
+    ],
+    "Home Appliances > Small Household Appliances > Vacuum Robot Accessories": [
+      "other/home/cleaning/robots"
+    ],
+    "Networking > Wired devices > Bridges & Repeaters": [
+      "networking/routers"
+    ],
+    "Networking > Wired devices > Gateways/Controllers": [
+      "networking/wireless/standard"
+    ],
+    "Networking > Wired devices > InfiniBand &Fiber Optic Cables": [
+      "networking/cabling"
+    ],
+    "Networking > Wired devices > KVM Switches": [
+      "components/kvm"
+    ],
+    "Networking > Wired devices > Media Convertors &Modules": [
+      "networking/transceivers/media-converters"
+    ],
+    "Networking > Wired devices > Net Switch Components": [
+      "networking/switches"
+    ],
+    "Networking > Wired devices > Net Switch Modules": [
+      "networking/switches"
+    ],
+    "Networking > Wired devices > Net Transceiver Modules": [
+      "networking/transceivers/standard"
+    ],
+    "Networking > Wired devices > POE Devices": [
+      "networking/switches"
+    ],
+    "Networking > Wired devices > Powerline": [
+      "networking/modems/powerline"
+    ],
+    "Networking > Wired devices > Routers": [
+      "networking/routers"
+    ],
+    "Networking > Wired devices > Switches": [
+      "networking/switches"
+    ],
+    "Networking > Wired devices > Wired Network Adapters": [
+      "networking/adapters"
+    ],
+    "Networking > Wireless equipment > 3G/4G Routers": [
+      "networking/routers"
+    ],
+    "Networking > Wireless equipment > Antennas And Accessories": [
+      "networking/wireless/antennas"
+    ],
+    "Networking > Wireless equipment > Celluar Network Devices": [
+      "networking/routers",
+      "networking/wireless/standard"
+    ],
+    "Networking > Wireless equipment > Mesh Wi-Fi Systems": [
+      "networking/wireless/antennas"
+    ],
+    "Networking > Wireless equipment > Modems": [
+      "networking/modems"
+    ],
+    "Networking > Wireless equipment > Network Cards & Adapters": [
+      "networking/adapters"
+    ],
+    "Networking > Wireless equipment > Network Equipmment Spare Parts": [
+      "networking/adapters"
+    ],
+    "Networking > Wireless equipment > Outdoor Networking": [
+      "networking/wireless/antennas"
+    ],
+    "Networking > Wireless equipment > Wireless Access Points": [
+      "networking/wireless/standard"
+    ],
+    "Networking > Wireless equipment > Wireless Network Controllers": [
+      "networking/wireless/standard"
+    ],
+    "Networking > Wireless equipment > Wireless Range Extenders": [
+      "networking/wireless/antennas"
+    ],
+    "Networking > Wireless equipment > Wireless Routers": [
+      "networking/routers"
+    ],
+    "Notebooks, PC & Accessories > Desktop Computers > All-in-One PCs": [
+      "computers/desktops/aio"
+    ],
+    "Notebooks, PC & Accessories > Desktop Computers > Desktop Computers": [
+      "computers/desktops/standard"
+    ],
+    "Notebooks, PC & Accessories > Desktop Computers > Mini Desktop Computers": [
+      "computers/desktops/mini"
+    ],
+    "Notebooks, PC & Accessories > Desktop Computers > NUC": [
+      "computers/desktops/mini"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Backpacks": [
+      "computers/notebook-accessories/bags"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Notebook Accessories": [
+      "computers/notebook-accessories/other"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Notebook Bags": [
+      "computers/notebook-accessories/bags"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Notebook Docks": [
+      "computers/notebook-accessories/docks"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Notebooks": [
+      "computers/notebooks"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Rugged Notebook Accessories": [
+      "computers/notebook-accessories/other"
+    ],
+    "Notebooks, PC & Accessories > Notebooks > Rugged Notebooks": [
+      "computers/notebooks"
+    ],
+    "PC Components > Accessories & Peripherals > Internal PC Cables": [
+      "components/cables/data"
+    ],
+    "PC Components > Accessories & Peripherals > PC Mounts & Accessories": [
+      "components/cases-accessories/other"
+    ],
+    "PC Components > Accessories & Peripherals > Trusted Platform Modules (TPM)": [
+      "components/cases-accessories/other"
+    ],
+    "PC Components > Cases & PSU > Case Mods & Parts": [
+      "components/cases"
+    ],
+    "PC Components > Cases & PSU > Cases": [
+      "components/cases"
+    ],
+    "PC Components > Cooling > CPU Coolers": [
+      "components/cooling"
+    ],
+    "PC Components > Cooling > Cooling Accessories": [
+      "components/cooling"
+    ],
+    "PC Components > Cooling > System & VGA Coolers": [
+      "components/cooling"
+    ],
+    "PC Components > Mainboards > Mainboards for AMD CPUs": [
+      "components/motherboards"
+    ],
+    "PC Components > Mainboards > Mainboards for Intel CPUs": [
+      "components/motherboards"
+    ],
+    "PC Components > PC Power Supplies > Desktop Computer PSU": [
+      "components/psu"
+    ],
+    "PC Components > Processors > CPU": [
+      "components/cpu"
+    ],
+    "PC Components > RAM > Memory DIMM": [
+      "components/storage/ram/desktop"
+    ],
+    "PC Components > RAM > Memory SODIMM": [
+      "components/storage/ram/notebook"
+    ],
+    "PC Components > Video & Sound Cards > Sound Cards": [
+      "components/sound-cards"
+    ],
+    "PC Components > Video & Sound Cards > Video Cards": [
+      "components/gpu"
+    ],
+    "POS Solutions > Desktop POS": [
+      "computers/pos/terminals"
+    ],
+    "POS Solutions > Handheld PDA": [
+      "computers/pos/terminals"
+    ],
+    "POS Solutions > Kiosk SCO": [
+      "computers/pos/terminals"
+    ],
+    "POS Solutions > Mobile POS": [
+      "computers/pos/terminals"
+    ],
+    "POS Solutions > POS Accessories": [
+      "computers/pos/accessories"
+    ],
+    "POS Solutions > POS Printers": [
+      "computers/pos/accessories"
+    ],
+    "POS Solutions > POS Products": [
+      "computers/pos/accessories"
+    ],
+    "Peripherals & Office Products > Accessories > Cable Organizers": [
+      "components/cables/data"
+    ],
+    "Peripherals & Office Products > Accessories > Cleaning Products": [
+      "components/cases-accessories/other"
+    ],
+    "Peripherals & Office Products > Accessories > I/O Cards & Adapters": [
+      "components/cases-accessories/other"
+    ],
+    "Peripherals & Office Products > Accessories > Interface Hubs": [
+      "components/cables/hubs"
+    ],
+    "Peripherals & Office Products > Accessories > USB Hubs": [
+      "components/cables/hubs"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Desk Pads": [
+      "components/keyboards-mice/mousepads"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Input Device Accessories": [
+      "components/keyboards-mice/mousepads"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Keyboards": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Mouse Devices": [
+      "components/keyboards-mice/mice"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Mouse Pads": [
+      "components/keyboards-mice/mousepads"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Numeric Keypads": [
+      "components/keyboards-mice/keyboards"
+    ],
+    "Peripherals & Office Products > Keyboards & Mouse > Wrist Rests": [
+      "components/keyboards-mice/mousepads",
+      "other/office/ergonomics"
+    ],
+    "Peripherals & Office Products > Monitors > Monitor Accessories": [
+      "displays/monitors/accessories"
+    ],
+    "Peripherals & Office Products > Monitors > Monitor Mount Accessories": [
+      "displays/monitors/accessories"
+    ],
+    "Peripherals & Office Products > Monitors > USB Graphics Adapters": [
+      "displays/monitors/accessories"
+    ],
+    "Peripherals & Office Products > Multimedia > Alarm clocks": [
+      "other/home/household",
+      "other/home/household/clocks"
+    ],
+    "Peripherals & Office Products > Multimedia > Digitizers": [
+      "components/keyboards-mice/digitizers"
+    ],
+    "Peripherals & Office Products > Office Products > Binding Machines": [
+      "print-scan/trays"
+    ],
+    "Peripherals & Office Products > Office Products > Computer Desks": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > Conference Systems": [
+      "phones-radios/telephones/conferencing"
+    ],
+    "Peripherals & Office Products > Office Products > Dehumidifiers": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > Humidifiers": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > Other Office Products": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > Shredder Accessories": [
+      "print-scan/trays"
+    ],
+    "Peripherals & Office Products > Office Products > Shredders": [
+      "print-scan/trays"
+    ],
+    "Peripherals & Office Products > Office Products > Sneeze Guards": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > Standing Desk Frames": [
+      "other/office/furniture"
+    ],
+    "Peripherals & Office Products > Office Products > VoIP": [
+      "phones-radios/telephones/standard"
+    ],
+    "Peripherals & Office Products > Office Products > Wired Telephones": [
+      "phones-radios/telephones/standard"
+    ],
+    "Peripherals & Office Products > Office Products > Workspace Ergonomics": [
+      "other/office/ergonomics"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > All In One": [
+      "print-scan/printers"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > Ink Cartridges": [
+      "print-scan/consumables/ink"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > Laser Printer Supplies": [
+      "print-scan/consumables/other",
+      "print-scan/consumables/toner"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > Laser Printers": [
+      "print-scan/printers"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > Printer Drums": [
+      "print-scan/consumables/other"
+    ],
+    "Peripherals & Office Products > Printers, Scanners & Supplies > Scanners": [
+      "print-scan/scanners"
+    ],
+    "Peripherals & Office Products > Projectors > Presenters": [
+      "displays/projectors/other"
+    ],
+    "Peripherals & Office Products > Projectors > Projector Mounts": [
+      "displays/projectors/mounting"
+    ],
+    "Peripherals & Office Products > Projectors > Projectors & Screens": [
+      "displays/projectors/standard"
+    ],
+    "Power Supplies & UPS > Batteries For UPS": [
+      "components/power-protection/ups"
+    ],
+    "Power Supplies & UPS > Notebook Chargers": [
+      "computers/notebook-accessories/chargers"
+    ],
+    "Power Supplies & UPS > PC Power Cables": [
+      "components/cables/power"
+    ],
+    "Power Supplies & UPS > Power Adapters & Invertors": [
+      "components/batteries/chargers"
+    ],
+    "Power Supplies & UPS > Power Strips": [
+      "components/power-protection/pdu"
+    ],
+    "Power Supplies & UPS > Smart Plugs": [
+      "other/smart-home/energy"
+    ],
+    "Power Supplies & UPS > Surge Protectors": [
+      "components/power-protection/pdu"
+    ],
+    "Power Supplies & UPS > UPS For Workstations": [
+      "components/power-protection/ups"
+    ],
+    "Power Supplies & UPS > UPS Options": [
+      "components/power-protection/ups"
+    ],
+    "Renewable Power > Electric Car Charging": [
+      "other/energy",
+      "other/energy/ev"
+    ],
+    "Renewable Power > Power Station Accessories": [
+      "other/energy/accessories"
+    ],
+    "Renewable Power > Power Stations": [
+      "other/energy",
+      "other/energy/stations"
+    ],
+    "Renewable Power > Solar Inverters": [
+      "other/energy",
+      "other/energy/inverters"
+    ],
+    "Renewable Power > Solar Panels": [
+      "other/energy",
+      "other/energy/panels"
+    ],
+    "Security Solutions > Access Control Systems > Access Cards": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Access Control Systems > Card Readers": [
+      "av/surveillance/readers"
+    ],
+    "Security Solutions > Access Control Systems > Door Controllers": [
+      "av/surveillance/access-control"
+    ],
+    "Security Solutions > Access Control Systems > RFID Tags": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Access Control Systems > Security Screening": [
+      "av/surveillance/readers"
+    ],
+    "Security Solutions > Door Entry Systems > DES Accessories": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Door Entry Systems > Doorphone Mounting Accessories": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Door Entry Systems > Doorphone Systems": [
+      "av/surveillance/readers"
+    ],
+    "Security Solutions > Door Entry Systems > Network Doorphones": [
+      "av/surveillance/readers"
+    ],
+    "Security Solutions > Door Entry Systems > Standalone Locks": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Fire Alarm Systems > Fire Alarm Accessories": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Additional Modules": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Batteries": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Control Panels": [
+      "av/surveillance/access-control"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Detectors": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Keypads": [
+      "av/surveillance/readers"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Power Supplies": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Remote Controllers": [
+      "av/surveillance/access-control"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Security Accessories": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Intruder Alarm Systems > Sirens": [
+      "av/surveillance/nvr-dvr"
+    ],
+    "Security Solutions > Video Surveillance > AccessoriesCCTV IP": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > Analog CCTV Accessories": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > CCTV Lenses": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > DVR": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > HDCVI Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Security Solutions > Video Surveillance > IP Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "Security Solutions > Video Surveillance > NVR": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > Video Decoders": [
+      "av/surveillance/accessories"
+    ],
+    "Security Solutions > Video Surveillance > Video Surveillance Software": [
+      "software-apps/antivirus"
+    ],
+    "Security Solutions > Video Surveillance > Warranty Extensions": [
+      "other/service-support/hardware"
+    ],
+    "Servers & Components > Server Components > Cooling Parts": [
+      "computers/servers/components/other"
+    ],
+    "Servers & Components > Server Components > Mainboards": [
+      "components/motherboards",
+      "computers/servers/components/motherboards"
+    ],
+    "Servers & Components > Server Components > Memory": [
+      "computers/servers/components/memory"
+    ],
+    "Servers & Components > Server Components > Server CPU": [
+      "computers/servers/components/cpu"
+    ],
+    "Servers & Components > Server Components > Server Cables": [
+      "computers/servers/components/other"
+    ],
+    "Servers & Components > Server Components > Server Disk Drive Controllers": [
+      "components/storage/arrays",
+      "computers/servers/components/controllers"
+    ],
+    "Servers & Components > Server Components > Server PSU": [
+      "computers/servers/components/psu"
+    ],
+    "Servers & Components > Server Components > Server Parts": [
+      "computers/servers/components/other"
+    ],
+    "Servers & Components > Servers & Chassis > Servers": [
+      "computers/servers/rack-tower"
+    ],
+    "Smartphones & Tablets > Smartphones > Feature Phones": [
+      "phones-radios/mobile"
+    ],
+    "Smartphones & Tablets > Smartphones > Phone Accessories": [
+      "phones-radios/mobile/accessories/other"
+    ],
+    "Smartphones & Tablets > Smartphones > Phone Car Mounts": [
+      "phones-radios/mobile/accessories/holders"
+    ],
+    "Smartphones & Tablets > Smartphones > Powerbanks": [
+      "phones-radios/mobile/accessories/chargers"
+    ],
+    "Smartphones & Tablets > Smartphones > Smartphone Covers & Cases": [
+      "phones-radios/mobile/accessories/cases"
+    ],
+    "Smartphones & Tablets > Smartphones > Smartphones": [
+      "phones-radios/mobile"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Children's tablets": [
+      "computers/tablets"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > E-Reader Accessories": [
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > E-Reader Cases": [
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > E-Readers": [
+      "computers/tablets"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Mobile Device Chargers": [
+      "computers/notebook-accessories/chargers",
+      "phones-radios/mobile/accessories/chargers"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Mobile Device Keyboards": [
+      "components/keyboards-mice/keyboards",
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Rugged Tablet Accessories": [
+      "computers/notebook-accessories/other",
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Rugged Tablets": [
+      "computers/tablets"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Tablet Accessories": [
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Tablet Sleeves": [
+      "computers/tablet-accessories"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > Tablets": [
+      "computers/tablets"
+    ],
+    "Smartphones & Tablets > Tablets & E-Readers > USB Cables": [
+      "components/cables/data",
+      "phones-radios/mobile/accessories/cables"
+    ],
+    "Software > Office": [
+      "software-apps/business"
+    ],
+    "Software > Server OS & Applications": [
+      "software-apps/business/server"
+    ],
+    "Software > Windows OEM": [
+      "software-apps/os"
+    ],
+    "Software > Windows Retail": [
+      "software-apps/os"
+    ],
+    "Storage & NAS Systems > Storage External > Disk Arrays": [
+      "components/storage/arrays"
+    ],
+    "Storage & NAS Systems > Storage External > HDD External 2.5\"": [
+      "components/storage/hdd/external"
+    ],
+    "Storage & NAS Systems > Storage External > HDD External 3.5\"": [
+      "components/storage/hdd/external"
+    ],
+    "Storage & NAS Systems > Storage External > Memory Card Readers": [
+      "cameras/camera-accessories/memory",
+      "components/cables/card-readers"
+    ],
+    "Storage & NAS Systems > Storage External > SSD External": [
+      "components/storage/hdd/external"
+    ],
+    "Storage & NAS Systems > Storage External > USB Flash Drives": [
+      "components/storage/flash"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD Desktop": [
+      "components/storage/hdd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD Enterprise SAS": [
+      "components/storage/hdd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD Enterprise SATA": [
+      "components/storage/hdd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD Mobile SATA": [
+      "components/storage/hdd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD Video Surveillance": [
+      "av/surveillance/accessories",
+      "components/storage/hdd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > HDD/SSD Mounting": [
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > Network Cables": [
+      "networking/cabling"
+    ],
+    "Storage & NAS Systems > Storage Internal > Optical Disk Drives": [
+      "components/storage/arrays"
+    ],
+    "Storage & NAS Systems > Storage Internal > SSD Enterprise PCI-E": [
+      "components/storage/ssd/enterprise",
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > SSD Enterprise SAS": [
+      "components/storage/ssd/enterprise",
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > SSD Enterprise SATA": [
+      "components/storage/ssd/enterprise",
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > SSD M.2": [
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Internal > SSD SATA": [
+      "components/storage/ssd/internal"
+    ],
+    "Storage & NAS Systems > Storage Systems > JBOD": [
+      "components/storage/arrays"
+    ],
+    "Storage & NAS Systems > Storage Systems > Other Components": [
+      "computers/servers/components/other"
+    ],
+    "Storage & NAS Systems > Storage Systems > Rack Mounting Parts": [
+      "computers/servers/racks"
+    ],
+    "Storage & NAS Systems > Storage Systems > Rack Parts & Accessories": [
+      "computers/servers/racks"
+    ],
+    "Storage & NAS Systems > Storage Systems > Storage": [
+      "components/storage/arrays"
+    ],
+    "Storage & NAS Systems > Storage Systems > Storage Memory": [
+      "computers/servers/components/memory"
+    ],
+    "Storage & NAS Systems > Storage Systems > Storage Software": [
+      "software-apps/business/server"
+    ],
+    "TV, Audio & Video > Audio > Audio Cables": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Audio > Car Audio Systems": [
+      "av/car/audio"
+    ],
+    "TV, Audio & Video > Audio > Headphone/Headset Accessories": [
+      "av/headsets/accessories"
+    ],
+    "TV, Audio & Video > Audio > Headphones": [
+      "av/headsets"
+    ],
+    "TV, Audio & Video > Audio > Headsets": [
+      "av/headsets"
+    ],
+    "TV, Audio & Video > Audio > Home Audio": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Audio > Loudspeakers": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Audio > MP3 Players": [
+      "av/portable/speakers",
+      "phones-radios/wearables/accessories"
+    ],
+    "TV, Audio & Video > Audio > Microphone stands": [
+      "av/accessories/microphones"
+    ],
+    "TV, Audio & Video > Audio > Microphones": [
+      "av/accessories/microphones"
+    ],
+    "TV, Audio & Video > Audio > Network Audio": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Audio > PA Microphones": [
+      "av/accessories/microphones"
+    ],
+    "TV, Audio & Video > Audio > Portable Speakers": [
+      "av/portable/speakers",
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Audio > Speaker Mounts": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Audio > Speaker Sets": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > Camera & Photo > Action Cameras": [
+      "cameras/digital"
+    ],
+    "TV, Audio & Video > Camera & Photo > Car Video Recorders": [
+      "av/car/dashcams"
+    ],
+    "TV, Audio & Video > Camera & Photo > Drone Accessories": [
+      "cameras/drones"
+    ],
+    "TV, Audio & Video > Camera & Photo > Drones": [
+      "cameras/drones"
+    ],
+    "TV, Audio & Video > Camera & Photo > Flash memory Cards & Readers": [
+      "cameras/camera-accessories/memory",
+      "components/cables/card-readers"
+    ],
+    "TV, Audio & Video > Camera & Photo > Gimbal Accessories": [
+      "cameras/camera-accessories"
+    ],
+    "TV, Audio & Video > Camera & Photo > Gimbals": [
+      "cameras/camera-accessories"
+    ],
+    "TV, Audio & Video > Camera & Photo > Instant Cameras": [
+      "cameras/digital"
+    ],
+    "TV, Audio & Video > Camera & Photo > Net Cameras": [
+      "av/surveillance/cameras"
+    ],
+    "TV, Audio & Video > Camera & Photo > Photo/Video Cam. Accessories": [
+      "cameras/camera-accessories"
+    ],
+    "TV, Audio & Video > Camera & Photo > Web Cameras": [
+      "components/webcams"
+    ],
+    "TV, Audio & Video > Gaming > Consoles": [
+      "av/games/consoles"
+    ],
+    "TV, Audio & Video > Gaming > Games": [
+      "av/games/games"
+    ],
+    "TV, Audio & Video > Gaming > Gaming Accessories": [
+      "av/games/peripherals"
+    ],
+    "TV, Audio & Video > Gaming > Gaming Chairs": [
+      "av/games/furniture",
+      "other/office/furniture"
+    ],
+    "TV, Audio & Video > Gaming > Gaming Controllers": [
+      "av/games/peripherals"
+    ],
+    "TV, Audio & Video > Gaming > Head-Mounted Displays": [
+      "av/games/consoles"
+    ],
+    "TV, Audio & Video > Gaming > Portable Game Consoles": [
+      "av/games/consoles"
+    ],
+    "TV, Audio & Video > Monitors > DVI Cables": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Monitors > Digital Signage Displays": [
+      "displays/large-format/signage"
+    ],
+    "TV, Audio & Video > Monitors > DisplayPort Cables": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Monitors > HDMI Cables": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Monitors > Monitors": [
+      "displays/monitors"
+    ],
+    "TV, Audio & Video > Monitors > Signage Display Mounts": [
+      "displays/large-format/signage",
+      "displays/monitors/accessories"
+    ],
+    "TV, Audio & Video > Monitors > VGA Cables": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Monitors > Video Cable Adapters": [
+      "av/accessories"
+    ],
+    "TV, Audio & Video > Monitors > Video Wall Displays": [
+      "displays/large-format/video-walls"
+    ],
+    "TV, Audio & Video > TV > Hospitality  TVs": [
+      "displays/large-format/signage"
+    ],
+    "TV, Audio & Video > TV > Media Players": [
+      "av/tvs/accessories"
+    ],
+    "TV, Audio & Video > TV > Mounting Kits": [
+      "av/tvs/mounts"
+    ],
+    "TV, Audio & Video > TV > Portable TVs & Monitors": [
+      "av/tvs/led-smart"
+    ],
+    "TV, Audio & Video > TV > Smart TV Boxes": [
+      "av/tvs/accessories"
+    ],
+    "TV, Audio & Video > TV > Smart TV Dongles": [
+      "av/tvs/accessories"
+    ],
+    "TV, Audio & Video > TV > Soundbar Speakers": [
+      "av/speakers"
+    ],
+    "TV, Audio & Video > TV > TV & Video Equipment": [
+      "av/tvs/led-smart"
+    ],
+    "TV, Audio & Video > TV > TV Mount Accessories": [
+      "av/tvs/mounts"
+    ],
+    "TV, Audio & Video > TV > TV Mounts & Stands": [
+      "av/tvs/mounts"
+    ],
+    "TV, Audio & Video > TV > TV Sets": [
+      "av/tvs/led-smart"
     ]
   }
 }

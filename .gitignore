@@ -1,4 +1,7 @@
 category.db
+category.db-shm
+category.db-wal
+.DS_Store
 __pycache__/
 *.pyc
 *.pyo
