@@ -24,9 +24,10 @@
   .edit-badge { background: #10b981; color: #fff; padding: 4px 10px; border-radius: 999px;
                 font-size: 12px; font-weight: 600; display: none; }
   .edit-on .edit-badge { display: inline-block; }
-  .wrap { max-width: 1500px; margin: 0 auto; padding: 24px;
-          display: grid; grid-template-columns: 400px 1fr; gap: 24px; }
-  @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; } }
+  .wrap { max-width: 1700px; margin: 0 auto; padding: 24px;
+          display: grid; grid-template-columns: 280px 400px 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 1100px) { .wrap { grid-template-columns: 260px 1fr; } }
+  @media (max-width: 700px)  { .wrap { grid-template-columns: 1fr; } }
   .panel { background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 16px; }
   .stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
   .stat { background: #eef2ff; color: #3730a3; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
@@ -135,34 +136,38 @@
                     display: flex; align-items: center; justify-content: center;
                     font-size: 18px; font-weight: 600; z-index: 9999; }
   #loadingOverlay.done { display: none; }
-  /* unmapped modal */
+  /* unmapped sidebar */
   #unmappedBtn { background: #fef3c7; color: #92400e; border: none; }
   #unmappedBtn:hover { background: #fde68a; }
   #unmappedBtn.none { background: #d1fae5; color: #065f46; }
-  #unmappedModal { display: none; position: fixed; inset: 0; z-index: 8000;
-                   background: rgba(0,0,0,.45); }
-  #unmappedModal.open { display: flex; align-items: flex-start; justify-content: center; padding-top: 60px; }
-  #unmappedBox { background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,.2);
-                 width: 680px; max-width: 96vw; max-height: 80vh; display: flex; flex-direction: column; }
-  #unmappedBox h3 { margin: 0; padding: 16px 20px; font-size: 16px; border-bottom: 1px solid #e5e7eb;
-                    display: flex; justify-content: space-between; align-items: center; }
-  #unmappedBox h3 button { background: none; border: none; font-size: 20px; cursor: pointer; color: #6b7280; padding: 0 4px; }
-  #unmappedBox h3 button:hover { color: #111; }
-  #unmappedSearch { margin: 12px 16px 4px; padding: 8px 12px; border: 1px solid #d1d5db;
-                    border-radius: 6px; font-size: 13px; width: calc(100% - 32px); }
-  #unmappedList { overflow-y: auto; padding: 8px 0 16px; flex: 1; }
-  .um-section { padding: 6px 20px 2px; font-size: 11px; font-weight: 700; text-transform: uppercase;
-                letter-spacing: .06em; color: #6b7280; }
-  .um-row { display: flex; align-items: center; gap: 10px; padding: 5px 20px;
-            font-size: 13px; border-bottom: 1px solid #f3f4f6; }
+  #unmappedSidebar { display: flex; flex-direction: column; position: sticky; top: 20px;
+                     max-height: calc(100vh - 90px); overflow: hidden; }
+  #unmappedSidebar h3 { margin: 0 0 10px; font-size: 13px; font-weight: 700; color: #374151;
+                        display: flex; justify-content: space-between; align-items: center; }
+  #unmappedSidebar h3 .um-count-badge { background: #fef3c7; color: #92400e; padding: 2px 8px;
+                                         border-radius: 999px; font-size: 11px; font-weight: 700; }
+  #unmappedSidebar h3 .um-count-badge.none { background: #d1fae5; color: #065f46; }
+  #unmappedSearch { width: 100%; padding: 7px 10px; border: 1px solid #d1d5db; border-radius: 6px;
+                    font-size: 12px; margin-bottom: 8px; }
+  #unmappedSearch:focus { outline: none; border-color: #1e3a8a; box-shadow: 0 0 0 2px rgba(30,58,138,.12); }
+  #unmappedList { overflow-y: auto; flex: 1; margin: 0 -16px -16px; }
+  .um-drag-hint { padding: 6px 12px; font-size: 11px; color: #6b7280; font-style: italic;
+                  background: #fffbeb; border-bottom: 1px solid #fde68a; }
+  .um-section { padding: 8px 12px 3px; font-size: 10px; font-weight: 700; text-transform: uppercase;
+                letter-spacing: .07em; color: #9ca3af; background: #f9fafb;
+                border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; }
+  .um-row { display: flex; align-items: flex-start; gap: 6px; padding: 6px 12px;
+            font-size: 12px; border-bottom: 1px solid #f3f4f6; line-height: 1.4; }
   .um-row:hover { background: #f9fafb; }
-  .um-row .supplier-tag { flex-shrink: 0; }
-  .um-row .cat-name { flex: 1; color: #1f2937; }
-  .um-empty { padding: 24px 20px; color: #10b981; font-weight: 600; text-align: center; font-size: 14px; }
+  .um-row .supplier-tag { flex-shrink: 0; margin-top: 1px; font-size: 10px; }
+  .um-row .cat-name { flex: 1; color: #374151; word-break: break-word; }
   .um-row[draggable="true"] { cursor: grab; }
+  .um-row[draggable="true"]:hover { background: #eff6ff; cursor: grab; }
   .um-row[draggable="true"]:active { cursor: grabbing; }
-  .um-row[draggable="true"]:hover { background: #eff6ff; }
-  .um-drag-hint { padding: 8px 20px 4px; font-size: 11.5px; color: #6b7280; font-style: italic; }
+  .um-row.dragging-um { opacity: .4; }
+  .um-empty { padding: 20px 12px; color: #10b981; font-weight: 600; text-align: center; font-size: 13px; }
+  .um-nodrag-hint { padding: 6px 12px; font-size: 11px; color: #9ca3af; font-style: italic;
+                    background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
 </style>
 </head>
 <body>
@@ -177,24 +182,22 @@
     <button id="toggleEdit">Enable edit mode</button>
     <button id="resetBtn" class="warn" style="display:none;">Reset changes</button>
     <button id="saveBtn" class="primary">Save</button>
-    <button id="unmappedBtn">⚠ <span id="unmappedCount">…</span> unmapped</button>
     <button id="dlAlsoBtn" class="dl">Download Also CSV</button>
     <button id="dlElkoBtn" class="dl">Download Elko CSV</button>
   </div>
 </header>
 
-<!-- Unmapped categories modal -->
-<div id="unmappedModal">
-  <div id="unmappedBox">
+<div class="wrap">
+  <!-- Unmapped sidebar -->
+  <aside class="panel" id="unmappedSidebar">
     <h3>
-      Unmapped supplier categories
-      <button id="unmappedClose" title="Close">✕</button>
+      Unassigned
+      <span class="um-count-badge" id="unmappedCount">…</span>
     </h3>
     <input id="unmappedSearch" type="search" placeholder="Filter…" autocomplete="off">
     <div id="unmappedList"></div>
-  </div>
-</div>
-<div class="wrap">
+  </aside>
+  <!-- Tree panel -->
   <aside class="panel">
     <div class="stats" id="stats"></div>
     <div class="legend">
@@ -913,20 +916,19 @@ document.getElementById("hide-confirmed-btn").onclick = function() {
 function updateUnmapped() {
   const unmapped = { also_data: [], elko: [] };
   for (const [key, codes] of Object.entries(SUPMAP)) {
-    // Unmapped = no codes assigned, OR all assigned codes are missing from the live tree
+    // Unmapped = no codes, OR all assigned codes missing from live tree
     const activeCodes = codes.filter(c => nodeIdx.has(c));
     if (activeCodes.length > 0) continue;
     const sep = key.indexOf("||");
     const sup = key.slice(0, sep), cat = key.slice(sep + 2);
     if (unmapped[sup] !== undefined) unmapped[sup].push(cat);
-    else unmapped[sup] = [cat];  // unknown supplier
+    else unmapped[sup] = [cat];
   }
   const total = Object.values(unmapped).reduce((s, a) => s + a.length, 0);
-  const btn = document.getElementById("unmappedBtn");
-  document.getElementById("unmappedCount").textContent = total;
-  btn.classList.toggle("none", total === 0);
-  btn.title = total === 0 ? "All categories are mapped!" : `${total} supplier categories have no tree assignment`;
-  renderUnmappedList(unmapped, "");
+  const badge = document.getElementById("unmappedCount");
+  badge.textContent = total;
+  badge.classList.toggle("none", total === 0);
+  renderUnmappedList(unmapped, document.getElementById("unmappedSearch").value);
   return unmapped;
 }
 
@@ -934,65 +936,57 @@ let _unmappedCache = {};
 function renderUnmappedList(unmapped, filter) {
   _unmappedCache = unmapped;
   const list = document.getElementById("unmappedList");
-  const q = filter.trim().toLowerCase();
-  const suppliers = Object.keys(unmapped).sort();
+  const q = (filter || "").trim().toLowerCase();
   const total = Object.values(unmapped).reduce((s, a) => s + a.length, 0);
-
-  if (total === 0) {
-    list.innerHTML = `<div class="um-empty">🎉 All supplier categories are mapped!</div>`;
-    return;
-  }
 
   list.innerHTML = "";
 
-  if (editMode) {
-    const hint = document.createElement("div");
-    hint.className = "um-drag-hint";
-    hint.textContent = "⠿ Drag a row onto any tree category to assign it.";
-    list.appendChild(hint);
+  if (total === 0) {
+    list.innerHTML = `<div class="um-empty">🎉 All assigned!</div>`;
+    return;
   }
 
-  for (const sup of suppliers) {
+  const hint = document.createElement("div");
+  hint.className = editMode ? "um-drag-hint" : "um-nodrag-hint";
+  hint.textContent = editMode
+    ? "⠿ Drag onto a tree category to assign"
+    : "Enable edit mode to drag-assign";
+  list.appendChild(hint);
+
+  for (const sup of Object.keys(unmapped).sort()) {
     const rows = unmapped[sup].filter(c => !q || c.toLowerCase().includes(q));
     if (!rows.length) continue;
 
     const sec = document.createElement("div");
     sec.className = "um-section";
-    sec.textContent = `${sup} — ${rows.length} unmapped`;
+    sec.textContent = `${sup === "also_data" ? "Also" : "Elko"} — ${rows.length}`;
     list.appendChild(sec);
 
     for (const cat of rows) {
       const key = sup + "||" + cat;
       const row = document.createElement("div");
       row.className = "um-row";
-      if (editMode) row.setAttribute("draggable", "true");
-      row.innerHTML = `<span class="supplier-tag ${sup}">${sup}</span><span class="cat-name">${escapeHtml(cat)}</span>`;
-
+      row.innerHTML = `<span class="supplier-tag ${sup}">${sup === "also_data" ? "Also" : "Elko"}</span><span class="cat-name">${escapeHtml(cat)}</span>`;
       if (editMode) {
+        row.setAttribute("draggable", "true");
         row.addEventListener("dragstart", ev => {
           ev.dataTransfer.setData("application/json", JSON.stringify({ key, fromCode: null }));
           ev.dataTransfer.effectAllowed = "copy";
-          // Close modal so the tree is visible for dropping
-          document.getElementById("unmappedModal").classList.remove("open");
+          row.classList.add("dragging-um");
         });
+        row.addEventListener("dragend", () => row.classList.remove("dragging-um"));
       }
       list.appendChild(row);
     }
   }
 
-  if (!list.querySelector(".um-row, .um-empty"))
-    list.innerHTML += `<div class="um-empty">No results match your filter.</div>`;
+  if (!list.querySelector(".um-row"))
+    list.innerHTML += `<div class="um-empty">No results.</div>`;
 }
 
-document.getElementById("unmappedBtn").onclick = () => {
-  updateUnmapped();
-  document.getElementById("unmappedModal").classList.add("open");
-  document.getElementById("unmappedSearch").value = "";
-  document.getElementById("unmappedSearch").focus();
+document.getElementById("unmappedSearch").oninput = function() {
+  renderUnmappedList(_unmappedCache, this.value);
 };
-document.getElementById("unmappedClose").onclick = () => document.getElementById("unmappedModal").classList.remove("open");
-document.getElementById("unmappedModal").addEventListener("click", e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove("open"); });
-document.getElementById("unmappedSearch").oninput = function() { renderUnmappedList(_unmappedCache, this.value); };
 
 document.getElementById("toggleEdit").onclick = function() {
   editMode = !editMode;
@@ -1000,7 +994,7 @@ document.getElementById("toggleEdit").onclick = function() {
   this.textContent = editMode ? "Exit edit mode" : "Enable edit mode";
   updateDeletableBadges();
   if (currentNode) showDetail(currentNode, currentAncestors);
-  // Refresh unmapped list so drag handles appear/disappear with edit mode
+  // Refresh unmapped sidebar so drag handles appear/disappear with edit mode
   renderUnmappedList(_unmappedCache, document.getElementById("unmappedSearch").value);
 };
 
