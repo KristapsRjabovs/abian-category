@@ -136,6 +136,42 @@
                     display: flex; align-items: center; justify-content: center;
                     font-size: 18px; font-weight: 600; z-index: 9999; }
   #loadingOverlay.done { display: none; }
+  /* AI suggestions */
+  #suggestionsBtn { background: #fdf4ff; color: #7e22ce; border: none; }
+  #suggestionsBtn:hover { background: #f3e8ff; }
+  #suggestionsBtn.done { background: #d1fae5; color: #065f46; }
+  #suggestionsOverlay { display: none; position: fixed; inset: 0; z-index: 7000;
+                        background: rgba(0,0,0,.5); overflow-y: auto; padding: 40px 24px; }
+  #suggestionsOverlay.open { display: block; }
+  #suggestionsPanel { max-width: 860px; margin: 0 auto; }
+  #suggestionsPanel h2 { color: #fff; font-size: 20px; margin: 0 0 20px;
+                         display: flex; justify-content: space-between; align-items: center; }
+  #suggestionsPanel h2 button { background: none; border: 1px solid rgba(255,255,255,.4);
+                                 color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+  #suggestionsPanel h2 button:hover { background: rgba(255,255,255,.15); }
+  .sg-card { background: #fff; border-radius: 10px; margin-bottom: 16px;
+             box-shadow: 0 4px 16px rgba(0,0,0,.15); overflow: hidden; }
+  .sg-card.dismissed { display: none; }
+  .sg-card.applied { opacity: .55; }
+  .sg-head { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px 12px; }
+  .sg-icon { font-size: 22px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+  .sg-head-text { flex: 1; }
+  .sg-head-text h3 { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #111827; }
+  .sg-head-text p { margin: 0; font-size: 13px; color: #4b5563; line-height: 1.5; }
+  .sg-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+              border-radius: 999px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+  .sg-details { margin: 0 20px 0; padding: 10px 14px; background: #f9fafb;
+                border-radius: 6px; margin-bottom: 12px; }
+  .sg-details ul { margin: 0; padding-left: 18px; }
+  .sg-details li { font-size: 12px; color: #374151; line-height: 1.7; font-family: monospace; }
+  .sg-actions { display: flex; gap: 8px; padding: 12px 20px; border-top: 1px solid #f3f4f6; }
+  .sg-apply { background: #10b981; color: #fff; border: none; padding: 7px 18px;
+              border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .sg-apply:hover { background: #059669; }
+  .sg-apply:disabled { background: #6ee7b7; cursor: default; }
+  .sg-dismiss { background: none; border: 1px solid #d1d5db; color: #6b7280;
+                padding: 7px 14px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+  .sg-dismiss:hover { background: #f3f4f6; }
   /* unmapped sidebar */
   #unmappedBtn { background: #fef3c7; color: #92400e; border: none; }
   #unmappedBtn:hover { background: #fde68a; }
@@ -182,10 +218,19 @@
     <button id="toggleEdit">Enable edit mode</button>
     <button id="resetBtn" class="warn" style="display:none;">Reset changes</button>
     <button id="saveBtn" class="primary">Save</button>
+    <button id="suggestionsBtn">💡 <span id="suggestionsCount"></span> suggestions</button>
     <button id="dlAlsoBtn" class="dl">Download Also CSV</button>
     <button id="dlElkoBtn" class="dl">Download Elko CSV</button>
   </div>
 </header>
+
+<!-- AI Suggestions overlay -->
+<div id="suggestionsOverlay">
+  <div id="suggestionsPanel">
+    <h2>💡 AI Suggestions <button id="suggestionsClose">✕ Close</button></h2>
+    <div id="suggestionsList"></div>
+  </div>
+</div>
 
 <div class="wrap">
   <!-- Unmapped sidebar -->
@@ -378,7 +423,7 @@ async function init() {
 
   deriveMap();
   render(document.getElementById("tree"), TREE_DATA.tree, []);
-  updateStats(); updateDeletableBadges();
+  updateStats(); updateDeletableBadges(); updateSuggestionsBtn();
   document.getElementById("loadingOverlay").classList.add("done");
 }
 
@@ -997,6 +1042,301 @@ document.getElementById("toggleEdit").onclick = function() {
   // Refresh unmapped sidebar so drag handles appear/disappear with edit mode
   renderUnmappedList(_unmappedCache, document.getElementById("unmappedSearch").value);
 };
+
+// ── AI suggestions ────────────────────────────────────────────────────────────
+
+function forceDeleteNode(code) {
+  const entry = nodeIdx.get(code); if (!entry) { deletedCodes.add(code); return; }
+  const node = entry.node;
+  // Delete children first (deepest first)
+  for (const child of [...(node.children || [])]) forceDeleteNode(child.code);
+  const parentNode = entry.ancestors.length ? nodeIdx.get(entry.ancestors[entry.ancestors.length - 1].code)?.node : null;
+  if (parentNode) parentNode.children = (parentNode.children || []).filter(c => c.code !== code);
+  else TREE_DATA.tree = TREE_DATA.tree.filter(c => c.code !== code);
+  entry.li.remove(); nodeIdx.delete(code); deletedCodes.add(code);
+  if (parentNode) {
+    const pe = nodeIdx.get(parentNode.code);
+    if (pe && (!parentNode.children || !parentNode.children.length)) {
+      pe.toggle.classList.add("leaf"); pe.toggle.textContent = "\u2022"; pe.toggle.onclick = null; pe.childUl = null;
+    }
+    refreshLabel(parentNode.code);
+  }
+}
+
+function remapCode(oldCode, newCode) {
+  for (const key of Object.keys(SUPMAP)) {
+    const codes = SUPMAP[key];
+    if (codes.includes(oldCode)) {
+      const next = codes.filter(c => c !== oldCode);
+      if (!next.includes(newCode)) next.push(newCode);
+      SUPMAP[key] = next;
+    }
+  }
+}
+
+function applyLabelRenames(map) {
+  for (const [code, label] of Object.entries(map)) {
+    renames[code] = label;
+    const walk = nodes => { for (const n of nodes) { if (n.code === code) n.label = label; if (n.children) walk(n.children); } };
+    walk(TREE_DATA.tree);
+    const e = nodeIdx.get(code);
+    if (e) { e.node.label = label; const ts = e.labelEl.querySelector(".label-text"); if (ts && ts.contentEditable !== "true") ts.textContent = label; }
+  }
+}
+
+const SUGGESTIONS = [
+  {
+    id: "s-renames",
+    icon: "✎",
+    badge: "Rename", badgeColor: "#4338ca", badgeBg: "#eef2ff",
+    title: "Rename 17 generic 'new-category' nodes",
+    summary: "Categories created during editing still have placeholder names like 'new-category-2'. Apply descriptive labels so the tree is readable at a glance.",
+    details: [
+      "cameras/new-category  →  Drones",
+      "av/tvs/new-category-2  →  LED & Smart TVs",
+      "av/surveillance/new-category  →  Access Readers",
+      "av/surveillance/new-category-2  →  NVR, DVR & Accessories",
+      "displays/large-format/new-category  →  Video Walls",
+      "displays/large-format/new-category-2  →  Signage Displays",
+      "components/keyboards-mice/new-category  →  Keyboards",
+      "components/keyboards-mice/new-category-2  →  Mice",
+      "components/new-category  →  Legacy Storage",
+      "components/new-category/new-category  →  Optical & Tape",
+      "components/new-category-2  →  Components Misc",
+      "components/new-category-2/new-category  →  Drive Mounting",
+      "components/new-category-3  →  Memory (RAM) — duplicate, see suggestion #2",
+      "components/new-category-3/new-category  →  Desktop Memory (DIMM)",
+      "components/new-category-3/new-category-2  →  Notebook Memory (SODIMM)",
+      "components/new-category-4  →  Storage (Duplicate) — see suggestion #3",
+      "components/new-category-5  →  Components Accessories",
+    ],
+    apply() {
+      applyLabelRenames({
+        "cameras/new-category": "Drones",
+        "av/tvs/new-category-2": "LED & Smart TVs",
+        "av/surveillance/new-category": "Access Readers",
+        "av/surveillance/new-category-2": "NVR, DVR & Accessories",
+        "displays/large-format/new-category": "Video Walls",
+        "displays/large-format/new-category-2": "Signage Displays",
+        "components/keyboards-mice/new-category": "Keyboards",
+        "components/keyboards-mice/new-category-2": "Mice",
+        "components/new-category": "Legacy Storage",
+        "components/new-category/new-category": "Optical & Tape",
+        "components/new-category-2": "Components Misc",
+        "components/new-category-2/new-category": "Drive Mounting",
+        "components/new-category-3": "Memory (RAM)",
+        "components/new-category-3/new-category": "Desktop Memory (DIMM)",
+        "components/new-category-3/new-category-2": "Notebook Memory (SODIMM)",
+        "components/new-category-4": "Storage (Duplicate)",
+        "components/new-category-5": "Components Accessories",
+      });
+    },
+  },
+  {
+    id: "s-merge-ram",
+    icon: "⊕",
+    badge: "Merge", badgeColor: "#065f46", badgeBg: "#d1fae5",
+    title: "Remove duplicate RAM hierarchy",
+    summary: "components/new-category-3 is a parallel hierarchy for RAM that duplicates components/storage/ram. Both suppliers double-map the same products to both paths — one of them can be removed.",
+    details: [
+      "new-category-3/new-category (Desktop DIMM)  →  components/storage/ram/desktop",
+      "new-category-3/new-category-2 (Notebook SODIMM)  →  components/storage/ram/notebook",
+      "Delete new-category-3 subtree (3 nodes removed)",
+    ],
+    apply() {
+      remapCode("components/new-category-3/new-category",   "components/storage/ram/desktop");
+      remapCode("components/new-category-3/new-category-2", "components/storage/ram/notebook");
+      ["components/new-category-3/new-category-2",
+       "components/new-category-3/new-category",
+       "components/new-category-3"].forEach(forceDeleteNode);
+      deriveMap(); updateStats(); updateDeletableBadges();
+    },
+  },
+  {
+    id: "s-merge-storage",
+    icon: "⊕",
+    badge: "Merge", badgeColor: "#065f46", badgeBg: "#d1fae5",
+    title: "Remove duplicate Storage hierarchy",
+    summary: "components/new-category-4 is a manually-built copy of components/storage with the same content. Both suppliers double-map items to both paths — consolidate into the canonical storage tree.",
+    details: [
+      "new-category-4/.../HDD Internal  →  components/storage/hdd/internal",
+      "new-category-4/.../HDD External  →  components/storage/hdd/external",
+      "new-category-4/.../SSD Internal  →  components/storage/ssd/internal",
+      "new-category-4/.../SSD External  →  components/storage/hdd/external (no SSD-external node yet)",
+      "new-category-4/.../Storage Other  →  components/storage/arrays",
+      "new-category-4/.../Flash  →  components/storage/flash",
+      "Delete entire new-category-4 subtree (10 nodes removed)",
+    ],
+    apply() {
+      const m = {
+        "components/new-category-4/new-category/new-category":   "components/storage/hdd/internal",
+        "components/new-category-4/new-category/new-category-2": "components/storage/hdd/external",
+        "components/new-category-4/new-category-2/new-category": "components/storage/ssd/internal",
+        "components/new-category-4/new-category-2/new-category-2": "components/storage/hdd/external",
+        "components/new-category-4/new-category-3": "components/storage/arrays",
+        "components/new-category-4/new-category-4": "components/storage/flash",
+      };
+      for (const [old, neo] of Object.entries(m)) remapCode(old, neo);
+      // Remove any remaining nc4 refs that had no explicit remap (intermediate nodes)
+      for (const key of Object.keys(SUPMAP))
+        SUPMAP[key] = SUPMAP[key].filter(c => !c.startsWith("components/new-category-4/"));
+      // Collect all nc4 codes deepest-first
+      const nc4 = [];
+      const collect = nodes => { for (const n of nodes) { if (n.children) collect(n.children); if (n.code.startsWith("components/new-category-4")) nc4.push(n.code); } };
+      collect(TREE_DATA.tree);
+      nc4.forEach(forceDeleteNode);
+      deriveMap(); updateStats(); updateDeletableBadges();
+    },
+  },
+  {
+    id: "s-split-kb",
+    icon: "↕",
+    badge: "Remap", badgeColor: "#92400e", badgeBg: "#fef3c7",
+    title: "Move keyboard & mouse supplier categories to subcategories",
+    summary: "Dedicated Keyboards and Mice subcategories exist but most supplier entries still point to the parent 'keyboards-mice' node. Push them one level deeper to the correct child.",
+    details: [
+      "Also 'Keyboards - Wired/Wireless/Ergonomic'  →  keyboards-mice/Keyboards",
+      "Also 'Mouse - Wired/Wireless/Ergonomic'  →  keyboards-mice/Mice",
+      "Elko 'Keyboards & Mouse > Keyboards'  →  keyboards-mice/Keyboards",
+      "Elko 'Keyboards & Mouse > Mouse Devices'  →  keyboards-mice/Mice",
+      "Combos, gaming, numeric keypads stay at parent level",
+    ],
+    apply() {
+      const kb = "components/keyboards-mice/new-category";
+      const ms = "components/keyboards-mice/new-category-2";
+      const kbKeys = [
+        "also_data||Peripherals & Accessories - Keyboards - Keyboards - Ergonomic",
+        "also_data||Peripherals & Accessories - Keyboards - Keyboards - Wired",
+        "also_data||Peripherals & Accessories - Keyboards - Keyboards - Wireless",
+        "elko||Peripherals & Office Products > Keyboards & Mouse > Keyboards",
+      ];
+      const msKeys = [
+        "also_data||Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Ergonomic",
+        "also_data||Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Wired",
+        "also_data||Peripherals & Accessories - Mouse, Trackballs & Presenters - Mouse - Wireless",
+        "elko||Peripherals & Office Products > Keyboards & Mouse > Mouse Devices",
+      ];
+      const move = (key, toCode) => {
+        if (SUPMAP[key] === undefined) return;
+        const codes = SUPMAP[key].filter(c => c !== "components/keyboards-mice");
+        if (!codes.includes(toCode)) codes.push(toCode);
+        SUPMAP[key] = codes;
+      };
+      kbKeys.forEach(k => move(k, kb));
+      msKeys.forEach(k => move(k, ms));
+      deriveMap(); updateStats(); updateDeletableBadges();
+    },
+  },
+  {
+    id: "s-storage-split",
+    icon: "🗂",
+    badge: "Split", badgeColor: "#7c3aed", badgeBg: "#f5f3ff",
+    title: "Create SSD External as a distinct storage node",
+    summary: "External SSDs are currently mapped to components/storage/hdd/external (same as HDDs) because no dedicated node exists. Add 'SSD External' under components/storage to distinguish them.",
+    details: [
+      "Create components/storage/ssd/external  →  'SSD External'",
+      "Remap Also 'External SSDs'  →  storage/ssd/external",
+      "Remap Elko 'SSD External'  →  storage/ssd/external",
+      "Both suppliers covered, HDD External stays clean",
+    ],
+    apply() {
+      const code = "components/storage/ssd/external";
+      // Add node to TREE_DATA under components/storage/ssd
+      if (!nodeIdx.has(code)) {
+        const newNode = { code, label: "SSD External", children: [] };
+        const ssdEntry = nodeIdx.get("components/storage/ssd");
+        if (ssdEntry) {
+          if (!ssdEntry.node.children) ssdEntry.node.children = [];
+          ssdEntry.node.children.push(newNode);
+          if (!ssdEntry.childUl) {
+            ssdEntry.childUl = document.createElement("ul");
+            ssdEntry.li.appendChild(ssdEntry.childUl);
+            ssdEntry.toggle.classList.remove("leaf"); ssdEntry.toggle.textContent = "\u25BC";
+            ssdEntry.toggle.onclick = () => { const h = ssdEntry.childUl.classList.toggle("hidden"); ssdEntry.toggle.textContent = h ? "\u25B6" : "\u25BC"; };
+          }
+          const tempDiv = document.createElement("div");
+          const newUl = render(tempDiv, [newNode], [...ssdEntry.ancestors, ssdEntry.node]);
+          const newLi = newUl.firstChild; if (newLi) ssdEntry.childUl.appendChild(newLi);
+        }
+      }
+      // Remap external SSDs
+      const extSsdKeys = [
+        "also_data||Components - Storage Drives - External SSDs",
+        "elko||Storage & NAS Systems > Storage External > SSD External",
+      ];
+      for (const key of extSsdKeys) {
+        if (SUPMAP[key] !== undefined) {
+          SUPMAP[key] = SUPMAP[key].filter(c => c !== "components/storage/hdd/external");
+          if (!SUPMAP[key].includes(code)) SUPMAP[key].push(code);
+        }
+      }
+      deriveMap(); updateStats(); updateDeletableBadges();
+    },
+  },
+];
+
+const dismissedSuggestions = new Set(JSON.parse(localStorage.getItem("sg-dismissed") || "[]"));
+
+function saveDismissed() {
+  localStorage.setItem("sg-dismissed", JSON.stringify([...dismissedSuggestions]));
+}
+
+function updateSuggestionsBtn() {
+  const remaining = SUGGESTIONS.filter(s => !dismissedSuggestions.has(s.id)).length;
+  document.getElementById("suggestionsCount").textContent = remaining;
+  document.getElementById("suggestionsBtn").classList.toggle("done", remaining === 0);
+}
+
+function renderSuggestions() {
+  const list = document.getElementById("suggestionsList");
+  list.innerHTML = "";
+  const applied = new Set();
+  for (const s of SUGGESTIONS) {
+    const card = document.createElement("div");
+    card.className = "sg-card" + (dismissedSuggestions.has(s.id) ? " dismissed" : "");
+    card.id = "sg-" + s.id;
+    card.innerHTML =
+      `<div class="sg-head">` +
+        `<div class="sg-icon">${s.icon}</div>` +
+        `<div class="sg-head-text">` +
+          `<div><span class="sg-badge" style="color:${s.badgeColor};background:${s.badgeBg}">${s.badge}</span></div>` +
+          `<h3>${s.title}</h3>` +
+          `<p>${s.summary}</p>` +
+        `</div>` +
+      `</div>` +
+      `<div class="sg-details"><ul>${s.details.map(d => `<li>${escapeHtml(d)}</li>`).join("")}</ul></div>` +
+      `<div class="sg-actions">` +
+        `<button class="sg-apply" id="sga-${s.id}">✓ Apply</button>` +
+        `<button class="sg-dismiss">Dismiss</button>` +
+      `</div>`;
+    card.querySelector(".sg-apply").onclick = () => {
+      if (!editMode) { alert("Enable edit mode first."); return; }
+      s.apply();
+      pendingChanges++; markPending();
+      const btn = document.getElementById("sga-" + s.id);
+      if (btn) { btn.disabled = true; btn.textContent = "✓ Applied — Save to keep"; }
+      card.classList.add("applied");
+      if (currentNode) showDetail(currentNode, currentAncestors);
+    };
+    card.querySelector(".sg-dismiss").onclick = () => {
+      dismissedSuggestions.add(s.id); saveDismissed();
+      card.classList.add("dismissed"); updateSuggestionsBtn();
+    };
+    list.appendChild(card);
+  }
+}
+
+document.getElementById("suggestionsBtn").onclick = () => {
+  renderSuggestions();
+  document.getElementById("suggestionsOverlay").classList.add("open");
+};
+document.getElementById("suggestionsClose").onclick = () => {
+  document.getElementById("suggestionsOverlay").classList.remove("open");
+  updateSuggestionsBtn();
+};
+document.getElementById("suggestionsOverlay").addEventListener("click", e => {
+  if (e.target === e.currentTarget) { e.currentTarget.classList.remove("open"); updateSuggestionsBtn(); }
+});
 
 init();
 </script>
