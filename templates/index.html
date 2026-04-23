@@ -159,6 +159,10 @@
   .um-row .supplier-tag { flex-shrink: 0; }
   .um-row .cat-name { flex: 1; color: #1f2937; }
   .um-empty { padding: 24px 20px; color: #10b981; font-weight: 600; text-align: center; font-size: 14px; }
+  .um-row[draggable="true"] { cursor: grab; }
+  .um-row[draggable="true"]:active { cursor: grabbing; }
+  .um-row[draggable="true"]:hover { background: #eff6ff; }
+  .um-drag-hint { padding: 8px 20px 4px; font-size: 11.5px; color: #6b7280; font-style: italic; }
 </style>
 </head>
 <body>
@@ -885,16 +889,52 @@ function renderUnmappedList(unmapped, filter) {
   const list = document.getElementById("unmappedList");
   const q = filter.trim().toLowerCase();
   const suppliers = Object.keys(unmapped).sort();
-  let html = "";
+  const total = Object.values(unmapped).reduce((s, a) => s + a.length, 0);
+
+  if (total === 0) {
+    list.innerHTML = `<div class="um-empty">🎉 All supplier categories are mapped!</div>`;
+    return;
+  }
+
+  list.innerHTML = "";
+
+  if (editMode) {
+    const hint = document.createElement("div");
+    hint.className = "um-drag-hint";
+    hint.textContent = "⠿ Drag a row onto any tree category to assign it.";
+    list.appendChild(hint);
+  }
+
   for (const sup of suppliers) {
     const rows = unmapped[sup].filter(c => !q || c.toLowerCase().includes(q));
     if (!rows.length) continue;
-    html += `<div class="um-section">${sup} — ${rows.length} unmapped</div>`;
-    for (const cat of rows)
-      html += `<div class="um-row"><span class="supplier-tag ${sup}">${sup}</span><span class="cat-name">${escapeHtml(cat)}</span></div>`;
+
+    const sec = document.createElement("div");
+    sec.className = "um-section";
+    sec.textContent = `${sup} — ${rows.length} unmapped`;
+    list.appendChild(sec);
+
+    for (const cat of rows) {
+      const key = sup + "||" + cat;
+      const row = document.createElement("div");
+      row.className = "um-row";
+      if (editMode) row.setAttribute("draggable", "true");
+      row.innerHTML = `<span class="supplier-tag ${sup}">${sup}</span><span class="cat-name">${escapeHtml(cat)}</span>`;
+
+      if (editMode) {
+        row.addEventListener("dragstart", ev => {
+          ev.dataTransfer.setData("application/json", JSON.stringify({ key, fromCode: null }));
+          ev.dataTransfer.effectAllowed = "copy";
+          // Close modal so the tree is visible for dropping
+          document.getElementById("unmappedModal").classList.remove("open");
+        });
+      }
+      list.appendChild(row);
+    }
   }
-  const total = Object.values(unmapped).reduce((s, a) => s + a.length, 0);
-  list.innerHTML = html || `<div class="um-empty">${total === 0 ? "🎉 All supplier categories are mapped!" : "No results match your filter."}</div>`;
+
+  if (!list.querySelector(".um-row, .um-empty"))
+    list.innerHTML += `<div class="um-empty">No results match your filter.</div>`;
 }
 
 document.getElementById("unmappedBtn").onclick = () => {
@@ -913,6 +953,8 @@ document.getElementById("toggleEdit").onclick = function() {
   this.textContent = editMode ? "Exit edit mode" : "Enable edit mode";
   updateDeletableBadges();
   if (currentNode) showDetail(currentNode, currentAncestors);
+  // Refresh unmapped list so drag handles appear/disappear with edit mode
+  renderUnmappedList(_unmappedCache, document.getElementById("unmappedSearch").value);
 };
 
 init();
