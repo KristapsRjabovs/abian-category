@@ -110,7 +110,7 @@ confirmed = sorted(bc.CONFIRMED_CODES)
 deleted   = sorted(deleted_set)
 
 # ---------- write _data.json for download function ----------
-OUT_DATA.write_text(json.dumps({"sources": sources, "paths": paths}, ensure_ascii=False), encoding="utf-8")
+OUT_DATA.write_text(json.dumps({"sources": sources, "paths": paths, "supmap": supmap}, ensure_ascii=False), encoding="utf-8")
 print(f"  → netlify/functions/_data.json")
 
 # ---------- stamp data into HTML template ----------

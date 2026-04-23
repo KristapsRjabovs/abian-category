@@ -17,8 +17,17 @@ export default async (req, context) => {
     state = (await store.get("state", { type: "json" })) || {};
   } catch {}
 
-  const supmap  = state.supmap || {};
-  const paths   = state.paths  || appData.paths;
+  // Merge: baked-in build data is the source of truth for clean codes.
+  // Netlify Blobs state.supmap can be stale — only use entries whose codes still exist in the fresh build.
+  const builtSupmap = appData.supmap || {};
+  const paths       = appData.paths  || {};
+  const validCodes  = new Set(Object.keys(paths));
+  const blobSupmap  = state.supmap || {};
+  const supmap      = { ...builtSupmap };
+  for (const [key, codes] of Object.entries(blobSupmap)) {
+    const filtered = codes.filter(c => validCodes.has(c));
+    if (filtered.length) supmap[key] = filtered;
+  }
   const { sources } = appData;
   const categories = sources[supplier] || [];
 
