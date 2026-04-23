@@ -121,6 +121,16 @@
   .label.selected, .label.selected.confirmed, .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }
   .label.selected.confirmed { border-left-color: #10b981; }
   .hide-confirmed li.node.confirmed-node { display: none; }
+  /* node action bar in detail panel */
+  .node-actions { display: none; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #e5e7eb; }
+  .edit-on .node-actions { display: flex; }
+  .node-actions button { background: #eef2ff; border: 1px solid #c7d2fe; color: #3730a3; padding: 5px 12px;
+                         border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .node-actions button:hover { background: #c7d2fe; }
+  .node-actions button.danger { background: #fee2e2; border-color: #f87171; color: #b91c1c; }
+  .node-actions button.danger:hover { background: #fecaca; }
+  .node-actions button.green { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
+  .node-actions button.green:hover { background: #a7f3d0; }
   #loadingOverlay { position: fixed; inset: 0; background: rgba(30,58,138,.85); color: #fff;
                     display: flex; align-items: center; justify-content: center;
                     font-size: 18px; font-weight: 600; z-index: 9999; }
@@ -601,6 +611,53 @@ function deleteNode(node) {
   updateDeletableBadges();
 }
 
+// ── create sub-category ───────────────────────────────────────────────────────
+
+function createSubCategory(parentNode, ancestors) {
+  if (!editMode) return;
+  const trimmedLabel = "New category";
+  const slug = trimmedLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  let code = parentNode.code + "/" + (slug || "sub");
+  let suffix = 1;
+  while (nodeIdx.has(code) || deletedCodes.has(code))
+    code = parentNode.code + "/" + (slug || "sub") + "-" + (++suffix);
+
+  const newNode = { code, label: trimmedLabel, children: [] };
+  if (!parentNode.children) parentNode.children = [];
+  parentNode.children.push(newNode);
+
+  const pEntry = nodeIdx.get(parentNode.code);
+  if (pEntry) {
+    if (!pEntry.childUl) {
+      pEntry.childUl = document.createElement("ul");
+      pEntry.li.appendChild(pEntry.childUl);
+      pEntry.toggle.classList.remove("leaf");
+      pEntry.toggle.textContent = "\u25BC";
+      pEntry.toggle.onclick = () => {
+        const h = pEntry.childUl.classList.toggle("hidden");
+        pEntry.toggle.textContent = h ? "\u25B6" : "\u25BC";
+      };
+    }
+    pEntry.childUl.classList.remove("hidden");
+    pEntry.toggle.textContent = "\u25BC";
+
+    // Render new node into a temp holder, then move the <li> into the real parent
+    const tempDiv = document.createElement("div");
+    const newUl = render(tempDiv, [newNode], [...ancestors, parentNode]);
+    const newLi = newUl.firstChild;
+    if (newLi) pEntry.childUl.appendChild(newLi);
+  }
+
+  pendingChanges++; markPending(); updateStats(); updateDeletableBadges();
+
+  // Select new node then immediately start inline rename
+  const newEntry = nodeIdx.get(code);
+  if (newEntry) {
+    selectNode(newNode, [...ancestors, parentNode]);
+    setTimeout(() => startLabelEdit(newNode, newEntry), 50);
+  }
+}
+
 // ── detail panel ─────────────────────────────────────────────────────────────
 
 let selected = null, currentNode = null, currentAncestors = null;
@@ -626,7 +683,8 @@ function showDetail(node, ancestors) {
       `<td><span class="row-actions"><button class="rm">&times;</button></span></td>` +
     `</tr>`).join("");
   d.innerHTML =
-    `<div class="help"><strong>Edit mode active.</strong> Drag ⠿ to reparent nodes. Double-click labels to rename. Drag rows to move mappings.</div>` +
+    `<div class="help"><strong>Edit mode:</strong> Use the action buttons below, or drag ⠿ handles to reparent, double-click labels to rename, drag supplier rows to move mappings.</div>` +
+    `<div class="node-actions" id="nodeActions"></div>` +
     `<h2>${escapeHtml(node.label)}</h2>` +
     `<div class="crumbs">${escapeHtml(breadcrumbs)}</div>` +
     `<div class="code">code: ${node.code}</div>` +
@@ -634,9 +692,28 @@ function showDetail(node, ancestors) {
     (mappings.length
       ? `<table><thead><tr><th>Supplier</th><th>Supplier category</th><th></th></tr></thead><tbody>${rowsHtml}</tbody></table>`
       : `<div class="empty">No direct supplier mappings at this level (see subcategories).</div>`);
+
+  // Action buttons
+  const acts = d.querySelector("#nodeActions");
+  const entry = nodeIdx.get(node.code);
+
+  const mkBtn = (label, cls, fn) => {
+    const b = document.createElement("button");
+    if (cls) b.className = cls; b.textContent = label; b.onclick = fn; acts.appendChild(b);
+  };
+  mkBtn("✎ Rename", "", () => startLabelEdit(node, entry));
+  mkBtn("＋ Add sub-category", "green", () => createSubCategory(node, ancestors));
+  if (ancestors.length > 0) {
+    const grandparent = ancestors.length >= 2 ? ancestors[ancestors.length - 2] : null;
+    mkBtn("↑ Move up one level", "", () => {
+      if (grandparent) reparentNode(node.code, grandparent.code);
+      else reparentToRoot(node.code);
+    });
+  }
+
   d.querySelectorAll(".subs a").forEach(a => { a.onclick = e => {
-    e.preventDefault(); const entry = nodeIdx.get(a.getAttribute("data-code"));
-    if (entry) selectNode(entry.node, entry.ancestors); }; });
+    e.preventDefault(); const e2 = nodeIdx.get(a.getAttribute("data-code"));
+    if (e2) selectNode(e2.node, e2.ancestors); }; });
   d.querySelectorAll("tr.drag-row").forEach(tr => {
     tr.addEventListener("dragstart", ev => {
       if (!editMode) { ev.preventDefault(); return; }
