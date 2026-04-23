@@ -971,7 +971,7 @@ function renderUnmappedList(unmapped, filter) {
         row.setAttribute("draggable", "true");
         row.addEventListener("dragstart", ev => {
           ev.dataTransfer.setData("application/json", JSON.stringify({ key, fromCode: null }));
-          ev.dataTransfer.effectAllowed = "copy";
+          ev.dataTransfer.effectAllowed = "move";
           row.classList.add("dragging-um");
         });
         row.addEventListener("dragend", () => row.classList.remove("dragging-um"));
