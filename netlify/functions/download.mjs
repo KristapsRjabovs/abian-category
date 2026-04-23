@@ -1,10 +1,7 @@
 import { getStore } from "@netlify/blobs";
 import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const appData = JSON.parse(readFileSync(join(__dirname, "_data.json"), "utf-8"));
+const appData = JSON.parse(readFileSync(new URL("./_data.json", import.meta.url), "utf-8"));
 
 function csvRow(values) {
   return values.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(",");
