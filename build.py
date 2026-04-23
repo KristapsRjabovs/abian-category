@@ -19,6 +19,10 @@ if _state_file.exists():
     bc.CONFIRMED_CODES = set(_s.get("confirmed", []))
     bc.ORDER           = dict(_s.get("order", {}))
     bc.OVERRIDES       = dict(_s.get("overrides", {}))
+    # Merge user-created / renamed nodes into bc.TREE. state.json is authoritative:
+    # labels + parent relationships here override the hardcoded tree.
+    for _n in _s.get("tree_nodes", []):
+        bc.TREE[_n["code"]] = (_n["label"], _n.get("parent_code"))
 
 RAW_DIR  = Path(__file__).parent / "raw"
 OUT_HTML = Path(__file__).parent / "public" / "index.html"

@@ -2483,5 +2483,1402 @@
     "TV, Audio & Video > TV > TV Sets": [
       "av/tvs/led-smart"
     ]
-  }
+  },
+  "tree_nodes": [
+    {
+      "code": "av",
+      "label": "Audio & Video & TV",
+      "parent_code": null
+    },
+    {
+      "code": "av/accessories",
+      "label": "AV Accessories",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/accessories/cables",
+      "label": "AV Cables & Adapters",
+      "parent_code": "av/accessories"
+    },
+    {
+      "code": "av/accessories/microphones",
+      "label": "Microphones",
+      "parent_code": "av/accessories"
+    },
+    {
+      "code": "av/car",
+      "label": "Car Audio & Video",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/car/audio",
+      "label": "Car Audio Systems",
+      "parent_code": "av/car"
+    },
+    {
+      "code": "av/car/dashcams",
+      "label": "Car Video Recorders (Dashcams)",
+      "parent_code": "av/car"
+    },
+    {
+      "code": "av/games",
+      "label": "Video Games & Gadgets",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/games/consoles",
+      "label": "Consoles & VR",
+      "parent_code": "av/games"
+    },
+    {
+      "code": "av/games/furniture",
+      "label": "Gaming Chairs & Tables",
+      "parent_code": "av/games"
+    },
+    {
+      "code": "av/games/games",
+      "label": "Games & Software",
+      "parent_code": "av/games"
+    },
+    {
+      "code": "av/games/peripherals",
+      "label": "Gaming Peripherals",
+      "parent_code": "av/games"
+    },
+    {
+      "code": "av/headsets",
+      "label": "Headsets & Headphones",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/headsets/accessories",
+      "label": "Headset Accessories",
+      "parent_code": "av/headsets"
+    },
+    {
+      "code": "av/home",
+      "label": "Home Audio & Video",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/home/audio",
+      "label": "Home & Network Audio",
+      "parent_code": "av/home"
+    },
+    {
+      "code": "av/portable",
+      "label": "Portable Audio & Video",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/portable/mp3",
+      "label": "MP3 & Portable Media Players",
+      "parent_code": "av/portable"
+    },
+    {
+      "code": "av/portable/speakers",
+      "label": "Portable & Wireless Speakers",
+      "parent_code": "av/portable"
+    },
+    {
+      "code": "av/speakers",
+      "label": "Speakers",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/surveillance",
+      "label": "Video Surveillance",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/surveillance/access-control",
+      "label": "Access Controllers",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/accessories",
+      "label": "Video Surveillance Components",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/alarms",
+      "label": "Intruder & Fire Alarms",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/cameras",
+      "label": "Security Cameras",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/door-entry",
+      "label": "Door Entry & Intercoms",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/nvr-dvr",
+      "label": "NVR, DVR & Decoders",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/readers",
+      "label": "Readers",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/surveillance/software",
+      "label": "Surveillance Software",
+      "parent_code": "av/surveillance"
+    },
+    {
+      "code": "av/tvs",
+      "label": "Televisions",
+      "parent_code": "av"
+    },
+    {
+      "code": "av/tvs/accessories",
+      "label": "Smart TV Boxes & Other Accessories",
+      "parent_code": "av/tvs"
+    },
+    {
+      "code": "av/tvs/led-smart",
+      "label": "TV's",
+      "parent_code": "av/tvs"
+    },
+    {
+      "code": "av/tvs/media-players",
+      "label": "Media Players & Smart TV Boxes",
+      "parent_code": "av/tvs"
+    },
+    {
+      "code": "av/tvs/mounts",
+      "label": "TV Mounts & Stands",
+      "parent_code": "av/tvs"
+    },
+    {
+      "code": "av/tvs/specialty",
+      "label": "Hospitality & Portable TVs",
+      "parent_code": "av/tvs"
+    },
+    {
+      "code": "cameras",
+      "label": "Cameras & Camcorders",
+      "parent_code": null
+    },
+    {
+      "code": "cameras/camcorders",
+      "label": "Camcorders",
+      "parent_code": "cameras"
+    },
+    {
+      "code": "cameras/camera-accessories",
+      "label": "Other",
+      "parent_code": "cameras"
+    },
+    {
+      "code": "cameras/camera-accessories/drones",
+      "label": "Drones & Accessories",
+      "parent_code": "cameras/camera-accessories"
+    },
+    {
+      "code": "cameras/camera-accessories/gimbals",
+      "label": "Gimbals & Accessories",
+      "parent_code": "cameras/camera-accessories"
+    },
+    {
+      "code": "cameras/camera-accessories/memory",
+      "label": "Memory Cards & Readers",
+      "parent_code": "cameras/camera-accessories"
+    },
+    {
+      "code": "cameras/camera-accessories/optical",
+      "label": "Binoculars, Microscopes & Telescopes",
+      "parent_code": "cameras/camera-accessories"
+    },
+    {
+      "code": "cameras/camera-accessories/other",
+      "label": "Other Camera Accessories",
+      "parent_code": "cameras/camera-accessories"
+    },
+    {
+      "code": "cameras/digital",
+      "label": "Digital Cameras",
+      "parent_code": "cameras"
+    },
+    {
+      "code": "cameras/digital/action",
+      "label": "Action Cameras",
+      "parent_code": "cameras/digital"
+    },
+    {
+      "code": "cameras/digital/instant",
+      "label": "Instant Cameras",
+      "parent_code": "cameras/digital"
+    },
+    {
+      "code": "cameras/drones",
+      "label": "Drones",
+      "parent_code": "cameras"
+    },
+    {
+      "code": "components",
+      "label": "Components & Accessories",
+      "parent_code": null
+    },
+    {
+      "code": "components/batteries",
+      "label": "Batteries & Chargers",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/batteries/chargers",
+      "label": "Chargers & Powerbanks",
+      "parent_code": "components/batteries"
+    },
+    {
+      "code": "components/cables",
+      "label": "Cables",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cables/card-readers",
+      "label": "Card Readers",
+      "parent_code": "components/cables"
+    },
+    {
+      "code": "components/cables/data",
+      "label": "Data Cables & Adapters",
+      "parent_code": "components/cables"
+    },
+    {
+      "code": "components/cables/hubs",
+      "label": "USB & Interface Hubs",
+      "parent_code": "components/cables"
+    },
+    {
+      "code": "components/cables/power",
+      "label": "Power Cables",
+      "parent_code": "components/cables"
+    },
+    {
+      "code": "components/cases",
+      "label": "Cases",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cases-accessories",
+      "label": "PC Add-ons & Accessories",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cases-accessories/internal-cables",
+      "label": "Internal PC Cables",
+      "parent_code": "components/cases-accessories"
+    },
+    {
+      "code": "components/cases-accessories/other",
+      "label": "Other PC Accessories",
+      "parent_code": "components/cases-accessories"
+    },
+    {
+      "code": "components/cases-accessories/tpm",
+      "label": "TPM Modules",
+      "parent_code": "components/cases-accessories"
+    },
+    {
+      "code": "components/controllers",
+      "label": "Controller Cards (RAID/HBA)",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cooling",
+      "label": "Fans & Cooling Systems",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cpu",
+      "label": "Processors (CPU)",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/cpu/desktop",
+      "label": "Desktop CPUs",
+      "parent_code": "components/cpu"
+    },
+    {
+      "code": "components/gpu",
+      "label": "Video Cards (GPU)",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/keyboards-mice",
+      "label": "Keyboards & Mice",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/keyboards-mice/digitizers",
+      "label": "Digitizers & Stylus Pens",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/keyboards-mice/keyboards",
+      "label": "Keyboards",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/keyboards-mice/mice",
+      "label": "Mouse",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/keyboards-mice/mousepads",
+      "label": "Mousepads, Desk Pads & Wrist Rests",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/keyboards-mice/numeric",
+      "label": "Numeric Keypads",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/keyboards-mice/presenters",
+      "label": "Presenters & Remotes",
+      "parent_code": "components/keyboards-mice"
+    },
+    {
+      "code": "components/kvm",
+      "label": "KVM",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/motherboards",
+      "label": "Motherboards",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/power-protection",
+      "label": "Power Protection Devices",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/power-protection/accessories",
+      "label": "Power Accessories",
+      "parent_code": "components/power-protection"
+    },
+    {
+      "code": "components/power-protection/pdu",
+      "label": "Power Distribution Units (PDU)",
+      "parent_code": "components/power-protection"
+    },
+    {
+      "code": "components/power-protection/ups",
+      "label": "UPS Systems (UPS)",
+      "parent_code": "components/power-protection"
+    },
+    {
+      "code": "components/psu",
+      "label": "Power Supplies (PSU)",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/sound-cards",
+      "label": "Sound Cards",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/storage",
+      "label": "Storage & Memory",
+      "parent_code": "components"
+    },
+    {
+      "code": "components/storage/arrays",
+      "label": "NAS & Disk Arrays",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/flash",
+      "label": "Flash Memory (USB, SD, CF)",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/hdd",
+      "label": "Hard Drives (HDD)",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/hdd/external",
+      "label": "External HDDs",
+      "parent_code": "components/storage/hdd"
+    },
+    {
+      "code": "components/storage/hdd/internal",
+      "label": "Internal HDDs",
+      "parent_code": "components/storage/hdd"
+    },
+    {
+      "code": "components/storage/media",
+      "label": "Storage Media (CD, DVD, Blu-ray)",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/optical",
+      "label": "Optical Drives",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/ram",
+      "label": "Memory (RAM)",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/ram/desktop",
+      "label": "Desktop Memory (DIMM)",
+      "parent_code": "components/storage/ram"
+    },
+    {
+      "code": "components/storage/ram/notebook",
+      "label": "Notebook Memory (SODIMM)",
+      "parent_code": "components/storage/ram"
+    },
+    {
+      "code": "components/storage/ssd",
+      "label": "Solid State Drives (SSD)",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/storage/ssd/enterprise",
+      "label": "Enterprise SSDs",
+      "parent_code": "components/storage/ssd"
+    },
+    {
+      "code": "components/storage/ssd/internal",
+      "label": "Internal SSDs",
+      "parent_code": "components/storage/ssd"
+    },
+    {
+      "code": "components/storage/tape",
+      "label": "Tape Backup",
+      "parent_code": "components/storage"
+    },
+    {
+      "code": "components/webcams",
+      "label": "Web Cameras",
+      "parent_code": "components"
+    },
+    {
+      "code": "computers",
+      "label": "Computers, Servers & Tablets",
+      "parent_code": null
+    },
+    {
+      "code": "computers/desktops",
+      "label": "Desktops & Workstations",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/desktops/aio",
+      "label": "All-in-One PCs",
+      "parent_code": "computers/desktops"
+    },
+    {
+      "code": "computers/desktops/mini",
+      "label": "Mini PCs & NUC",
+      "parent_code": "computers/desktops"
+    },
+    {
+      "code": "computers/desktops/standard",
+      "label": "Desktops",
+      "parent_code": "computers/desktops"
+    },
+    {
+      "code": "computers/notebook-accessories",
+      "label": "Notebook Accessories",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/notebook-accessories/bags",
+      "label": "Bags, Sleeves & Backpacks",
+      "parent_code": "computers/notebook-accessories"
+    },
+    {
+      "code": "computers/notebook-accessories/batteries",
+      "label": "Batteries",
+      "parent_code": "computers/notebook-accessories"
+    },
+    {
+      "code": "computers/notebook-accessories/chargers",
+      "label": "Chargers & Power Adapters",
+      "parent_code": "computers/notebook-accessories"
+    },
+    {
+      "code": "computers/notebook-accessories/docks",
+      "label": "Docking Stations",
+      "parent_code": "computers/notebook-accessories"
+    },
+    {
+      "code": "computers/notebook-accessories/other",
+      "label": "Other Accessories",
+      "parent_code": "computers/notebook-accessories"
+    },
+    {
+      "code": "computers/notebooks",
+      "label": "Notebooks",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/pos",
+      "label": "Point Of Sale Equipment",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/pos/accessories",
+      "label": "POS Accessories",
+      "parent_code": "computers/pos"
+    },
+    {
+      "code": "computers/pos/terminals",
+      "label": "POS Terminals & PDAs",
+      "parent_code": "computers/pos"
+    },
+    {
+      "code": "computers/servers",
+      "label": "Servers",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/servers/components",
+      "label": "Server Components",
+      "parent_code": "computers/servers"
+    },
+    {
+      "code": "computers/servers/components/controllers",
+      "label": "Server Storage Controllers",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/components/cpu",
+      "label": "Server CPUs",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/components/memory",
+      "label": "Server Memory",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/components/motherboards",
+      "label": "Server Motherboards",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/components/other",
+      "label": "Other Server Parts",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/components/psu",
+      "label": "Server PSUs",
+      "parent_code": "computers/servers/components"
+    },
+    {
+      "code": "computers/servers/rack-tower",
+      "label": "Rack & Tower Servers",
+      "parent_code": "computers/servers"
+    },
+    {
+      "code": "computers/servers/racks",
+      "label": "Racks, Cabinets & Mounting",
+      "parent_code": "computers/servers"
+    },
+    {
+      "code": "computers/servers/racks/accessories",
+      "label": "Rack Accessories",
+      "parent_code": "computers/servers/racks"
+    },
+    {
+      "code": "computers/servers/racks/standard",
+      "label": "Rack Cabinets & Enclosures",
+      "parent_code": "computers/servers/racks"
+    },
+    {
+      "code": "computers/tablet-accessories",
+      "label": "Tablet Accessories",
+      "parent_code": "computers"
+    },
+    {
+      "code": "computers/tablets",
+      "label": "Tablets",
+      "parent_code": "computers"
+    },
+    {
+      "code": "displays",
+      "label": "Displays & Projectors",
+      "parent_code": null
+    },
+    {
+      "code": "displays/large-format",
+      "label": "Large Format Displays & Video Walls",
+      "parent_code": "displays"
+    },
+    {
+      "code": "displays/large-format/signage",
+      "label": "Signage Displays",
+      "parent_code": "displays/large-format"
+    },
+    {
+      "code": "displays/large-format/video-walls",
+      "label": "Video Walls",
+      "parent_code": "displays/large-format"
+    },
+    {
+      "code": "displays/monitors",
+      "label": "Monitors",
+      "parent_code": "displays"
+    },
+    {
+      "code": "displays/monitors/accessories",
+      "label": "Monitor Accessories",
+      "parent_code": "displays/monitors"
+    },
+    {
+      "code": "displays/monitors/accessories/mounts",
+      "label": "Monitor Mounts, Stands & Arms",
+      "parent_code": "displays/monitors/accessories"
+    },
+    {
+      "code": "displays/monitors/accessories/other",
+      "label": "Other Monitor Accessories",
+      "parent_code": "displays/monitors/accessories"
+    },
+    {
+      "code": "displays/monitors/accessories/privacy",
+      "label": "Privacy Filters",
+      "parent_code": "displays/monitors/accessories"
+    },
+    {
+      "code": "displays/monitors/accessories/usb-adapters",
+      "label": "USB Graphics Adapters",
+      "parent_code": "displays/monitors/accessories"
+    },
+    {
+      "code": "displays/projectors",
+      "label": "Projectors",
+      "parent_code": "displays"
+    },
+    {
+      "code": "displays/projectors/lamps",
+      "label": "Projector Lamps & Lenses",
+      "parent_code": "displays/projectors"
+    },
+    {
+      "code": "displays/projectors/mounting",
+      "label": "Projector Mounts",
+      "parent_code": "displays/projectors"
+    },
+    {
+      "code": "displays/projectors/other",
+      "label": "Other Projector Accessories",
+      "parent_code": "displays/projectors"
+    },
+    {
+      "code": "displays/projectors/standard",
+      "label": "Projectors & Screens",
+      "parent_code": "displays/projectors"
+    },
+    {
+      "code": "navigation",
+      "label": "Navigation & Radios",
+      "parent_code": null
+    },
+    {
+      "code": "navigation/accessories",
+      "label": "Navigation Accessories",
+      "parent_code": "navigation"
+    },
+    {
+      "code": "navigation/two-way",
+      "label": "Two-Way Radios",
+      "parent_code": "navigation"
+    },
+    {
+      "code": "navigation/two-way/accessories",
+      "label": "Radio Accessories & Repeaters",
+      "parent_code": "navigation/two-way"
+    },
+    {
+      "code": "navigation/two-way/portable",
+      "label": "Portable Radios",
+      "parent_code": "navigation/two-way"
+    },
+    {
+      "code": "networking",
+      "label": "Networking",
+      "parent_code": null
+    },
+    {
+      "code": "networking/adapters",
+      "label": "Network Adapters (NIC)",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/cabling",
+      "label": "Network Cabling",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/modems",
+      "label": "Modems",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/modems/powerline",
+      "label": "Powerline Adapters",
+      "parent_code": "networking/modems"
+    },
+    {
+      "code": "networking/routers",
+      "label": "Bridges & Routers",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/routers/cellular",
+      "label": "3G/4G/5G Routers",
+      "parent_code": "networking/routers"
+    },
+    {
+      "code": "networking/security",
+      "label": "Network Security",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/security/firewalls",
+      "label": "Firewalls",
+      "parent_code": "networking/security"
+    },
+    {
+      "code": "networking/switches",
+      "label": "Hubs & Switches",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/switches/poe",
+      "label": "PoE Switches & PoE Devices",
+      "parent_code": "networking/switches"
+    },
+    {
+      "code": "networking/transceivers",
+      "label": "Transceivers & Multiplexers",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/transceivers/media-converters",
+      "label": "Media Converters",
+      "parent_code": "networking/transceivers"
+    },
+    {
+      "code": "networking/transceivers/standard",
+      "label": "Transceiver Modules",
+      "parent_code": "networking/transceivers"
+    },
+    {
+      "code": "networking/wireless",
+      "label": "Wireless",
+      "parent_code": "networking"
+    },
+    {
+      "code": "networking/wireless/antennas",
+      "label": "Antennas & Accessories",
+      "parent_code": "networking/wireless"
+    },
+    {
+      "code": "networking/wireless/extenders",
+      "label": "Range Extenders",
+      "parent_code": "networking/wireless"
+    },
+    {
+      "code": "networking/wireless/mesh",
+      "label": "Mesh Wi-Fi",
+      "parent_code": "networking/wireless"
+    },
+    {
+      "code": "networking/wireless/outdoor",
+      "label": "Outdoor Wireless",
+      "parent_code": "networking/wireless"
+    },
+    {
+      "code": "networking/wireless/standard",
+      "label": "Access Points & Controllers",
+      "parent_code": "networking/wireless"
+    },
+    {
+      "code": "other",
+      "label": "Other",
+      "parent_code": null
+    },
+    {
+      "code": "other/education",
+      "label": "Education",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/education/accessories",
+      "label": "EDU Computer Accessories & Trolleys",
+      "parent_code": "other/education"
+    },
+    {
+      "code": "other/energy",
+      "label": "Renewable Energy",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/energy/accessories",
+      "label": "Solar Accessories & Tools",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/energy/batteries",
+      "label": "Battery Storage",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/energy/ev",
+      "label": "EV Charging",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/energy/inverters",
+      "label": "Solar Inverters & Optimizers",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/energy/panels",
+      "label": "Solar Panels",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/energy/stations",
+      "label": "Power Stations",
+      "parent_code": "other/energy"
+    },
+    {
+      "code": "other/home",
+      "label": "Home & Lifestyle",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/home/cleaning",
+      "label": "Vacuums & Cleaning",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/cleaning/accessories",
+      "label": "Vacuum Accessories",
+      "parent_code": "other/home/cleaning"
+    },
+    {
+      "code": "other/home/cleaning/floor-care",
+      "label": "Mops, Carpet & Patio Cleaners",
+      "parent_code": "other/home/cleaning"
+    },
+    {
+      "code": "other/home/cleaning/robots",
+      "label": "Robot Vacuums & Accessories",
+      "parent_code": "other/home/cleaning"
+    },
+    {
+      "code": "other/home/climate",
+      "label": "Air Conditioners",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/garment",
+      "label": "Garment Care (Irons & Steamers)",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/household",
+      "label": "Small Household & Lamps",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/household/clocks",
+      "label": "Clocks & Alarm Clocks",
+      "parent_code": "other/home/household"
+    },
+    {
+      "code": "other/home/household/lamps",
+      "label": "Light Bulbs, Lamps & Fixtures",
+      "parent_code": "other/home/household"
+    },
+    {
+      "code": "other/home/household/other",
+      "label": "Other Small Appliances",
+      "parent_code": "other/home/household"
+    },
+    {
+      "code": "other/home/kitchen",
+      "label": "Kitchen Appliances",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/kitchen/blenders",
+      "label": "Blenders, Mixers & Food Processors",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/coffee",
+      "label": "Coffee Makers & Accessories",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/cookware",
+      "label": "Cookware & Kitchenware",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/fryers",
+      "label": "Air Fryers & Accessories",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/grills",
+      "label": "Electric Grills & Sandwich Makers",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/kettles",
+      "label": "Kettles & Teapots",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/microwaves",
+      "label": "Microwaves & Multicookers",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/refrigerators",
+      "label": "Refrigerators",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/kitchen/toasters",
+      "label": "Toasters & Waffle Irons",
+      "parent_code": "other/home/kitchen"
+    },
+    {
+      "code": "other/home/personal-care",
+      "label": "Personal Care",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/personal-care/dental",
+      "label": "Dental Care",
+      "parent_code": "other/home/personal-care"
+    },
+    {
+      "code": "other/home/personal-care/hair",
+      "label": "Hair Care",
+      "parent_code": "other/home/personal-care"
+    },
+    {
+      "code": "other/home/personal-care/other",
+      "label": "Other Beauty Appliances",
+      "parent_code": "other/home/personal-care"
+    },
+    {
+      "code": "other/home/personal-care/shavers",
+      "label": "Shavers & Trimmers",
+      "parent_code": "other/home/personal-care"
+    },
+    {
+      "code": "other/home/pet-care",
+      "label": "Pet Care",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/sports",
+      "label": "Sport, Outdoor & Hobbies",
+      "parent_code": "other/home"
+    },
+    {
+      "code": "other/home/sports/e-mobility",
+      "label": "E-Scooters & Mobility",
+      "parent_code": "other/home/sports"
+    },
+    {
+      "code": "other/home/sports/illumination",
+      "label": "Lanterns & Illumination",
+      "parent_code": "other/home/sports"
+    },
+    {
+      "code": "other/home/sports/other",
+      "label": "Other Sport & Hobby Accessories",
+      "parent_code": "other/home/sports"
+    },
+    {
+      "code": "other/home/sports/pool",
+      "label": "Swimming Pool Accessories",
+      "parent_code": "other/home/sports"
+    },
+    {
+      "code": "other/medical",
+      "label": "Medical Equipment",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/medical/it",
+      "label": "Medical IT Accessories",
+      "parent_code": "other/medical"
+    },
+    {
+      "code": "other/medical/mounting",
+      "label": "Medical Display Mounts",
+      "parent_code": "other/medical"
+    },
+    {
+      "code": "other/medical/workstations",
+      "label": "Medical Workstations & Trolleys",
+      "parent_code": "other/medical"
+    },
+    {
+      "code": "other/office",
+      "label": "Office Equipment & Furniture",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/office/charging-carts",
+      "label": "Charging Stations & Carts",
+      "parent_code": "other/office"
+    },
+    {
+      "code": "other/office/ergonomics",
+      "label": "Workspace Ergonomics",
+      "parent_code": "other/office"
+    },
+    {
+      "code": "other/office/furniture",
+      "label": "Desks, Trolleys & Chairs",
+      "parent_code": "other/office"
+    },
+    {
+      "code": "other/office/stationery",
+      "label": "Office Stationery",
+      "parent_code": "other/office"
+    },
+    {
+      "code": "other/service-support",
+      "label": "Service & Support",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/service-support/hardware",
+      "label": "Hardware Warranties & Support",
+      "parent_code": "other/service-support"
+    },
+    {
+      "code": "other/smart-home",
+      "label": "Smart Home & IoT",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/smart-home/energy",
+      "label": "Smart Energy & Plugs",
+      "parent_code": "other/smart-home"
+    },
+    {
+      "code": "other/smart-home/iot",
+      "label": "IoT Devices, Sensors & Services",
+      "parent_code": "other/smart-home"
+    },
+    {
+      "code": "other/smart-home/lighting",
+      "label": "Smart Lighting & Bulbs",
+      "parent_code": "other/smart-home"
+    },
+    {
+      "code": "other/smart-home/security",
+      "label": "Smart Security & Assisted Living",
+      "parent_code": "other/smart-home"
+    },
+    {
+      "code": "other/tools",
+      "label": "Power Tools & Garden",
+      "parent_code": "other"
+    },
+    {
+      "code": "other/tools/garden",
+      "label": "Garden Equipment",
+      "parent_code": "other/tools"
+    },
+    {
+      "code": "other/tools/garden/mowers",
+      "label": "Lawn Mowers & Accessories",
+      "parent_code": "other/tools/garden"
+    },
+    {
+      "code": "other/tools/garden/pumps",
+      "label": "Water Pumps",
+      "parent_code": "other/tools/garden"
+    },
+    {
+      "code": "other/tools/garden/trimmers",
+      "label": "Grass Trimmers & Leaf Blowers",
+      "parent_code": "other/tools/garden"
+    },
+    {
+      "code": "other/tools/garden/washers",
+      "label": "Pressure Washers & Sweepers",
+      "parent_code": "other/tools/garden"
+    },
+    {
+      "code": "other/tools/power-tools",
+      "label": "Power Tools & Workwear",
+      "parent_code": "other/tools"
+    },
+    {
+      "code": "phones-radios",
+      "label": "Phones & Devices",
+      "parent_code": null
+    },
+    {
+      "code": "phones-radios/mobile",
+      "label": "Mobile Phones",
+      "parent_code": "phones-radios"
+    },
+    {
+      "code": "phones-radios/mobile/accessories",
+      "label": "Smartphone Accessories",
+      "parent_code": "phones-radios/mobile"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/cables",
+      "label": "Cables & Adapters",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/cases",
+      "label": "Cases & Covers",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/chargers",
+      "label": "Chargers & Powerbanks",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/headsets",
+      "label": "Phone Headsets",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/holders",
+      "label": "Holders & Car Mounts",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/other",
+      "label": "Other Phone Accessories",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/mobile/accessories/protectors",
+      "label": "Screen Protectors",
+      "parent_code": "phones-radios/mobile/accessories"
+    },
+    {
+      "code": "phones-radios/telephones",
+      "label": "Telephones",
+      "parent_code": "phones-radios"
+    },
+    {
+      "code": "phones-radios/telephones/accessories",
+      "label": "Landline Accessories",
+      "parent_code": "phones-radios/telephones"
+    },
+    {
+      "code": "phones-radios/telephones/conferencing",
+      "label": "Audio & Video Conferencing",
+      "parent_code": "phones-radios/telephones"
+    },
+    {
+      "code": "phones-radios/telephones/standard",
+      "label": "Desk Phones",
+      "parent_code": "phones-radios/telephones"
+    },
+    {
+      "code": "phones-radios/wearables",
+      "label": "Wearable Electronics",
+      "parent_code": "phones-radios"
+    },
+    {
+      "code": "phones-radios/wearables/accessories",
+      "label": "Wearable Accessories",
+      "parent_code": "phones-radios/wearables"
+    },
+    {
+      "code": "phones-radios/wearables/fitness",
+      "label": "Fitness Bands",
+      "parent_code": "phones-radios/wearables"
+    },
+    {
+      "code": "phones-radios/wearables/smartwatches",
+      "label": "Smartwatches",
+      "parent_code": "phones-radios/wearables"
+    },
+    {
+      "code": "print-scan",
+      "label": "Printers & Scanners",
+      "parent_code": null
+    },
+    {
+      "code": "print-scan/consumables",
+      "label": "Printer Consumables",
+      "parent_code": "print-scan"
+    },
+    {
+      "code": "print-scan/consumables/drums",
+      "label": "Drums & Imaging Units",
+      "parent_code": "print-scan/consumables"
+    },
+    {
+      "code": "print-scan/consumables/ink",
+      "label": "Ink Cartridges & Printheads",
+      "parent_code": "print-scan/consumables"
+    },
+    {
+      "code": "print-scan/consumables/other",
+      "label": "Other Consumables",
+      "parent_code": "print-scan/consumables"
+    },
+    {
+      "code": "print-scan/consumables/paper",
+      "label": "Paper & Media",
+      "parent_code": "print-scan/consumables"
+    },
+    {
+      "code": "print-scan/consumables/toner",
+      "label": "Toners",
+      "parent_code": "print-scan/consumables"
+    },
+    {
+      "code": "print-scan/office-products",
+      "label": "Office Products",
+      "parent_code": "print-scan"
+    },
+    {
+      "code": "print-scan/office-products/binding",
+      "label": "Binding Machines",
+      "parent_code": "print-scan/office-products"
+    },
+    {
+      "code": "print-scan/office-products/shredders",
+      "label": "Shredders",
+      "parent_code": "print-scan/office-products"
+    },
+    {
+      "code": "print-scan/printers",
+      "label": "Printers",
+      "parent_code": "print-scan"
+    },
+    {
+      "code": "print-scan/printers/3d",
+      "label": "3D Printers & Supplies",
+      "parent_code": "print-scan/printers"
+    },
+    {
+      "code": "print-scan/printers/lfp",
+      "label": "Large Format Printers & Plotters",
+      "parent_code": "print-scan/printers"
+    },
+    {
+      "code": "print-scan/printers/mfp",
+      "label": "Multifunction Printers (MFP)",
+      "parent_code": "print-scan/printers"
+    },
+    {
+      "code": "print-scan/scanners",
+      "label": "Scanners",
+      "parent_code": "print-scan"
+    },
+    {
+      "code": "print-scan/scanners/standard",
+      "label": "Document & Photo Scanners",
+      "parent_code": "print-scan/scanners"
+    },
+    {
+      "code": "print-scan/trays",
+      "label": "Printer Trays & Other Accessories",
+      "parent_code": "print-scan"
+    },
+    {
+      "code": "software-apps",
+      "label": "Software Applications",
+      "parent_code": null
+    },
+    {
+      "code": "software-apps/antivirus",
+      "label": "Antivirus & Security Software",
+      "parent_code": "software-apps"
+    },
+    {
+      "code": "software-apps/business",
+      "label": "Business & Productivity Software",
+      "parent_code": "software-apps"
+    },
+    {
+      "code": "software-apps/business/backup",
+      "label": "Backup & Storage Software",
+      "parent_code": "software-apps/business"
+    },
+    {
+      "code": "software-apps/business/cloud",
+      "label": "Cloud Software & Services",
+      "parent_code": "software-apps/business"
+    },
+    {
+      "code": "software-apps/business/server",
+      "label": "Server Software & CALs",
+      "parent_code": "software-apps/business"
+    },
+    {
+      "code": "software-apps/business/virtualization",
+      "label": "Virtualization Software",
+      "parent_code": "software-apps/business"
+    },
+    {
+      "code": "software-apps/network",
+      "label": "Network Software",
+      "parent_code": "software-apps"
+    },
+    {
+      "code": "software-apps/network/management",
+      "label": "Network & Enterprise Management",
+      "parent_code": "software-apps/network"
+    },
+    {
+      "code": "software-apps/network/webconf",
+      "label": "Web Conferencing Software",
+      "parent_code": "software-apps/network"
+    },
+    {
+      "code": "software-apps/office",
+      "label": "Office Software",
+      "parent_code": "software-apps"
+    },
+    {
+      "code": "software-apps/os",
+      "label": "Operating Systems",
+      "parent_code": "software-apps"
+    },
+    {
+      "code": "software-apps/os/linux",
+      "label": "Linux / Unix",
+      "parent_code": "software-apps/os"
+    },
+    {
+      "code": "software-apps/os/windows",
+      "label": "Microsoft Windows",
+      "parent_code": "software-apps/os"
+    }
+  ]
 }
