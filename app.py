@@ -59,7 +59,7 @@ def api_save():
     order     = payload.get("order") or {}
     renames = payload.get("renames") or {}
     tree_nodes = payload.get("tree_nodes") or []
-    db.sync_tree_nodes(tree_nodes)
+    db.sync_tree_nodes(tree_nodes, set(deleted))
     db.save_mappings(supmap)
     db.update_node_labels(renames)
     db.save_state("deleted",   sorted(set(deleted)))

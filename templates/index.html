@@ -219,6 +219,7 @@
     <button id="resetBtn" class="warn" style="display:none;">Reset changes</button>
     <button id="saveBtn" class="primary">Save</button>
     <button id="suggestionsBtn">💡 <span id="suggestionsCount"></span> suggestions</button>
+    <button id="autoFixBtn" title="Regenerate slugs from labels and remove orphan mappings">🔧 Auto-fix</button>
     <button id="dlAlsoBtn" class="dl">Download Also CSV</button>
     <button id="dlElkoBtn" class="dl">Download Elko CSV</button>
   </div>
@@ -1041,6 +1042,116 @@ document.getElementById("toggleEdit").onclick = function() {
   if (currentNode) showDetail(currentNode, currentAncestors);
   // Refresh unmapped sidebar so drag handles appear/disappear with edit mode
   renderUnmappedList(_unmappedCache, document.getElementById("unmappedSearch").value);
+};
+
+// ── Auto-fix: regenerate slugs + prune orphan mappings ───────────────────────
+
+function slugify(s) {
+  return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+// Rename any node whose code's last segment contains "new-category" or doesn't
+// match a slugified version of its label. Processes top-down so parents are
+// renamed before children; children inherit the new parent prefix.
+// Returns map of {oldCode: newCode} actually changed.
+function autoFixSlugs() {
+  const flat = computeTreeNodes();
+
+  // depth for each node (for top-down ordering)
+  const byCode = Object.fromEntries(flat.map(n => [n.code, n]));
+  const depthOf = code => {
+    let d = 0, cur = byCode[code]?.parent_code;
+    while (cur) { d++; cur = byCode[cur]?.parent_code; }
+    return d;
+  };
+  flat.sort((a, b) => depthOf(a.code) - depthOf(b.code));
+
+  const renameMap = {};                             // old → new
+  const taken     = new Set(flat.map(n => n.code)); // live codes after rename
+  deletedCodes.forEach(c => taken.add(c));          // reserve deleted slugs too
+
+  for (const n of flat) {
+    const oldCode        = n.code;
+    const slug           = slugify(n.label) || "item";
+    const lastSeg        = oldCode.split("/").pop();
+    const slugIsBad      = /^new-category(-\d+)?$/i.test(lastSeg) || lastSeg !== slug;
+    const effectiveParent = renameMap[n.parent_code] || n.parent_code || null;
+    const parentChanged   = effectiveParent !== n.parent_code;
+
+    if (!slugIsBad && !parentChanged) continue;
+
+    const prefix = effectiveParent ? effectiveParent + "/" : "";
+    let base = prefix + slug, proposed = base, suffix = 1;
+    // Avoid collisions with other live codes (but keep our own oldCode free)
+    while (proposed !== oldCode && taken.has(proposed)) {
+      proposed = base + "-" + (++suffix);
+    }
+    if (proposed === oldCode) continue;
+    renameMap[oldCode] = proposed;
+    taken.delete(oldCode);
+    taken.add(proposed);
+    // record for subsequent depth-based lookups
+    byCode[proposed] = { ...n, code: proposed, parent_code: effectiveParent };
+  }
+
+  if (!Object.keys(renameMap).length) return 0;
+
+  // 1. rebuild tree with new codes
+  const remap = c => renameMap[c] || c;
+  const updated = flat.map(n => ({
+    code: remap(n.code),
+    label: n.label,
+    parent_code: n.parent_code ? remap(n.parent_code) : null,
+  }));
+  Object.assign(TREE_DATA, buildTreeFromNodes(updated));
+
+  // 2. update SUPMAP, confirmedCodes, deletedCodes, renames
+  for (const key of Object.keys(SUPMAP)) SUPMAP[key] = SUPMAP[key].map(remap);
+  const oldConfirmed = [...confirmedCodes]; confirmedCodes.clear();
+  for (const c of oldConfirmed) confirmedCodes.add(remap(c));
+  const oldDeleted = [...deletedCodes]; deletedCodes.clear();
+  for (const c of oldDeleted) deletedCodes.add(remap(c));
+  for (const [old, neo] of Object.entries(renameMap)) {
+    if (renames[old] !== undefined) { renames[neo] = renames[old]; delete renames[old]; }
+  }
+
+  // 3. re-render tree
+  const treeEl = document.getElementById("tree");
+  treeEl.innerHTML = "";
+  nodeIdx.clear();
+  render(treeEl, TREE_DATA.tree, []);
+
+  // 4. lose selection if current node was renamed
+  if (currentNode && renameMap[currentNode.code]) {
+    currentNode = null; currentAncestors = null; selected = null;
+    document.getElementById("detail").innerHTML =
+      '<div class="empty">Click any category on the left to see supplier mappings.</div>';
+  }
+  return Object.keys(renameMap).length;
+}
+
+// Drop any SUPMAP code that points to a non-existent node or a node whose label
+// is empty/whitespace. Returns total number of orphan code-refs removed.
+function pruneOrphanMappings() {
+  let removed = 0;
+  for (const key of Object.keys(SUPMAP)) {
+    const before = SUPMAP[key].length;
+    SUPMAP[key] = SUPMAP[key].filter(code => {
+      const e = nodeIdx.get(code);
+      return !!(e && e.node.label && e.node.label.trim());
+    });
+    removed += before - SUPMAP[key].length;
+  }
+  return removed;
+}
+
+document.getElementById("autoFixBtn").onclick = () => {
+  if (!editMode) { alert("Enable edit mode first."); return; }
+  const renamed = autoFixSlugs();
+  const pruned  = pruneOrphanMappings();
+  deriveMap(); updateStats(); updateDeletableBadges();
+  if (renamed || pruned) { pendingChanges++; markPending(); }
+  alert(`Auto-fix complete:\n• ${renamed} slug${renamed === 1 ? "" : "s"} regenerated\n• ${pruned} orphan mapping${pruned === 1 ? "" : "s"} removed\n\n${(renamed || pruned) ? "Click Save to persist." : "Nothing to fix."}`);
 };
 
 // ── AI suggestions ────────────────────────────────────────────────────────────

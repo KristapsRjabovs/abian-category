@@ -111,14 +111,19 @@ def update_node_labels(renames: dict):
             conn.execute("UPDATE tree_nodes SET label = ? WHERE code = ?", (label, code))
 
 
-def sync_tree_nodes(nodes: list):
-    """Sync tree structure: insert new nodes, update parent_code + label for existing ones.
-    nodes is a list of {code, label, parent_code} dicts (parent_code may be None).
+def sync_tree_nodes(nodes: list, deleted_codes: set | None = None):
+    """Sync tree structure: insert new, update existing, DROP any code not in the
+    payload and not in `deleted_codes`. Drops handle slug renames — the old code
+    disappears from tree_nodes so it never resurfaces on rebuild.
+
+    `nodes` is a list of {code, label, parent_code} dicts (parent_code may be None).
     """
     if not nodes:
         return
+    deleted_codes = deleted_codes or set()
     with get_conn() as conn:
         existing = {r["code"] for r in conn.execute("SELECT code FROM tree_nodes").fetchall()}
+        live     = {n["code"] for n in nodes}
         to_insert = [
             (n["code"], n["label"], n.get("parent_code"))
             for n in nodes if n["code"] not in existing
@@ -127,6 +132,8 @@ def sync_tree_nodes(nodes: list):
             (n["label"], n.get("parent_code"), n["code"])
             for n in nodes if n["code"] in existing
         ]
+        # Zombies: in DB but not in current tree and not intentionally deleted.
+        to_drop = [(c,) for c in existing - live - set(deleted_codes)]
         if to_insert:
             conn.executemany(
                 "INSERT INTO tree_nodes(code, label, parent_code) VALUES (?,?,?)",
@@ -137,6 +144,8 @@ def sync_tree_nodes(nodes: list):
                 "UPDATE tree_nodes SET label=?, parent_code=? WHERE code=?",
                 to_update,
             )
+        if to_drop:
+            conn.executemany("DELETE FROM tree_nodes WHERE code=?", to_drop)
 
 
 def save_state(key: str, value):
