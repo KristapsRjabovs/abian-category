@@ -392,28 +392,15 @@ async function init() {
     const r = await fetch("/api/state");
     if (r.ok) {
       const s = await r.json();
-      // Collect baked codes once — they are authoritative for the current deploy.
-      const bakedCodes = new Set();
-      (function collect(n) { for (const x of n) { bakedCodes.add(x.code); if (x.children) collect(x.children); } })(TREE_DATA_INIT.tree);
-      // Blobs is stale if it references any code the latest build no longer has
-      // (e.g., a slug rename landed in state.json between saves). Ignore stale tree.
-      const blobsStale = Array.isArray(s.tree_nodes)
-        && s.tree_nodes.some(n => !bakedCodes.has(n.code));
-      // Restore tree structure first (new nodes + reparenting) — only if Blobs is fresh
-      if (!blobsStale && s.tree_nodes && s.tree_nodes.length) {
+      // Blobs is the live state — trust it. If the user had work mapped and
+      // saved, those rows must come back on reload regardless of whether the
+      // latest static build contains the exact same node set.
+      if (s.tree_nodes && s.tree_nodes.length) {
         TREE_DATA = buildTreeFromNodes(s.tree_nodes);
-        // refresh bakedCodes with post-merge live codes
-        bakedCodes.clear();
-        (function collect(n) { for (const x of n) { bakedCodes.add(x.code); if (x.children) collect(x.children); } })(TREE_DATA.tree);
       }
-      // When Blobs supmap/confirmed/deleted is present, filter out codes that
-      // no longer exist so stale references don't resurface in UI or downloads.
-      if (s.supmap && Object.keys(s.supmap).length) {
-        SUPMAP = {};
-        for (const [k, v] of Object.entries(s.supmap)) SUPMAP[k] = v.filter(c => bakedCodes.has(c));
-      }
-      if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.filter(c => bakedCodes.has(c)).forEach(c => confirmedCodes.add(c)); }
-      if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.filter(c => bakedCodes.has(c)).forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
+      if (s.supmap && Object.keys(s.supmap).length) SUPMAP = s.supmap;
+      if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.forEach(c => confirmedCodes.add(c)); }
+      if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
       if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
       if (s.renames) Object.assign(renames, s.renames);
       // Apply renames to rebuilt tree labels
