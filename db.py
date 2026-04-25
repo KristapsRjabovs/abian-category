@@ -1,6 +1,7 @@
 import sqlite3
 import json
 from pathlib import Path
+from typing import Optional
 
 DB_PATH = Path(__file__).parent / "category.db"
 
@@ -11,6 +12,19 @@ def get_conn():
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
     return conn
+
+
+# Columns added to tree_nodes after the initial schema. Kept as a list so init_db
+# can apply each one idempotently via ALTER TABLE — safe to re-run and safe to
+# deploy against an older DB that already has data.
+SEO_COLUMNS = [
+    ("name_lv",     "TEXT"),
+    ("name_en",     "TEXT"),
+    ("slug_lv",     "TEXT"),
+    ("slug_en",     "TEXT"),
+    ("seo_desc_lv", "TEXT"),
+    ("seo_desc_en", "TEXT"),
+]
 
 
 def init_db():
@@ -47,6 +61,11 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_mappings_code ON mappings(tree_code);
             CREATE INDEX IF NOT EXISTS idx_sc_supplier ON supplier_categories(supplier);
         """)
+        # Additive SEO migration
+        existing = {r[1] for r in conn.execute("PRAGMA table_info(tree_nodes)").fetchall()}
+        for col, typ in SEO_COLUMNS:
+            if col not in existing:
+                conn.execute(f"ALTER TABLE tree_nodes ADD COLUMN {col} {typ}")
 
 
 # ---------- reads ----------
@@ -54,9 +73,52 @@ def init_db():
 def load_tree_nodes():
     with get_conn() as conn:
         rows = conn.execute(
-            "SELECT code, label, parent_code FROM tree_nodes ORDER BY code"
+            "SELECT code, label, parent_code, name_lv, name_en, slug_lv, slug_en, "
+            "seo_desc_lv, seo_desc_en FROM tree_nodes ORDER BY code"
         ).fetchall()
     return [dict(r) for r in rows]
+
+
+def load_seo_map() -> dict:
+    """Return {code: {name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en}}.
+    Entries with all SEO fields NULL are included with empty strings.
+    """
+    out = {}
+    with get_conn() as conn:
+        rows = conn.execute(
+            "SELECT code, name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en "
+            "FROM tree_nodes"
+        ).fetchall()
+    for r in rows:
+        out[r["code"]] = {
+            "name_lv":     r["name_lv"]     or "",
+            "name_en":     r["name_en"]     or "",
+            "slug_lv":     r["slug_lv"]     or "",
+            "slug_en":     r["slug_en"]     or "",
+            "seo_desc_lv": r["seo_desc_lv"] or "",
+            "seo_desc_en": r["seo_desc_en"] or "",
+        }
+    return out
+
+
+def save_seo(seo_edits: dict):
+    """Apply {code: {field: value, ...}} edits to tree_nodes SEO columns.
+    Only the fields present in each entry are updated; others are left as-is.
+    """
+    if not seo_edits:
+        return
+    allowed = {c for c, _ in SEO_COLUMNS}
+    with get_conn() as conn:
+        for code, fields in seo_edits.items():
+            sets, vals = [], []
+            for k, v in (fields or {}).items():
+                if k in allowed:
+                    sets.append(f"{k} = ?")
+                    vals.append(v if v is not None else "")
+            if not sets:
+                continue
+            vals.append(code)
+            conn.execute(f"UPDATE tree_nodes SET {', '.join(sets)} WHERE code = ?", vals)
 
 
 def load_supplier_categories():
@@ -111,7 +173,7 @@ def update_node_labels(renames: dict):
             conn.execute("UPDATE tree_nodes SET label = ? WHERE code = ?", (label, code))
 
 
-def sync_tree_nodes(nodes: list, deleted_codes: set | None = None):
+def sync_tree_nodes(nodes: list, deleted_codes: Optional[set] = None):
     """Sync tree structure: insert new, update existing, DROP any code not in the
     payload and not in `deleted_codes`. Drops handle slug renames — the old code
     disappears from tree_nodes so it never resurfaces on rebuild.
@@ -173,8 +235,8 @@ def build_tree_json(deleted_codes: set) -> dict:
     nodes = load_tree_nodes()
     order = load_state("order", {})
 
-    children: dict[str | None, list] = {}
-    labels: dict[str, str] = {}
+    children = {}  # parent_code -> [code, ...]
+    labels = {}    # code -> label
     for n in nodes:
         if n["code"] in deleted_codes:
             continue

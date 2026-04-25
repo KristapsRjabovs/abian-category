@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+  <category code="displays">
+    <name_en>Displays &amp; Projectors</name_en>
+    <name_lv>Monitori un projektori</name_lv>
+    <slug_en>displays-projectors</slug_en>
+    <slug_lv>monitori-projektori</slug_lv>
+    <seo_desc_en>Computer monitors, large-format displays, projectors and the mounts and accessories that complete an installation. The structure separates desktop monitors from signage and presentation gear so retail buyers, system integrators and AV teams can compare like-for-like models without sifting through projectors when they want a 27-inch monitor or a meeting room display upgrade.</seo_desc_en>
+    <seo_desc_lv>Datoru monitori, liela formāta displeji, projektori un stiprinājumi un piederumi, kas pabeidz uzstādījumu. Struktūra atdala galddatora monitorus no informatīvajiem un prezentāciju aprīkojuma, lai mazumtirgotāji, sistēmu integratori un AV komandas var salīdzināt līdzīgus modeļus, neapskatot projektorus, kad meklējat 27 collu monitoru vai sapulču telpas displeja atjauninājumu pasūtīšanai šodien.</seo_desc_lv>
+  </category>
+
+  <category code="displays/large-format">
+    <name_en>Large Format Displays &amp; Video Walls</name_en>
+    <name_lv>Liela formāta displeji un video sienas</name_lv>
+    <slug_en>large-format-displays</slug_en>
+    <slug_lv>liela-formata-displeji</slug_lv>
+    <seo_desc_en>Commercial displays from 43 inches through 110 inches plus modular video-wall panels, signage media players and direct-view LED tiles. Listings publish brightness, panel orientation, daily run-time rating and management software so AV designers spec a digital signage rollout that matches the lighting environment and operating hours of each retail or transport site.</seo_desc_en>
+    <seo_desc_lv>Komerciālie displeji no 43 līdz 110 collām, kā arī modulāri video sienu paneļi, informatīvo mediju atskaņotāji un tiešā skata LED elementi. Aprakstos publicēts spilgtums, paneļa orientācija, ikdienas darba laika klase un pārvaldības programmatūra, lai AV projektētāji izvēlas digitālo informācijas risinājumu, kas atbilst apgaismojuma videi un katra mazumtirdzniecības vai transporta objekta darbības stundām.</seo_desc_lv>
+  </category>
+
+  <category code="displays/large-format/signage">
+    <name_en>Signage Displays</name_en>
+    <name_lv>Informatīvie displeji</name_lv>
+    <slug_en>signage-displays</slug_en>
+    <slug_lv>informativie-displeji</slug_lv>
+    <seo_desc_en>Digital signage panels designed for retail windows, transit hubs, hotel lobbies and corporate communication walls running 16, 18 or 24 hours per day. Listings publish nit brightness, anti-reflective coatings, sealed cooling for outdoor use and built-in media player capability so signage operators choose displays that survive heat, sun and continuous content cycles in their target deployment site.</seo_desc_en>
+    <seo_desc_lv>Digitālie informatīvie paneļi, kas paredzēti mazumtirdzniecības skatlogiem, transporta mezgliem, viesnīcu vestibiliem un uzņēmumu komunikāciju sienām, kas darbojas 16, 18 vai 24 stundas diennaktī. Aprakstos publicēts spilgtums nitos, neatstarojošs pārklājums, slēgta dzesēšana āra lietošanai un iebūvēta mediju atskaņotāja iespēja, lai operatori izvēlas displejus, kas iztur karstumu, sauli un nepārtrauktus satura ciklus.</seo_desc_lv>
+  </category>
+
+  <category code="displays/large-format/video-walls">
+    <name_en>Video Walls</name_en>
+    <name_lv>Video sienas</name_lv>
+    <slug_en>video-walls</slug_en>
+    <slug_lv>video-sienas</slug_lv>
+    <seo_desc_en>LCD video-wall panels with narrow bezels, direct-view LED tiles and the controllers and mounts that turn a flat wall into a high-impact image surface. Listings publish bezel-to-bezel gap, native resolution, brightness and supported daisy-chain configurations so installers calculate the array size, controller count and viewing distance their client brief actually requires.</seo_desc_en>
+    <seo_desc_lv>LCD video sienu paneļi ar šaurām malām, tieši skatāmi LED elementi un kontrolieri un stiprinājumi, kas plakanu sienu pārvērš par augstas ietekmes attēla virsmu. Aprakstos publicēts atstarpe starp malām, dabiskā izšķirtspēja, spilgtums un atbalstītās ķēdes konfigurācijas, lai uzstādītāji aprēķina masīva izmēru, kontrolieru skaitu un skatīšanās attālumu, ko klienta uzdevums faktiski prasa objektā.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors">
+    <name_en>Monitors</name_en>
+    <name_lv>Monitori</name_lv>
+    <slug_en>monitors</slug_en>
+    <slug_lv>monitori</slug_lv>
+    <seo_desc_en>Office, professional and gaming desktop monitors covering diagonal sizes from 22 inches through 49 inches ultrawide. Listings publish panel technology (IPS, VA, OLED, mini-LED), refresh rate, response time, colour space coverage and connection ports so buyers compare across price tiers and pick a monitor that matches productivity work, photo editing or competitive gaming needs.</seo_desc_en>
+    <seo_desc_lv>Biroja, profesionālie un spēļu galddatoru monitori, kas aptver diagonāles izmērus no 22 collām līdz 49 collām ultraplata. Aprakstos publicēta paneļa tehnoloģija (IPS, VA, OLED, mini-LED), atsvaidzes frekvence, atbildes laiks, krāsu telpas pārklājums un savienojumu porti, lai pircēji salīdzina dažādās cenu klasēs un izvēlas monitoru, kas atbilst produktivitātes darbam, foto rediģēšanai vai sacensību spēļu vajadzībām.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors/accessories">
+    <name_en>Monitor Accessories</name_en>
+    <name_lv>Monitoru piederumi</name_lv>
+    <slug_en>monitor-accessories</slug_en>
+    <slug_lv>monitoru-piederumi</slug_lv>
+    <seo_desc_en>The mounting hardware, privacy filters, anti-glare overlays and adapter cables that turn a bare desk into a workable monitor setup. Listings group items by VESA pattern and screen diagonal so a facilities team or a hot-desk co-ordinator can spec a complete kit per workstation in one pass and roll it out across multiple offices on a planned schedule.</seo_desc_en>
+    <seo_desc_lv>Stiprinājumi, privātuma filtri, pretatspīduma pārklājumi un adapteru kabeļi, kas tukšu galdu pārvērš par funkcionālu monitora darba vietu. Aprakstos preces grupētas pēc VESA modeļa un ekrāna diagonāles, lai administratīvā komanda vai hot-desk koordinators var noteikt pilnu komplektu uz darba vietu vienā piegājienā un izvietot to vairākos birojos pēc plānota grafika ikmēneša ietvaros.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors/accessories/mounts">
+    <name_en>Monitor Mounts, Stands &amp; Arms</name_en>
+    <name_lv>Monitoru stiprinājumi un statīvi</name_lv>
+    <slug_en>monitor-mounts-arms</slug_en>
+    <slug_lv>monitoru-stiprinajumi-stativi</slug_lv>
+    <seo_desc_en>Single, dual, triple and four-screen monitor arms, fixed wall mounts, ceiling drops and free-standing risers for desks of all heights. Listings publish VESA pattern, supported diagonal range, weight capacity, articulation type and clamp or grommet mounting so a facilities team specifies arms that fit both their desks and the monitors already in service across each office floor.</seo_desc_en>
+    <seo_desc_lv>Viena, divu, trīs un četru ekrānu monitora rokas, fiksēti sienas stiprinājumi, griestu pārkari un brīvi stāvoši paaugstinājumi visu augstumu galdiem. Aprakstos publicēts VESA modelis, atbalstītais diagonāles diapazons, svara izturība, šarnīrtipa veids un skavu vai caurplūsmas stiprinājums, lai administratīvā komanda izvēlas rokas, kas atbilst gan galdiem, gan jau ekspluatācijā esošajiem monitoriem katrā stāvā.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors/accessories/other">
+    <name_en>Other Monitor Accessories</name_en>
+    <name_lv>Citi monitoru piederumi</name_lv>
+    <slug_en>other-monitor-accessories</slug_en>
+    <slug_lv>citi-monitoru-piederumi</slug_lv>
+    <seo_desc_en>Calibration probes, monitor light bars, webcam mounts that clip onto displays and the small accessories that improve a desk setup beyond the basic mount. Listings note exact compatibility (display thickness, VESA pattern) so colour-conscious creators, executives in video calls and analysts running multi-screen rigs can pick the right add-on without guesswork or cross-checking forum threads online.</seo_desc_en>
+    <seo_desc_lv>Kalibrācijas zondes, monitora gaismas joslas, web kameras stiprinājumi, kas piesprādzējas pie displejiem, un mazi piederumi, kas uzlabo darba vietu pāri parastajam stiprinājumam. Aprakstos atzīmēta precīza saderība (displeja biezums, VESA modelis), lai radoši krāsu speciālisti, vadītāji video zvanos un analītiķi ar vairākiem ekrāniem var izvēlēties pareizo papildinājumu bez minējumiem un foruma diskusiju pārbaudes tiešsaistē.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors/accessories/privacy">
+    <name_en>Privacy Filters</name_en>
+    <name_lv>Privātuma filtri</name_lv>
+    <slug_en>privacy-filters</slug_en>
+    <slug_lv>privatuma-filtri</slug_lv>
+    <seo_desc_en>Privacy screens for monitors and laptops that narrow the viewing angle so colleagues, fellow passengers or shoulder-surfers cannot read the display. Listings publish exact diagonal in inches, aspect ratio, magnetic versus adhesive attachment and reversible matte/gloss surface options, so financial, legal and healthcare teams comply with internal data-protection rules without sacrificing image quality on the user side.</seo_desc_en>
+    <seo_desc_lv>Privātuma ekrāni monitoriem un klēpjdatoriem, kas sašaurina skata leņķi, lai kolēģi, līdzbraucēji vai pāri plecu skatītāji nevarētu nolasīt ekrānu. Aprakstos publicēta precīza diagonāle collās, malu attiecība, magnētiskais vai pielīmējamais stiprinājums un atgriezeniska matēta/glancēta virsma, lai finanšu, juridiskās un veselības aprūpes komandas atbilst iekšējiem datu aizsardzības noteikumiem bez attēla kvalitātes zaudēšanas.</seo_desc_lv>
+  </category>
+
+  <category code="displays/monitors/accessories/usb-adapters">
+    <name_en>USB Graphics Adapters</name_en>
+    <name_lv>USB grafikas adapteri</name_lv>
+    <slug_en>usb-graphics-adapters</slug_en>
+    <slug_lv>usb-grafikas-adapteri</slug_lv>
+    <seo_desc_en>USB-C and USB-A graphics adapters that drive an extra HDMI or DisplayPort monitor from a laptop without an additional dock. Listings publish supported maximum resolution, refresh rate, dual-monitor capability and the operating systems verified by the manufacturer, so IT teams equip thin notebooks with the dual-screen workflow finance and analytics roles expect for productivity at every workstation.</seo_desc_en>
+    <seo_desc_lv>USB-C un USB-A grafikas adapteri, kas darbina papildu HDMI vai DisplayPort monitoru no klēpjdatora bez papildu dokstacijas. Aprakstos publicēts atbalstītā maksimālā izšķirtspēja, atsvaidzes frekvence, divu monitoru atbalsts un operētājsistēmas, ko ražotājs validējis, lai IT komandas aprīko plānos klēpjdatorus ar divu ekrānu darbplūsmu, ko finanšu un analītikas lomas sagaida produktivitātei katrā darba vietā.</seo_desc_lv>
+  </category>
+
+  <category code="displays/projectors">
+    <name_en>Projectors</name_en>
+    <name_lv>Projektori</name_lv>
+    <slug_en>projectors</slug_en>
+    <slug_lv>projektori</slug_lv>
+    <seo_desc_en>Office, classroom, home cinema and venue projectors using lamp, laser and LED light sources. Listings publish brightness in ANSI lumens, native resolution, throw ratio, HDR support and lamp life so installers and home cinema enthusiasts pick a projector that matches the room geometry, ambient light and content type their audience or family will actually be watching for years.</seo_desc_en>
+    <seo_desc_lv>Biroja, klases, mājas kino un pasākumu projektori ar lampu, lāzera un LED gaismas avotiem. Aprakstos publicēts spilgtums ANSI lūmenos, dabiskā izšķirtspēja, projekcijas attiecība, HDR atbalsts un lampas mūžs, lai uzstādītāji un mājas kino entuziasti izvēlas projektoru, kas atbilst telpas ģeometrijai, apgaismojumam un satura veidam, ko auditorija vai ģimene reāli skatīsies turpmākos gadus.</seo_desc_lv>
+  </category>
+
+  <category code="displays/projectors/lamps">
+    <name_en>Projector Lamps &amp; Lenses</name_en>
+    <name_lv>Projektoru lampas un objektīvi</name_lv>
+    <slug_en>projector-lamps-lenses</slug_en>
+    <slug_lv>projektoru-lampas-objektivi</slug_lv>
+    <seo_desc_en>Replacement projector lamps, OEM-genuine modules, third-party equivalents and interchangeable lenses for short-throw, standard and long-throw deployments. Listings publish exact projector model compatibility, lamp life rating, brightness change after install and warranty terms, so AV teams keep classrooms and meeting rooms running without the long delay of cross-shipping a spare lamp from outside the country.</seo_desc_en>
+    <seo_desc_lv>Nomaiņas projektoru lampas, OEM oriģināli moduļi, trešo pušu ekvivalenti un maināmi objektīvi īsa, standarta un gara projekcijas attāluma izvietojumiem. Aprakstos publicēta precīza projektora modeļa saderība, lampas darbības laika klase, spilgtuma izmaiņa pēc uzstādīšanas un garantijas nosacījumi, lai AV komandas uztur klases un sapulču telpas darbībā bez ilgas gaidīšanas uz rezerves lampas piegādi no ārvalstīm.</seo_desc_lv>
+  </category>
+
+  <category code="displays/projectors/mounting">
+    <name_en>Projector Mounts</name_en>
+    <name_lv>Projektoru stiprinājumi</name_lv>
+    <slug_en>projector-mounts</slug_en>
+    <slug_lv>projektoru-stiprinajumi</slug_lv>
+    <seo_desc_en>Ceiling, wall and short-throw mounts for projectors of every weight class, including height-adjustable extensions for high atriums and lecture halls. Listings publish weight capacity, drop-down length, projector compatibility list and security locking features, so AV installers spec mounts that hold a projector securely above seated audiences and remain serviceable for the full life of the installation.</seo_desc_en>
+    <seo_desc_lv>Griestu, sienas un īsa attāluma stiprinājumi projektoriem visās svara klasēs, ieskaitot augstuma regulējamus pagarinātājus augstām telpām un lekciju zālēm. Aprakstos publicēta svara izturība, izvirzījuma garums, projektoru saderības saraksts un drošības aizslēgšanas funkcijas, lai AV uzstādītāji izvēlas stiprinājumus, kas droši notur projektoru virs auditorijas un kalpo uzstādījuma pilnā mūžā.</seo_desc_lv>
+  </category>
+
+  <category code="displays/projectors/other">
+    <name_en>Other Projector Accessories</name_en>
+    <name_lv>Citi projektoru piederumi</name_lv>
+    <slug_en>other-projector-accessories</slug_en>
+    <slug_lv>citi-projektoru-piederumi</slug_lv>
+    <seo_desc_en>Carry cases, replacement remotes, interactive whiteboard kits, screen sprays and the small consumables that keep projection venues running between major refreshes. Listings note projector compatibility and packaging, so AV technicians and rental houses keep a small spares cupboard ready for the typical issues encountered in classrooms, conference centres and event venues during a busy season of bookings.</seo_desc_en>
+    <seo_desc_lv>Pārvadāšanas somas, nomaiņas pultis, interaktīvo tāfeļu komplekti, ekrāna sprays un mazas izejmateriāli, kas uztur projekciju vietas darbībā starp lielajiem atjauninājumiem. Aprakstos atzīmēta projektoru saderība un iepakojums, lai AV tehniķi un nomas uzņēmumi uztur nelielu rezerves daļu skapi tipiskām problēmām klasēs, konferenču centros un pasākumu vietās aizņemtā rezervēšanas sezonas laikā objektā.</seo_desc_lv>
+  </category>
+
+  <category code="displays/projectors/standard">
+    <name_en>Projectors &amp; Screens</name_en>
+    <name_lv>Projektori un ekrāni</name_lv>
+    <slug_en>projectors-screens</slug_en>
+    <slug_lv>projektori-ekrani</slug_lv>
+    <seo_desc_en>Standard-throw projectors paired with the appropriate fixed-frame, motorised and tripod projection screens for permanent installs and mobile presentation kits. Listings publish projector lumens and resolution, plus screen gain, aspect ratio and viewing surface material so a complete presentation system can be ordered together — bulb, screen and mounting hardware — for an end-to-end install ready to go.</seo_desc_en>
+    <seo_desc_lv>Standarta projekcijas attāluma projektori sapāroti ar piemērotiem fiksēta rāmja, motorizētiem un statīvu projekcijas ekrāniem pastāvīgām instalācijām un mobiliem prezentācijas komplektiem. Aprakstos publicēti projektora lūmeni un izšķirtspēja, kā arī ekrāna pastiprinājums, malu attiecība un projekcijas virsmas materiāls, lai pilnu prezentācijas sistēmu — spuldzi, ekrānu un stiprinājumus — varētu pasūtīt kopā gatavai uzstādīšanai objektā.</seo_desc_lv>
+  </category>
+</categories>

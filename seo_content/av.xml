@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+  <category code="av">
+    <name_en>Audio, Video &amp; TV</name_en>
+    <name_lv>Audio, video un TV</name_lv>
+    <slug_en>audio-video-tv</slug_en>
+    <slug_lv>audio-video-tv</slug_lv>
+    <seo_desc_en>Our audio, video and TV section gathers everything needed to build a living-room, boardroom or in-car entertainment setup. Browse televisions, speakers, surveillance kits, gaming peripherals and car audio from established brands, with compatibility notes and stock statuses synced from authorised distributors so every order matches the specification shown on each product page accurately.</seo_desc_en>
+    <seo_desc_lv>Audio, video un TV sadaļā apkopots viss, kas nepieciešams dzīvojamās istabas, sapulču telpas vai automašīnas izklaides sistēmai. Izvēlieties televizorus, skaļruņus, videonovērošanas komplektus, spēļu aksesuārus un auto audio no atzītiem zīmoliem — ar saderības piezīmēm un krājuma statusiem, kas sinhronizēti no oficiāliem izplatītājiem, lai katra prece pilnībā atbilstu aprakstam, ko redzat katrā produkta lapā.</seo_desc_lv>
+  </category>
+
+  <category code="av/accessories">
+    <name_en>AV Accessories</name_en>
+    <name_lv>AV piederumi</name_lv>
+    <slug_en>av-accessories</slug_en>
+    <slug_lv>av-piederumi</slug_lv>
+    <seo_desc_en>Finish any audio or video install with accessories that simply work. This section collects the cabling, microphones and mounting pieces that sit between core devices, from HDMI and optical leads to podcast mics and conference room add-ons. Listings focus on connector types, cable lengths and compatibility with the major TV, receiver and camera brands available today.</seo_desc_en>
+    <seo_desc_lv>Pabeidziet jebkuru audio vai video uzstādījumu ar piederumiem, kas vienkārši darbojas. Šajā sadaļā apkopoti kabeļi, mikrofoni un montāžas elementi starp galvenajām ierīcēm — no HDMI un optiskajiem vadiem līdz podkāstu mikrofoniem un sapulču telpas papildinājumiem. Katrai pozīcijai norādīts savienotāja tips, kabeļa garums un saderība ar populārajiem TV, resīveru un kameru zīmoliem, kas pieejami tirgū.</seo_desc_lv>
+  </category>
+
+  <category code="av/accessories/cables">
+    <name_en>AV Cables &amp; Adapters</name_en>
+    <name_lv>AV kabeļi un adapteri</name_lv>
+    <slug_en>av-cables-adapters</slug_en>
+    <slug_lv>av-kabeli-adapteri</slug_lv>
+    <seo_desc_en>HDMI 2.1, DisplayPort, optical TOSLINK, RCA and 3.5 mm audio leads alongside active signal adapters for modern displays and receivers. Each cable is listed with supported resolutions, refresh rates and HDR features so you know exactly what bandwidth you are buying. Bulk rolls and short patch lengths are both covered for projectors, home cinemas and AV racks.</seo_desc_en>
+    <seo_desc_lv>HDMI 2.1, DisplayPort, optiskie TOSLINK, RCA un 3,5 mm audio kabeļi kopā ar aktīviem signāla adapteriem mūsdienu displejiem un resīveriem. Katrs kabelis norādīts ar atbalstītajām izšķirtspējām, atsvaidzes frekvencēm un HDR iespējām, lai jūs precīzi zinātu, kādu caurlaidspēju saņemat. Apjoma ruļļi un īsi savienojuma garumi — projektoriem, mājas kinozālēm un AV skapjiem vienā sadaļā.</seo_desc_lv>
+  </category>
+
+  <category code="av/accessories/microphones">
+    <name_en>Microphones</name_en>
+    <name_lv>Mikrofoni</name_lv>
+    <slug_en>microphones</slug_en>
+    <slug_lv>mikrofoni</slug_lv>
+    <seo_desc_en>Condenser, dynamic, shotgun and lavalier microphones built for podcasting, streaming, video calls and live events. Listings detail pickup patterns, connection types such as USB, XLR, 3.5 mm or wireless and the bundled accessories like pop filters or shock mounts, so content creators and meeting rooms can choose a model tuned to their specific room acoustics and voice profile.</seo_desc_en>
+    <seo_desc_lv>Kondensatoru, dinamiskie, šautenes un piespraužamie mikrofoni podkāstiem, straumēšanai, video zvaniem un tiešraides pasākumiem. Pie katras pozīcijas norādīta uztveres diagramma, savienojuma veids, piemēram, USB, XLR, 3,5 mm vai bezvadu, un komplektā iekļautie piederumi, piemēram, pop filtri vai amortizatori, lai satura veidotāji un sapulču telpas izvēlētos modeli, kas piemērots balsij, telpas akustikai un ikdienas lietojumam.</seo_desc_lv>
+  </category>
+
+  <category code="av/car">
+    <name_en>Car Audio &amp; Video</name_en>
+    <name_lv>Auto audio un video</name_lv>
+    <slug_en>car-audio-video</slug_en>
+    <slug_lv>auto-audio-video</slug_lv>
+    <seo_desc_en>In-vehicle sound, multimedia and recording gear for fleets and personal cars. The section covers head units with CarPlay or Android Auto, amplifiers, speakers and dashcams, presented with power ratings, installation depth and compatibility notes so fitters can plan the job before ordering. Professional installers and retail buyers are both supported with same-day dispatch on stocked items.</seo_desc_en>
+    <seo_desc_lv>Iekšējais skaņas, multimediju un ierakstīšanas aprīkojums autoparkiem un privātām automašīnām. Sadaļā iekļautas magnetolas ar CarPlay vai Android Auto, pastiprinātāji, skaļruņi un videoreģistratori — ar jaudas parametriem, uzstādīšanas dziļumu un saderības piezīmēm, lai uzstādītāji varētu plānot darbu pirms pasūtīšanas. Piemēroti gan profesionāliem uzstādītājiem, gan mazumtirdzniecības klientiem ar ātru piegādi noliktavas precēm.</seo_desc_lv>
+  </category>
+
+  <category code="av/car/audio">
+    <name_en>Car Audio Systems</name_en>
+    <name_lv>Auto audio sistēmas</name_lv>
+    <slug_en>car-audio-systems</slug_en>
+    <slug_lv>auto-audio-sistemas</slug_lv>
+    <seo_desc_en>Single-DIN and double-DIN head units, component speakers, subwoofers and amplifiers for cars, vans and light commercial vehicles. Each product lists RMS power, speaker size, mounting depth and supported audio formats, making it easier to match a full system to a specific dash cut-out and match impedance between amplifier and driver during installation by a professional shop.</seo_desc_en>
+    <seo_desc_lv>Viena DIN un divu DIN magnetolas, komponentu skaļruņi, zemfrekvences skaļruņi un pastiprinātāji automašīnām, furgoniem un vieglajiem kravas transportlīdzekļiem. Katrai precei norādīta RMS jauda, skaļruņa izmērs, montāžas dziļums un atbalstītie audio formāti, lai vieglāk saskaņotu pilnu sistēmu konkrētam paneļa izgriezumam un saskaņotu pretestību starp pastiprinātāju un skaļruni uzstādīšanas laikā profesionālā darbnīcā.</seo_desc_lv>
+  </category>
+
+  <category code="av/car/dashcams">
+    <name_en>Car Video Recorders (Dashcams)</name_en>
+    <name_lv>Auto videoreģistratori</name_lv>
+    <slug_en>dashcams</slug_en>
+    <slug_lv>auto-videoregistratori</slug_lv>
+    <seo_desc_en>Front-facing, dual-channel and cabin dashcams with resolutions ranging from Full HD through 4K, with parking mode and optional GPS on selected models. Filters cover recording time, field of view and storage format. Fleet managers can compare models with cloud uploads and driver event tagging, while private drivers find compact cameras that fit neatly behind a rear-view mirror.</seo_desc_en>
+    <seo_desc_lv>Priekšējie, divkanālu un salona videoreģistratori ar izšķirtspēju no Full HD līdz 4K, ar stāvēšanas režīmu un papildu GPS atsevišķos modeļos. Filtri palīdz atlasīt pēc ieraksta laika, skata leņķa un glabāšanas formāta. Autoparka vadītāji var salīdzināt modeļus ar mākoņa augšupielādi un notikumu marķēšanu, savukārt privātie vadītāji atradīs kompaktas kameras, kas iederas aiz atpakaļskata spoguļa bez uzmanības piesaistīšanas.</seo_desc_lv>
+  </category>
+
+  <category code="av/games">
+    <name_en>Video Games &amp; Gadgets</name_en>
+    <name_lv>Video spēles un ierīces</name_lv>
+    <slug_en>video-games-gadgets</slug_en>
+    <slug_lv>video-speles-ierices</slug_lv>
+    <seo_desc_en>Consoles, controllers, VR headsets, gaming seating and the software titles that run on them, all organised so retail buyers and B2B customers can build a complete gaming bundle in a single pass through the catalogue. Specifications cover platform compatibility, connection type and bundle contents, and popular titles are tracked for stock across current console generations.</seo_desc_en>
+    <seo_desc_lv>Konsoles, kontrolieri, VR austiņas, spēļu sēdekļi un programmatūra, kas uz tiem darbojas — viss sakārtots tā, lai mazumtirgotāji un B2B klienti vienā solī caur katalogu varētu salikt pilnu spēļu komplektu. Specifikācijās iekļauta platformas saderība, savienojuma veids un komplekta saturs, un populāro spēļu krājumi tiek uzskaitīti galvenajās konsoļu paaudzēs, kas šodien aktuālas pircējiem.</seo_desc_lv>
+  </category>
+
+  <category code="av/games/consoles">
+    <name_en>Consoles &amp; VR</name_en>
+    <name_lv>Konsoles un VR</name_lv>
+    <slug_en>consoles-vr</slug_en>
+    <slug_lv>konsoles-vr</slug_lv>
+    <seo_desc_en>PlayStation, Xbox, Nintendo Switch and standalone VR headsets with matching bundles, storage upgrades and replacement parts. Listings state edition (digital versus disc drive), bundled titles, storage capacity and region so resellers and end customers can match a unit to their customer base without shipping returns over wrong SKUs. Both current and last-generation hardware sit side by side.</seo_desc_en>
+    <seo_desc_lv>PlayStation, Xbox, Nintendo Switch un patstāvīgās VR austiņas ar piemērotiem komplektiem, atmiņas paplašinājumiem un rezerves daļām. Pie katras pozīcijas norādīta versija (digitālā vai ar diska dzini), komplektā iekļautās spēles, atmiņas ietilpība un reģions, lai tālākpārdevēji un gala klienti izvēlētos ierīci, kas precīzi atbilst vajadzībām, bet netiktu atgrieztas nepareizas SKU. Gan pašreizējā, gan iepriekšējā paaudze pieejama blakus.</seo_desc_lv>
+  </category>
+
+  <category code="av/games/furniture">
+    <name_en>Gaming Chairs &amp; Tables</name_en>
+    <name_lv>Spēļu krēsli un galdi</name_lv>
+    <slug_en>gaming-chairs-tables</slug_en>
+    <slug_lv>spelu-kresli-galdi</slug_lv>
+    <seo_desc_en>Ergonomic gaming chairs, motorised standing desks and fixed-height gaming tables built for long sessions of play or stream production. Each product shows weight capacity, adjustment range, surface dimensions and included accessories such as cable trays or RGB lighting. Suitable for home setups, e-sport venues and office gaming rooms wanting a durable, height-adjustable workstation that lasts for years.</seo_desc_en>
+    <seo_desc_lv>Ergonomiski spēļu krēsli, motorizēti augstuma regulējami galdi un fiksēta augstuma spēļu galdi garām spēlēm vai straumēšanai. Katrai precei norādīta maksimālā slodze, regulēšanas amplitūda, virsmas izmēri un iekļautie aksesuāri, piemēram, kabeļu paplātes vai RGB apgaismojums. Piemēroti mājas darbstacijām, e-sporta telpām un biroju spēļu zonām, kur nepieciešama izturīga, regulējama darba vieta, kas kalpos ilgus gadus bez problēmām.</seo_desc_lv>
+  </category>
+
+  <category code="av/games/games">
+    <name_en>Games &amp; Software</name_en>
+    <name_lv>Spēles un programmatūra</name_lv>
+    <slug_en>games-software</slug_en>
+    <slug_lv>speles-programmatura</slug_lv>
+    <seo_desc_en>Physical and digital game titles for PlayStation, Xbox, Nintendo Switch and PC, along with subscription vouchers and add-on content from the major publishers. Each listing shows platform, edition, region lock and PEGI rating, so retail buyers can build shelf-ready displays and online sellers can match products to regional customer bases accurately across multiple sales channels at once.</seo_desc_en>
+    <seo_desc_lv>Fiziskas un digitālas spēles PlayStation, Xbox, Nintendo Switch un PC konsolēm, kā arī abonementu kodi un papildu saturs no lielākajiem izdevējiem. Katrā ierakstā norādīta platforma, izdevums, reģiona ierobežojums un PEGI vecuma marķējums, lai mazumtirgotāji varētu veidot plauktam gatavas ekspozīcijas, bet tiešsaistes pārdevēji precīzi saskaņotu preces ar reģionālo klientu bāzi vairākos tirdzniecības kanālos vienlaikus.</seo_desc_lv>
+  </category>
+
+  <category code="av/games/peripherals">
+    <name_en>Gaming Peripherals</name_en>
+    <name_lv>Spēļu perifērijas ierīces</name_lv>
+    <slug_en>gaming-peripherals</slug_en>
+    <slug_lv>spelu-periferijas-ierices</slug_lv>
+    <seo_desc_en>Controllers, racing wheels, flight sticks, arcade pads and other specialist input gear for consoles and PC gaming alike. Listings clarify which platforms each pad supports, whether force feedback is included, and what adapters are needed for cross-platform use, so tournament organisers and streamers can spec kits that match their chosen titles without late-stage compatibility surprises.</seo_desc_en>
+    <seo_desc_lv>Kontrolieri, braukšanas stūres, lidošanas rokturi, arkādes paneļi un citas specializētas spēļu ievades ierīces konsolēm un PC. Aprakstos precizēts, kādas platformas tiek atbalstītas, vai ir spēka atgriezeniskā saite un kādi adapteri nepieciešami starpplatformu lietošanai, lai turnīru organizatori un straumētāji var komplektēt aprīkojumu atbilstoši savām spēlēm bez vēlākiem saderības pārsteigumiem tieši pirms pasākuma.</seo_desc_lv>
+  </category>
+
+  <category code="av/headsets">
+    <name_en>Headsets &amp; Headphones</name_en>
+    <name_lv>Austiņas ar mikrofonu un bez</name_lv>
+    <slug_en>headsets-headphones</slug_en>
+    <slug_lv>austinas-ar-mikrofonu</slug_lv>
+    <seo_desc_en>Over-ear, on-ear and in-ear models built for music listening, voice calls, gaming sessions and contact-centre agent work. Filters separate wired from wireless, active noise cancellation from passive isolation, and single-ear call-centre sets from consumer stereo pairs so buyers can match the exact acoustic profile and microphone quality that their daily use actually demands on the job.</seo_desc_en>
+    <seo_desc_lv>Apkārt ausij, uz auss un ieliekamā tipa austiņas mūzikas klausīšanai, zvaniem, spēlēm un zvanu centru operatoru darbam. Filtri atdala vadu no bezvadu modeļiem, aktīvo trokšņu slāpēšanu no pasīvās izolācijas un vienas auss zvanu centra komplektus no patērētāju stereo austiņām, lai pircēji precīzi atlasītu akustisko profilu un mikrofona kvalitāti, kas nepieciešama ikdienas darbā ar klientiem.</seo_desc_lv>
+  </category>
+
+  <category code="av/headsets/accessories">
+    <name_en>Headset Accessories</name_en>
+    <name_lv>Austiņu piederumi</name_lv>
+    <slug_en>headset-accessories</slug_en>
+    <slug_lv>austinu-piederumi</slug_lv>
+    <seo_desc_en>Replacement ear pads, cushioned headbands, boom microphones, charging cradles and USB-C or Bluetooth dongles that extend the working life of existing headsets already in service. Accessories are listed by compatible model family, so call-centre operators refreshing a fleet can order matching parts without replacing the whole unit and keep sound quality consistent across agents on every shift.</seo_desc_en>
+    <seo_desc_lv>Nomaiņas auss polsteri, mīkstināti galvas loki, mikrofonu izlices, uzlādes statīvi un USB-C vai Bluetooth adapteri, kas pagarina jau lietotu austiņu darba mūžu. Piederumi norādīti pēc saderīgām modeļu saimēm, lai zvanu centri, atjaunojot aprīkojumu, varētu pasūtīt atbilstošas daļas bez visas ierīces nomaiņas un saglabāt vienotu skaņas kvalitāti starp operatoriem katrā maiņā neatkarīgi no vecuma.</seo_desc_lv>
+  </category>
+
+  <category code="av/home">
+    <name_en>Home Audio &amp; Video</name_en>
+    <name_lv>Mājas audio un video</name_lv>
+    <slug_en>home-audio-video</slug_en>
+    <slug_lv>majas-audio-video</slug_lv>
+    <seo_desc_en>Multi-room audio, AV receivers, media streamers and the glue that turns a TV room into a full home cinema setup. Products are grouped with an eye on interoperability, so Sonos, Airplay, Google Cast and DTS-enabled receivers sit alongside each other so installers can plan a coherent ecosystem before ordering rather than after the cables are already run.</seo_desc_en>
+    <seo_desc_lv>Vairāku telpu audio, AV resīveri, multimediju straumētāji un tas, kas TV istabu pārvērš par pilnu mājas kinozāli. Preces sakārtotas, ņemot vērā savstarpējo saderību — Sonos, AirPlay, Google Cast un DTS resīveri ir blakus, lai uzstādītāji varētu saplānot vienotu ekosistēmu pirms pasūtīšanas, nevis pēc tam, kad kabeļi jau izvilkti caur sienām.</seo_desc_lv>
+  </category>
+
+  <category code="av/home/audio">
+    <name_en>Home &amp; Network Audio</name_en>
+    <name_lv>Mājas un tīkla audio</name_lv>
+    <slug_en>home-network-audio</slug_en>
+    <slug_lv>majas-tikla-audio</slug_lv>
+    <seo_desc_en>Smart speakers, AV receivers, amplifiers and multi-room nodes that stream over Wi-Fi or Ethernet in modern homes. Each listing states supported streaming protocols, maximum output power and number of zones, helping integrators size equipment correctly when wiring a detached house, apartment or small hospitality venue for whole-home audio with no weak links in the signal chain.</seo_desc_en>
+    <seo_desc_lv>Viedskaļruņi, AV resīveri, pastiprinātāji un vairāku telpu mezgli, kas straumē pa Wi-Fi vai Ethernet modernās mājās. Katrā pozīcijā norādīti atbalstītie straumēšanas protokoli, maksimālā izejas jauda un zonu skaits — tas palīdz integratoriem pareizi izvēlēties aprīkojumu, savienojot savrupmāju, dzīvokli vai nelielu viesmīlības objektu vienotai mājas audio sistēmai bez vājām saitēm signāla ķēdē.</seo_desc_lv>
+  </category>
+
+  <category code="av/portable">
+    <name_en>Portable Audio &amp; Video</name_en>
+    <name_lv>Pārnēsājamais audio un video</name_lv>
+    <slug_en>portable-audio-video</slug_en>
+    <slug_lv>parnesajamais-audio-video</slug_lv>
+    <seo_desc_en>Battery-powered audio and video gear for travel, events and field work, ranging from Bluetooth party speakers to media players that remember where you paused between listening sessions. Each entry lists battery runtime, waterproof rating and connectivity so you know whether the device belongs on a beach, a construction site or a conference tabletop without any guesswork.</seo_desc_en>
+    <seo_desc_lv>Akumulatoru baroti audio un video risinājumi ceļojumiem, pasākumiem un darbam ārpus biroja — no Bluetooth ballīšu skaļruņiem līdz multimediju atskaņotājiem, kas atceras pauzes vietu starp klausīšanās sesijām. Katrā ierakstā norādīts akumulatora darbības laiks, ūdensnecaurlaidības klase un savienojumi, lai zinātu, vai ierīce paredzēta pludmalei, būvlaukumam vai konferenču galdam bez jebkādām minējumu spēlēm.</seo_desc_lv>
+  </category>
+
+  <category code="av/portable/mp3">
+    <name_en>MP3 &amp; Portable Media Players</name_en>
+    <name_lv>MP3 un pārnēsājamie atskaņotāji</name_lv>
+    <slug_en>mp3-portable-players</slug_en>
+    <slug_lv>mp3-parnesajamie-atskanotaji</slug_lv>
+    <seo_desc_en>Dedicated music players for sports, studio and hi-res listening, plus voice recorders used by journalists and court reporters in the field. Specifications cover supported codecs (FLAC, MP3, AAC, WAV), internal storage, expansion slots and DAC quality so audiophiles and mobile professionals can find a model suited to lossless libraries or demanding field recording workflows on location.</seo_desc_en>
+    <seo_desc_lv>Atsevišķi mūzikas atskaņotāji sportam, studijai un augstas izšķirtspējas klausīšanai, kā arī balss ierakstītāji, ko izmanto žurnālisti un tiesas reportieri darbā uz vietas. Specifikācijās norādīti atbalstītie kodeki (FLAC, MP3, AAC, WAV), iekšējā atmiņa, paplašinājuma sloti un DAC kvalitāte, lai audiofili un mobilie profesionāļi atrastu modeli, kas piemērots bezzuduma bibliotēkām vai prasīgām lauka ierakstu darbplūsmām objektā.</seo_desc_lv>
+  </category>
+
+  <category code="av/portable/speakers">
+    <name_en>Portable &amp; Wireless Speakers</name_en>
+    <name_lv>Pārnēsājamie un bezvadu skaļruņi</name_lv>
+    <slug_en>portable-wireless-speakers</slug_en>
+    <slug_lv>parnesajamie-bezvadu-skalruni</slug_lv>
+    <seo_desc_en>Bluetooth speakers sized from pocket-fit to party-ready, with IP ratings for outdoor use and rugged finishes for worksites. Listings compare battery life, driver size, stereo pairing and auxiliary inputs so shoppers balance loudness against portability, and rental businesses can stock matched pairs that chain together reliably for larger outdoor events and multi-day festivals without dropouts.</seo_desc_en>
+    <seo_desc_lv>Bluetooth skaļruņi no kabatas izmēra līdz ballīšu klasei ar IP aizsardzības klasi lietošanai ārpus telpām un izturīgiem korpusiem būvobjektiem. Aprakstos salīdzināts akumulatora darbības laiks, skaļruņa diametrs, stereo pāra veidošana un papildu ievadi, lai pircēji līdzsvarotu skaļumu ar pārnēsājamību, bet nomas uzņēmumi var iegādāties saskaņotus pārus, kas uzticami savienojas lielākiem pasākumiem un vairāku dienu festivāliem.</seo_desc_lv>
+  </category>
+
+  <category code="av/speakers">
+    <name_en>Speakers</name_en>
+    <name_lv>Skaļruņi</name_lv>
+    <slug_en>speakers</slug_en>
+    <slug_lv>skalruni</slug_lv>
+    <seo_desc_en>Bookshelf, floor-standing, in-ceiling and soundbar-format speakers for music, home cinema and professional install work. Each listing gives driver size, frequency response, sensitivity and impedance so integrators can pair them correctly with amplifiers and avoid mismatched loads on longer cable runs or multi-room setups. Both passive and active (self-powered) models are included for flexible system design.</seo_desc_en>
+    <seo_desc_lv>Plauktu, grīdas, iebūvētie un soundbar formāta skaļruņi mūzikai, mājas kino un profesionālai uzstādīšanai. Katrai pozīcijai norādīts skaļruņa diametrs, frekvenču diapazons, jutība un pretestība, lai integratori pareizi tos savienotu ar pastiprinātājiem un izvairītos no nesaskaņotām slodzēm garos kabeļu posmos vai vairāku telpu sistēmās. Pieejami gan pasīvie, gan aktīvie (pašbaroti) modeļi elastīgai sistēmas projektēšanai.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance">
+    <name_en>Video Surveillance</name_en>
+    <name_lv>Videonovērošana</name_lv>
+    <slug_en>video-surveillance</slug_en>
+    <slug_lv>videonoverosana</slug_lv>
+    <seo_desc_en>End-to-end CCTV equipment suitable for single-shop installs through multi-site enterprise deployments. The section groups cameras, recorders, intercoms, alarms and surveillance software so a project can be scoped entirely from a single supplier, reducing cross-vendor compatibility issues and letting installers build a coherent system with a consistent chain of support and warranty for years to come.</seo_desc_en>
+    <seo_desc_lv>Pilna apjoma videonovērošanas aprīkojums no atsevišķām veikalu uzstādīšanām līdz vairāku objektu uzņēmumiem ar sarežģītu infrastruktūru. Sadaļā apvienotas kameras, reģistratori, domofoni, signalizācijas un novērošanas programmatūra, lai projektu varētu pilnībā sagatavot no viena piegādātāja, samazinot savietojamības problēmas un ļaujot uzstādītājiem izveidot vienotu sistēmu ar konsekventu atbalsta un garantijas ķēdi turpmākos gadus pēc nodošanas ekspluatācijā.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/access-control">
+    <name_en>Access Controllers</name_en>
+    <name_lv>Piekļuves kontrolieri</name_lv>
+    <slug_en>access-controllers</slug_en>
+    <slug_lv>piekluves-kontrolieri</slug_lv>
+    <seo_desc_en>Door controllers, RFID panels and PoE-based access modules that manage entry for offices, warehouses and residential complexes with multiple entry points. Listings detail the number of doors supported, credential types (card, PIN, mobile, biometric) and integration paths with alarm or surveillance backends so integrators can size a controller before drawing cable runs through the building to each door.</seo_desc_en>
+    <seo_desc_lv>Durvju kontrolieri, RFID paneļi un PoE piekļuves moduļi, kas pārvalda ieeju birojos, noliktavās un dzīvojamajos kompleksos ar vairākām ieejām. Aprakstos norādīts atbalstīto durvju skaits, identifikācijas veidi (karte, PIN, mobilais tālrunis, biometrija) un integrācijas iespējas ar signalizācijas vai novērošanas sistēmām, lai integratori izvēlētos kontrolieri pirms kabeļu plānošanas caur ēku uz katrām durvīm.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/accessories">
+    <name_en>Video Surveillance Components</name_en>
+    <name_lv>Videonovērošanas komponenti</name_lv>
+    <slug_en>surveillance-components</slug_en>
+    <slug_lv>videonoverosanas-komponenti</slug_lv>
+    <seo_desc_en>The supporting parts behind every CCTV job — junction boxes, camera housings, PoE injectors, lens kits and specialty hard drives built for 24x7 surveillance write cycles that regular drives cannot handle. Each product lists environmental rating and continuous-operation tolerance so installers choose components that will run without failure across multi-year deployment windows in the field.</seo_desc_en>
+    <seo_desc_lv>Atbalsta daļas, kas stāv aiz katras CCTV uzstādīšanas — sadales kārbas, kameru korpusi, PoE injektori, objektīvu komplekti un specializēti cietie diski, kas domāti nepārtrauktai novērošanas ierakstīšanai 24/7, ko parastie diski nespēj. Katrai precei norādīta aizsardzības klase un nepārtrauktas darbības izturība, lai uzstādītāji izvēlētos komponentes, kas darbosies bez atteices vairākus gadus.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/alarms">
+    <name_en>Intruder &amp; Fire Alarms</name_en>
+    <name_lv>Ielaušanās un ugunsgrēka signalizācijas</name_lv>
+    <slug_en>intruder-fire-alarms</slug_en>
+    <slug_lv>ielausanas-ugunsgreka-signalizacijas</slug_lv>
+    <seo_desc_en>Motion sensors, glass-break detectors, smoke and heat alarms, control panels and sirens that together form a complete security and life-safety perimeter around a property. Specifications cover detection range, wireless frequency and approval certifications so installers meet local regulations for residential, retail and SME buildings without re-sourcing non-compliant devices after the inspection fails.</seo_desc_en>
+    <seo_desc_lv>Kustības sensori, stikla plīšanas detektori, dūmu un karstuma signalizatori, centrālie vadības paneļi, ugunsdrošības moduļi un sirēnas, kas kopā veido pilnu drošības un dzīvības aizsardzības perimetru ap objektu. Specifikācijās norādīts detektēšanas diapazons, bezvadu frekvence un sertifikācijas, lai uzstādītāji atbilstu vietējiem noteikumiem dzīvojamiem, mazumtirdzniecības un MVU objektiem bez neatbilstošu ierīču pārpasūtīšanas pēc pārbaudes komisijas apmeklējuma.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/cameras">
+    <name_en>Security Cameras</name_en>
+    <name_lv>Drošības kameras</name_lv>
+    <slug_en>security-cameras</slug_en>
+    <slug_lv>drosibas-kameras</slug_lv>
+    <seo_desc_en>IP and HD-over-coax cameras in bullet, dome, turret and PTZ formats for both indoor and outdoor coverage of commercial and private property. Each listing includes resolution, low-light capability, lens type and PoE class, so system designers can calculate switch power budgets and plan field-of-view overlaps before any cabling leaves the truck or service van on installation day.</seo_desc_en>
+    <seo_desc_lv>IP un HD-over-coax kameras bullet, dome, turret un PTZ formātos iekštelpu un āra uzraudzībai komerciāliem un privātiem objektiem ar dažādām apgaismojuma situācijām. Katrā pozīcijā norādīta izšķirtspēja, darbība vājā apgaismojumā, objektīva tips un PoE klase, lai sistēmas projektētāji var aprēķināt komutatora jaudas budžetu un plānot skata leņķu pārklāšanos pirms kabeļu ieguldīšanas objektā uzstādīšanas dienā.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/door-entry">
+    <name_en>Door Entry &amp; Intercoms</name_en>
+    <name_lv>Durvju piekļuve un domofoni</name_lv>
+    <slug_en>door-entry-intercoms</slug_en>
+    <slug_lv>durvju-pieklve-domofoni</slug_lv>
+    <seo_desc_en>Video doorbells, IP intercoms and network-based entry panels suitable for single dwellings, apartment blocks and commercial lobbies with high visitor traffic. Listings clarify wiring type (analogue, 2-wire, IP), supported app platforms and integration with building management, letting installers pair handsets and door stations confidently across properties of different sizes without re-quoting after site measurement.</seo_desc_en>
+    <seo_desc_lv>Video durvju zvani, IP domofoni un tīkla piekļuves paneļi privātmājām, dzīvokļu mājām un komerciālām uzgaidāmajām telpām ar lielu apmeklētāju plūsmu. Aprakstos precizēts kabeļu tips (analogs, 2 vadu, IP), atbalstītās lietotņu platformas un integrācija ar ēku pārvaldības sistēmām, lai uzstādītāji droši savienotu telefonus un durvju stacijas dažāda izmēra objektos bez piedāvājuma pārstrādes pēc mērījumiem.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/nvr-dvr">
+    <name_en>NVR, DVR &amp; Decoders</name_en>
+    <name_lv>NVR, DVR un dekoderi</name_lv>
+    <slug_en>nvr-dvr-decoders</slug_en>
+    <slug_lv>nvr-dvr-dekoderi</slug_lv>
+    <seo_desc_en>Network video recorders, hybrid DVRs and video decoders that aggregate camera streams for central monitoring and evidence retention. Each entry shows channel count, inbound bandwidth, RAID support and the video analytics licences included out of the box, so project managers can match a recorder to the planned camera count and data retention policy before the system goes live on day one.</seo_desc_en>
+    <seo_desc_lv>Tīkla video reģistratori, hibrīda DVR un video dekoderi, kas apkopo kameru plūsmas centralizētai uzraudzībai un materiālu saglabāšanai. Katrā ierakstā norādīts kanālu skaits, ienākošā joslas platuma jauda, RAID atbalsts un iekļautās video analītikas licences, lai projekta vadītāji saskaņotu reģistratoru ar plānoto kameru skaitu un datu saglabāšanas politiku pirms sistēmas palaišanas pirmajā dienā.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/readers">
+    <name_en>Readers</name_en>
+    <name_lv>Karšu lasītāji</name_lv>
+    <slug_en>access-readers</slug_en>
+    <slug_lv>piekluves-lasitaji</slug_lv>
+    <seo_desc_en>Stand-alone and networked card, fob and biometric readers for door entry, time-and-attendance and visitor management in workplaces. Models cover 125 kHz, MIFARE, DESFire and mobile credentials, with outputs to Wiegand and OSDP controllers so integrators can refresh a reader fleet without swapping the controller behind it — saving both installation cost and cabling work on large sites.</seo_desc_en>
+    <seo_desc_lv>Atsevišķi un tīkla karšu, piekariņu un biometriskie lasītāji durvju piekļuvei, darba laika uzskaitei un apmeklētāju pārvaldībai darba vietās. Modeļi atbalsta 125 kHz, MIFARE, DESFire un mobilos identifikatorus ar Wiegand un OSDP izejām, lai integratori varētu atjaunināt lasītāju parku, nemainot kontrolieri — tas ietaupa gan uzstādīšanas izmaksas, gan kabeļu darbu lielos objektos.</seo_desc_lv>
+  </category>
+
+  <category code="av/surveillance/software">
+    <name_en>Surveillance Software</name_en>
+    <name_lv>Novērošanas programmatūra</name_lv>
+    <slug_en>surveillance-software</slug_en>
+    <slug_lv>noverosanas-programmatura</slug_lv>
+    <seo_desc_en>Video management software, analytics modules and camera licences that sit on top of NVR or server hardware in larger deployments. Listings state channel counts, licensing model (perpetual, subscription or per camera) and compatible recorders so integrators can scope the software layer alongside the hardware in a single quote, avoiding surprise licence shortfalls that halt commissioning unexpectedly.</seo_desc_en>
+    <seo_desc_lv>Video pārvaldības programmatūra, analītikas moduļi un kameru licences, kas darbojas virs NVR vai servera aparatūras lielākos risinājumos. Aprakstos norādīts kanālu skaits, licencēšanas modelis (pastāvīgs, abonements vai par kameru) un saderīgie reģistratori, lai integratori programmatūras slāni novērtētu kopā ar aparatūru vienā piedāvājumā, izvairoties no vēlākām licenču iztrūkuma problēmām, kas aptur palaišanu.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs">
+    <name_en>Televisions</name_en>
+    <name_lv>Televizori</name_lv>
+    <slug_en>televisions</slug_en>
+    <slug_lv>televizori</slug_lv>
+    <seo_desc_en>Smart TVs, hospitality TVs, portable sets and specialist displays listed side by side with HDR support, refresh rate and diagonal size clearly marked on every product page. The structure helps retailers plan shelf assortments across price tiers and lets hoteliers and offices order commercial-grade sets that ship with the correct regulatory markings and firmware profile for their target market.</seo_desc_en>
+    <seo_desc_lv>Viedie televizori, viesmīlības TV, pārnēsājami modeļi un specializēti displeji sakārtoti blakus ar HDR atbalstu, atsvaidzes frekvenci un diagonāli skaidri norādītu katrā produkta lapā. Šī struktūra palīdz mazumtirgotājiem plānot plauktu sortimentu dažādās cenu klasēs un ļauj viesnīcām un birojiem pasūtīt komerciālas klases ierīces ar atbilstošiem marķējumiem un programmaparatūras profilu mērķa tirgum.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs/accessories">
+    <name_en>Smart TV Boxes &amp; Other Accessories</name_en>
+    <name_lv>Smart TV ierīces un citi piederumi</name_lv>
+    <slug_en>smart-tv-accessories</slug_en>
+    <slug_lv>smart-tv-piederumi</slug_lv>
+    <seo_desc_en>Android TV boxes, HDMI dongles, replacement remotes and TV cleaning kits that extend older televisions or upgrade the streaming experience without replacing the whole set. Product pages cover included streaming services, HDMI standards and remote compatibility so resellers can build affordable smart-home upgrade bundles for customers who want current features without forcing a full TV replacement every few years.</seo_desc_en>
+    <seo_desc_lv>Android TV iekārtas, HDMI spraudņi, rezerves pultis un TV tīrīšanas komplekti, kas paplašina vecākus televizorus vai uzlabo straumēšanas pieredzi bez visa televizora nomaiņas. Produkta lapās norādīti iekļautie straumēšanas pakalpojumi, HDMI standarti un pults saderība, lai tālākpārdevēji veidotu pieejamus viedo māju uzlabojumu komplektus klientiem, kuri vēlas mūsdienīgas funkcijas bez pilna televizora nomaiņas.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs/led-smart">
+    <name_en>LED &amp; Smart TVs</name_en>
+    <name_lv>LED un Smart TV</name_lv>
+    <slug_en>led-smart-tvs</slug_en>
+    <slug_lv>led-smart-tv</slug_lv>
+    <seo_desc_en>Consumer-grade LED, QLED and mini-LED televisions running the major smart platforms including webOS, Tizen, Google TV and Roku. Filters cover diagonal (from 32 to 85 inches), panel technology, HDR format and gaming-specific features such as 120 Hz and VRR — all the details a household or small business needs to pick between a bedroom set and a main living-room display confidently.</seo_desc_en>
+    <seo_desc_lv>Patērētāju klases LED, QLED un mini-LED televizori ar populārākajām viedo televizoru platformām, tostarp webOS, Tizen, Google TV un Roku. Filtri ietver diagonāli (no 32 līdz 85 collām), paneļa tehnoloģiju, HDR formātu un spēļu funkcijas, piemēram, 120 Hz un VRR — visu, kas mājsaimniecībai vai mazam uzņēmumam nepieciešams, lai izvēlētos starp guļamistabas un galvenās telpas televizoru.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs/media-players">
+    <name_en>Media Players &amp; Smart TV Boxes</name_en>
+    <name_lv>Mediju atskaņotāji un Smart TV iekārtas</name_lv>
+    <slug_en>media-players-tv-boxes</slug_en>
+    <slug_lv>mediju-atskanotaji-tv-iekartas</slug_lv>
+    <seo_desc_en>Apple TV, Google TV, Roku and Android media boxes for homes and hospitality venues that need a consistent streaming experience across rooms. Listings note the chipset, supported HDR formats, storage tier and pre-installed apps, enabling hotel groups to standardise rooms on a single streaming platform while home users compare price and performance across current-generation devices on the market.</seo_desc_en>
+    <seo_desc_lv>Apple TV, Google TV, Roku un Android mediju iekārtas mājām un viesmīlības objektiem, kur nepieciešama vienota straumēšanas pieredze starp telpām. Aprakstos norādīts mikroshēmojums, atbalstītie HDR formāti, atmiņas apjoms un priekšinstalētās lietotnes, kas ļauj viesnīcu grupām standartizēt numurus uz vienas straumēšanas platformas, bet mājas lietotājiem salīdzināt cenu un veiktspēju pašreizējās paaudzes ierīcēm tirgū.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs/mounts">
+    <name_en>TV Mounts &amp; Stands</name_en>
+    <name_lv>TV stiprinājumi un statīvi</name_lv>
+    <slug_en>tv-mounts-stands</slug_en>
+    <slug_lv>tv-stiprinajumi-stativi</slug_lv>
+    <seo_desc_en>Fixed, tilting, full-motion wall mounts, ceiling arms and floor trolleys for televisions ranging from 13 to 100 inches of diagonal screen size. Each listing gives VESA pattern, load capacity and tilt range so installers quickly match a bracket to a specific TV without cross-checking the manufacturer datasheet during a site visit or quoting a replacement bracket after install.</seo_desc_en>
+    <seo_desc_lv>Fiksēti, noliecami, pilnas kustības sienas stiprinājumi, griestu kronšteini un grīdas statīvi televizoriem no 13 līdz 100 collām diagonālē ar dažādām montāžas prasībām. Katrai precei norādīts VESA raksts, maksimālā slodze un noliekšanas diapazons, lai uzstādītāji ātri saskaņotu stiprinājumu ar konkrētu televizoru, nepārbaudot ražotāja datu lapu objektā un bez aizvietotāja stiprinājuma pēc uzstādīšanas dienas.</seo_desc_lv>
+  </category>
+
+  <category code="av/tvs/specialty">
+    <name_en>Hospitality &amp; Portable TVs</name_en>
+    <name_lv>Viesmīlības un pārnēsājamie televizori</name_lv>
+    <slug_en>hospitality-portable-tvs</slug_en>
+    <slug_lv>viesmilibas-parnesajamie-tv</slug_lv>
+    <seo_desc_en>Commercial hotel TVs with lockable settings and remote management features, plus battery-powered portable sets used in caravans, boats and site offices that lack mains power. Specifications highlight Pro:Idiom or LYNK support, 12 V DC inputs and rugged housing — the practical details that separate a compliant hotel installation from a returned consumer set that fails the initial commissioning review.</seo_desc_en>
+    <seo_desc_lv>Komerciālie viesnīcu televizori ar noslēdzamiem iestatījumiem un attālās pārvaldības funkcijām, un akumulatoru baroti pārnēsājami modeļi, ko izmanto dzīvojamās piekabēs, laivās un būvlaukuma birojos bez strāvas tīkla. Specifikācijās izcelts Pro:Idiom vai LYNK atbalsts, 12 V DC ievadi un izturīgs korpuss — praktiskie elementi, kas atšķir atbilstošu viesnīcu risinājumu no patērētāju modeļa, kas neiztur pārbaudi.</seo_desc_lv>
+  </category>
+</categories>
