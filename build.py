@@ -2,10 +2,11 @@
 Build script — run by Netlify (and locally before netlify dev).
 Generates:
   public/index.html               static tree editor with data embedded
-  netlify/functions/_data.json    supplier categories + paths for download function
+  netlify/functions/_data.json    supplier categories + paths + SEO for serverless functions
 """
 import csv
 import json
+import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
 
@@ -113,9 +114,33 @@ for key, codes in supmap.items():
 confirmed = sorted(bc.CONFIRMED_CODES)
 deleted   = sorted(deleted_set)
 
-# ---------- write _data.json for download function ----------
-OUT_DATA.write_text(json.dumps({"sources": sources, "paths": paths, "supmap": supmap}, ensure_ascii=False), encoding="utf-8")
-print(f"  → netlify/functions/_data.json")
+# ---------- SEO content from XML (hand-authored, version-controlled) ----------
+SEO_DIR = Path(__file__).parent / "seo_content"
+SEO_FIELDS = ("name_en", "name_lv", "slug_en", "slug_lv", "seo_desc_en", "seo_desc_lv")
+seo_data: dict = {}
+if SEO_DIR.is_dir():
+    for xml_path in sorted(SEO_DIR.glob("*.xml")):
+        try:
+            root = ET.parse(xml_path).getroot()
+        except ET.ParseError:
+            continue
+        for cat in root.findall("category"):
+            code = cat.get("code")
+            if not code or code in deleted_set:
+                continue
+            entry = {}
+            for f in SEO_FIELDS:
+                el = cat.find(f)
+                if el is not None and (el.text or "").strip():
+                    entry[f] = el.text.strip()
+            if entry:
+                seo_data[code] = entry
+
+# ---------- write _data.json for serverless functions ----------
+OUT_DATA.write_text(json.dumps({
+    "sources": sources, "paths": paths, "supmap": supmap, "seo": seo_data
+}, ensure_ascii=False), encoding="utf-8")
+print(f"  → netlify/functions/_data.json  ({len(seo_data)} SEO entries)")
 
 # ---------- stamp data into HTML template ----------
 tpl = (Path(__file__).parent / "templates" / "index.html").read_text(encoding="utf-8")
@@ -129,6 +154,7 @@ replacements = {
     "{{ paths_json | safe }}":     json.dumps(paths,      ensure_ascii=False),
     "{{ confirmed_json | safe }}": json.dumps(confirmed,  ensure_ascii=False),
     "{{ deleted_json | safe }}":   json.dumps(deleted,    ensure_ascii=False),
+    "{{ seo_json | safe }}":       json.dumps(seo_data,   ensure_ascii=False),
 }
 for placeholder, value in replacements.items():
     tpl = tpl.replace(placeholder, value)

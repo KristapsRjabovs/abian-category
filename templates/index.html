@@ -79,6 +79,28 @@
   .supplier-tag.also_data { background: #dbeafe; color: #1e40af; }
   .supplier-tag.elko { background: #dcfce7; color: #166534; }
   .empty { color: #9ca3af; font-style: italic; padding: 16px 0; }
+  .seo-panel { margin-top: 24px; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px;
+               background: #fafbfc; }
+  .seo-panel h3 { margin: 0 0 14px 0; font-size: 15px; color: #111827; }
+  .seo-panel.ro { background: #f9fafb; }
+  .seo-hint { color: #9ca3af; font-size: 12px; font-weight: normal; margin-left: 6px; }
+  .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-bottom: 14px; }
+  .seo-panel label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 4px;
+                     font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .seo-panel input { width: 100%; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 4px;
+                     font-size: 13px; box-sizing: border-box; }
+  .seo-panel textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;
+                        font-size: 13px; line-height: 1.5; resize: vertical; box-sizing: border-box;
+                        font-family: inherit; }
+  .seo-panel input:focus, .seo-panel textarea:focus {
+    outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  }
+  .seo-desc-block { margin-bottom: 12px; }
+  .seo-val { padding: 6px 0; font-size: 13px; color: #374151; line-height: 1.5; white-space: pre-wrap; }
+  .seo-val.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .seo-wc { font-weight: 500; font-size: 11px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+  .wc-ok  { background: #dcfce7; color: #166534; }
+  .wc-bad { background: #fee2e2; color: #991b1b; }
   .controls { margin-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
   .controls button { background: #e5e7eb; border: none; padding: 5px 10px; border-radius: 4px;
                      font-size: 12px; cursor: pointer; color: #374151; }
@@ -184,6 +206,7 @@
     <button id="saveBtn" class="primary">Save</button>
     <button id="dlAlsoBtn" class="dl">Download Also CSV</button>
     <button id="dlElkoBtn" class="dl">Download Elko CSV</button>
+    <button id="dlCategoriesBtn" class="dl" title="Magento category export">Export Categories</button>
   </div>
 </header>
 
@@ -233,9 +256,12 @@ const PATHS          = {{ paths_json | safe }};
 const SUPMAP_INIT    = {{ supmap_json | safe }};
 const CONFIRMED_INIT = {{ confirmed_json | safe }};
 const DELETED_INIT   = {{ deleted_json | safe }};
+const SEO_INIT       = {{ seo_json | safe }};
 
 let TREE_DATA     = JSON.parse(JSON.stringify(TREE_DATA_INIT));
 let SUPMAP        = JSON.parse(JSON.stringify(SUPMAP_INIT));
+let SEO           = JSON.parse(JSON.stringify(SEO_INIT || {}));
+const seoEdits    = {}; // code -> {field: value, ...} pending save
 const confirmedCodes = new Set(CONFIRMED_INIT);
 const deletedCodes   = new Set(DELETED_INIT);
 const renames        = {};   // code -> new label (tracked for server persistence)
@@ -353,6 +379,12 @@ async function init() {
         TREE_DATA = buildTreeFromNodes(s.tree_nodes);
       }
       if (s.supmap && Object.keys(s.supmap).length) SUPMAP = s.supmap;
+      if (s.seo) {
+        // Merge: baked content is the floor, Blobs overrides per-field
+        for (const [code, fields] of Object.entries(s.seo)) {
+          SEO[code] = { ...(SEO[code] || {}), ...fields };
+        }
+      }
       if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.forEach(c => confirmedCodes.add(c)); }
       if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
       if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
@@ -782,7 +814,8 @@ function showDetail(node, ancestors) {
     (subs ? `<div class="subs"><strong>Subcategories:</strong> ${subs}</div>` : "") +
     (mappings.length
       ? `<table><thead><tr><th>Supplier</th><th>Supplier category</th><th></th></tr></thead><tbody>${rowsHtml}</tbody></table>`
-      : `<div class="empty">No direct supplier mappings at this level (see subcategories).</div>`);
+      : `<div class="empty">No direct supplier mappings at this level (see subcategories).</div>`) +
+    renderSeoPanel(node);
 
   // Action buttons
   const acts = d.querySelector("#nodeActions");
@@ -813,6 +846,105 @@ function showDetail(node, ancestors) {
     });
     tr.addEventListener("dragend", () => tr.classList.remove("dragging"));
     tr.querySelector(".rm").onclick = ev => { ev.stopPropagation(); removeMapping(tr.dataset.key, node.code); };
+  });
+
+  wireSeoPanel(node);
+}
+
+// ── SEO panel ────────────────────────────────────────────────────────────────
+
+const LV_TRANSLIT = { 'ā':'a','č':'c','ē':'e','ģ':'g','ī':'i','ķ':'k','ļ':'l','ņ':'n','š':'s','ū':'u','ž':'z',
+                       'Ā':'a','Č':'c','Ē':'e','Ģ':'g','Ī':'i','Ķ':'k','Ļ':'l','Ņ':'n','Š':'s','Ū':'u','Ž':'z' };
+
+function slugify(text, lv) {
+  let t = (text || "").trim().toLowerCase();
+  if (lv) { let out = ""; for (const c of t) out += LV_TRANSLIT[c] || c; t = out; }
+  // Strip remaining diacritics
+  t = t.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+  t = t.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  return t;
+}
+
+function wordCount(text) { return ((text || "").trim().match(/\S+/g) || []).length; }
+
+function renderSeoPanel(node) {
+  const s = SEO[node.code] || {};
+  const ed = seoEdits[node.code] || {};
+  const v = (f) => (ed[f] !== undefined ? ed[f] : (s[f] || ""));
+  const wEn = wordCount(v("seo_desc_en"));
+  const wLv = wordCount(v("seo_desc_lv"));
+  const wcCls = (w) => (w >= 50 && w <= 70 ? "wc-ok" : "wc-bad");
+  if (!editMode) {
+    return `
+      <div class="seo-panel ro">
+        <h3>SEO &amp; Metadata</h3>
+        <div class="seo-grid">
+          <div><label>Name (EN)</label><div class="seo-val">${escapeHtml(v("name_en") || "—")}</div></div>
+          <div><label>Name (LV)</label><div class="seo-val">${escapeHtml(v("name_lv") || "—")}</div></div>
+          <div><label>Slug (EN)</label><div class="seo-val mono">${escapeHtml(v("slug_en") || "—")}</div></div>
+          <div><label>Slug (LV)</label><div class="seo-val mono">${escapeHtml(v("slug_lv") || "—")}</div></div>
+        </div>
+        <div class="seo-desc-block">
+          <label>Description (EN) <span class="${wcCls(wEn)}">${wEn} words</span></label>
+          <div class="seo-val">${escapeHtml(v("seo_desc_en") || "—")}</div>
+        </div>
+        <div class="seo-desc-block">
+          <label>Description (LV) <span class="${wcCls(wLv)}">${wLv} words</span></label>
+          <div class="seo-val">${escapeHtml(v("seo_desc_lv") || "—")}</div>
+        </div>
+      </div>`;
+  }
+  return `
+    <div class="seo-panel">
+      <h3>SEO &amp; Metadata <span class="seo-hint">(saved with the rest of your changes)</span></h3>
+      <div class="seo-grid">
+        <div><label>Name (EN)</label><input data-seo="name_en" value="${escapeHtml(v("name_en"))}"></div>
+        <div><label>Name (LV)</label><input data-seo="name_lv" value="${escapeHtml(v("name_lv"))}"></div>
+        <div><label>Slug (EN) <span class="seo-hint">auto from name</span></label><input data-seo="slug_en" value="${escapeHtml(v("slug_en"))}"></div>
+        <div><label>Slug (LV) <span class="seo-hint">auto from name</span></label><input data-seo="slug_lv" value="${escapeHtml(v("slug_lv"))}"></div>
+      </div>
+      <div class="seo-desc-block">
+        <label>Description (EN) <span class="seo-wc ${wcCls(wEn)}" data-wc="seo_desc_en">${wEn} / 50–70 words</span></label>
+        <textarea data-seo="seo_desc_en" rows="4">${escapeHtml(v("seo_desc_en"))}</textarea>
+      </div>
+      <div class="seo-desc-block">
+        <label>Description (LV) <span class="seo-wc ${wcCls(wLv)}" data-wc="seo_desc_lv">${wLv} / 50–70 words</span></label>
+        <textarea data-seo="seo_desc_lv" rows="4">${escapeHtml(v("seo_desc_lv"))}</textarea>
+      </div>
+    </div>`;
+}
+
+function wireSeoPanel(node) {
+  const d = document.getElementById("detail");
+  d.querySelectorAll(".seo-panel input, .seo-panel textarea").forEach(el => {
+    const field = el.dataset.seo;
+    el.addEventListener("input", () => {
+      seoEdits[node.code] = seoEdits[node.code] || {};
+      const wasNew = !(field in seoEdits[node.code]);
+      seoEdits[node.code][field] = el.value;
+      if (wasNew) { pendingChanges++; markPending(); }
+      if (field.startsWith("seo_desc_")) {
+        const lang = field.slice(-2);
+        const w = wordCount(el.value);
+        const wc = d.querySelector(`.seo-wc[data-wc="${field}"]`);
+        if (wc) {
+          wc.textContent = `${w} / 50–70 words`;
+          wc.classList.toggle("wc-ok", w >= 50 && w <= 70);
+          wc.classList.toggle("wc-bad", !(w >= 50 && w <= 70));
+        }
+      }
+    });
+    if (field === "name_en" || field === "name_lv") {
+      el.addEventListener("blur", () => {
+        const slugField = field === "name_en" ? "slug_en" : "slug_lv";
+        const slugEl = d.querySelector(`.seo-panel input[data-seo="${slugField}"]`);
+        if (slugEl && !slugEl.value.trim()) {
+          slugEl.value = slugify(el.value, slugField === "slug_lv");
+          seoEdits[node.code] = seoEdits[node.code] || {};
+          seoEdits[node.code][slugField] = slugEl.value;
+        }
+      });
+    }
   });
 }
 
@@ -855,6 +987,9 @@ document.getElementById("saveBtn").onclick = async () => {
     renames:    renames,
     paths:      computePaths(),
     tree_nodes: computeTreeNodes(),
+    seo_edits:  seoEdits,
+    // Echo the full SEO so Netlify Blobs has it on next reload (Flask ignores)
+    seo:        SEO,
   };
   const pc = document.getElementById("pendingCounter");
   pc.innerHTML = '<span style="color:#fde68a;">Saving\u2026</span>';
@@ -863,6 +998,11 @@ document.getElementById("saveBtn").onclick = async () => {
     if (!r.ok) { const t = await r.text(); throw new Error(r.status + " " + t); }
     const res = await r.json();
     pendingChanges = 0;
+    // Commit pending SEO edits into SEO map and clear staging area
+    for (const [code, fields] of Object.entries(seoEdits)) {
+      SEO[code] = { ...(SEO[code] || {}), ...fields };
+    }
+    for (const k of Object.keys(seoEdits)) delete seoEdits[k];
     pc.innerHTML = `<span class="saved">\u2713 Saved — ${res.confirmed} confirmed, ${res.deleted} deleted</span>`;
     document.getElementById("resetBtn").style.display = "none";
     setTimeout(() => { if (!pendingChanges) pc.innerHTML = ""; }, 4000);
@@ -871,6 +1011,29 @@ document.getElementById("saveBtn").onclick = async () => {
 
 document.getElementById("dlAlsoBtn").onclick = () => { window.location.href = "/api/download?supplier=also_data"; };
 document.getElementById("dlElkoBtn").onclick = () => { window.location.href = "/api/download?supplier=elko"; };
+
+document.getElementById("dlCategoriesBtn").onclick = async () => {
+  // First a HEAD-style call to surface validation errors without forcing download
+  try {
+    const r = await fetch("/api/category-export");
+    if (r.ok) {
+      // No problems — trigger the actual download
+      window.location.href = "/api/category-export";
+      return;
+    }
+    if (r.status === 422) {
+      const j = await r.json();
+      const lines = j.problems.slice(0, 30).map(p => `• ${p.code} [${p.field}] — ${p.reason}`).join("\n");
+      const more = j.total > 30 ? `\n\n…and ${j.total - 30} more issues.` : "";
+      const msg = `Cannot export — ${j.total} problem${j.total === 1 ? "" : "s"} found:\n\n${lines}${more}\n\nForce export with empty/invalid fields?`;
+      if (confirm(msg)) window.location.href = "/api/category-export?force=true";
+    } else {
+      alert("Export failed: " + r.status + " " + (await r.text()));
+    }
+  } catch (e) {
+    alert("Export failed: " + e.message);
+  }
+};
 
 document.getElementById("resetBtn").onclick = () => {
   if (!confirm("Discard all pending changes?")) return;
