@@ -11,6 +11,7 @@ export default async (req) => {
     const payload = await req.json();
     const sql = getSql();
 
+    const force            = !!payload.force;
     const treeNodes        = payload.tree_nodes        || [];
     const supmap           = payload.supmap            || {};
     const deleted          = payload.deleted           || [];
@@ -20,6 +21,27 @@ export default async (req) => {
     const renames          = payload.renames           || {};
     const seoEdits         = payload.seo_edits         || {};
     const deletedSet       = new Set(deleted);
+
+    // Safety net: don't let an empty payload wipe a populated database.
+    // Common cause: user clicks Save before /api/state finishes loading.
+    if (!force) {
+      const [{ count: treeCount }] = await sql`SELECT COUNT(*)::int AS count FROM tree_nodes`;
+      const [{ count: mapCount }]  = await sql`SELECT COUNT(*)::int AS count FROM mappings`;
+      if (treeCount > 0 && treeNodes.length === 0) {
+        return new Response(JSON.stringify({
+          ok: false, error: "empty tree_nodes would wipe DB",
+          hint: "set force=true to override" }),
+          { status: 409, headers: { "Content-Type": "application/json" } });
+      }
+      let incomingPairs = 0;
+      for (const v of Object.values(supmap)) incomingPairs += (v || []).length;
+      if (mapCount > 0 && incomingPairs === 0) {
+        return new Response(JSON.stringify({
+          ok: false, error: "empty supmap would wipe mappings",
+          hint: "set force=true to override" }),
+          { status: 409, headers: { "Content-Type": "application/json" } });
+      }
+    }
 
     // Build the full statement list, then ship it as one transaction so the
     // DB never observes a half-applied save.

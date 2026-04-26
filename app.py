@@ -107,14 +107,31 @@ def api_state():
 
 @app.route("/api/save", methods=["POST"])
 def api_save():
-    payload   = request.get_json(force=True)
-    supmap    = payload.get("supmap") or {}
-    deleted   = payload.get("deleted") or []
-    confirmed = payload.get("confirmed") or []
-    order     = payload.get("order") or {}
-    renames = payload.get("renames") or {}
+    payload    = request.get_json(force=True)
+    force      = bool(payload.get("force"))
+    supmap     = payload.get("supmap") or {}
+    deleted    = payload.get("deleted") or []
+    confirmed  = payload.get("confirmed") or []
+    order      = payload.get("order") or {}
+    renames    = payload.get("renames") or {}
     tree_nodes = payload.get("tree_nodes") or []
     seo_edits  = payload.get("seo_edits") or {}
+
+    # Safety net: refuse to wipe a populated database with an empty payload
+    # (the classic "user clicked Save before /api/state finished loading" bug).
+    # Caller must pass force=true to override.
+    if not force:
+        existing = db.load_mappings()
+        existing_nodes = db.load_tree_nodes()
+        if not tree_nodes and existing_nodes:
+            return jsonify(ok=False, error="empty tree_nodes would wipe DB",
+                           hint="set force=true to override"), 409
+        # supmap is supplier||cat -> [code]; sum the entries to catch zeroing
+        incoming_pairs = sum(len(v or []) for v in supmap.values())
+        if existing and incoming_pairs == 0:
+            return jsonify(ok=False, error="empty supmap would wipe mappings",
+                           hint="set force=true to override"), 409
+
     db.sync_tree_nodes(tree_nodes, set(deleted))
     orphans_dropped = db.save_mappings(supmap)
     db.update_node_labels(renames)

@@ -53,7 +53,9 @@ def main() -> int:
     # Preserve full parent_code map so sync_tree_nodes doesn't flatten the tree
     full_nodes = full_nodes_rows
     payload = {
-        "supmap":     {},
+        # send the existing supmap so the empty-payload safety guard doesn't
+        # 409 us — we're testing SEO + tree, not wiping mappings
+        "supmap":     before.get("supmap", {}),
         "deleted":    before.get("deleted", []),
         "confirmed":  before.get("confirmed", []),
         "content_confirmed": before.get("content_confirmed", []),
