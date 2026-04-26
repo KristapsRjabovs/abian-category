@@ -142,8 +142,9 @@
                cursor: pointer; font-weight: 700; line-height: 1.4; vertical-align: middle; }
   .edit-on .node-move { display: inline-block; }
   .node-move:hover { background: #c7d2fe; border-color: #6366f1; }
-  .node-chk { display: inline-block; width: 14px; height: 14px; margin-right: 4px;
-              vertical-align: top; margin-top: 3px; cursor: pointer; accent-color: #10b981; }
+  /* .node-chk lives in the DOM but is hidden — confirmed checkbox is in the
+     detail panel. Kept as a hidden input so legacy code referencing entry.chkEl
+     still works. */
   .label.confirmed { background: #ecfdf5; border-left: 3px solid #10b981; padding-left: 4px; }
   .label.confirmed:hover { background: #d1fae5; }
   .label.selected, .label.selected.confirmed, .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }

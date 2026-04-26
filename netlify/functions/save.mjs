@@ -1,56 +1,124 @@
-import { getStore } from "@netlify/blobs";
+import { getSql } from "./_db.mjs";
+
+const SEO_COLS = [
+  "name_lv", "slug_lv", "slug_en",
+  "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en",
+];
 
 export default async (req) => {
   try {
     const payload = await req.json();
-    const store = getStore("category-state");
-    const existing = (await store.get("state", { type: "json" })) || {};
+    const sql = getSql();
 
-    // SEO is special: Blobs should only ever hold the user's accumulated
-    // edits (delta vs baked). Apply incoming seo_edits on top of existing
-    // delta; never blindly replace with the full SEO map echoed by the UI.
-    const existingSeo = (existing.seo && typeof existing.seo === "object") ? existing.seo : {};
-    const seoEdits = (payload.seo_edits && typeof payload.seo_edits === "object")
-      ? payload.seo_edits : {};
-    const mergedSeo = { ...existingSeo };
-    for (const [code, fields] of Object.entries(seoEdits)) {
-      const cur = { ...(mergedSeo[code] || {}) };
-      for (const [k, v] of Object.entries(fields || {})) {
-        if (typeof v === "string" && v.trim()) cur[k] = v;
-      }
-      if (Object.keys(cur).length) mergedSeo[code] = cur;
+    const treeNodes        = payload.tree_nodes        || [];
+    const supmap           = payload.supmap            || {};
+    const deleted          = payload.deleted           || [];
+    const confirmed        = payload.confirmed         || [];
+    const contentConfirmed = payload.content_confirmed || [];
+    const order            = payload.order             || {};
+    const renames          = payload.renames           || {};
+    const seoEdits         = payload.seo_edits         || {};
+    const deletedSet       = new Set(deleted);
+
+    // Build the full statement list, then ship it as one transaction so the
+    // DB never observes a half-applied save.
+    const queries = [];
+
+    // ── tree_nodes sync ───────────────────────────────────────────────
+    const existing = new Set(
+      (await sql`SELECT code FROM tree_nodes`).map(r => r.code));
+    const live = new Set(treeNodes.map(n => n.code));
+
+    // Bulk-upsert via a single VALUES list
+    if (treeNodes.length) {
+      // Neon serverless tag doesn't accept array-of-tuples directly, so build
+      // a parameterised statement: VALUES ($1,$2,$3),($4,$5,$6),...
+      const vals = [];
+      for (const n of treeNodes) vals.push(n.code, n.label, n.parent_code || null);
+      const tuples = treeNodes.map((_, i) =>
+        `($${i*3+1}, $${i*3+2}, $${i*3+3})`).join(",");
+      queries.push(sql.unsafe(
+        `INSERT INTO tree_nodes(code, label, parent_code) VALUES ${tuples}
+         ON CONFLICT (code) DO UPDATE
+         SET label = EXCLUDED.label, parent_code = EXCLUDED.parent_code`,
+        vals));
+    }
+    // Drop zombies (in DB, not in payload, not intentionally deleted)
+    const zombies = [...existing].filter(c => !live.has(c) && !deletedSet.has(c));
+    if (zombies.length) {
+      queries.push(sql`DELETE FROM tree_nodes WHERE code = ANY(${zombies})`);
     }
 
-    // Referential integrity: drop any supmap code that is not present in the
-    // current tree_nodes. Same guard as Flask db.save_mappings.
-    const liveCodes = new Set((payload.tree_nodes || []).map(n => n.code));
-    const cleanSupmap = {};
+    // ── label renames ─────────────────────────────────────────────────
+    for (const [code, label] of Object.entries(renames)) {
+      queries.push(sql`UPDATE tree_nodes SET label = ${label} WHERE code = ${code}`);
+    }
+
+    // ── mappings: drop orphans, replace ───────────────────────────────
+    // We can't easily verify orphan codes against post-tx state, so trust the
+    // tree_nodes upsert above and accept anything in `live` plus pre-existing.
+    const validCodes = new Set([...live, ...existing]);
     let orphansDropped = 0;
-    for (const [k, codes] of Object.entries(payload.supmap || {})) {
-      const kept = (codes || []).filter(c => liveCodes.has(c));
-      orphansDropped += (codes || []).length - kept.length;
-      cleanSupmap[k] = kept;
+    const mapRows = [];
+    for (const [key, codes] of Object.entries(supmap)) {
+      const sep = key.indexOf("||");
+      if (sep < 0) continue;
+      const supplier = key.slice(0, sep), category = key.slice(sep + 2);
+      for (const code of codes || []) {
+        if (validCodes.has(code) && !deletedSet.has(code)) {
+          mapRows.push(supplier, category, code);
+        } else {
+          orphansDropped++;
+        }
+      }
+    }
+    queries.push(sql`DELETE FROM mappings`);
+    if (mapRows.length) {
+      const tuples = [];
+      for (let i = 0; i < mapRows.length; i += 3) {
+        tuples.push(`($${i+1}, $${i+2}, $${i+3})`);
+      }
+      queries.push(sql.unsafe(
+        `INSERT INTO mappings(supplier, category, tree_code) VALUES ${tuples.join(",")}
+         ON CONFLICT DO NOTHING`,
+        mapRows));
     }
 
-    const next = {
-      ...payload,
-      supmap: cleanSupmap,
-      seo: mergedSeo,
-    };
-    delete next.seo_edits; // not part of stored state
-    await store.setJSON("state", next);
+    // ── SEO edits (whitelist column names) ────────────────────────────
+    for (const [code, fields] of Object.entries(seoEdits)) {
+      for (const k of SEO_COLS) {
+        if (!(k in (fields || {}))) continue;
+        const v = fields[k] ?? "";
+        // Column whitelisted via SEO_COLS, value parameterised. Safe.
+        queries.push(sql.unsafe(
+          `UPDATE tree_nodes SET ${k} = $1 WHERE code = $2`,
+          [v, code]));
+      }
+    }
+
+    // ── tree_state ────────────────────────────────────────────────────
+    const upsert = (key, value) => sql`
+      INSERT INTO tree_state(key, value) VALUES (${key}, ${JSON.stringify(value)})
+      ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`;
+    queries.push(upsert("deleted",           [...new Set(deleted)].sort()));
+    queries.push(upsert("confirmed",         [...new Set(confirmed)].sort()));
+    queries.push(upsert("content_confirmed", [...new Set(contentConfirmed)].sort()));
+    queries.push(upsert("order",   order));
+
+    // Single round-trip; atomic on the Neon side.
+    await sql.transaction(queries);
 
     return Response.json({
       ok: true,
-      confirmed: (payload.confirmed || []).length,
-      deleted:   (payload.deleted   || []).length,
-      orphans_dropped: orphansDropped,
+      confirmed:         confirmed.length,
+      deleted:           deleted.length,
+      content_confirmed: contentConfirmed.length,
+      seo_updated:       Object.keys(seoEdits).length,
+      orphans_dropped:   orphansDropped,
     });
   } catch (e) {
-    return new Response(JSON.stringify({ error: e.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(JSON.stringify({ error: e.message, stack: e.stack }),
+      { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };
 

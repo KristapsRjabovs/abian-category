@@ -1,4 +1,5 @@
-# SQLite scratch files (the .db itself IS committed; it is the source of truth)
+# SQLite scratch files. category.db itself is committed only until the
+# Postgres import migration runs in production; after that it can be deleted.
 category.db-shm
 category.db-wal
 

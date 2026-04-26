@@ -1,15 +1,11 @@
 """
-Tiny migrations runner.
+Tiny Postgres migrations runner.
 
-A migration is a Python file in migrations/ named NNN_short_name.py that
-exposes an `apply(conn)` function. Files are applied in numeric order; each
-applied filename is recorded in the _migrations table so it never re-runs.
+A migration is migrations/NNN_short_name.py exposing apply(conn). Files are
+applied in numeric order and recorded in _migrations so each runs at most once.
 
-Run any time after pulling new code:
-    python3 migrate.py
-
-Status only:
-    python3 migrate.py --status
+    python3 migrate.py            # apply pending
+    python3 migrate.py --status   # show applied vs pending
 """
 import argparse
 import importlib.util
@@ -27,14 +23,17 @@ def _list_migrations():
 
 
 def _ensure_table(conn):
-    conn.execute("""CREATE TABLE IF NOT EXISTS _migrations (
-        name      TEXT PRIMARY KEY,
-        applied_at TEXT NOT NULL DEFAULT (datetime('now'))
-    )""")
+    with conn.cursor() as cur:
+        cur.execute("""CREATE TABLE IF NOT EXISTS _migrations (
+            name        TEXT PRIMARY KEY,
+            applied_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+        )""")
 
 
 def _applied(conn) -> set:
-    return {r[0] for r in conn.execute("SELECT name FROM _migrations").fetchall()}
+    with conn.cursor() as cur:
+        cur.execute("SELECT name FROM _migrations")
+        return {r[0] for r in cur.fetchall()}
 
 
 def _load(path: Path):
@@ -45,7 +44,7 @@ def _load(path: Path):
 
 
 def status() -> int:
-    with db.get_conn() as conn:
+    with db.get_conn(prefer_unpooled=True) as conn:
         _ensure_table(conn)
         done = _applied(conn)
     files = _list_migrations()
@@ -61,19 +60,19 @@ def status() -> int:
 
 
 def apply_pending() -> int:
-    with db.get_conn() as conn:
+    with db.get_conn(prefer_unpooled=True) as conn:
         _ensure_table(conn)
         done = _applied(conn)
     pending = [p for p in _list_migrations() if p.name not in done]
     if not pending:
-        print("Nothing to migrate.")
         return 0
     for path in pending:
         print(f"applying {path.name} ...")
         mod = _load(path)
-        with db.get_conn() as conn:
+        with db.get_conn(prefer_unpooled=True) as conn:
             mod.apply(conn)
-            conn.execute("INSERT INTO _migrations(name) VALUES (?)", (path.name,))
+            with conn.cursor() as cur:
+                cur.execute("INSERT INTO _migrations(name) VALUES (%s)", (path.name,))
         print(f"  ok")
     print(f"\nApplied {len(pending)} migration(s).")
     return 0

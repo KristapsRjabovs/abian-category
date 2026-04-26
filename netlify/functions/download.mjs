@@ -1,44 +1,36 @@
-import { getStore } from "@netlify/blobs";
-import { readFileSync } from "fs";
+import { getSql, loadState, loadTreeNodes, loadMappings,
+         loadSupplierCategories, buildPaths, csvRow } from "./_db.mjs";
 
-const appData = JSON.parse(readFileSync(new URL("./_data.json", import.meta.url), "utf-8"));
-
-function csvRow(values) {
-  return values.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(",");
-}
-
-export default async (req, context) => {
+export default async (req) => {
   const url      = new URL(req.url);
   const supplier = url.searchParams.get("supplier") || "also_data";
 
-  let state = {};
-  try {
-    const store = getStore("category-state");
-    state = (await store.get("state", { type: "json" })) || {};
-  } catch {}
+  const sql      = getSql();
+  const state    = await loadState(sql);
+  const nodes    = await loadTreeNodes(sql);
+  const all_sc   = await loadSupplierCategories(sql);
+  const mappings = await loadMappings(sql);
 
-  // Merge: baked-in build data is the source of truth for clean codes.
-  // Netlify Blobs state.supmap can be stale — only use entries whose codes still exist in the fresh build.
-  const builtSupmap = appData.supmap || {};
-  const paths       = appData.paths  || {};
-  const validCodes  = new Set(Object.keys(paths));
-  const blobSupmap  = state.supmap || {};
-  const supmap      = { ...builtSupmap };
-  for (const [key, codes] of Object.entries(blobSupmap)) {
-    const filtered = codes.filter(c => validCodes.has(c));
-    if (filtered.length) supmap[key] = filtered;
+  const deleted   = new Set(state.deleted);
+  const paths     = buildPaths(nodes, deleted);
+  const liveCodes = new Set(nodes.filter(n => !deleted.has(n.code)).map(n => n.code));
+
+  const byCat = new Map();
+  for (const m of mappings) {
+    if (m.supplier !== supplier) continue;
+    if (!liveCodes.has(m.tree_code)) continue;
+    (byCat.get(m.category) || byCat.set(m.category, []).get(m.category)).push(m.tree_code);
   }
-  const { sources } = appData;
-  const categories = sources[supplier] || [];
 
-  const lines = [csvRow(["supplier_name", "supplier_category", "client_category_code", "client_category_label"])];
-  for (const [sup, cat] of categories) {
-    const codes = supmap[sup + "||" + cat] || [];
-    if (codes.length === 0) {
-      lines.push(csvRow([sup, cat, "", ""]));
+  const lines = [csvRow(["supplier_name", "supplier_category",
+                         "client_category_code", "client_category_label"])];
+  for (const r of all_sc.filter(r => r.supplier === supplier)) {
+    const codes = byCat.get(r.category) || [];
+    if (!codes.length) {
+      lines.push(csvRow([supplier, r.category, "", ""]));
     } else {
       for (const code of codes) {
-        lines.push(csvRow([sup, cat, code, paths[code] || ""]));
+        lines.push(csvRow([supplier, r.category, code, paths[code] || ""]));
       }
     }
   }

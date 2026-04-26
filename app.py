@@ -98,12 +98,11 @@ def api_state():
     confirmed         = db.load_state("confirmed", [])
     content_confirmed = db.load_state("content_confirmed", [])
     order             = db.load_state("order", {})
-    renames           = db.load_state("renames", {})
     supmap            = db.build_supmap()
     seo_map           = db.load_seo_map()
     return jsonify(dict(supmap=supmap, deleted=deleted, confirmed=confirmed,
                         content_confirmed=content_confirmed,
-                        order=order, renames=renames, seo=seo_map))
+                        order=order, renames={}, seo=seo_map))
 
 
 @app.route("/api/save", methods=["POST"])
@@ -121,11 +120,13 @@ def api_save():
     db.update_node_labels(renames)
     db.save_seo(seo_edits)
     content_confirmed = payload.get("content_confirmed") or []
+    # `renames` is applied via update_node_labels above; no need to persist
+    # the diff in tree_state — update_node_labels mutates tree_nodes.label
+    # directly and that becomes the new baseline for next load.
     db.save_state("deleted",           sorted(set(deleted)))
     db.save_state("confirmed",         sorted(set(confirmed)))
     db.save_state("content_confirmed", sorted(set(content_confirmed)))
     db.save_state("order",             order)
-    db.save_state("renames",           renames)
     return jsonify(ok=True, confirmed=len(confirmed), deleted=len(deleted),
                    content_confirmed=len(content_confirmed),
                    seo_updated=len(seo_edits),

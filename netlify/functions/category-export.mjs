@@ -1,15 +1,11 @@
-import { getStore } from "@netlify/blobs";
-import { readFileSync } from "fs";
+import { getSql, loadState, loadTreeNodes, loadSeoMap,
+         buildPaths, csvRow } from "./_db.mjs";
 
-const appData = JSON.parse(readFileSync(new URL("./_data.json", import.meta.url), "utf-8"));
+const SEO_DESC_WORDS  = [50, 70];
+const META_DESC_CHARS = [120, 160];
+const CANNIBAL_HARD   = 0.75;
 
-function csvRow(values) {
-  return values.map(v => '"' + String(v ?? "").replace(/"/g, '""') + '"').join(",");
-}
-
-function wordCount(text) {
-  return ((text || "").trim().match(/\S+/g) || []).length;
-}
+const wordCount = (t) => ((t || "").trim().match(/\S+/g) || []).length;
 
 function trigrams(text) {
   const t = (text || "").toLowerCase().replace(/\s+/g, " ").trim();
@@ -18,24 +14,20 @@ function trigrams(text) {
   for (let i = 0; i <= t.length - 3; i++) out.add(t.slice(i, i + 3));
   return out;
 }
-
 function similarity(a, b) {
   const ga = trigrams(a), gb = trigrams(b);
-  if (!ga.size || !gb.size) return 0;
   let inter = 0;
   for (const x of ga) if (gb.has(x)) inter++;
   const union = ga.size + gb.size - inter;
   return union ? inter / union : 0;
 }
 
-// Stable category IDs — pre-order traversal of the live tree.
-function buildCategoryIds(treeNodes, deleted, order) {
+function buildCategoryIds(nodes, deleted, order) {
   const byParent = new Map();
-  for (const n of treeNodes) {
+  for (const n of nodes) {
     if (deleted.has(n.code)) continue;
     const p = n.parent_code || null;
-    if (!byParent.has(p)) byParent.set(p, []);
-    byParent.get(p).push(n);
+    (byParent.get(p) || byParent.set(p, []).get(p)).push(n);
   }
   const sortChildren = (parentCode) => {
     const lst = byParent.get(parentCode) || [];
@@ -60,79 +52,59 @@ function buildCategoryIds(treeNodes, deleted, order) {
   const ids = new Map();
   let counter = 1;
   const walk = (parent) => {
-    for (const n of sortChildren(parent)) {
-      ids.set(n.code, counter++);
-      walk(n.code);
-    }
+    for (const n of sortChildren(parent)) { ids.set(n.code, counter++); walk(n.code); }
   };
   walk(null);
   return ids;
 }
 
 export default async (req) => {
-  const url = new URL(req.url);
+  const url   = new URL(req.url);
   const force = url.searchParams.get("force") === "true";
 
-  let state = {};
-  try {
-    const store = getStore("category-state");
-    state = (await store.get("state", { type: "json" })) || {};
-  } catch {}
+  const sql   = getSql();
+  const state = await loadState(sql);
+  const nodes = await loadTreeNodes(sql);
+  const seo   = await loadSeoMap(sql);
 
-  // Tree nodes: prefer Blobs state (live edits), else build from baked paths.
-  let treeNodes = state.tree_nodes;
-  if (!Array.isArray(treeNodes) || !treeNodes.length) {
-    // Reconstruct minimal node list from baked paths — every code with a parent path segment.
-    const codes = Object.keys(appData.paths || {});
-    treeNodes = codes.map(code => {
-      const parts = code.split("/");
-      const parent_code = parts.length > 1 ? parts.slice(0, -1).join("/") : null;
-      // Use last path segment of breadcrumb for label fallback
-      const path = appData.paths[code] || "";
-      const label = path.split(" > ").pop() || code;
-      return { code, label, parent_code };
-    });
-  }
-
-  const deleted = new Set(state.deleted || []);
-  const order = state.order || {};
-  const cat_ids = buildCategoryIds(treeNodes, deleted, order);
-
-  // Merge SEO: Blobs edits override baked content per-field
-  const bakedSeo = appData.seo || {};
-  const blobsSeo = state.seo || {};
-  const seoFor = (code) => ({ ...(bakedSeo[code] || {}), ...(blobsSeo[code] || {}) });
+  const deleted = new Set(state.deleted);
+  const liveNodes = nodes.filter(n => !deleted.has(n.code));
+  const paths   = buildPaths(nodes, deleted);
+  const cat_ids = buildCategoryIds(nodes, deleted, state.order);
 
   // Validation
   const REQUIRED = ["name_lv", "name_en", "slug_lv", "slug_en",
                     "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en"];
   const problems = [];
-  const liveNodes = treeNodes.filter(n => !deleted.has(n.code));
   for (const n of liveNodes) {
-    const s = seoFor(n.code);
+    const s = seo[n.code] || {};
     for (const f of REQUIRED) {
       if (!(s[f] || "").trim()) problems.push({ code: n.code, field: f, reason: "missing" });
     }
     for (const lang of ["en", "lv"]) {
       const w = wordCount(s["seo_desc_" + lang]);
-      if (w && (w < 50 || w > 70)) {
+      if (w && (w < SEO_DESC_WORDS[0] || w > SEO_DESC_WORDS[1])) {
         problems.push({ code: n.code, field: "seo_desc_" + lang,
-                        reason: w < 50 ? `too short (${w} words, min 50)` : `too long (${w} words, max 70)` });
+                        reason: w < SEO_DESC_WORDS[0]
+                          ? `too short (${w} words, min ${SEO_DESC_WORDS[0]})`
+                          : `too long (${w} words, max ${SEO_DESC_WORDS[1]})` });
       }
       const c = (s["meta_desc_" + lang] || "").trim().length;
-      if (c && (c < 120 || c > 160)) {
+      if (c && (c < META_DESC_CHARS[0] || c > META_DESC_CHARS[1])) {
         problems.push({ code: n.code, field: "meta_desc_" + lang,
-                        reason: c < 120 ? `too short (${c} chars, min 120)` : `too long (${c} chars, max 160)` });
+                        reason: c < META_DESC_CHARS[0]
+                          ? `too short (${c} chars, min ${META_DESC_CHARS[0]})`
+                          : `too long (${c} chars, max ${META_DESC_CHARS[1]})` });
       }
     }
   }
-  // Cannibalization
   for (const lang of ["en", "lv"]) {
-    const items = liveNodes.map(n => [n.code, seoFor(n.code)["seo_desc_" + lang] || ""]).filter(([_, d]) => d);
+    const items = liveNodes.map(n => [n.code, (seo[n.code] || {})["seo_desc_" + lang] || ""])
+                           .filter(([_, d]) => d);
     for (let i = 0; i < items.length; i++) {
       for (let j = i + 1; j < items.length; j++) {
         const sc = similarity(items[i][1], items[j][1]);
-        if (sc >= 0.75) {
+        if (sc >= CANNIBAL_HARD) {
           problems.push({ code: items[i][0], field: "seo_desc_" + lang,
                           reason: `cannibalization with ${items[j][0]} (similarity ${sc.toFixed(3)})` });
         }
@@ -146,7 +118,6 @@ export default async (req) => {
                         { status: 422, headers: { "Content-Type": "application/json" } });
   }
 
-  // CSV
   const lines = [csvRow(["category_id", "parent_category_id", "category_path",
                          "category_name_lv", "category_name_en",
                          "url_slug_lv", "url_slug_en",
@@ -154,11 +125,11 @@ export default async (req) => {
                          "meta_description_lv", "meta_description_en"])];
   const sorted = [...liveNodes].sort((a, b) => cat_ids.get(a.code) - cat_ids.get(b.code));
   for (const n of sorted) {
-    const s = seoFor(n.code);
+    const s = seo[n.code] || {};
     const parent_id = n.parent_code ? (cat_ids.get(n.parent_code) || 0) : 0;
     lines.push(csvRow([
-      cat_ids.get(n.code), parent_id, appData.paths[n.code] || "",
-      s.name_lv || "", s.name_en || "",
+      cat_ids.get(n.code), parent_id, paths[n.code] || "",
+      s.name_lv || "", n.label || "",
       s.slug_lv || "", s.slug_en || "",
       s.seo_desc_lv || "", s.seo_desc_en || "",
       s.meta_desc_lv || "", s.meta_desc_en || "",

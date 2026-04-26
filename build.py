@@ -1,12 +1,11 @@
 """
-Build script. Reads category.db and emits two static artifacts consumed by
-Netlify:
-    public/index.html              the editor with all data baked in
-    netlify/functions/_data.json   tree, paths, supmap, SEO for serverless functions
+Build script. Reads Postgres (via db.py) and bakes the initial editor state
+into the static index.html so first paint is fast.
 
-The database is the only source of truth. There is no state.json, no XML
-files, no hardcoded category tree. Run `python3 migrate.py` first to apply
-any pending schema migrations, then `python3 build.py`.
+Serverless functions in netlify/functions/ read live data straight from
+Postgres, so there is no _data.json sidecar any more.
+
+Run `python3 migrate.py` first to apply any pending schema migrations.
 """
 import json
 from collections import defaultdict
@@ -16,9 +15,7 @@ import db
 
 
 OUT_HTML = Path(__file__).parent / "public" / "index.html"
-OUT_DATA = Path(__file__).parent / "netlify" / "functions" / "_data.json"
 OUT_HTML.parent.mkdir(exist_ok=True)
-OUT_DATA.parent.mkdir(parents=True, exist_ok=True)
 
 
 def _load_state():
@@ -116,11 +113,6 @@ def main():
         entry = {k: v for k, v in (s["seo_map"].get(code) or {}).items() if v}
         entry["name_en"] = by_label.get(code, code)
         seo_data[code] = entry
-
-    OUT_DATA.write_text(json.dumps({
-        "sources": dict(sources), "paths": paths, "supmap": supmap, "seo": seo_data
-    }, ensure_ascii=False), encoding="utf-8")
-    print(f"  -> netlify/functions/_data.json  ({len(seo_data)} SEO entries)")
 
     tpl = (Path(__file__).parent / "templates" / "index.html").read_text(encoding="utf-8")
     replacements = {
