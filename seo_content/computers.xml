@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <categories>
-  <category code="computers">
+  <category code="computers-servers">
     <name_en>Computers, Servers &amp; Tablets</name_en>
     <name_lv>Datori, serveri un planšetes</name_lv>
     <slug_en>computers-servers-tablets</slug_en>
@@ -11,7 +11,7 @@
     <seo_desc_lv>Šī augšējā līmeņa grupa apvieno visus datoru veidus, kas pieejami katalogā: klēpjdatorus, galddatorus, viss-vienā datorus, mini PC, planšetes, tirdzniecības vietu sistēmas un stenda serverus, kā arī dokstacijas, somas, lādētājus un rezerves komponentes, kas tiem pieder. Tā atrodas koka augšpusē, lai dziļākās kategorijas var specializēties vienā lietošanas gadījumā vai aparatūras saimē.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebooks">
+  <category code="computers-servers/notebooks">
     <name_en>Notebooks</name_en>
     <name_lv>Klēpjdatori</name_lv>
     <slug_en>notebooks</slug_en>
@@ -22,7 +22,7 @@
     <seo_desc_lv>Klēpjdators ir pārnēsājams personālais dators, kas vienā salokāmā korpusā apvieno ekrānu, tastatūru, skārienjutīgu paneli un akumulatoru. Šī sadaļa apkopo biznesa un patērētāju modeļus, spēļu un darbstaciju datorus, atjaunotas iekārtas un izturīgus modeļus āra vai rūpnieciskai lietošanai. Tā neietver piederumus vai dokstacijas, kas atrodas atsevišķā klēpjdatoru piederumu sadaļā blakus šim sarakstam.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebook-accessories">
+  <category code="computers-servers/notebook-accessories">
     <name_en>Notebook Accessories</name_en>
     <name_lv>Klēpjdatoru piederumi</name_lv>
     <slug_en>notebook-accessories</slug_en>
@@ -33,7 +33,7 @@
     <seo_desc_lv>Klēpjdatoru piederumi ir detaļas un papildinājumi, kas paplašina datoru ārpus tā, kas iekļauts oriģinālajā komplektā. Sadaļa ir iedalīta somās un apvalkos pārnēsāšanai, rezerves lādētājos un strāvas adapteros, dokstacijās lietošanai galdā, un mazākā citu piederumu grupā, kas aptver ratiņus, drošības slēdzenes, akumulatorus un līdzīgus priekšmetus. Paši klēpjdatori atrodas tuvumā atsevišķā kataloga sadaļā.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebook-accessories/bags">
+  <category code="computers-servers/notebook-accessories/bags-sleeves-backpacks">
     <name_en>Bags, Sleeves &amp; Backpacks</name_en>
     <name_lv>Somas, apvalki un mugursomas</name_lv>
     <slug_en>laptop-bags-backpacks</slug_en>
@@ -44,18 +44,8 @@
     <seo_desc_lv>Klēpjdatora soma aizsargā datoru pārnēsāšanas laikā ar polsterētiem nodalījumiem, strukturētām sienām un pleca lenti vai mugursomas siksnu sistēmu. Šī sadaļa aptver polsterētus apvalkus iebīdāmai aizsardzībai, pleca somas un portfeļus biroja braucieniem, kā arī mugursomas ar atsevišķu polsterētu datora nodalījumu ikdienas nēsāšanai. Izmērs tiek saskaņots ar ražotāja norādīto ekrāna diagonāli vienībās.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebook-accessories/batteries">
-    <name_en>Batteries</name_en>
-    <name_lv>Akumulatori</name_lv>
-    <slug_en>laptop-batteries</slug_en>
-    <slug_lv>klepjdatoru-akumulatori</slug_lv>
-    <meta_desc_en>Replacement laptop battery packs for notebooks where the original cell has degraded or failed, listed by laptop part number rather than model name.</meta_desc_en>
-    <meta_desc_lv>Rezerves klēpjdatoru akumulatoru komplekti datoriem, kuru oriģinālais elements ir nodilis vai bojāts, sakārtoti pēc artikula numura, ne modeļa nosaukuma.</meta_desc_lv>
-    <seo_desc_en>A notebook battery is the rechargeable power cell that lets a laptop run unplugged. This category groups replacement battery packs for laptops where the original cell has degraded or failed. Capacity is given in milliamp-hours and watt-hours, and each replacement is matched to the laptop part number it was designed to fit into, not by screen size or general model name.</seo_desc_en>
-    <seo_desc_lv>Klēpjdatora akumulators ir lādējams strāvas elements, kas ļauj datoram darboties bez pieslēguma tīklam. Šī sadaļa apkopo rezerves akumulatoru komplektus klēpjdatoriem, kuru oriģinālais elements ir nodilis vai bojāts. Ietilpība tiek norādīta miliampērstundās un vatstundās, un katrs aizvietotājs tiek saskaņots ar klēpjdatora artikula numuru, kuram tas paredzēts, nevis pēc ekrāna izmēra vai vispārīga modeļa nosaukuma.</seo_desc_lv>
-  </category>
 
-  <category code="computers/notebook-accessories/chargers">
+  <category code="computers-servers/notebook-accessories/chargers-power-adapters">
     <name_en>Chargers &amp; Power Adapters</name_en>
     <name_lv>Lādētāji un strāvas adapteri</name_lv>
     <slug_en>laptop-chargers-power-adapters</slug_en>
@@ -66,7 +56,7 @@
     <seo_desc_lv>Klēpjdatora lādētājs pārvērš tīkla maiņstrāvu līdzstrāvas spriegumā un strāvā, ko klēpjdators sagaida, vienlaikus uzlādējot iekšējo akumulatoru ierīces darbības laikā. Sadaļa aptver klēpjdatoru strāvas adapterus un USB-C strāvas piegādes lādētājus, kas darbojas arī ar planšetēm un mobilajiem telefoniem. Katrai vienībai norādīta jauda, spraudņa tips un klēpjdatoru saimes, kurām tā paredzēta ikdienas lietošanai.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebook-accessories/docks">
+  <category code="computers-servers/notebook-accessories/docking-stations">
     <name_en>Docking Stations</name_en>
     <name_lv>Dokstacijas</name_lv>
     <slug_en>docking-stations</slug_en>
@@ -77,7 +67,7 @@
     <seo_desc_lv>Dokstacija pārvērš klēpjdatoru par galddatora darbstaciju, pievienojot monitoru izejas, USB portus, Ethernet un strāvu caur vienu savienojumu ar datoru. Sadaļa aptver dokstacijas klēpjdatoriem un planšetēm, kas pieslēdzas pa USB-C, Thunderbolt vai patentētu mehānisku interfeisu. Specifikācijās norādīts atbalstīto displeju skaits, izšķirtspēja, strāvas piegādes jauda un nepieciešamais saimnieka porta tips uz datora puses.</seo_desc_lv>
   </category>
 
-  <category code="computers/notebook-accessories/other">
+  <category code="computers-servers/notebook-accessories/other-accessories">
     <name_en>Other Accessories</name_en>
     <name_lv>Citi piederumi</name_lv>
     <slug_en>other-laptop-accessories</slug_en>
@@ -88,7 +78,7 @@
     <seo_desc_lv>Apvienojošā sadaļa klēpjdatoru un planšetdatoru piederumiem, kas neietilpst somu, lādētāju, dokstaciju vai akumulatoru grupās. Sadaļa aptver skolu un biroju ratiņus vairāku ierīču uzlādei vienlaikus, rezerves akumulatorus, kas norādīti pēc klēpjdatora artikula, dažādus PC piederumus un papildinājumus izturīgiem klēpjdatoriem un planšetēm, ko izmanto laukā, noliktavās vai rūpniecības vidē, kur nepieciešama papildu aizsardzība.</seo_desc_lv>
   </category>
 
-  <category code="computers/desktops">
+  <category code="computers-servers/desktops-workstations">
     <name_en>Desktops &amp; Workstations</name_en>
     <name_lv>Galddatori un darbstacijas</name_lv>
     <slug_en>desktops-workstations</slug_en>
@@ -99,7 +89,7 @@
     <seo_desc_lv>Galddatori un darbstacijas ir nepārnēsājami personālie datori, kas veidoti ap torni, mazu šasiju vai viss-vienā ekrānu, un baroti no sienas kontaktligzdas, nevis akumulatora. Sadaļa ir sadalīta standarta torņa galddatoros, viss-vienā datoros ar datoru, kas paslēpts aiz displeja, un kompaktos mini PC kabatas grāmatas izmēra korpusos zema izmēra uzstādījumiem uz sakārtota galda.</seo_desc_lv>
   </category>
 
-  <category code="computers/desktops/standard">
+  <category code="computers-servers/desktops-workstations/desktops">
     <name_en>Desktops</name_en>
     <name_lv>Galddatori</name_lv>
     <slug_en>desktop-pcs</slug_en>
@@ -110,7 +100,7 @@
     <seo_desc_lv>Standarta torņa galddatori ir klasiskais pilna izmēra personālais dators: atsevišķs korpuss, kurā ir mātesplate, procesors, atmiņa, datu nesēji un atsevišķa grafikas karte, savienots ar ārējo monitoru. Sadaļa aptver biznesa un patērētāju torņus, spēļu galddatorus, sertificētas darbstacijas, atjaunotas iekārtas un bezkorpusa šasijas, kas tiek pārdotas bez OS, kuras pircējs pabeidz pats līdz darba sākumam.</seo_desc_lv>
   </category>
 
-  <category code="computers/desktops/aio">
+  <category code="computers-servers/desktops-workstations/all-in-one-pcs">
     <name_en>All-in-One PCs</name_en>
     <name_lv>Viss-vienā datori</name_lv>
     <slug_en>all-in-one-pcs</slug_en>
@@ -121,7 +111,7 @@
     <seo_desc_lv>Viss-vienā dators iepako datora aparatūru aiz displeja korpusa, novācot atsevišķu torni no galda virsmas. Sadaļā uzskaitīti pilni viss-vienā galddatori, kuros mātesplate, procesors, atmiņa un datu nesēji ir integrēti ekrāna aizmugurē. Tos parasti izmanto reģistratūrās, klasēs un sakārtotās biroja darba vietās, kur tornis būtu vizuāli traucējošs vai vienkārši pārāk liels darba telpai.</seo_desc_lv>
   </category>
 
-  <category code="computers/desktops/mini">
+  <category code="computers-servers/desktops-workstations/mini-pcs-nuc">
     <name_en>Mini PCs &amp; NUC</name_en>
     <name_lv>Mini PC un NUC</name_lv>
     <slug_en>mini-pcs-nuc</slug_en>
@@ -132,7 +122,7 @@
     <seo_desc_lv>Mini PC ir maza formāta galddators, kas parasti ir kabatas grāmatas izmērā vai mazāks, un piedāvā pilnu datora funkcionalitāti kompaktā korpusā. Sadaļā ietilpst plānie klienti, ko izmanto kā termināļus pret attālo serveri, modulāras bezkorpusa mini sistēmas un pilni iepriekš sakonfigurēti mazi galddatori; daudzus var paslēpt VESA stiprinājumā aiz monitora neredzamai uzstādīšanai sienā.</seo_desc_lv>
   </category>
 
-  <category code="computers/pos">
+  <category code="computers-servers/point-of-sale-equipment">
     <name_en>Point Of Sale Equipment</name_en>
     <name_lv>Tirdzniecības vietu aprīkojums</name_lv>
     <slug_en>point-of-sale-equipment</slug_en>
@@ -143,7 +133,7 @@
     <seo_desc_lv>Tirdzniecības vietu aprīkojums ir aparatūra, ko izmanto kasēs mazumtirdzniecībā, viesmīlībā un noliktavās, lai reģistrētu pārdošanas, skenētu preces, pieņemtu karšu maksājumus un drukātu čekus. Sadaļa ir sadalīta termināļos, kas ir skārienjutīgas viss-vienā ierīces kases programmatūras palaišanai, un piederumos, kas ir printeri, skeneri, naudas atvilktnes un citas perifērijas ap termināli pie letes.</seo_desc_lv>
   </category>
 
-  <category code="computers/pos/accessories">
+  <category code="computers-servers/point-of-sale-equipment/pos-accessories">
     <name_en>POS Accessories</name_en>
     <name_lv>POS piederumi</name_lv>
     <slug_en>pos-accessories</slug_en>
@@ -154,7 +144,7 @@
     <seo_desc_lv>POS piederumi ir atbalsta perifērijas ap kases termināli: čeku printeri, kas drukā termodrukas čekus, etiķešu un biļešu printeri, naudas atvilktnes, montāžas rokas, klientu displeji un līdzīgi mazāki priekšmeti. Sadaļā ietilpst arī izejmateriāli, piemēram, kases papīra ruļļi un nomaiņas vāki. Katrai precei norādīts savienojuma veids (USB, seriāls, Ethernet vai Bluetooth) ātrai integrācijai esošos risinājumos.</seo_desc_lv>
   </category>
 
-  <category code="computers/pos/terminals">
+  <category code="computers-servers/point-of-sale-equipment/pos-terminals-pdas">
     <name_en>POS Terminals &amp; PDAs</name_en>
     <name_lv>POS termināļi un PDA</name_lv>
     <slug_en>pos-terminals-pdas</slug_en>
@@ -165,25 +155,5 @@
     <seo_desc_lv>POS termināļi un PDA ir galvenās skaitļošanas ierīces, ko izmanto tirdzniecības vietā. Sadaļa aptver stacionāros galddatora POS termināļus, kas darbina kases programmatūru pie letes, mobilos POS, ko pārnēsā veikalā, rokas PDA, ko izmanto inventarizācijai, pašapkalpošanās kioskus, kurus klients vada tieši, un svītrkodu skenerus, kas pārdošanas laikā padod produktu datus tiem.</seo_desc_lv>
   </category>
 
-  <category code="computers/tablets">
-    <name_en>Tablets</name_en>
-    <name_lv>Planšetes</name_lv>
-    <slug_en>tablets</slug_en>
-    <slug_lv>planshetes</slug_lv>
-    <meta_desc_en>Portable touchscreen computers in slate form: Android and Windows tablets, e-readers with e-paper displays, children's tablets and rugged industrial models.</meta_desc_en>
-    <meta_desc_lv>Pārnēsājami skārienjutīgi datori plātnes formā: Android un Windows planšetes, e-grāmatu lasītāji, bērnu planšetes un izturīgi rūpniecības klases modeļi.</meta_desc_lv>
-    <seo_desc_en>A tablet is a portable computer in a flat slate form, primarily controlled by a touchscreen rather than a keyboard. This category lists Android and Windows tablets sold as standalone devices, e-readers built around an e-paper display for long battery life, children's tablets with parental controls, and rugged models designed to survive drops, dust and water in field, medical and industrial use.</seo_desc_en>
-    <seo_desc_lv>Planšete ir pārnēsājams dators plakanā plātnes formātā, ko galvenokārt vada skārienjutīgs ekrāns, nevis tastatūra. Šī sadaļa uzskaita Android un Windows planšetes, kas tiek pārdotas kā atsevišķas ierīces, e-grāmatu lasītājus, kas veidoti ap e-papīra ekrānu ilgam akumulatora darbības laikam, bērnu planšetes ar vecāku kontroli un izturīgus modeļus, kas iztur kritienus, putekļus un ūdeni laukā.</seo_desc_lv>
-  </category>
 
-  <category code="computers/tablet-accessories">
-    <name_en>Tablet Accessories</name_en>
-    <name_lv>Planšetdatoru piederumi</name_lv>
-    <slug_en>tablet-accessories</slug_en>
-    <slug_lv>planshetu-piederumi</slug_lv>
-    <meta_desc_en>Cases, folio covers, sleeves, screen protectors, charging stands, external keyboards and rugged add-ons that protect or extend a tablet or e-reader device.</meta_desc_en>
-    <meta_desc_lv>Apvalki, folio vāki, ieliekami apvalki, ekrāna aizsargi, uzlādes statīvi, ārējās tastatūras un izturīgi papildinājumi planšetēm vai e-grāmatu lasītājiem.</meta_desc_lv>
-    <seo_desc_en>Tablet accessories are the parts that protect or extend a tablet or e-reader: cases and folio covers that wrap the body, sleeves for slot-in protection, screen protectors, charging stands, external keyboards and similar items. The section also covers e-reader-specific accessories and rugged add-ons designed for tablets used in field, medical and warehouse environments where standard cases would be too fragile.</seo_desc_en>
-    <seo_desc_lv>Planšetdatoru piederumi ir detaļas, kas aizsargā vai paplašina planšeti vai e-grāmatu lasītāju: apvalki un folio vāki, kas aptver korpusu, apvalki iebīdāmai aizsardzībai, ekrāna aizsargi, uzlādes statīvi, ārējās tastatūras un līdzīgi priekšmeti. Sadaļā ietilpst arī e-grāmatu lasītāju specifiski piederumi un izturīgi papildinājumi planšetēm, ko izmanto laukā, medicīnas un noliktavu vidē, kur standarta apvalki būtu pārāk trausli.</seo_desc_lv>
-  </category>
 </categories>
