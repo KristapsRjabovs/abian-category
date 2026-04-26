@@ -18,12 +18,14 @@ def get_conn():
 # can apply each one idempotently via ALTER TABLE — safe to re-run and safe to
 # deploy against an older DB that already has data.
 SEO_COLUMNS = [
-    ("name_lv",     "TEXT"),
-    ("name_en",     "TEXT"),
-    ("slug_lv",     "TEXT"),
-    ("slug_en",     "TEXT"),
-    ("seo_desc_lv", "TEXT"),
-    ("seo_desc_en", "TEXT"),
+    ("name_lv",          "TEXT"),
+    ("name_en",          "TEXT"),
+    ("slug_lv",          "TEXT"),
+    ("slug_en",          "TEXT"),
+    ("seo_desc_lv",      "TEXT"),
+    ("seo_desc_en",      "TEXT"),
+    ("meta_desc_lv",     "TEXT"),
+    ("meta_desc_en",     "TEXT"),
 ]
 
 
@@ -74,29 +76,32 @@ def load_tree_nodes():
     with get_conn() as conn:
         rows = conn.execute(
             "SELECT code, label, parent_code, name_lv, name_en, slug_lv, slug_en, "
-            "seo_desc_lv, seo_desc_en FROM tree_nodes ORDER BY code"
+            "seo_desc_lv, seo_desc_en, meta_desc_lv, meta_desc_en "
+            "FROM tree_nodes ORDER BY code"
         ).fetchall()
     return [dict(r) for r in rows]
 
 
 def load_seo_map() -> dict:
-    """Return {code: {name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en}}.
+    """Return {code: {field: value, ...}} for all SEO columns.
     Entries with all SEO fields NULL are included with empty strings.
     """
     out = {}
     with get_conn() as conn:
         rows = conn.execute(
-            "SELECT code, name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en "
-            "FROM tree_nodes"
+            "SELECT code, name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en, "
+            "meta_desc_lv, meta_desc_en FROM tree_nodes"
         ).fetchall()
     for r in rows:
         out[r["code"]] = {
-            "name_lv":     r["name_lv"]     or "",
-            "name_en":     r["name_en"]     or "",
-            "slug_lv":     r["slug_lv"]     or "",
-            "slug_en":     r["slug_en"]     or "",
-            "seo_desc_lv": r["seo_desc_lv"] or "",
-            "seo_desc_en": r["seo_desc_en"] or "",
+            "name_lv":      r["name_lv"]      or "",
+            "name_en":      r["name_en"]      or "",
+            "slug_lv":      r["slug_lv"]      or "",
+            "slug_en":      r["slug_en"]      or "",
+            "seo_desc_lv":  r["seo_desc_lv"]  or "",
+            "seo_desc_en":  r["seo_desc_en"]  or "",
+            "meta_desc_lv": r["meta_desc_lv"] or "",
+            "meta_desc_en": r["meta_desc_en"] or "",
         }
     return out
 

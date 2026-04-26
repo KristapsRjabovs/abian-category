@@ -561,6 +561,17 @@ def validate_description(text: str, lo: int = 50, hi: int = 70) -> Tuple[bool, O
     return True, None
 
 
+def validate_meta_description(text: str, lo: int = 120, hi: int = 160) -> Tuple[bool, Optional[str]]:
+    """Validate meta description by character count. SERP truncation is around
+    155-160 chars on Google; below 120 looks too sparse in the result snippet."""
+    n = len((text or "").strip())
+    if n < lo:
+        return False, f"too short ({n} chars, min {lo})"
+    if n > hi:
+        return False, f"too long ({n} chars, max {hi})"
+    return True, None
+
+
 # ───────────────────────────────── helpers ───────────────────────────────────
 
 

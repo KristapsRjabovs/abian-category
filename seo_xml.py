@@ -36,7 +36,8 @@ import seo
 
 
 XML_PATH = Path(__file__).parent / "seo_content"   # directory of *.xml files
-FIELDS   = ("name_en", "name_lv", "slug_en", "slug_lv", "seo_desc_en", "seo_desc_lv")
+FIELDS   = ("name_en", "name_lv", "slug_en", "slug_lv",
+            "seo_desc_en", "seo_desc_lv", "meta_desc_en", "meta_desc_lv")
 
 
 def _parse_one(path: Path) -> dict:

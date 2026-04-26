@@ -104,7 +104,8 @@ export default async (req) => {
   const seoFor = (code) => ({ ...(bakedSeo[code] || {}), ...(blobsSeo[code] || {}) });
 
   // Validation
-  const REQUIRED = ["name_lv", "name_en", "slug_lv", "slug_en", "seo_desc_lv", "seo_desc_en"];
+  const REQUIRED = ["name_lv", "name_en", "slug_lv", "slug_en",
+                    "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en"];
   const problems = [];
   const liveNodes = treeNodes.filter(n => !deleted.has(n.code));
   for (const n of liveNodes) {
@@ -117,6 +118,11 @@ export default async (req) => {
       if (w && (w < 50 || w > 70)) {
         problems.push({ code: n.code, field: "seo_desc_" + lang,
                         reason: w < 50 ? `too short (${w} words, min 50)` : `too long (${w} words, max 70)` });
+      }
+      const c = (s["meta_desc_" + lang] || "").trim().length;
+      if (c && (c < 120 || c > 160)) {
+        problems.push({ code: n.code, field: "meta_desc_" + lang,
+                        reason: c < 120 ? `too short (${c} chars, min 120)` : `too long (${c} chars, max 160)` });
       }
     }
   }
@@ -144,7 +150,8 @@ export default async (req) => {
   const lines = [csvRow(["category_id", "parent_category_id", "category_path",
                          "category_name_lv", "category_name_en",
                          "url_slug_lv", "url_slug_en",
-                         "seo_description_lv", "seo_description_en"])];
+                         "seo_description_lv", "seo_description_en",
+                         "meta_description_lv", "meta_description_en"])];
   const sorted = [...liveNodes].sort((a, b) => cat_ids.get(a.code) - cat_ids.get(b.code));
   for (const n of sorted) {
     const s = seoFor(n.code);
@@ -154,6 +161,7 @@ export default async (req) => {
       s.name_lv || "", s.name_en || "",
       s.slug_lv || "", s.slug_en || "",
       s.seo_desc_lv || "", s.seo_desc_en || "",
+      s.meta_desc_lv || "", s.meta_desc_en || "",
     ]));
   }
 

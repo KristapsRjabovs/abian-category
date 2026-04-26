@@ -148,18 +148,23 @@ def api_category_export():
     by_code  = {n["code"]: n for n in nodes if n["code"] not in deleted}
     cat_ids  = _build_category_ids(deleted)
 
-    # Validation: descriptions 50-70 words, all required fields present, no
-    # cross-category duplication. Block export if any rule fails.
+    # Validation: descriptions 50-70 words, meta descriptions 120-160 chars,
+    # all required fields present, no cross-category duplication. Block export
+    # if any rule fails.
     problems: list = []
     for code, n in by_code.items():
         s = seo_map.get(code) or {}
-        for f in ("name_lv", "name_en", "slug_lv", "slug_en", "seo_desc_lv", "seo_desc_en"):
+        for f in ("name_lv", "name_en", "slug_lv", "slug_en",
+                  "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en"):
             if not (s.get(f) or "").strip():
                 problems.append({"code": code, "field": f, "reason": "missing"})
         for lang in ("en", "lv"):
             ok, why = seo.validate_description(s.get(f"seo_desc_{lang}") or "")
             if not ok:
                 problems.append({"code": code, "field": f"seo_desc_{lang}", "reason": why})
+            ok, why = seo.validate_meta_description(s.get(f"meta_desc_{lang}") or "")
+            if not ok:
+                problems.append({"code": code, "field": f"meta_desc_{lang}", "reason": why})
 
     for lang in ("en", "lv"):
         for a, b, sc in seo.find_cannibalization(seo_map, lang=lang, threshold=seo.CANNIBAL_HARD):
@@ -174,7 +179,8 @@ def api_category_export():
     w.writerow(["category_id", "parent_category_id", "category_path",
                 "category_name_lv", "category_name_en",
                 "url_slug_lv", "url_slug_en",
-                "seo_description_lv", "seo_description_en"])
+                "seo_description_lv", "seo_description_en",
+                "meta_description_lv", "meta_description_en"])
 
     for n in sorted(by_code.values(), key=lambda x: cat_ids[x["code"]]):
         code = n["code"]
@@ -190,6 +196,8 @@ def api_category_export():
             s.get("slug_en", ""),
             s.get("seo_desc_lv", ""),
             s.get("seo_desc_en", ""),
+            s.get("meta_desc_lv", ""),
+            s.get("meta_desc_en", ""),
         ])
 
     return Response(buf.getvalue(), mimetype="text/csv",

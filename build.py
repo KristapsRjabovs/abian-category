@@ -116,7 +116,8 @@ deleted   = sorted(deleted_set)
 
 # ---------- SEO content from XML (hand-authored, version-controlled) ----------
 SEO_DIR = Path(__file__).parent / "seo_content"
-SEO_FIELDS = ("name_en", "name_lv", "slug_en", "slug_lv", "seo_desc_en", "seo_desc_lv")
+SEO_FIELDS = ("name_en", "name_lv", "slug_en", "slug_lv",
+              "seo_desc_en", "seo_desc_lv", "meta_desc_en", "meta_desc_lv")
 seo_data: dict = {}
 if SEO_DIR.is_dir():
     for xml_path in sorted(SEO_DIR.glob("*.xml")):

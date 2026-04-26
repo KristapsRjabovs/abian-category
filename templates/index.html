@@ -873,7 +873,10 @@ function renderSeoPanel(node) {
   const v = (f) => (ed[f] !== undefined ? ed[f] : (s[f] || ""));
   const wEn = wordCount(v("seo_desc_en"));
   const wLv = wordCount(v("seo_desc_lv"));
+  const cEn = (v("meta_desc_en") || "").trim().length;
+  const cLv = (v("meta_desc_lv") || "").trim().length;
   const wcCls = (w) => (w >= 50 && w <= 70 ? "wc-ok" : "wc-bad");
+  const ccCls = (c) => (c >= 120 && c <= 160 ? "wc-ok" : "wc-bad");
   if (!editMode) {
     return `
       <div class="seo-panel ro">
@@ -883,6 +886,14 @@ function renderSeoPanel(node) {
           <div><label>Name (LV)</label><div class="seo-val">${escapeHtml(v("name_lv") || "—")}</div></div>
           <div><label>Slug (EN)</label><div class="seo-val mono">${escapeHtml(v("slug_en") || "—")}</div></div>
           <div><label>Slug (LV)</label><div class="seo-val mono">${escapeHtml(v("slug_lv") || "—")}</div></div>
+        </div>
+        <div class="seo-desc-block">
+          <label>Meta Description (EN) <span class="${ccCls(cEn)}">${cEn} chars</span></label>
+          <div class="seo-val">${escapeHtml(v("meta_desc_en") || "—")}</div>
+        </div>
+        <div class="seo-desc-block">
+          <label>Meta Description (LV) <span class="${ccCls(cLv)}">${cLv} chars</span></label>
+          <div class="seo-val">${escapeHtml(v("meta_desc_lv") || "—")}</div>
         </div>
         <div class="seo-desc-block">
           <label>Description (EN) <span class="${wcCls(wEn)}">${wEn} words</span></label>
@@ -902,6 +913,14 @@ function renderSeoPanel(node) {
         <div><label>Name (LV)</label><input data-seo="name_lv" value="${escapeHtml(v("name_lv"))}"></div>
         <div><label>Slug (EN) <span class="seo-hint">auto from name</span></label><input data-seo="slug_en" value="${escapeHtml(v("slug_en"))}"></div>
         <div><label>Slug (LV) <span class="seo-hint">auto from name</span></label><input data-seo="slug_lv" value="${escapeHtml(v("slug_lv"))}"></div>
+      </div>
+      <div class="seo-desc-block">
+        <label>Meta Description (EN) <span class="seo-wc ${ccCls(cEn)}" data-cc="meta_desc_en">${cEn} / 120–160 chars</span></label>
+        <textarea data-seo="meta_desc_en" rows="2">${escapeHtml(v("meta_desc_en"))}</textarea>
+      </div>
+      <div class="seo-desc-block">
+        <label>Meta Description (LV) <span class="seo-wc ${ccCls(cLv)}" data-cc="meta_desc_lv">${cLv} / 120–160 chars</span></label>
+        <textarea data-seo="meta_desc_lv" rows="2">${escapeHtml(v("meta_desc_lv"))}</textarea>
       </div>
       <div class="seo-desc-block">
         <label>Description (EN) <span class="seo-wc ${wcCls(wEn)}" data-wc="seo_desc_en">${wEn} / 50–70 words</span></label>
@@ -924,13 +943,20 @@ function wireSeoPanel(node) {
       seoEdits[node.code][field] = el.value;
       if (wasNew) { pendingChanges++; markPending(); }
       if (field.startsWith("seo_desc_")) {
-        const lang = field.slice(-2);
         const w = wordCount(el.value);
         const wc = d.querySelector(`.seo-wc[data-wc="${field}"]`);
         if (wc) {
           wc.textContent = `${w} / 50–70 words`;
           wc.classList.toggle("wc-ok", w >= 50 && w <= 70);
           wc.classList.toggle("wc-bad", !(w >= 50 && w <= 70));
+        }
+      } else if (field.startsWith("meta_desc_")) {
+        const c = (el.value || "").trim().length;
+        const wc = d.querySelector(`.seo-wc[data-cc="${field}"]`);
+        if (wc) {
+          wc.textContent = `${c} / 120–160 chars`;
+          wc.classList.toggle("wc-ok", c >= 120 && c <= 160);
+          wc.classList.toggle("wc-bad", !(c >= 120 && c <= 160));
         }
       }
     });

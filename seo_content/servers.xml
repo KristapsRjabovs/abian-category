@@ -5,6 +5,8 @@
     <name_lv>Serveri</name_lv>
     <slug_en>servers</slug_en>
     <slug_lv>serveri</slug_lv>
+    <meta_desc_en>Computers dedicated to running shared services like databases, websites, file storage or backups for many users at once. Units, components and racks.</meta_desc_en>
+    <meta_desc_lv>Datori, kas paredzēti kopīgu pakalpojumu palaišanai, piemēram, datubāzu, vietņu, failu glabāšanas vai dublējumu daudziem lietotājiem vienlaikus telpā.</meta_desc_lv>
     <seo_desc_en>A server is a computer dedicated to running shared services such as databases, websites, file storage or backups for many users at once, instead of one personal user. This top-level group covers complete rack and tower server units, the spare and upgrade components that go inside them, and the racks, cabinets and mounting hardware they live in.</seo_desc_en>
     <seo_desc_lv>Serveris ir dators, kas paredzēts kopīgu pakalpojumu palaišanai, piemēram, datubāzu, vietņu, failu glabāšanas vai dublējumu nodrošināšanai daudziem lietotājiem vienlaikus, nevis vienam personiskajam lietotājam. Šī augšējā līmeņa grupa aptver pilnas stenda un torņa servera vienības, rezerves un uzlabojuma komponentes, kas atrodas to iekšpusē, kā arī skapjus, korpusus un montāžas aparatūru, kas glabā tās kopā.</seo_desc_lv>
   </category>
@@ -14,6 +16,8 @@
     <name_lv>Stenda un torņa serveri</name_lv>
     <slug_en>rack-tower-servers</slug_en>
     <slug_lv>stenda-tornja-serveri</slug_lv>
+    <meta_desc_en>Complete pre-configured servers: flat 1U, 2U or 4U rack units that screw into a 19-inch cabinet, and tall tower servers that sit on the office floor.</meta_desc_en>
+    <meta_desc_lv>Pilni iepriekš sakonfigurēti serveri: plakanas 1U, 2U vai 4U stenda vienības 19 collu skapī un augsti torņa serveri uz biroja grīdas ikdienas darbam.</meta_desc_lv>
     <seo_desc_en>A complete server, sold as a ready-to-mount rack unit or a stand-alone tower. Rack servers are flat 1U, 2U or 4U chassis designed to be screwed into a 19-inch cabinet alongside others, while tower servers look like a tall desktop case and sit on the floor in offices and small server rooms. Both ship pre-configured.</seo_desc_en>
     <seo_desc_lv>Pilns serveris, ko pārdod kā gatavu stiprināmu stenda vienību vai brīvi stāvošu torni. Stenda serveri ir plakanas 1U, 2U vai 4U šasijas, kas paredzētas pieskrūvēšanai 19 collu skapī blakus citām, bet torņa serveri izskatās kā augsts galddatora korpuss un stāv uz grīdas birojos vai nelielās servera telpās. Abi tiek piegādāti iepriekš sakonfigurēti darbam.</seo_desc_lv>
   </category>
@@ -23,6 +27,8 @@
     <name_lv>Serveru komponentes</name_lv>
     <slug_en>server-components</slug_en>
     <slug_lv>serveru-komponentes</slug_lv>
+    <meta_desc_en>Individual modules that build a complete server: processors, memory, motherboards, power supplies and storage controllers, sold as upgrades or spares.</meta_desc_en>
+    <meta_desc_lv>Atsevišķi moduļi, kas veido pilnu serveri: procesori, atmiņa, mātesplates, barošanas bloki un krātuves kontrolieri, kā uzlabojumi vai rezerves daļas.</meta_desc_lv>
     <seo_desc_en>Server components are the individual modules that make up a complete server: processors, memory, motherboards, power supplies, storage controllers and assorted spare parts. They are split into separate subcategories so a maintenance team can replace a single failed module rather than swapping the whole machine. Complete servers, racks and external storage live in their own sections of the catalog.</seo_desc_en>
     <seo_desc_lv>Servera komponentes ir atsevišķi moduļi, kas veido pilnu serveri: procesori, atmiņa, mātesplates, barošanas bloki, krātuves kontrolieri un dažādas rezerves daļas. Tās ir sadalītas atsevišķās apakšsadaļās, lai uzturēšanas komanda var nomainīt vienu konkrētu bojātu moduli, nevis mainīt visu mašīnu. Pilni serveri, skapji un ārējā krātuve atrodas atsevišķās kataloga sadaļās ērtai navigācijai.</seo_desc_lv>
   </category>
@@ -32,6 +38,8 @@
     <name_lv>Serveru procesori</name_lv>
     <slug_en>server-cpus</slug_en>
     <slug_lv>serveru-procesori</slug_lv>
+    <meta_desc_en>Server processors with more cores, larger memory bandwidth and ECC support compared to desktop chips, sold individually for new builds or socket upgrades.</meta_desc_en>
+    <meta_desc_lv>Serveru procesori ar vairāk kodoliem, lielāku atmiņas joslas platumu un ECC atbalstu pretēji galddatoriem, jauniem datoriem vai uzlabojumiem darbam.</meta_desc_lv>
     <seo_desc_en>A server CPU is the processor at the heart of a server, generally with more cores, larger memory bandwidth and reliability features such as ECC support compared to a desktop processor. The category covers processors marketed for server and workstation use, sold individually for new builds or as replacements when an existing socket needs a faster or larger model.</seo_desc_en>
     <seo_desc_lv>Servera procesors ir procesors servera kodolā, parasti ar vairāk kodoliem, lielāku atmiņas joslas platumu un uzticamības funkcijām, piemēram, ECC atbalstu, salīdzinot ar parastu galddatora procesoru. Sadaļa aptver procesorus, kas paredzēti serveru un darbstaciju lietošanai, pārdoti atsevišķi jauniem datoriem vai kā aizvietotāji, kad esošajam soketam nepieciešams ātrāks vai jaudīgāks modelis darba slodzei.</seo_desc_lv>
   </category>
@@ -41,6 +49,8 @@
     <name_lv>Serveru atmiņa</name_lv>
     <slug_en>server-memory</slug_en>
     <slug_lv>serveru-atmina</slug_lv>
+    <meta_desc_en>Server-grade RAM with error-correcting code (ECC) and registered or load-reduced buffering for stability under heavy multi-core server workloads.</meta_desc_en>
+    <meta_desc_lv>Serveru klases RAM ar kļūdu labošanas kodu (ECC) un registered vai load-reduced buferi stabilitātei smagās daudzkodolu servera darba slodzēs.</meta_desc_lv>
     <seo_desc_en>Server memory, also called RAM, is the volatile working memory the server keeps active data in while running. Server-grade modules add error-correcting code (ECC) and registered or load-reduced buffering for stability under heavy multi-core workloads. The category lists upgrade and replacement modules, including memory built specifically for storage systems, sold by capacity, speed, voltage and supported server families.</seo_desc_en>
     <seo_desc_lv>Servera atmiņa, ko sauc arī par RAM, ir gaistošā darba atmiņa, kurā serveris darbības laikā tur aktīvos datus. Serveru klases moduļi pievieno kļūdu labošanas kodu (ECC) un registered vai load-reduced buferi stabilitātei smagās daudzkodolu darba slodzēs. Sadaļā uzskaitīti uzlabojuma un rezerves moduļi, ieskaitot atmiņu krātuves sistēmām, pārdoti pēc ietilpības, ātruma, sprieguma un atbalstītajām serveru saimēm.</seo_desc_lv>
   </category>
@@ -50,6 +60,8 @@
     <name_lv>Serveru mātesplates</name_lv>
     <slug_en>server-motherboards</slug_en>
     <slug_lv>serveru-matesplates</slug_lv>
+    <meta_desc_en>Server motherboards with multiple memory slots, CPU sockets, ECC memory support and a baseboard management controller for remote administration.</meta_desc_en>
+    <meta_desc_lv>Serveru mātesplates ar vairākiem atmiņas slotiem, procesora kontaktligzdām, ECC atmiņas atbalstu un BMC moduli attālajai administrēšanai darbā.</meta_desc_lv>
     <seo_desc_en>A server motherboard is the main circuit board inside a server that connects the processor, memory, storage controllers and expansion cards. Compared to a desktop board it usually offers more memory slots, multiple CPU sockets, ECC memory support and a baseboard management controller for remote administration. This category lists boards sold for new server builds and rebuilds.</seo_desc_en>
     <seo_desc_lv>Servera mātesplate ir galvenā shēmu plate servera iekšpusē, kas savieno procesoru, atmiņu, krātuves kontrolierus un paplašināšanas kartes. Salīdzinot ar parastu galddatora plati, tā parasti piedāvā vairāk atmiņas slotu, vairākas procesora kontaktligzdas, ECC atmiņas atbalstu un BMC moduli attālajai administrēšanai. Šī sadaļa uzskaita plates, kas pieejamas jauniem serveru projektiem un atjaunošanas darbiem.</seo_desc_lv>
   </category>
@@ -59,6 +71,8 @@
     <name_lv>Serveru barošanas bloki</name_lv>
     <slug_en>server-psus</slug_en>
     <slug_lv>serveru-barosanas-bloki</slug_lv>
+    <meta_desc_en>Server power supplies that convert mains AC to DC voltages, often with hot-swap mounting and redundancy for swap-in replacement during normal operation.</meta_desc_en>
+    <meta_desc_lv>Serveru barošanas bloki, kas pārvērš tīkla maiņstrāvu līdzstrāvā, parasti ar karstās maiņas stiprinājumu un redundanci nomaiņai darbības laikā.</meta_desc_lv>
     <seo_desc_en>A server power supply unit (PSU) converts mains AC power to the DC voltages a server's components need. Server-class units add hot-swap mounting and redundancy so a failed unit can be replaced without powering down. The category lists single and redundant PSUs sold by wattage, form factor and the chassis families they fit into for clean replacement.</seo_desc_en>
     <seo_desc_lv>Servera barošanas bloks (PSU) pārvērš tīkla maiņstrāvu līdzstrāvas spriegumos, kas nepieciešami servera komponentēm darbībai. Serveru klases vienības pievieno karstās maiņas stiprinājumu un redundanci, lai bojātu vienību varētu nomainīt bez visa servera izslēgšanas. Sadaļa uzskaita atsevišķus un redundantus PSU, kas tiek pārdoti pēc jaudas, formāta faktora un saderīgo šasiju saimēm tīrai nomaiņai.</seo_desc_lv>
   </category>
@@ -68,6 +82,8 @@
     <name_lv>Serveru krātuves kontrolieri</name_lv>
     <slug_en>server-storage-controllers</slug_en>
     <slug_lv>serveru-kratuves-kontrolieri</slug_lv>
+    <meta_desc_en>RAID controllers and host bus adapters that connect disk drives to the server motherboard and decide how data is written across the storage array.</meta_desc_en>
+    <meta_desc_lv>RAID kontrolieri un saimnieka kopnes adapteri, kas savieno cietos diskus ar servera mātesplati un nosaka, kā dati tiek rakstīti pāri masīvam serverī.</meta_desc_lv>
     <seo_desc_en>A storage controller is the card or chip that connects disk drives to the server motherboard and decides how data is written across them. The category covers RAID controllers that combine multiple drives into a single logical volume with redundancy or speed gains, and host bus adapters (HBAs) that pass each drive through directly without RAID logic.</seo_desc_en>
     <seo_desc_lv>Krātuves kontrolieris ir karte vai mikroshēma, kas savieno cietos diskus ar servera mātesplati un nosaka, kā dati tiek rakstīti pāri tiem. Sadaļa aptver RAID kontrolierus, kas vairākus diskus apvieno vienā loģiskajā sējumā ar redundanci vai ātruma ieguvumu, un saimnieka kopnes adapterus (HBA), kas katru disku padod tieši bez RAID loģikas slāņa.</seo_desc_lv>
   </category>
@@ -77,6 +93,8 @@
     <name_lv>Citas serveru detaļas</name_lv>
     <slug_en>other-server-parts</slug_en>
     <slug_lv>citas-serveru-detalas</slug_lv>
+    <meta_desc_en>Chassis, server-grade graphics cards, internal cables, fans, cooling assemblies and other less common spare parts that keep a working server up and running.</meta_desc_en>
+    <meta_desc_lv>Šasijas, serveru klases grafikas kartes, iekšējie kabeļi, ventilatori, dzesēšanas mezgli un citas retāk lietotas rezerves daļas serveru ikdienas darbam.</meta_desc_lv>
     <seo_desc_en>Catch-all section for server parts that do not fit the CPU, memory, motherboard, PSU or controller groups. It covers chassis and bare server cases, server-grade graphics cards, internal cables, fans and cooling assemblies, and a wider Other Components group for less common spare parts. Pages list the chassis or motherboard family each part is qualified for.</seo_desc_en>
     <seo_desc_lv>Apkopojošā sadaļa serveru detaļām, kas neietilpst CPU, atmiņas, mātesplates, PSU vai kontrolieru grupās. Tā aptver šasijas un tukšus servera korpusus, servera klases grafikas kartes, iekšējos kabeļus, ventilatorus un dzesēšanas mezglus, kā arī plašāku citu komponenšu grupu retāk lietotām rezerves daļām. Lapās norādīta šasijas vai mātesplates saime, kurai katra detaļa ir kvalificēta darbam.</seo_desc_lv>
   </category>
@@ -86,6 +104,8 @@
     <name_lv>Stendi, skapji un montāža</name_lv>
     <slug_en>racks-cabinets-mounting</slug_en>
     <slug_lv>stendi-skapji-montaza</slug_lv>
+    <meta_desc_en>Cabinets and frames that hold rack-mount servers, switches and storage in a structured stack, plus the rails, brackets and accessories needed to mount.</meta_desc_en>
+    <meta_desc_lv>Korpusi un rāmji, kuros stenda serveri, komutatori un krātuves vienības glabājas strukturētā kaudzē, kopā ar sliedēm, kronšteiniem un piederumiem montāžai.</meta_desc_lv>
     <seo_desc_en>Server racks are the cabinets and frames that hold rack-mount servers, switches and storage units in a structured stack. The section covers full rack cabinets sold as floor-standing or wall-mount enclosures, mounting hardware such as rails and brackets, and the accessories that finish the install: cable arms, blanking panels, cooling fan trays and similar parts.</seo_desc_en>
     <seo_desc_lv>Serveru skapji ir korpusi un rāmji, kuros stenda serveri, komutatori un krātuves vienības tiek glabāti strukturētā kaudzē. Sadaļa aptver pilnus skapja korpusus, kas pieejami kā brīvi stāvošas vai sienas montāžas iekārtas, montāžas aparatūru, piemēram, sliedes un kronšteinus, un piederumus, kas pabeidz uzstādīšanu: kabeļu rokas, neaizpildīšanas paneļi, dzesēšanas paplātes un līdzīgas detaļas.</seo_desc_lv>
   </category>
@@ -95,6 +115,8 @@
     <name_lv>Stendu skapji</name_lv>
     <slug_en>rack-cabinets-enclosures</slug_en>
     <slug_lv>stendu-skapji</slug_lv>
+    <meta_desc_en>Floor-standing and wall-mount metal cabinets that hold rackmount equipment in a 19-inch wide stack, sized in U units of vertical space, 6U up to 47U.</meta_desc_en>
+    <meta_desc_lv>Brīvi stāvoši un sienas montāžas metāla skapji, kas tur stenda aprīkojumu 19 collu platā kaudzē, izmērā U vienībās, no 6U līdz 47U augstumā telpai.</meta_desc_lv>
     <seo_desc_en>A rack cabinet is the metal enclosure that holds rackmount servers, switches and storage in a 19-inch wide structured stack, measured in U units of vertical space. The category covers floor-standing cabinets and smaller wall-mount enclosures, sized in heights from a few U for a small office to 42U or more for a full datacenter row.</seo_desc_en>
     <seo_desc_lv>Stenda skapis ir metāla korpuss, kas tur stenda serverus, komutatorus un krātuves vienības 19 collu platā strukturētā kaudzē, ko mēra U vienībās vertikālajā telpā. Sadaļa aptver brīvi stāvošus skapjus un mazākas sienas montāžas iekārtas augstumos no dažām U mazam birojam līdz 42U vai vairāk pilnai datu centra rindai lielā ražotnē vai serveru zālē.</seo_desc_lv>
   </category>
@@ -104,6 +126,8 @@
     <name_lv>Stendu piederumi</name_lv>
     <slug_en>rack-accessories</slug_en>
     <slug_lv>stendu-piederumi</slug_lv>
+    <meta_desc_en>Cable management arms and trays, blanking panels, fixed and sliding shelves, mounting rails, fan trays and air-flow kits installed inside server cabinets.</meta_desc_en>
+    <meta_desc_lv>Kabeļu pārvaldības rokas un paplātes, neaizpildīšanas paneļi, fiksēti un slīdoši plaukti, montāžas sliedes, ventilatoru paplātes un gaisa plūsmas komplekti.</meta_desc_lv>
     <seo_desc_en>Rack accessories are the smaller items installed inside a server cabinet alongside the equipment itself: cable management arms and trays, blanking panels that close empty rack units, fixed and sliding shelves for non-rackable boxes, mounting rails, fan trays and air-flow kits. Each item lists its U-height, depth and the cabinet families it is sized to fit into.</seo_desc_en>
     <seo_desc_lv>Stendu piederumi ir mazāki priekšmeti, kas tiek uzstādīti servera skapī blakus pašam aprīkojumam: kabeļu pārvaldības rokas un paplātes, neaizpildīšanas paneļi, kas aizver tukšus skapja blokus, fiksēti un slīdoši plaukti aprīkojumam bez stenda, montāžas sliedes, ventilatoru paplātes un gaisa plūsmas komplekti. Katrai precei norādīts U augstums, dziļums un saderīgās skapju saimes.</seo_desc_lv>
   </category>
