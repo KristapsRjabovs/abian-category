@@ -129,7 +129,10 @@ deleted           = sorted(deleted_set)
 
 # ---------- SEO content from XML (hand-authored, version-controlled) ----------
 SEO_DIR = Path(__file__).parent / "seo_content"
-SEO_FIELDS = ("name_en", "name_lv", "slug_en", "slug_lv",
+# name_en intentionally NOT baked from XML — it is derived from each node's
+# tree label at read time (see _data.json patch below) so the tree label and
+# the SEO English name remain a single source of truth.
+SEO_FIELDS = ("name_lv", "slug_en", "slug_lv",
               "seo_desc_en", "seo_desc_lv", "meta_desc_en", "meta_desc_lv")
 seo_data: dict = {}
 if SEO_DIR.is_dir():
@@ -149,6 +152,14 @@ if SEO_DIR.is_dir():
                     entry[f] = el.text.strip()
             if entry:
                 seo_data[code] = entry
+
+# Mirror tree labels into SEO entries as name_en so the live tree label
+# always wins over anything XML or Blobs might say. One name per language.
+for _code, (_label, _parent) in bc.TREE.items():
+    if _code in deleted_set:
+        continue
+    seo_data.setdefault(_code, {})
+    seo_data[_code]["name_en"] = _label
 
 # ---------- write _data.json for serverless functions ----------
 OUT_DATA.write_text(json.dumps({

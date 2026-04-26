@@ -84,40 +84,48 @@ def load_tree_nodes():
 
 def load_seo_map() -> dict:
     """Return {code: {field: value, ...}} for all SEO columns.
-    Entries with all SEO fields NULL are included with empty strings.
+
+    name_en is intentionally derived from tree_nodes.label so the tree label
+    and the SEO English name are the same attribute, never two values that
+    can drift. Edits to the EN name happen via tree rename, not the SEO panel.
     """
     out = {}
     with get_conn() as conn:
         rows = conn.execute(
-            "SELECT code, name_lv, name_en, slug_lv, slug_en, seo_desc_lv, seo_desc_en, "
+            "SELECT code, label, name_lv, slug_lv, slug_en, seo_desc_lv, seo_desc_en, "
             "meta_desc_lv, meta_desc_en FROM tree_nodes"
         ).fetchall()
     for r in rows:
         out[r["code"]] = {
-            "name_lv":      r["name_lv"]      or "",
-            "name_en":      r["name_en"]      or "",
-            "slug_lv":      r["slug_lv"]      or "",
-            "slug_en":      r["slug_en"]      or "",
-            "seo_desc_lv":  r["seo_desc_lv"]  or "",
-            "seo_desc_en":  r["seo_desc_en"]  or "",
-            "meta_desc_lv": r["meta_desc_lv"] or "",
-            "meta_desc_en": r["meta_desc_en"] or "",
+            "name_en":      r["label"]         or "",
+            "name_lv":      r["name_lv"]       or "",
+            "slug_lv":      r["slug_lv"]       or "",
+            "slug_en":      r["slug_en"]       or "",
+            "seo_desc_lv":  r["seo_desc_lv"]   or "",
+            "seo_desc_en":  r["seo_desc_en"]   or "",
+            "meta_desc_lv": r["meta_desc_lv"]  or "",
+            "meta_desc_en": r["meta_desc_en"]  or "",
         }
     return out
 
 
+# name_en is mirrored from tree_nodes.label and is not editable through the
+# SEO save path. Drop it from the writable SEO columns so a stray UI edit
+# can't desync the two storage spots.
+_WRITABLE_SEO = {c for c, _ in SEO_COLUMNS} - {"name_en"}
+
+
 def save_seo(seo_edits: dict):
     """Apply {code: {field: value, ...}} edits to tree_nodes SEO columns.
-    Only the fields present in each entry are updated; others are left as-is.
+    name_en is silently ignored — the tree label is the single source of truth.
     """
     if not seo_edits:
         return
-    allowed = {c for c, _ in SEO_COLUMNS}
     with get_conn() as conn:
         for code, fields in seo_edits.items():
             sets, vals = [], []
             for k, v in (fields or {}).items():
-                if k in allowed:
+                if k in _WRITABLE_SEO:
                     sets.append(f"{k} = ?")
                     vals.append(v if v is not None else "")
             if not sets:

@@ -910,7 +910,7 @@ function renderSeoPanel(node) {
       <div class="seo-panel ro">
         <h3>SEO &amp; Metadata</h3>
         <div class="seo-grid">
-          <div><label>Name (EN)</label><div class="seo-val">${escapeHtml(v("name_en") || "—")}</div></div>
+          <div><label>Name (EN)</label><div class="seo-val">${escapeHtml(node.label || "—")}</div></div>
           <div><label>Name (LV)</label><div class="seo-val">${escapeHtml(v("name_lv") || "—")}</div></div>
           <div><label>Slug (EN)</label><div class="seo-val mono">${escapeHtml(v("slug_en") || "—")}</div></div>
           <div><label>Slug (LV)</label><div class="seo-val mono">${escapeHtml(v("slug_lv") || "—")}</div></div>
@@ -937,7 +937,7 @@ function renderSeoPanel(node) {
     <div class="seo-panel">
       <h3>SEO &amp; Metadata <span class="seo-hint">(saved with the rest of your changes)</span></h3>
       <div class="seo-grid">
-        <div><label>Name (EN)</label><input data-seo="name_en" value="${escapeHtml(v("name_en"))}"></div>
+        <div><label>Name (EN) <span class="seo-hint">from tree label, edit via rename</span></label><input data-seo="name_en" value="${escapeHtml(node.label)}" readonly style="background:#f3f4f6;cursor:not-allowed;"></div>
         <div><label>Name (LV)</label><input data-seo="name_lv" value="${escapeHtml(v("name_lv"))}"></div>
         <div><label>Slug (EN) <span class="seo-hint">auto from name</span></label><input data-seo="slug_en" value="${escapeHtml(v("slug_en"))}"></div>
         <div><label>Slug (LV) <span class="seo-hint">auto from name</span></label><input data-seo="slug_lv" value="${escapeHtml(v("slug_lv"))}"></div>

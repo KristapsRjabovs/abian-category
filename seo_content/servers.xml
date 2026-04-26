@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <categories>
   <category code="computers-servers/servers">
-    <name_en>Servers</name_en>
     <name_lv>Serveri</name_lv>
     <slug_en>servers</slug_en>
     <slug_lv>serveri</slug_lv>
@@ -12,7 +11,6 @@
   </category>
 
   <category code="computers-servers/servers/rack-tower-servers">
-    <name_en>Rack &amp; Tower Servers</name_en>
     <name_lv>Rack un Tower serveri</name_lv>
     <slug_en>rack-tower-servers</slug_en>
     <slug_lv>rack-tower-serveri</slug_lv>
@@ -23,7 +21,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components">
-    <name_en>Server Components</name_en>
     <name_lv>Serveru komponentes</name_lv>
     <slug_en>server-components</slug_en>
     <slug_lv>server-komponentes</slug_lv>
@@ -34,7 +31,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-cpus">
-    <name_en>Server CPUs</name_en>
     <name_lv>Serveru CPU</name_lv>
     <slug_en>server-cpus</slug_en>
     <slug_lv>server-cpu-procesori</slug_lv>
@@ -45,7 +41,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-memory">
-    <name_en>Server Memory</name_en>
     <name_lv>Serveru atmiņa (RAM)</name_lv>
     <slug_en>server-memory-ram</slug_en>
     <slug_lv>server-atmina-ram</slug_lv>
@@ -56,7 +51,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-motherboards">
-    <name_en>Server Motherboards</name_en>
     <name_lv>Serveru mātesplates</name_lv>
     <slug_en>server-motherboards</slug_en>
     <slug_lv>server-matesplates</slug_lv>
@@ -67,7 +61,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-psus">
-    <name_en>Server PSUs</name_en>
     <name_lv>Serveru PSU</name_lv>
     <slug_en>server-psus</slug_en>
     <slug_lv>server-barosanas-bloki-psu</slug_lv>
@@ -78,7 +71,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-storage-controllers">
-    <name_en>Server Storage Controllers</name_en>
     <name_lv>Serveru krātuves kontrolieri (RAID/HBA)</name_lv>
     <slug_en>server-storage-controllers-raid-hba</slug_en>
     <slug_lv>server-kratuves-kontrolieri-raid-hba</slug_lv>
@@ -89,7 +81,6 @@
   </category>
 
   <category code="computers-servers/servers/server-components/other-server-parts">
-    <name_en>Other Server Parts</name_en>
     <name_lv>Citas serveru detaļas</name_lv>
     <slug_en>other-server-parts</slug_en>
     <slug_lv>citas-server-detalas</slug_lv>
@@ -100,7 +91,6 @@
   </category>
 
   <category code="computers-servers/servers/racks-cabinets-mounting">
-    <name_en>Racks, Cabinets &amp; Mounting</name_en>
     <name_lv>Rack skapji un stiprinājumi</name_lv>
     <slug_en>racks-cabinets-mounting</slug_en>
     <slug_lv>rack-skapji-stiprinajumi</slug_lv>

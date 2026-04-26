@@ -36,7 +36,10 @@ import seo
 
 
 XML_PATH = Path(__file__).parent / "seo_content"   # directory of *.xml files
-FIELDS   = ("name_en", "name_lv", "slug_en", "slug_lv",
+# name_en is intentionally NOT in this tuple — it is mirrored from
+# tree_nodes.label at read time. XML files may still carry <name_en> for
+# review/diff purposes, but the loader does not write it to the DB.
+FIELDS   = ("name_lv", "slug_en", "slug_lv",
             "seo_desc_en", "seo_desc_lv", "meta_desc_en", "meta_desc_lv")
 
 

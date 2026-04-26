@@ -19,9 +19,20 @@ export default async (req, context) => {
   for (const code of new Set([...Object.keys(bakedSeo), ...Object.keys(blobSeo)])) {
     const out = { ...(bakedSeo[code] || {}) };
     for (const [k, v] of Object.entries(blobSeo[code] || {})) {
+      // name_en is mirrored from the tree label and is not user-editable
+      // through SEO. Skip it from Blobs so it can't drift from the label.
+      if (k === "name_en") continue;
       if (typeof v === "string" && v.trim()) out[k] = v;
     }
     merged[code] = out;
+  }
+  // Force name_en from live tree labels (Blobs first, baked paths fallback).
+  const liveNodes = Array.isArray(state.tree_nodes) ? state.tree_nodes : [];
+  if (liveNodes.length) {
+    for (const n of liveNodes) {
+      merged[n.code] = merged[n.code] || {};
+      merged[n.code].name_en = n.label;
+    }
   }
   state.seo = merged;
   return Response.json(state);
