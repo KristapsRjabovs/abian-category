@@ -21,8 +21,20 @@ export default async (req) => {
       if (Object.keys(cur).length) mergedSeo[code] = cur;
     }
 
+    // Referential integrity: drop any supmap code that is not present in the
+    // current tree_nodes. Same guard as Flask db.save_mappings.
+    const liveCodes = new Set((payload.tree_nodes || []).map(n => n.code));
+    const cleanSupmap = {};
+    let orphansDropped = 0;
+    for (const [k, codes] of Object.entries(payload.supmap || {})) {
+      const kept = (codes || []).filter(c => liveCodes.has(c));
+      orphansDropped += (codes || []).length - kept.length;
+      cleanSupmap[k] = kept;
+    }
+
     const next = {
       ...payload,
+      supmap: cleanSupmap,
       seo: mergedSeo,
     };
     delete next.seo_edits; // not part of stored state
@@ -32,6 +44,7 @@ export default async (req) => {
       ok: true,
       confirmed: (payload.confirmed || []).length,
       deleted:   (payload.deleted   || []).length,
+      orphans_dropped: orphansDropped,
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), {

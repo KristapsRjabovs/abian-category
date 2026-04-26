@@ -160,21 +160,32 @@ def load_state(key, default=None):
 
 # ---------- writes ----------
 
-def save_mappings(supmap: dict):
-    """Replace all mappings from a supmap dict: 'supplier||category' -> [code, ...]"""
-    rows = []
-    for key, codes in supmap.items():
-        sep = key.index("||")
-        supplier = key[:sep]
-        category = key[sep + 2:]
-        for code in codes:
-            rows.append((supplier, category, code))
+def save_mappings(supmap: dict) -> int:
+    """Replace all mappings from a supmap dict: 'supplier||category' -> [code, ...].
+
+    Referential integrity: any tree_code not present in the live tree_nodes
+    table is silently dropped here, returning the count of dropped rows so the
+    caller (and the API response) can flag it.
+
+    This stops the export-with-orphan-codes class of bug at the write side.
+    """
     with get_conn() as conn:
+        live = {r[0] for r in conn.execute("SELECT code FROM tree_nodes").fetchall()}
+        rows, dropped = [], 0
+        for key, codes in supmap.items():
+            sep = key.index("||")
+            supplier, category = key[:sep], key[sep + 2:]
+            for code in codes:
+                if code in live:
+                    rows.append((supplier, category, code))
+                else:
+                    dropped += 1
         conn.execute("DELETE FROM mappings")
         conn.executemany(
             "INSERT OR IGNORE INTO mappings(supplier, category, tree_code) VALUES (?,?,?)",
             rows,
         )
+    return dropped
 
 
 def update_node_labels(renames: dict):

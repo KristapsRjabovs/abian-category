@@ -70,7 +70,7 @@ def api_save():
     tree_nodes = payload.get("tree_nodes") or []
     seo_edits  = payload.get("seo_edits") or {}
     db.sync_tree_nodes(tree_nodes, set(deleted))
-    db.save_mappings(supmap)
+    orphans_dropped = db.save_mappings(supmap)
     db.update_node_labels(renames)
     db.save_seo(seo_edits)
     content_confirmed = payload.get("content_confirmed") or []
@@ -81,7 +81,8 @@ def api_save():
     db.save_state("renames",           renames)
     return jsonify(ok=True, confirmed=len(confirmed), deleted=len(deleted),
                    content_confirmed=len(content_confirmed),
-                   seo_updated=len(seo_edits))
+                   seo_updated=len(seo_edits),
+                   orphans_dropped=orphans_dropped)
 
 
 @app.route("/api/download")
