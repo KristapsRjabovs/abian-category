@@ -5,8 +5,8 @@
     <name_lv>Serveri</name_lv>
     <slug_en>servers</slug_en>
     <slug_lv>serveri</slug_lv>
-    <seo_desc_en>Rack and tower servers, server components and the cabinets they live in — the full hardware stack for an in-house server room or a datacentre rollout. Browse new HPE ProLiant, Dell PowerEdge, Lenovo ThinkSystem and Supermicro builds alongside spare CPUs, memory, PSUs, motherboards and storage controllers, all stocked through authorised channels with full warranty intact.</seo_desc_en>
-    <seo_desc_lv>Stenda un torņa serveri, serveru komponentes un skapji, kuros tie izvietoti — pilns aparatūras komplekts iekšējai serveru telpai vai datu centra projektam. Iegādājieties jaunus HPE ProLiant, Dell PowerEdge, Lenovo ThinkSystem un Supermicro serverus kopā ar rezerves procesoriem, atmiņu, barošanas blokiem, mātesplatēm un krātuves kontroliera kartēm — viss caur oficiālajiem kanāliem ar saglabātu pilnu ražotāja garantiju.</seo_desc_lv>
+    <seo_desc_en>A server is a computer dedicated to running shared services such as databases, websites, file storage or backups for many users at once, instead of one personal user. This top-level group covers complete rack and tower server units, the spare and upgrade components that go inside them, and the racks, cabinets and mounting hardware they live in.</seo_desc_en>
+    <seo_desc_lv>Serveris ir dators, kas paredzēts kopīgu pakalpojumu palaišanai, piemēram, datubāzu, vietņu, failu glabāšanas vai dublējumu nodrošināšanai daudziem lietotājiem vienlaikus, nevis vienam personiskajam lietotājam. Šī augšējā līmeņa grupa aptver pilnas stenda un torņa servera vienības, rezerves un uzlabojuma komponentes, kas atrodas to iekšpusē, kā arī skapjus, korpusus un montāžas aparatūru, kas glabā tās kopā.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/rack-tower">
@@ -14,8 +14,8 @@
     <name_lv>Stenda un torņa serveri</name_lv>
     <slug_en>rack-tower-servers</slug_en>
     <slug_lv>stenda-tornja-serveri</slug_lv>
-    <seo_desc_en>1U, 2U and 4U rack servers alongside tower-form chassis from HPE ProLiant, Dell PowerEdge, Lenovo ThinkSystem, Fujitsu Primergy and Supermicro. Listings show CPU socket count, maximum memory, drive bay configuration and built-in remote management such as iLO, iDRAC or XCC, so buyers comparing configurations can match capacity to virtualisation, database or backup workloads.</seo_desc_en>
-    <seo_desc_lv>1U, 2U un 4U stenda serveri kopā ar torņa formāta šasijām no HPE ProLiant, Dell PowerEdge, Lenovo ThinkSystem, Fujitsu Primergy un Supermicro. Aprakstos norādīts procesoru soketu skaits, maksimālā atmiņa, disku nodalījumu konfigurācija un iebūvētā attālā pārvaldība, piemēram, iLO, iDRAC vai XCC, lai pircēji virtualizācijas, datu bāzes vai rezerves darba slodzēm izvēlas piemērotāko konfigurāciju.</seo_desc_lv>
+    <seo_desc_en>A complete server, sold as a ready-to-mount rack unit or a stand-alone tower. Rack servers are flat 1U, 2U or 4U chassis designed to be screwed into a 19-inch cabinet alongside others, while tower servers look like a tall desktop case and sit on the floor in offices and small server rooms. Both ship pre-configured.</seo_desc_en>
+    <seo_desc_lv>Pilns serveris, ko pārdod kā gatavu stiprināmu stenda vienību vai brīvi stāvošu torni. Stenda serveri ir plakanas 1U, 2U vai 4U šasijas, kas paredzētas pieskrūvēšanai 19 collu skapī blakus citām, bet torņa serveri izskatās kā augsts galddatora korpuss un stāv uz grīdas birojos vai nelielās servera telpās. Abi tiek piegādāti iepriekš sakonfigurēti darbam.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components">
@@ -23,8 +23,8 @@
     <name_lv>Serveru komponentes</name_lv>
     <slug_en>server-components</slug_en>
     <slug_lv>serveru-komponentes</slug_lv>
-    <seo_desc_en>Spare and upgrade parts for HPE, Dell, Lenovo, Supermicro and Fujitsu rack servers — CPUs, server memory, motherboards, PSUs, cooling parts and storage controllers selected for genuine OEM compatibility. Listings call out the exact server families each part is certified for, so technicians can extend an existing fleet without forcing a firmware-mismatch ticket on the support team.</seo_desc_en>
-    <seo_desc_lv>Rezerves un uzlabojuma daļas HPE, Dell, Lenovo, Supermicro un Fujitsu stenda un torņa serveriem — procesori, serveru atmiņa, mātesplates, barošanas bloki, dzesēšanas detaļas un krātuves kontrolieri ar oriģinālu OEM saderību. Aprakstos norādīts, kurām serveru saimēm katra detaļa ir sertificēta, lai tehniķi varētu paplašināt esošo parku, neradot atbalsta dienestam programmaparatūras nesaderības problēmas.</seo_desc_lv>
+    <seo_desc_en>Server components are the individual modules that make up a complete server: processors, memory, motherboards, power supplies, storage controllers and assorted spare parts. They are split into separate subcategories so a maintenance team can replace a single failed module rather than swapping the whole machine. Complete servers, racks and external storage live in their own sections of the catalog.</seo_desc_en>
+    <seo_desc_lv>Servera komponentes ir atsevišķi moduļi, kas veido pilnu serveri: procesori, atmiņa, mātesplates, barošanas bloki, krātuves kontrolieri un dažādas rezerves daļas. Tās ir sadalītas atsevišķās apakšsadaļās, lai uzturēšanas komanda var nomainīt vienu konkrētu bojātu moduli, nevis mainīt visu mašīnu. Pilni serveri, skapji un ārējā krātuve atrodas atsevišķās kataloga sadaļās ērtai navigācijai.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/cpu">
@@ -32,8 +32,8 @@
     <name_lv>Serveru procesori</name_lv>
     <slug_en>server-cpus</slug_en>
     <slug_lv>serveru-procesori</slug_lv>
-    <seo_desc_en>Intel Xeon and AMD EPYC server processors covering Bronze, Silver, Gold and Platinum tiers as well as single- and dual-socket EPYC SKUs. Listings include core count, base and boost clocks, TDP and supported memory channels, helping system builders pick a CPU that pairs cleanly with their motherboard and meets the licensing budget per socket.</seo_desc_en>
-    <seo_desc_lv>Intel Xeon un AMD EPYC serveru procesori, kas aptver Bronze, Silver, Gold un Platinum līmeņus, kā arī viena un divu soketu EPYC modeļus. Aprakstos norādīts kodolu skaits, bāzes un palielinātais takts, TDP un atbalstītie atmiņas kanāli, lai sistēmu komplektētāji izvēlētos procesoru, kas saskan ar mātesplati un atbilst licencēšanas budžetam uz vienu soketu.</seo_desc_lv>
+    <seo_desc_en>A server CPU is the processor at the heart of a server, generally with more cores, larger memory bandwidth and reliability features such as ECC support compared to a desktop processor. The category covers processors marketed for server and workstation use, sold individually for new builds or as replacements when an existing socket needs a faster or larger model.</seo_desc_en>
+    <seo_desc_lv>Servera procesors ir procesors servera kodolā, parasti ar vairāk kodoliem, lielāku atmiņas joslas platumu un uzticamības funkcijām, piemēram, ECC atbalstu, salīdzinot ar parastu galddatora procesoru. Sadaļa aptver procesorus, kas paredzēti serveru un darbstaciju lietošanai, pārdoti atsevišķi jauniem datoriem vai kā aizvietotāji, kad esošajam soketam nepieciešams ātrāks vai jaudīgāks modelis darba slodzei.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/memory">
@@ -41,8 +41,8 @@
     <name_lv>Serveru atmiņa</name_lv>
     <slug_en>server-memory</slug_en>
     <slug_lv>serveru-atmina</slug_lv>
-    <seo_desc_en>Registered, load-reduced and ECC server memory modules from Kingston, Crucial, Samsung, Micron and HPE in DDR4 and DDR5 generations. Each kit shows speed, rank configuration, voltage and the certified server families it is qualified against, so admins ordering an upgrade avoid the classic mismatch where a stick boots but throttles below the SPD profile.</seo_desc_en>
-    <seo_desc_lv>Registered, load-reduced un ECC serveru atmiņas moduļi no Kingston, Crucial, Samsung, Micron un HPE — pieejamas gan DDR4, gan DDR5 paaudzēs. Katrs komplekts norāda ātrumu, ranga konfigurāciju, spriegumu un sertificētās serveru saimes, lai administratori, pasūtot uzlabojumu, izvairītos no klasiskā nesakritības gadījuma, kad atmiņa palaiž serveri, bet darbojas zem SPD profila ātruma.</seo_desc_lv>
+    <seo_desc_en>Server memory, also called RAM, is the volatile working memory the server keeps active data in while running. Server-grade modules add error-correcting code (ECC) and registered or load-reduced buffering for stability under heavy multi-core workloads. The category lists upgrade and replacement modules, including memory built specifically for storage systems, sold by capacity, speed, voltage and supported server families.</seo_desc_en>
+    <seo_desc_lv>Servera atmiņa, ko sauc arī par RAM, ir gaistošā darba atmiņa, kurā serveris darbības laikā tur aktīvos datus. Serveru klases moduļi pievieno kļūdu labošanas kodu (ECC) un registered vai load-reduced buferi stabilitātei smagās daudzkodolu darba slodzēs. Sadaļā uzskaitīti uzlabojuma un rezerves moduļi, ieskaitot atmiņu krātuves sistēmām, pārdoti pēc ietilpības, ātruma, sprieguma un atbalstītajām serveru saimēm.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/motherboards">
@@ -50,8 +50,8 @@
     <name_lv>Serveru mātesplates</name_lv>
     <slug_en>server-motherboards</slug_en>
     <slug_lv>serveru-matesplates</slug_lv>
-    <seo_desc_en>Server motherboards from Supermicro, ASRock Rack, Tyan and ASUS supporting Intel Xeon and AMD EPYC sockets, ECC memory and BMC remote management. Listings detail socket type, DIMM slot count, PCIe lane allocation and onboard 10GbE or storage controllers — everything a system builder needs to spec a board around the planned CPU and disk shelf configuration.</seo_desc_en>
-    <seo_desc_lv>Serveru mātesplates no Supermicro, ASRock Rack, Tyan un ASUS ar atbalstu Intel Xeon un AMD EPYC soketiem, ECC atmiņai un BMC attālajai pārvaldībai. Aprakstos norādīts soketa tips, DIMM slotu skaits, PCIe joslu sadalījums un iebūvētie 10GbE vai krātuves kontrolieri — viss, kas vajadzīgs, lai sistēmas komplektētājs izvēlētos plati ap plānoto procesoru un diska konfigurāciju.</seo_desc_lv>
+    <seo_desc_en>A server motherboard is the main circuit board inside a server that connects the processor, memory, storage controllers and expansion cards. Compared to a desktop board it usually offers more memory slots, multiple CPU sockets, ECC memory support and a baseboard management controller for remote administration. This category lists boards sold for new server builds and rebuilds.</seo_desc_en>
+    <seo_desc_lv>Servera mātesplate ir galvenā shēmu plate servera iekšpusē, kas savieno procesoru, atmiņu, krātuves kontrolierus un paplašināšanas kartes. Salīdzinot ar parastu galddatora plati, tā parasti piedāvā vairāk atmiņas slotu, vairākas procesora kontaktligzdas, ECC atmiņas atbalstu un BMC moduli attālajai administrēšanai. Šī sadaļa uzskaita plates, kas pieejamas jauniem serveru projektiem un atjaunošanas darbiem.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/psu">
@@ -59,8 +59,8 @@
     <name_lv>Serveru barošanas bloki</name_lv>
     <slug_en>server-psus</slug_en>
     <slug_lv>serveru-barosanas-bloki</slug_lv>
-    <seo_desc_en>Hot-swap redundant server power supplies in 80 PLUS Gold, Platinum and Titanium efficiency tiers from HPE, Dell, Supermicro and Delta. Each unit lists wattage, form factor (CRPS, common slot, 1U or 2U), input voltage range and matching server families, so an admin replacing a failed PSU pulls the right module for the chassis without downtime guesswork.</seo_desc_en>
-    <seo_desc_lv>Karstā maiņas redundantie serveru barošanas bloki 80 PLUS Gold, Platinum un Titanium efektivitātes klasēs no HPE, Dell, Supermicro un Delta. Katrai vienībai norādīta jauda, formāta faktors (CRPS, common slot, 1U vai 2U), ieejas sprieguma diapazons un piemērotās serveru saimes, lai administratoram, mainot bojātu bloku, ir pareizais modulis šasijai bez dīkstāves minējumiem.</seo_desc_lv>
+    <seo_desc_en>A server power supply unit (PSU) converts mains AC power to the DC voltages a server's components need. Server-class units add hot-swap mounting and redundancy so a failed unit can be replaced without powering down. The category lists single and redundant PSUs sold by wattage, form factor and the chassis families they fit into for clean replacement.</seo_desc_en>
+    <seo_desc_lv>Servera barošanas bloks (PSU) pārvērš tīkla maiņstrāvu līdzstrāvas spriegumos, kas nepieciešami servera komponentēm darbībai. Serveru klases vienības pievieno karstās maiņas stiprinājumu un redundanci, lai bojātu vienību varētu nomainīt bez visa servera izslēgšanas. Sadaļa uzskaita atsevišķus un redundantus PSU, kas tiek pārdoti pēc jaudas, formāta faktora un saderīgo šasiju saimēm tīrai nomaiņai.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/controllers">
@@ -68,8 +68,8 @@
     <name_lv>Serveru krātuves kontrolieri</name_lv>
     <slug_en>server-storage-controllers</slug_en>
     <slug_lv>serveru-kratuves-kontrolieri</slug_lv>
-    <seo_desc_en>Hardware RAID controllers and HBA cards from Broadcom (LSI), Adaptec, HighPoint and Areca for SATA, SAS and NVMe arrays inside rack and tower servers. Each card lists supported RAID levels, port count, cache size and battery backup options — the practical detail you need to size a controller for a specific workload and the planned disk count.</seo_desc_en>
-    <seo_desc_lv>Aparatūras RAID kontrolieri un HBA kartes no Broadcom (LSI), Adaptec, HighPoint un Areca SATA, SAS un NVMe diska masīviem stenda un torņa serveros. Katrai kartei norādīti atbalstītie RAID līmeņi, portu skaits, kešatmiņas izmērs un akumulatora rezerves iespējas — praktiska informācija, lai izvēlētos kontrolieri konkrētai darba slodzei un plānotajam disku skaitam.</seo_desc_lv>
+    <seo_desc_en>A storage controller is the card or chip that connects disk drives to the server motherboard and decides how data is written across them. The category covers RAID controllers that combine multiple drives into a single logical volume with redundancy or speed gains, and host bus adapters (HBAs) that pass each drive through directly without RAID logic.</seo_desc_en>
+    <seo_desc_lv>Krātuves kontrolieris ir karte vai mikroshēma, kas savieno cietos diskus ar servera mātesplati un nosaka, kā dati tiek rakstīti pāri tiem. Sadaļa aptver RAID kontrolierus, kas vairākus diskus apvieno vienā loģiskajā sējumā ar redundanci vai ātruma ieguvumu, un saimnieka kopnes adapterus (HBA), kas katru disku padod tieši bez RAID loģikas slāņa.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/components/other">
@@ -77,8 +77,8 @@
     <name_lv>Citas serveru detaļas</name_lv>
     <slug_en>other-server-parts</slug_en>
     <slug_lv>citas-serveru-detalas</slug_lv>
-    <seo_desc_en>The smaller spares that keep a server on the rack — backplanes, riser cards, server cables, cooling fans, mounting brackets and BBU modules from HPE, Dell, Lenovo, Supermicro and OEM cross-references. Compatibility notes call out the exact chassis or motherboard each part fits, so a maintenance ticket gets the right SKU on the very first order.</seo_desc_en>
-    <seo_desc_lv>Sīkākas rezerves daļas, kas serveri uztur stendā darba kārtībā — backplanes, riser kartes, serveru kabeļi, dzesēšanas ventilatori, montāžas kronšteini un BBU moduļi no HPE, Dell, Lenovo, Supermicro un OEM ekvivalentiem. Saderības piezīmēs norādīts precīzs šasijas vai mātesplates modelis, kuram detaļa paredzēta, lai apkopes pieprasījums saņemtu pareizo daļu jau pirmajā pasūtījumā.</seo_desc_lv>
+    <seo_desc_en>Catch-all section for server parts that do not fit the CPU, memory, motherboard, PSU or controller groups. It covers chassis and bare server cases, server-grade graphics cards, internal cables, fans and cooling assemblies, and a wider Other Components group for less common spare parts. Pages list the chassis or motherboard family each part is qualified for.</seo_desc_en>
+    <seo_desc_lv>Apkopojošā sadaļa serveru detaļām, kas neietilpst CPU, atmiņas, mātesplates, PSU vai kontrolieru grupās. Tā aptver šasijas un tukšus servera korpusus, servera klases grafikas kartes, iekšējos kabeļus, ventilatorus un dzesēšanas mezglus, kā arī plašāku citu komponenšu grupu retāk lietotām rezerves daļām. Lapās norādīta šasijas vai mātesplates saime, kurai katra detaļa ir kvalificēta darbam.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/racks">
@@ -86,8 +86,8 @@
     <name_lv>Stendi, skapji un montāža</name_lv>
     <slug_en>racks-cabinets-mounting</slug_en>
     <slug_lv>stendi-skapji-montaza</slug_lv>
-    <seo_desc_en>Server racks, open frames and the mounting hardware that turns a room into a structured datacentre. The section gathers cabinets from APC, Tripp Lite, Eaton, Vertiv and Rittal alongside accessories such as PDUs, cable managers, shelves and rails, so a project manager can plan a complete rack build from cabinet through cable arms in a single quote.</seo_desc_en>
-    <seo_desc_lv>Serveru skapji, atvērti rāmji un montāžas aparatūra, kas telpu pārvērš par strukturētu datu centru. Sadaļā apvienoti skapji no APC, Tripp Lite, Eaton, Vertiv un Rittal kopā ar piederumiem, piemēram, PDU blokiem, kabeļu organizatoriem, plauktiem un sliedēm, lai projekta vadītājs vienā piedāvājumā saplānotu pilnu skapja izvietojumu no korpusa līdz kabeļu vadiem.</seo_desc_lv>
+    <seo_desc_en>Server racks are the cabinets and frames that hold rack-mount servers, switches and storage units in a structured stack. The section covers full rack cabinets sold as floor-standing or wall-mount enclosures, mounting hardware such as rails and brackets, and the accessories that finish the install: cable arms, blanking panels, cooling fan trays and similar parts.</seo_desc_en>
+    <seo_desc_lv>Serveru skapji ir korpusi un rāmji, kuros stenda serveri, komutatori un krātuves vienības tiek glabāti strukturētā kaudzē. Sadaļa aptver pilnus skapja korpusus, kas pieejami kā brīvi stāvošas vai sienas montāžas iekārtas, montāžas aparatūru, piemēram, sliedes un kronšteinus, un piederumus, kas pabeidz uzstādīšanu: kabeļu rokas, neaizpildīšanas paneļi, dzesēšanas paplātes un līdzīgas detaļas.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/racks/standard">
@@ -95,8 +95,8 @@
     <name_lv>Stendu skapji</name_lv>
     <slug_en>rack-cabinets-enclosures</slug_en>
     <slug_lv>stendu-skapji</slug_lv>
-    <seo_desc_en>Floor-standing and wall-mount server cabinets in 6U, 9U, 12U, 18U, 22U, 27U, 32U, 42U and 47U heights from APC NetShelter, Tripp Lite SmartRack, Eaton, Vertiv and Schneider. Listings detail interior depth, weight load, ventilation, lockable doors and cable entry points, so installers can match a cabinet to the planned switch and server depth before delivery.</seo_desc_en>
-    <seo_desc_lv>Brīvi stāvoši un sienas montāžas serveru skapji 6U, 9U, 12U, 18U, 22U, 27U, 32U, 42U un 47U augstumos no APC NetShelter, Tripp Lite SmartRack, Eaton, Vertiv un Schneider. Aprakstos norādīts iekšējais dziļums, slodze, ventilācija, slēdzamas durvis un kabeļu ievadi, lai uzstādītāji pirms piegādes saskaņotu skapi ar plānoto komutatora un servera dziļumu.</seo_desc_lv>
+    <seo_desc_en>A rack cabinet is the metal enclosure that holds rackmount servers, switches and storage in a 19-inch wide structured stack, measured in U units of vertical space. The category covers floor-standing cabinets and smaller wall-mount enclosures, sized in heights from a few U for a small office to 42U or more for a full datacenter row.</seo_desc_en>
+    <seo_desc_lv>Stenda skapis ir metāla korpuss, kas tur stenda serverus, komutatorus un krātuves vienības 19 collu platā strukturētā kaudzē, ko mēra U vienībās vertikālajā telpā. Sadaļa aptver brīvi stāvošus skapjus un mazākas sienas montāžas iekārtas augstumos no dažām U mazam birojam līdz 42U vai vairāk pilnai datu centra rindai lielā ražotnē vai serveru zālē.</seo_desc_lv>
   </category>
 
   <category code="computers/servers/racks/accessories">
@@ -104,7 +104,7 @@
     <name_lv>Stendu piederumi</name_lv>
     <slug_en>rack-accessories</slug_en>
     <slug_lv>stendu-piederumi</slug_lv>
-    <seo_desc_en>Rack accessories that finish the install — cable managers, blanking panels, fan trays, fixed and sliding shelves, mounting rails, cantilever arms and air-flow kits from Tripp Lite, APC, StarTech and Lindy. Each item shows U-height, depth and the cabinet families it fits, so installers can extend an existing rack without measuring the chassis a second time on site.</seo_desc_en>
-    <seo_desc_lv>Stendu piederumi, kas pabeidz uzstādīšanu — kabeļu organizatori, neaizpildīšanas paneļi, ventilatoru paplātes, fiksēti un slīdoši plaukti, montāžas sliedes, izlici un gaisa plūsmas komplekti no Tripp Lite, APC, StarTech un Lindy zīmoliem. Katrai precei norādīts U augstums, dziļums un saderīgās skapju saimes, lai uzstādītāji paplašinātu esošo stendu bez atkārtotas mērīšanas objektā.</seo_desc_lv>
+    <seo_desc_en>Rack accessories are the smaller items installed inside a server cabinet alongside the equipment itself: cable management arms and trays, blanking panels that close empty rack units, fixed and sliding shelves for non-rackable boxes, mounting rails, fan trays and air-flow kits. Each item lists its U-height, depth and the cabinet families it is sized to fit into.</seo_desc_en>
+    <seo_desc_lv>Stendu piederumi ir mazāki priekšmeti, kas tiek uzstādīti servera skapī blakus pašam aprīkojumam: kabeļu pārvaldības rokas un paplātes, neaizpildīšanas paneļi, kas aizver tukšus skapja blokus, fiksēti un slīdoši plaukti aprīkojumam bez stenda, montāžas sliedes, ventilatoru paplātes un gaisa plūsmas komplekti. Katrai precei norādīts U augstums, dziļums un saderīgās skapju saimes.</seo_desc_lv>
   </category>
 </categories>
