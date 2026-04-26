@@ -123,8 +123,9 @@ for key, codes in supmap.items():
     for code in codes:
         coverage.setdefault(code, []).append(sup)
 
-confirmed = sorted(bc.CONFIRMED_CODES)
-deleted   = sorted(deleted_set)
+confirmed         = sorted(bc.CONFIRMED_CODES)
+content_confirmed = sorted(set(_s.get("content_confirmed", []))) if _state_file.exists() else []
+deleted           = sorted(deleted_set)
 
 # ---------- SEO content from XML (hand-authored, version-controlled) ----------
 SEO_DIR = Path(__file__).parent / "seo_content"
@@ -165,8 +166,9 @@ replacements = {
     "{{ sources_json | safe }}":   json.dumps(sources,    ensure_ascii=False),
     "{{ supmap_json | safe }}":    json.dumps(supmap,     ensure_ascii=False),
     "{{ paths_json | safe }}":     json.dumps(paths,      ensure_ascii=False),
-    "{{ confirmed_json | safe }}": json.dumps(confirmed,  ensure_ascii=False),
-    "{{ deleted_json | safe }}":   json.dumps(deleted,    ensure_ascii=False),
+    "{{ confirmed_json | safe }}":         json.dumps(confirmed,         ensure_ascii=False),
+    "{{ content_confirmed_json | safe }}": json.dumps(content_confirmed, ensure_ascii=False),
+    "{{ deleted_json | safe }}":           json.dumps(deleted,           ensure_ascii=False),
     "{{ seo_json | safe }}":       json.dumps(seo_data,   ensure_ascii=False),
 }
 for placeholder, value in replacements.items():

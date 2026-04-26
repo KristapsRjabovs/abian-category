@@ -79,6 +79,11 @@
   .supplier-tag.also_data { background: #dbeafe; color: #1e40af; }
   .supplier-tag.elko { background: #dcfce7; color: #166534; }
   .empty { color: #9ca3af; font-style: italic; padding: 16px 0; }
+  .confirm-row { display: flex; gap: 18px; flex-wrap: wrap; margin: 14px 0 18px;
+                 padding: 10px 14px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; }
+  .confirm-chk { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #374151;
+                 cursor: pointer; user-select: none; }
+  .confirm-chk input { width: 16px; height: 16px; cursor: pointer; accent-color: #10b981; }
   .seo-panel { margin-top: 24px; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px;
                background: #fafbfc; }
   .seo-panel h3 { margin: 0 0 14px 0; font-size: 15px; color: #111827; }
@@ -253,17 +258,19 @@ const STATS          = {{ stats_json | safe }};
 const COV            = {{ cov_json | safe }};
 const SOURCES        = {{ sources_json | safe }};
 const PATHS          = {{ paths_json | safe }};
-const SUPMAP_INIT    = {{ supmap_json | safe }};
-const CONFIRMED_INIT = {{ confirmed_json | safe }};
-const DELETED_INIT   = {{ deleted_json | safe }};
-const SEO_INIT       = {{ seo_json | safe }};
+const SUPMAP_INIT            = {{ supmap_json | safe }};
+const CONFIRMED_INIT         = {{ confirmed_json | safe }};
+const CONTENT_CONFIRMED_INIT = {{ content_confirmed_json | safe }};
+const DELETED_INIT           = {{ deleted_json | safe }};
+const SEO_INIT               = {{ seo_json | safe }};
 
 let TREE_DATA     = JSON.parse(JSON.stringify(TREE_DATA_INIT));
 let SUPMAP        = JSON.parse(JSON.stringify(SUPMAP_INIT));
 let SEO           = JSON.parse(JSON.stringify(SEO_INIT || {}));
 const seoEdits    = {}; // code -> {field: value, ...} pending save
-const confirmedCodes = new Set(CONFIRMED_INIT);
-const deletedCodes   = new Set(DELETED_INIT);
+const confirmedCodes        = new Set(CONFIRMED_INIT);
+const contentConfirmedCodes = new Set(CONTENT_CONFIRMED_INIT);
+const deletedCodes          = new Set(DELETED_INIT);
 const renames        = {};   // code -> new label (tracked for server persistence)
 
 let INITIAL_SUPMAP    = null;
@@ -391,6 +398,7 @@ async function init() {
         }
       }
       if (s.confirmed && s.confirmed.length) { confirmedCodes.clear(); s.confirmed.forEach(c => confirmedCodes.add(c)); }
+      if (s.content_confirmed && s.content_confirmed.length) { contentConfirmedCodes.clear(); s.content_confirmed.forEach(c => contentConfirmedCodes.add(c)); }
       if (s.deleted   && s.deleted.length)   { deletedCodes.clear();   s.deleted.forEach(c => deletedCodes.add(c)); applyDeletions(TREE_DATA.tree, deletedCodes); }
       if (s.order     && Object.keys(s.order).length) applyOrder(TREE_DATA.tree, s.order);
       if (s.renames) Object.assign(renames, s.renames);
@@ -511,10 +519,11 @@ function render(parentEl, nodes, ancestors) {
     const tog = document.createElement("span"); tog.className = "toggle" + (hasCh ? "" : " leaf");
     tog.textContent = hasCh ? "\u25B6" : "\u2022"; li.appendChild(tog);
 
-    // checkbox
+    // confirmed checkbox lives in the detail panel now (not in the tree).
+    // We still create a hidden input so legacy code that references entry.chkEl keeps working.
     const chk = document.createElement("input");
     chk.type = "checkbox"; chk.className = "node-chk"; chk.checked = confirmedCodes.has(node.code);
-    chk.onclick = ev => { ev.stopPropagation(); toggleConfirmed(node.code, chk.checked); };
+    chk.style.display = "none";
     li.appendChild(chk);
 
     // label
@@ -708,6 +717,10 @@ function toggleConfirmed(code, on) {
   if (e) { e.labelEl.classList.toggle("confirmed", on); e.li.classList.toggle("confirmed-node", on); }
   pendingChanges++; markPending(); updateStats();
 }
+function toggleContentConfirmed(code, on) {
+  if (on) contentConfirmedCodes.add(code); else contentConfirmedCodes.delete(code);
+  pendingChanges++; markPending();
+}
 function updateDeletableBadges() {
   nodeIdx.forEach(entry => entry.delBtn.classList.toggle("visible", !hasDescendantMapping(entry.node)));
 }
@@ -816,6 +829,10 @@ function showDetail(node, ancestors) {
     `<h2>${escapeHtml(node.label)}</h2>` +
     `<div class="crumbs">${escapeHtml(breadcrumbs)}</div>` +
     `<div class="code">code: ${node.code}</div>` +
+    `<div class="confirm-row" id="confirmRow">
+       <label class="confirm-chk"><input type="checkbox" id="confMappings" ${confirmedCodes.has(node.code) ? "checked" : ""}> <span>Mappings confirmed</span></label>
+       <label class="confirm-chk"><input type="checkbox" id="confContent" ${contentConfirmedCodes.has(node.code) ? "checked" : ""}> <span>Content confirmed</span></label>
+     </div>` +
     (subs ? `<div class="subs"><strong>Subcategories:</strong> ${subs}</div>` : "") +
     (mappings.length
       ? `<table><thead><tr><th>Supplier</th><th>Supplier category</th><th></th></tr></thead><tbody>${rowsHtml}</tbody></table>`
@@ -854,6 +871,12 @@ function showDetail(node, ancestors) {
   });
 
   wireSeoPanel(node);
+
+  // Confirm checkboxes (mappings + content) live in the detail panel now
+  const confM = d.querySelector("#confMappings");
+  const confC = d.querySelector("#confContent");
+  if (confM) confM.onchange = () => toggleConfirmed(node.code, confM.checked);
+  if (confC) confC.onchange = () => toggleContentConfirmed(node.code, confC.checked);
 }
 
 // ── SEO panel ────────────────────────────────────────────────────────────────
@@ -1013,7 +1036,8 @@ document.getElementById("saveBtn").onclick = async () => {
   const payload = {
     supmap:     SUPMAP,
     deleted:    Array.from(deletedCodes),
-    confirmed:  Array.from(confirmedCodes),
+    confirmed:         Array.from(confirmedCodes),
+    content_confirmed: Array.from(contentConfirmedCodes),
     order:      computeOrder(),
     renames:    renames,
     paths:      computePaths(),

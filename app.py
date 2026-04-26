@@ -10,8 +10,9 @@ app = Flask(__name__)
 
 
 def _page_data():
-    deleted   = set(db.load_state("deleted", []))
-    confirmed = db.load_state("confirmed", [])
+    deleted           = set(db.load_state("deleted", []))
+    confirmed         = db.load_state("confirmed", [])
+    content_confirmed = db.load_state("content_confirmed", [])
     tree_json = db.build_tree_json(deleted)
     paths     = db.build_paths(deleted)
     supmap    = db.build_supmap()
@@ -32,9 +33,10 @@ def _page_data():
         sources_json   = json.dumps(sources,    ensure_ascii=False),
         supmap_json    = json.dumps(supmap,     ensure_ascii=False),
         paths_json     = json.dumps(paths,      ensure_ascii=False),
-        confirmed_json = json.dumps(sorted(confirmed), ensure_ascii=False),
-        deleted_json   = json.dumps(sorted(deleted),   ensure_ascii=False),
-        seo_json       = json.dumps(seo_map,    ensure_ascii=False),
+        confirmed_json         = json.dumps(sorted(confirmed),         ensure_ascii=False),
+        content_confirmed_json = json.dumps(sorted(content_confirmed), ensure_ascii=False),
+        deleted_json           = json.dumps(sorted(deleted),           ensure_ascii=False),
+        seo_json               = json.dumps(seo_map,                   ensure_ascii=False),
     )
 
 
@@ -45,13 +47,15 @@ def index():
 
 @app.route("/api/state")
 def api_state():
-    deleted   = db.load_state("deleted", [])
-    confirmed = db.load_state("confirmed", [])
-    order     = db.load_state("order", {})
-    renames   = db.load_state("renames", {})
-    supmap    = db.build_supmap()
-    seo_map   = db.load_seo_map()
+    deleted           = db.load_state("deleted", [])
+    confirmed         = db.load_state("confirmed", [])
+    content_confirmed = db.load_state("content_confirmed", [])
+    order             = db.load_state("order", {})
+    renames           = db.load_state("renames", {})
+    supmap            = db.build_supmap()
+    seo_map           = db.load_seo_map()
     return jsonify(dict(supmap=supmap, deleted=deleted, confirmed=confirmed,
+                        content_confirmed=content_confirmed,
                         order=order, renames=renames, seo=seo_map))
 
 
@@ -69,11 +73,14 @@ def api_save():
     db.save_mappings(supmap)
     db.update_node_labels(renames)
     db.save_seo(seo_edits)
-    db.save_state("deleted",   sorted(set(deleted)))
-    db.save_state("confirmed", sorted(set(confirmed)))
-    db.save_state("order",     order)
-    db.save_state("renames",   renames)
+    content_confirmed = payload.get("content_confirmed") or []
+    db.save_state("deleted",           sorted(set(deleted)))
+    db.save_state("confirmed",         sorted(set(confirmed)))
+    db.save_state("content_confirmed", sorted(set(content_confirmed)))
+    db.save_state("order",             order)
+    db.save_state("renames",           renames)
     return jsonify(ok=True, confirmed=len(confirmed), deleted=len(deleted),
+                   content_confirmed=len(content_confirmed),
                    seo_updated=len(seo_edits))
 
 

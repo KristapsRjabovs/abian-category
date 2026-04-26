@@ -2,58 +2,57 @@
 <categories>
   <category code="computers-servers">
     <name_en>Computers, Servers &amp; Tablets</name_en>
-    <name_lv>Datori, serveri un planšetes</name_lv>
+    <name_lv>Datori, Server un planšetes</name_lv>
     <slug_en>computers-servers-tablets</slug_en>
-    <slug_lv>datori-serveri-planshetes</slug_lv>
-    <meta_desc_en>Notebooks, desktops, all-in-ones, mini PCs, tablets and rack servers, plus the docks, bags, chargers and spare components that fit them.</meta_desc_en>
-    <meta_desc_lv>Klēpjdatori, galddatori, viss-vienā, mini PC, planšetes un stenda serveri kopā ar dokstacijām, somām, lādētājiem un rezerves daļām katram.</meta_desc_lv>
-    <seo_desc_en>This top-level group brings together every kind of computer the catalog carries: notebooks, desktops, all-in-ones, mini PCs, tablets, point-of-sale systems and rack servers, plus the docking stations, bags, chargers and spare components that go with them. It sits at the top of the tree so deeper categories can specialise around a single use case or hardware family.</seo_desc_en>
-    <seo_desc_lv>Šī augšējā līmeņa grupa apvieno visus datoru veidus, kas pieejami katalogā: klēpjdatorus, galddatorus, viss-vienā datorus, mini PC, planšetes, tirdzniecības vietu sistēmas un stenda serverus, kā arī dokstacijas, somas, lādētājus un rezerves komponentes, kas tiem pieder. Tā atrodas koka augšpusē, lai dziļākās kategorijas var specializēties vienā lietošanas gadījumā vai aparatūras saimē.</seo_desc_lv>
+    <slug_lv>datori-server-planshetes</slug_lv>
+    <meta_desc_en>Notebooks, Desktop PC, All-in-One, Mini PC, tablets and Rack servers, plus the docks, bags, chargers and spare components that fit them.</meta_desc_en>
+    <meta_desc_lv>Notebook datori, Desktop PC, All-in-One, Mini PC, planšetes un Rack Server, kopā ar dokstacijām, somām, lādētājiem un rezerves komponentēm.</meta_desc_lv>
+    <seo_desc_en>This top-level group brings together every kind of computer the catalog carries: Notebook laptops, Desktop PC towers, All-in-One PC units, Mini PCs, tablets, point-of-sale systems and Rack servers, plus the docking stations, bags, chargers and spare components that go with them. It sits at the top of the tree so deeper categories can specialise around a single use case or hardware family.</seo_desc_en>
+    <seo_desc_lv>Šī augšējā līmeņa grupa apvieno visus datoru veidus, kas pieejami katalogā: Notebook datori, Desktop PC torņi, All-in-One PC vienības, Mini PC, planšetes, tirdzniecības vietu sistēmas un Rack Server, kā arī dokstacijas, somas, lādētāji un rezerves komponentes, kas tiem pieder. Tā atrodas koka augšpusē, lai dziļākās kategorijas var specializēties vienā lietošanas gadījumā vai aparatūras saimē.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/notebooks">
     <name_en>Notebooks</name_en>
-    <name_lv>Klēpjdatori</name_lv>
+    <name_lv>Notebook datori</name_lv>
     <slug_en>notebooks</slug_en>
-    <slug_lv>klepjdatori</slug_lv>
-    <meta_desc_en>Portable personal computers combining screen, keyboard and battery in one foldable case. Business, consumer, gaming, workstation and rugged models.</meta_desc_en>
-    <meta_desc_lv>Pārnēsājami personālie datori, kas vienā salokāmā korpusā apvieno ekrānu, tastatūru un akumulatoru. Biznesa, patērētāju, spēļu un izturīgi modeļi.</meta_desc_lv>
-    <seo_desc_en>A notebook is a portable personal computer that combines screen, keyboard and battery in a single foldable case. This category groups business and consumer models, gaming and workstation builds, refurbished units and rugged models built for outdoor or industrial use. It does not include accessories or docks, which sit in the separate Notebook Accessories section beside this one.</seo_desc_en>
-    <seo_desc_lv>Klēpjdators ir pārnēsājams personālais dators, kas vienā salokāmā korpusā apvieno ekrānu, tastatūru, skārienjutīgu paneli un akumulatoru. Šī sadaļa apkopo biznesa un patērētāju modeļus, spēļu un darbstaciju datorus, atjaunotas iekārtas un izturīgus modeļus āra vai rūpnieciskai lietošanai. Tā neietver piederumus vai dokstacijas, kas atrodas atsevišķā klēpjdatoru piederumu sadaļā blakus šim sarakstam.</seo_desc_lv>
+    <slug_lv>notebook-datori</slug_lv>
+    <meta_desc_en>Portable Notebook computers combining screen, keyboard and battery in one foldable case. Business, Consumer, Gaming, Workstation and Rugged models.</meta_desc_en>
+    <meta_desc_lv>Pārnēsājami Notebook datori, kas vienā salokāmā korpusā apvieno ekrānu, tastatūru un akumulatoru. Business, Consumer, Gaming, Workstation un Rugged modeļi.</meta_desc_lv>
+    <seo_desc_en>A Notebook is a portable personal computer that combines screen, keyboard and battery in a single foldable case. This category groups Business and Consumer models, Gaming and Workstation builds, refurbished units and Rugged models built for outdoor or industrial use. It does not include accessories or docks, which sit in the separate Notebook Accessories section beside this one in the tree.</seo_desc_en>
+    <seo_desc_lv>Notebook ir pārnēsājams personālais dators, kas vienā salokāmā korpusā apvieno ekrānu, tastatūru, skārienjutīgu paneli un akumulatoru. Šī sadaļa apkopo Business un Consumer modeļus, Gaming un Workstation datorus, atjaunotas iekārtas un Rugged modeļus āra vai rūpnieciskai lietošanai. Tā neietver piederumus vai dokstacijas, kas atrodas atsevišķā Notebook piederumu sadaļā blakus šim sarakstam.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/notebook-accessories">
     <name_en>Notebook Accessories</name_en>
-    <name_lv>Klēpjdatoru piederumi</name_lv>
+    <name_lv>Notebook piederumi</name_lv>
     <slug_en>notebook-accessories</slug_en>
-    <slug_lv>klepjdatoru-piederumi</slug_lv>
-    <meta_desc_en>Bags, chargers, docking stations, replacement batteries, charging trolleys and security locks that extend a laptop beyond what comes in the box.</meta_desc_en>
-    <meta_desc_lv>Somas, lādētāji, dokstacijas, rezerves akumulatori, uzlādes ratiņi un drošības slēdzenes, kas paplašina klēpjdatoru ārpus oriģinālā komplekta.</meta_desc_lv>
-    <seo_desc_en>Notebook accessories are the parts and add-ons that extend a laptop beyond what comes in the box. The section is split into bags and sleeves for transport, replacement chargers and power adapters, docking stations for desktop-style use, and a smaller miscellaneous group covering trolleys, security locks, batteries and similar items. Notebooks themselves sit in their own category nearby.</seo_desc_en>
-    <seo_desc_lv>Klēpjdatoru piederumi ir detaļas un papildinājumi, kas paplašina datoru ārpus tā, kas iekļauts oriģinālajā komplektā. Sadaļa ir iedalīta somās un apvalkos pārnēsāšanai, rezerves lādētājos un strāvas adapteros, dokstacijās lietošanai galdā, un mazākā citu piederumu grupā, kas aptver ratiņus, drošības slēdzenes, akumulatorus un līdzīgus priekšmetus. Paši klēpjdatori atrodas tuvumā atsevišķā kataloga sadaļā.</seo_desc_lv>
+    <slug_lv>notebook-piederumi</slug_lv>
+    <meta_desc_en>Bags, chargers, docking stations, replacement batteries, charging trolleys and security locks that extend a Notebook beyond what comes in the original box.</meta_desc_en>
+    <meta_desc_lv>Somas, lādētāji, dokstacijas, rezerves akumulatori, uzlādes ratiņi un drošības slēdzenes, kas paplašina Notebook ārpus oriģinālā komplekta lietošanā.</meta_desc_lv>
+    <seo_desc_en>Notebook accessories are the parts and add-ons that extend a laptop beyond what comes in the box. The section is split into bags and sleeves for transport, replacement chargers and power adapters, docking stations for desktop-style use, and a smaller miscellaneous group covering trolleys, security locks, batteries and similar items. Notebook computers themselves sit in their own category nearby in the tree.</seo_desc_en>
+    <seo_desc_lv>Notebook piederumi ir detaļas un papildinājumi, kas paplašina Notebook datoru ārpus tā, kas iekļauts oriģinālajā komplektā. Sadaļa ir iedalīta somās un sleeve apvalkos pārnēsāšanai, rezerves lādētājos un strāvas adapteros, dokstacijās lietošanai galdā, un mazākā citu piederumu grupā, kas aptver ratiņus, drošības slēdzenes, akumulatorus un līdzīgus priekšmetus. Paši Notebook atrodas atsevišķā sadaļā blakus.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/notebook-accessories/bags-sleeves-backpacks">
     <name_en>Bags, Sleeves &amp; Backpacks</name_en>
-    <name_lv>Somas, apvalki un mugursomas</name_lv>
+    <name_lv>Somas, sleeve apvalki un mugursomas</name_lv>
     <slug_en>laptop-bags-backpacks</slug_en>
-    <slug_lv>klepjdatoru-somas-mugursomas</slug_lv>
-    <meta_desc_en>Padded sleeves, shoulder bags and backpacks for laptops, sized to the screen diagonal stated by the manufacturer for safe daily transport to work.</meta_desc_en>
-    <meta_desc_lv>Polsterēti apvalki, pleca somas un mugursomas klēpjdatoriem, izmērā saskaņoti ar ražotāja norādīto ekrāna diagonāli drošai ikdienas pārnēsāšanai.</meta_desc_lv>
-    <seo_desc_en>A laptop bag protects a notebook in transit using padded compartments, structured panels and a carry strap or backpack harness. This category covers padded sleeves designed for slot-in protection, shoulder bags and briefcases for the office commute, and backpacks with a dedicated padded laptop section for daily carry. Sizing is matched to the screen diagonal stated by the manufacturer.</seo_desc_en>
-    <seo_desc_lv>Klēpjdatora soma aizsargā datoru pārnēsāšanas laikā ar polsterētiem nodalījumiem, strukturētām sienām un pleca lenti vai mugursomas siksnu sistēmu. Šī sadaļa aptver polsterētus apvalkus iebīdāmai aizsardzībai, pleca somas un portfeļus biroja braucieniem, kā arī mugursomas ar atsevišķu polsterētu datora nodalījumu ikdienas nēsāšanai. Izmērs tiek saskaņots ar ražotāja norādīto ekrāna diagonāli vienībās.</seo_desc_lv>
+    <slug_lv>notebook-somas-mugursomas</slug_lv>
+    <meta_desc_en>Padded sleeves, shoulder bags and backpacks for Notebook laptops, sized to the screen diagonal stated by the manufacturer for safe daily transport to work.</meta_desc_en>
+    <meta_desc_lv>Polsterēti sleeve apvalki, pleca somas un mugursomas Notebook datoriem, izmērā saskaņoti ar ražotāja norādīto ekrāna diagonāli drošai ikdienas pārnēsāšanai.</meta_desc_lv>
+    <seo_desc_en>A laptop bag protects a Notebook in transit using padded compartments, structured panels and a carry strap or backpack harness. This category covers padded sleeves designed for slot-in protection, shoulder bags and briefcases for the office commute, and backpacks with a dedicated padded laptop section for daily carry. Sizing is matched to the screen diagonal stated by the manufacturer.</seo_desc_en>
+    <seo_desc_lv>Notebook soma aizsargā datoru pārnēsāšanas laikā ar polsterētiem nodalījumiem, strukturētām sienām un pleca lenti vai mugursomas siksnu sistēmu. Šī sadaļa aptver polsterētus sleeve apvalkus iebīdāmai aizsardzībai, pleca somas un portfeļus biroja braucieniem, kā arī mugursomas ar atsevišķu polsterētu Notebook nodalījumu ikdienas nēsāšanai. Izmērs tiek saskaņots ar ražotāja norādīto ekrāna diagonāli.</seo_desc_lv>
   </category>
-
 
   <category code="computers-servers/notebook-accessories/chargers-power-adapters">
     <name_en>Chargers &amp; Power Adapters</name_en>
     <name_lv>Lādētāji un strāvas adapteri</name_lv>
     <slug_en>laptop-chargers-power-adapters</slug_en>
-    <slug_lv>klepjdatoru-laadetaji-adapteri</slug_lv>
-    <meta_desc_en>Laptop power adapters and USB-C power-delivery chargers, each rated for specific wattage, plug type and the laptop families they are designed to fit.</meta_desc_en>
-    <meta_desc_lv>Klēpjdatoru strāvas adapteri un USB-C strāvas piegādes lādētāji, katrs ar noteiktu jaudu, spraudņa tipu un atbilstošām datoru saimēm ikdienas darbam.</meta_desc_lv>
-    <seo_desc_en>A notebook charger converts mains AC power to the DC voltage and current the laptop expects, charging the internal battery while the device runs. The category covers laptop power adapters and USB-C power-delivery chargers that also work with tablets and phones. Each unit lists wattage, plug type and the laptop families it is rated for, so a replacement order lands the right part.</seo_desc_en>
-    <seo_desc_lv>Klēpjdatora lādētājs pārvērš tīkla maiņstrāvu līdzstrāvas spriegumā un strāvā, ko klēpjdators sagaida, vienlaikus uzlādējot iekšējo akumulatoru ierīces darbības laikā. Sadaļa aptver klēpjdatoru strāvas adapterus un USB-C strāvas piegādes lādētājus, kas darbojas arī ar planšetēm un mobilajiem telefoniem. Katrai vienībai norādīta jauda, spraudņa tips un klēpjdatoru saimes, kurām tā paredzēta ikdienas lietošanai.</seo_desc_lv>
+    <slug_lv>notebook-laadetaji-adapteri</slug_lv>
+    <meta_desc_en>Notebook power adapters and USB-C (Universal Serial Bus Type-C) PD chargers, each rated for specific wattage, plug type and the laptop families they fit.</meta_desc_en>
+    <meta_desc_lv>Notebook strāvas adapteri un USB-C (Universal Serial Bus Type-C) PD lādētāji, katrs ar noteiktu jaudu, spraudņa tipu un atbilstošām datoru saimēm darbam.</meta_desc_lv>
+    <seo_desc_en>A Notebook charger converts mains AC (alternating current) power to the DC (direct current) voltage and current the laptop expects, charging the internal battery while the device runs. The category covers laptop power adapters and USB-C (Universal Serial Bus Type-C) power-delivery chargers that also work with tablets and phones. Each unit lists wattage, plug type and the laptop families it is rated for.</seo_desc_en>
+    <seo_desc_lv>Notebook lādētājs pārvērš tīkla AC (alternating current) maiņstrāvu līdzstrāvas DC (direct current) spriegumā un strāvā, ko Notebook sagaida, vienlaikus uzlādējot iekšējo akumulatoru ierīces darbības laikā. Sadaļa aptver Notebook strāvas adapterus un USB-C (Universal Serial Bus Type-C) PD lādētājus, kas darbojas arī ar planšetēm un mobilajiem telefoniem. Katrai vienībai norādīta jauda, spraudņa tips un saderīgās saimes.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/notebook-accessories/docking-stations">
@@ -61,54 +60,54 @@
     <name_lv>Dokstacijas</name_lv>
     <slug_en>docking-stations</slug_en>
     <slug_lv>dokstacijas</slug_lv>
-    <meta_desc_en>Docking stations that turn a laptop into a desktop workstation by adding monitors, USB ports, Ethernet and power through a single cable connection.</meta_desc_en>
-    <meta_desc_lv>Dokstacijas, kas pārvērš klēpjdatoru par galddatora darbstaciju, pievienojot monitorus, USB portus, Ethernet un strāvu caur vienu kabeli ikdienā.</meta_desc_lv>
-    <seo_desc_en>A docking station turns a notebook into a desktop workstation by adding monitor outputs, USB ports, Ethernet and power through a single connection to the laptop. The category covers docks for laptops and tablets that connect over USB-C, Thunderbolt or a proprietary mechanical interface. Specs list supported display count, resolution, power delivery wattage and the host port type required.</seo_desc_en>
-    <seo_desc_lv>Dokstacija pārvērš klēpjdatoru par galddatora darbstaciju, pievienojot monitoru izejas, USB portus, Ethernet un strāvu caur vienu savienojumu ar datoru. Sadaļa aptver dokstacijas klēpjdatoriem un planšetēm, kas pieslēdzas pa USB-C, Thunderbolt vai patentētu mehānisku interfeisu. Specifikācijās norādīts atbalstīto displeju skaits, izšķirtspēja, strāvas piegādes jauda un nepieciešamais saimnieka porta tips uz datora puses.</seo_desc_lv>
+    <meta_desc_en>Docking stations that turn a Notebook into a Desktop workstation by adding monitors, USB ports, Ethernet and power through a single cable connection.</meta_desc_en>
+    <meta_desc_lv>Dokstacijas, kas pārvērš Notebook par Desktop darbstaciju, pievienojot monitorus, USB portus, Ethernet un strāvu caur vienu kabeli ikdienas darbam.</meta_desc_lv>
+    <seo_desc_en>A docking station turns a Notebook into a Desktop workstation by adding monitor outputs, USB (Universal Serial Bus) ports, Ethernet and power through a single connection to the laptop. The category covers docks for laptops and tablets that connect over USB-C, Thunderbolt or a proprietary mechanical interface. Specs list supported display count, resolution, PD (Power Delivery) wattage and host port type.</seo_desc_en>
+    <seo_desc_lv>Dokstacija pārvērš Notebook par Desktop darbstaciju, pievienojot monitoru izejas, USB (Universal Serial Bus) portus, Ethernet un strāvu caur vienu savienojumu ar datoru. Sadaļa aptver dokstacijas Notebook un planšetēm, kas pieslēdzas pa USB-C, Thunderbolt vai patentētu mehānisku interfeisu. Specifikācijās norādīts atbalstīto displeju skaits, izšķirtspēja, PD (Power Delivery) jauda un saimnieka porta tips.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/notebook-accessories/other-accessories">
     <name_en>Other Accessories</name_en>
     <name_lv>Citi piederumi</name_lv>
     <slug_en>other-laptop-accessories</slug_en>
-    <slug_lv>citi-klepjdatoru-piederumi</slug_lv>
-    <meta_desc_en>Charging trolleys, replacement batteries listed by part number, miscellaneous PC accessories and rugged add-ons for field, warehouse and industrial use.</meta_desc_en>
-    <meta_desc_lv>Uzlādes ratiņi, rezerves akumulatori pēc artikula numura, dažādi PC piederumi un izturīgi papildinājumi laukam, noliktavām un rūpniecībai darbam.</meta_desc_lv>
-    <seo_desc_en>Catch-all for notebook and tablet accessories that do not fit the bag, charger, dock or battery groups. The section covers school and office trolleys for charging multiple devices at once, replacement batteries listed by laptop part number, miscellaneous PC accessories, and add-ons specific to rugged notebooks and tablets used in field, warehouse or industrial environments where extra protection is required.</seo_desc_en>
-    <seo_desc_lv>Apvienojošā sadaļa klēpjdatoru un planšetdatoru piederumiem, kas neietilpst somu, lādētāju, dokstaciju vai akumulatoru grupās. Sadaļa aptver skolu un biroju ratiņus vairāku ierīču uzlādei vienlaikus, rezerves akumulatorus, kas norādīti pēc klēpjdatora artikula, dažādus PC piederumus un papildinājumus izturīgiem klēpjdatoriem un planšetēm, ko izmanto laukā, noliktavās vai rūpniecības vidē, kur nepieciešama papildu aizsardzība.</seo_desc_lv>
+    <slug_lv>citi-notebook-piederumi</slug_lv>
+    <meta_desc_en>Charging trolleys, replacement batteries listed by part number, miscellaneous PC accessories and Rugged add-ons for field, warehouse and industrial use.</meta_desc_en>
+    <meta_desc_lv>Uzlādes ratiņi, rezerves akumulatori pēc artikula numura, dažādi PC piederumi un Rugged papildinājumi laukam, noliktavām un rūpniecībai darbam.</meta_desc_lv>
+    <seo_desc_en>Catch-all for Notebook and tablet accessories that do not fit the bag, charger, dock or battery groups. The section covers school and office trolleys for charging multiple devices at once, replacement batteries listed by laptop part number, miscellaneous PC accessories, and add-ons specific to Rugged laptops and tablets used in field, warehouse or industrial environments.</seo_desc_en>
+    <seo_desc_lv>Apvienojošā sadaļa Notebook un planšetdatoru piederumiem, kas neietilpst somu, lādētāju, dokstaciju vai akumulatoru grupās. Sadaļa aptver skolu un biroju ratiņus vairāku ierīču uzlādei vienlaikus, rezerves akumulatorus, kas norādīti pēc Notebook artikula numura, dažādus PC piederumus un papildinājumus Rugged Notebook un planšetēm, ko izmanto laukā, noliktavās vai rūpniecības vidē ikdienas darbam.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/desktops-workstations">
     <name_en>Desktops &amp; Workstations</name_en>
-    <name_lv>Galddatori un darbstacijas</name_lv>
+    <name_lv>Desktop un Workstation datori</name_lv>
     <slug_en>desktops-workstations</slug_en>
-    <slug_lv>galddatori-darbstacijas</slug_lv>
-    <meta_desc_en>Non-portable PCs powered from a wall outlet: standard towers, all-in-ones with the computer behind the display, and compact mini PCs for tidy desks.</meta_desc_en>
-    <meta_desc_lv>Nepārnēsājami datori, baroti no kontaktligzdas: standarta torņi, viss-vienā ar datoru aiz displeja un kompakti mini PC sakārtotām darba vietām.</meta_desc_lv>
-    <seo_desc_en>Desktops and workstations are non-portable personal computers built around a tower, small chassis or all-in-one screen, and powered from a wall outlet rather than a battery. The section is split into standard tower desktops, all-in-one PCs with the computer hidden behind the display, and compact mini PCs in pocket-book-sized cases for low-footprint installations on a tidy desk.</seo_desc_en>
-    <seo_desc_lv>Galddatori un darbstacijas ir nepārnēsājami personālie datori, kas veidoti ap torni, mazu šasiju vai viss-vienā ekrānu, un baroti no sienas kontaktligzdas, nevis akumulatora. Sadaļa ir sadalīta standarta torņa galddatoros, viss-vienā datoros ar datoru, kas paslēpts aiz displeja, un kompaktos mini PC kabatas grāmatas izmēra korpusos zema izmēra uzstādījumiem uz sakārtota galda.</seo_desc_lv>
+    <slug_lv>desktop-workstation-datori</slug_lv>
+    <meta_desc_en>Non-portable PCs powered from a wall outlet: standard Desktop towers, All-in-One PCs with the computer behind the display, and compact Mini PCs for tidy desks.</meta_desc_en>
+    <meta_desc_lv>Nepārnēsājami datori no kontaktligzdas: Desktop torņi, All-in-One PC ar datoru aiz displeja un kompakti Mini PC sakārtotām darba vietām.</meta_desc_lv>
+    <seo_desc_en>Desktops and Workstations are non-portable personal computers built around a tower, small chassis or All-in-One screen, and powered from a wall outlet rather than a battery. The section is split into standard Desktop towers, All-in-One PCs with the computer hidden behind the display, and compact Mini PC and small-form-factor boxes for low-footprint installations on a tidy office desk.</seo_desc_en>
+    <seo_desc_lv>Desktop un Workstation datori ir nepārnēsājami personālie datori, kas veidoti ap torni, mazu šasiju vai All-in-One ekrānu, un baroti no sienas kontaktligzdas, nevis akumulatora. Sadaļa ir sadalīta standarta Desktop torņos, All-in-One PC ar datoru paslēptu aiz displeja, un kompaktos Mini PC un small-form-factor korpusos zema izmēra uzstādījumiem uz sakārtota galda.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/desktops-workstations/desktops">
     <name_en>Desktops</name_en>
-    <name_lv>Galddatori</name_lv>
+    <name_lv>Desktop datori</name_lv>
     <slug_en>desktop-pcs</slug_en>
-    <slug_lv>galddatori</slug_lv>
-    <meta_desc_en>Classic full-size tower desktops with motherboard, CPU, memory, storage and graphics in a separate case paired with an external monitor for daily work.</meta_desc_en>
-    <meta_desc_lv>Klasiski pilna izmēra torņa galddatori ar mātesplati, procesoru, atmiņu, datu nesējiem un grafiku atsevišķā korpusā kopā ar ārējo monitoru darbam.</meta_desc_lv>
-    <seo_desc_en>Standard tower desktops are the classic full-size personal computer: a separate case containing motherboard, CPU, memory, storage and discrete graphics, paired with an external monitor. The category covers business and consumer towers, gaming desktops, certified workstations, refurbished units and barebones chassis sold without an OS or some components, ready for the buyer to finish the build themselves.</seo_desc_en>
-    <seo_desc_lv>Standarta torņa galddatori ir klasiskais pilna izmēra personālais dators: atsevišķs korpuss, kurā ir mātesplate, procesors, atmiņa, datu nesēji un atsevišķa grafikas karte, savienots ar ārējo monitoru. Sadaļa aptver biznesa un patērētāju torņus, spēļu galddatorus, sertificētas darbstacijas, atjaunotas iekārtas un bezkorpusa šasijas, kas tiek pārdotas bez OS, kuras pircējs pabeidz pats līdz darba sākumam.</seo_desc_lv>
+    <slug_lv>desktop-datori</slug_lv>
+    <meta_desc_en>Classic full-size Desktop towers with motherboard, CPU (Central Processing Unit), memory, storage and graphics in a separate case paired with a monitor.</meta_desc_en>
+    <meta_desc_lv>Klasiski pilna izmēra Desktop torņi ar mātesplati, CPU (Central Processing Unit), atmiņu, datu nesējiem un grafiku atsevišķā korpusā ar monitoru darbam.</meta_desc_lv>
+    <seo_desc_en>Standard Desktop towers are the classic full-size personal computer: a separate case containing motherboard, CPU (Central Processing Unit), memory, storage and discrete graphics, paired with an external monitor. The category covers Business and Consumer towers, Gaming Desktops, certified Workstations, refurbished units and barebones chassis sold without an OS or some components, ready for the buyer to finish the build themselves.</seo_desc_en>
+    <seo_desc_lv>Standarta Desktop torņi ir klasiskais pilna izmēra personālais dators: atsevišķs korpuss, kurā ir mātesplate, CPU (Central Processing Unit), atmiņa, datu nesēji un atsevišķa grafikas karte, savienots ar ārējo monitoru. Sadaļa aptver Business un Consumer torņus, Gaming Desktop datorus, sertificētas Workstation, atjaunotas iekārtas un barebones šasijas, kas tiek pārdotas bez OS, kuras pircējs pabeidz pats.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/desktops-workstations/all-in-one-pcs">
     <name_en>All-in-One PCs</name_en>
-    <name_lv>Viss-vienā datori</name_lv>
+    <name_lv>All-in-One datori</name_lv>
     <slug_en>all-in-one-pcs</slug_en>
-    <slug_lv>viss-vienaa-datori</slug_lv>
-    <meta_desc_en>All-in-one PCs that hide computer hardware behind the display, removing the separate tower from the desk for cleaner reception or classroom setups.</meta_desc_en>
-    <meta_desc_lv>Viss-vienā datori, kas paslēpj datora aparatūru aiz displeja, novācot atsevišķu torni no galda reģistratūrai vai sakārtotai klases darba telpai.</meta_desc_lv>
-    <seo_desc_en>An all-in-one PC packages the computer hardware behind a display, removing the separate tower from the desk. The category lists complete all-in-one desktops where the motherboard, processor, memory and storage are integrated into the back of the screen. They are common at receptions, classrooms and tidy office desks where a full tower would be visually distracting or simply too big.</seo_desc_en>
-    <seo_desc_lv>Viss-vienā dators iepako datora aparatūru aiz displeja korpusa, novācot atsevišķu torni no galda virsmas. Sadaļā uzskaitīti pilni viss-vienā galddatori, kuros mātesplate, procesors, atmiņa un datu nesēji ir integrēti ekrāna aizmugurē. Tos parasti izmanto reģistratūrās, klasēs un sakārtotās biroja darba vietās, kur tornis būtu vizuāli traucējošs vai vienkārši pārāk liels darba telpai.</seo_desc_lv>
+    <slug_lv>all-in-one-datori</slug_lv>
+    <meta_desc_en>All-in-One PCs that hide computer hardware behind the display, removing the separate Desktop tower for cleaner reception or classroom setups indoors.</meta_desc_en>
+    <meta_desc_lv>All-in-One datori, kas paslēpj aparatūru aiz displeja, novācot atsevišķu Desktop torni reģistratūrai vai sakārtotai klases telpai darbam.</meta_desc_lv>
+    <seo_desc_en>An All-in-One PC packages the computer hardware behind a display, removing the separate Desktop tower from the desk. The category lists complete All-in-One Desktops where the motherboard, CPU (Central Processing Unit), memory and storage are integrated into the back of the screen. They are common at receptions, classrooms and tidy office desks where a full Desktop tower would be visually distracting or simply too big.</seo_desc_en>
+    <seo_desc_lv>All-in-One PC iepako datora aparatūru aiz displeja korpusa, novācot atsevišķu Desktop torni no galda virsmas. Sadaļā uzskaitīti pilni All-in-One Desktop datori, kuros mātesplate, CPU (Central Processing Unit), atmiņa un datu nesēji ir integrēti ekrāna aizmugurē. Tos parasti izmanto reģistratūrās, klasēs un sakārtotās biroja darba vietās, kur Desktop tornis būtu vizuāli traucējošs vai pārāk liels.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/desktops-workstations/mini-pcs-nuc">
@@ -116,21 +115,21 @@
     <name_lv>Mini PC un NUC</name_lv>
     <slug_en>mini-pcs-nuc</slug_en>
     <slug_lv>mini-pc-nuc</slug_lv>
-    <meta_desc_en>Compact paperback-sized desktops for low-footprint installs: thin clients, modular bare-bones systems and complete mini PCs that hide on a VESA mount.</meta_desc_en>
-    <meta_desc_lv>Kompakti kabatas grāmatas izmēra galddatori zemam izvietojumam: plānie klienti, modulāras bezkorpusa sistēmas un mini PC ar VESA stiprinājumu sienai.</meta_desc_lv>
-    <seo_desc_en>A mini PC is a small form-factor desktop, typically the size of a paperback book or smaller, that delivers full PC functionality in a compact case. The category includes thin clients used as terminals against a remote server, modular bare-bones mini systems, and complete pre-configured small desktops; many models can hide on a VESA mount behind a monitor for invisible installations.</seo_desc_en>
-    <seo_desc_lv>Mini PC ir maza formāta galddators, kas parasti ir kabatas grāmatas izmērā vai mazāks, un piedāvā pilnu datora funkcionalitāti kompaktā korpusā. Sadaļā ietilpst plānie klienti, ko izmanto kā termināļus pret attālo serveri, modulāras bezkorpusa mini sistēmas un pilni iepriekš sakonfigurēti mazi galddatori; daudzus var paslēpt VESA stiprinājumā aiz monitora neredzamai uzstādīšanai sienā.</seo_desc_lv>
+    <meta_desc_en>Compact paperback-sized Desktop computers for low-footprint installs: thin clients, modular bare-bones systems and complete Mini PCs that hide on a VESA mount.</meta_desc_en>
+    <meta_desc_lv>Kompakti Desktop datori kabatas grāmatas izmēra korpusos: thin clients, modulāras bezkorpusa sistēmas un Mini PC ar VESA stiprinājumu sienai vai monitoram.</meta_desc_lv>
+    <seo_desc_en>A Mini PC is a small form-factor Desktop, typically the size of a paperback book or smaller, that delivers full PC functionality in a compact case. The category includes thin clients used as terminals against a remote server, modular bare-bones Mini systems, and complete pre-configured small Desktops; many models can hide on a VESA (mounting standard) mount behind a monitor.</seo_desc_en>
+    <seo_desc_lv>Mini PC ir maza formāta Desktop dators, kas parasti ir kabatas grāmatas izmērā vai mazāks, un piedāvā pilnu datora funkcionalitāti kompaktā korpusā. Sadaļā ietilpst thin clients, ko izmanto kā termināļus pret attālo Server, modulāras bezkorpusa Mini sistēmas un pilni iepriekš sakonfigurēti mazi Desktop datori; daudzus var paslēpt VESA (mounting standard) stiprinājumā aiz monitora.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/point-of-sale-equipment">
     <name_en>Point Of Sale Equipment</name_en>
-    <name_lv>Tirdzniecības vietu aprīkojums</name_lv>
+    <name_lv>Tirdzniecības vietu (POS) aprīkojums</name_lv>
     <slug_en>point-of-sale-equipment</slug_en>
-    <slug_lv>tirdzniecibas-vietu-aprikojums</slug_lv>
-    <meta_desc_en>Hardware used at retail and hospitality checkouts to ring up sales, scan items, accept card payments and print receipts. Terminals plus accessories.</meta_desc_en>
-    <meta_desc_lv>Aparatūra, ko izmanto mazumtirdzniecības un viesmīlības kasēs, lai reģistrētu pārdošanas, skenētu preces, pieņemtu kartes un drukātu klientu čekus.</meta_desc_lv>
-    <seo_desc_en>Point-of-sale equipment is the hardware used at checkout in retail, hospitality and warehouse environments to ring up sales, scan items, accept card payments and print receipts. The section is split into terminals, the touchscreen all-in-one devices that run the till software, and accessories, the printers, scanners, cash drawers and other peripherals that surround the terminal at the counter.</seo_desc_en>
-    <seo_desc_lv>Tirdzniecības vietu aprīkojums ir aparatūra, ko izmanto kasēs mazumtirdzniecībā, viesmīlībā un noliktavās, lai reģistrētu pārdošanas, skenētu preces, pieņemtu karšu maksājumus un drukātu čekus. Sadaļa ir sadalīta termināļos, kas ir skārienjutīgas viss-vienā ierīces kases programmatūras palaišanai, un piederumos, kas ir printeri, skeneri, naudas atvilktnes un citas perifērijas ap termināli pie letes.</seo_desc_lv>
+    <slug_lv>tirdzniecibas-vietu-pos-aprikojums</slug_lv>
+    <meta_desc_en>POS (Point of Sale) hardware for retail and hospitality checkouts: ring up sales, scan items, accept card payments and print receipts.</meta_desc_en>
+    <meta_desc_lv>POS (Point of Sale) aparatūra, ko izmanto mazumtirdzniecības un viesmīlības kasēs, lai reģistrētu pārdošanas, skenētu preces un drukātu klientu čekus.</meta_desc_lv>
+    <seo_desc_en>POS (Point of Sale) equipment is the hardware used at checkout in retail, hospitality and warehouse environments to ring up sales, scan items, accept card payments and print receipts. The section is split into terminals, the touchscreen all-in-one devices that run the till software, and accessories, the printers, scanners, cash drawers and other peripherals that surround the terminal at the counter.</seo_desc_en>
+    <seo_desc_lv>POS (Point of Sale) aparatūra ir aprīkojums, ko izmanto kasēs mazumtirdzniecībā, viesmīlībā un noliktavās, lai reģistrētu pārdošanas, skenētu preces, pieņemtu karšu maksājumus un drukātu klientu čekus. Sadaļa ir sadalīta termināļos, kas ir skārienjutīgas all-in-one ierīces kases programmatūras palaišanai, un piederumos: printeri, skeneri, naudas atvilktnes un citas perifērijas pie letes ikdienas darbā.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/point-of-sale-equipment/pos-accessories">
@@ -138,10 +137,10 @@
     <name_lv>POS piederumi</name_lv>
     <slug_en>pos-accessories</slug_en>
     <slug_lv>pos-piederumi</slug_lv>
-    <meta_desc_en>Receipt printers, cash drawers, label printers, customer-facing displays and similar peripherals that surround a checkout terminal at the counter.</meta_desc_en>
-    <meta_desc_lv>Čeku printeri, naudas atvilktnes, etiķešu printeri, klientu displeji un līdzīgas perifērijas, kas atrodas ap kases termināli pie letes ikdienā.</meta_desc_lv>
-    <seo_desc_en>POS accessories are the supporting peripherals around a checkout terminal: receipt printers that issue thermal receipts, label and ticket printers, cash drawers, mounting arms, customer-facing displays and similar smaller items. The section also covers consumables such as till rolls and replacement covers. Each product lists its connection method (USB, serial, Ethernet or Bluetooth) for fast integration into existing setups.</seo_desc_en>
-    <seo_desc_lv>POS piederumi ir atbalsta perifērijas ap kases termināli: čeku printeri, kas drukā termodrukas čekus, etiķešu un biļešu printeri, naudas atvilktnes, montāžas rokas, klientu displeji un līdzīgi mazāki priekšmeti. Sadaļā ietilpst arī izejmateriāli, piemēram, kases papīra ruļļi un nomaiņas vāki. Katrai precei norādīts savienojuma veids (USB, seriāls, Ethernet vai Bluetooth) ātrai integrācijai esošos risinājumos.</seo_desc_lv>
+    <meta_desc_en>POS (Point of Sale) accessories: receipt printers, cash drawers, label printers, customer displays and similar peripherals around a checkout terminal.</meta_desc_en>
+    <meta_desc_lv>POS (Point of Sale) piederumi: čeku printeri, naudas atvilktnes, etiķešu printeri, klientu displeji un līdzīgas perifērijas ap kases termināli pie letes.</meta_desc_lv>
+    <seo_desc_en>POS (Point of Sale) accessories are the supporting peripherals around a checkout terminal: receipt printers that issue thermal receipts, label and ticket printers, cash drawers, mounting arms, customer-facing displays and similar smaller items. The section also covers consumables such as till rolls and replacement covers. Each product lists its connection method (USB, serial, Ethernet or Bluetooth) for fast integration.</seo_desc_en>
+    <seo_desc_lv>POS (Point of Sale) piederumi ir atbalsta perifērijas ap kases termināli: čeku printeri, kas drukā termodrukas čekus, etiķešu un biļešu printeri, naudas atvilktnes, montāžas rokas, klientu displeji un līdzīgi mazāki priekšmeti. Sadaļā ietilpst arī izejmateriāli, piemēram, kases papīra ruļļi. Katrai precei norādīts savienojuma veids (USB, seriāls, Ethernet vai Bluetooth) ātrai integrācijai.</seo_desc_lv>
   </category>
 
   <category code="computers-servers/point-of-sale-equipment/pos-terminals-pdas">
@@ -149,11 +148,9 @@
     <name_lv>POS termināļi un PDA</name_lv>
     <slug_en>pos-terminals-pdas</slug_en>
     <slug_lv>pos-terminali-pda</slug_lv>
-    <meta_desc_en>Fixed and mobile POS terminals, handheld stock-take PDAs, self-checkout kiosks and barcode scanners that drive checkout software at the point of sale.</meta_desc_en>
-    <meta_desc_lv>Stacionārie un mobilie POS termināļi, rokas inventarizācijas PDA, pašapkalpošanās kioski un svītrkodu skeneri, kas vada kases programmatūru veikalā.</meta_desc_lv>
-    <seo_desc_en>POS terminals and PDAs are the primary computing devices used at the point of sale. The category covers fixed desktop POS terminals running till software at a counter, mobile POS units carried around the store, handheld PDAs used for stock-take, self-checkout kiosks operated by the customer directly, and barcode scanners that feed product data into them during the sale.</seo_desc_en>
-    <seo_desc_lv>POS termināļi un PDA ir galvenās skaitļošanas ierīces, ko izmanto tirdzniecības vietā. Sadaļa aptver stacionāros galddatora POS termināļus, kas darbina kases programmatūru pie letes, mobilos POS, ko pārnēsā veikalā, rokas PDA, ko izmanto inventarizācijai, pašapkalpošanās kioskus, kurus klients vada tieši, un svītrkodu skenerus, kas pārdošanas laikā padod produktu datus tiem.</seo_desc_lv>
+    <meta_desc_en>POS (Point of Sale) terminals and PDA (Personal Digital Assistant) devices: fixed and mobile terminals, handheld stock-take PDAs, kiosks and barcode scanners.</meta_desc_en>
+    <meta_desc_lv>POS (Point of Sale) termināļi un PDA (Personal Digital Assistant) ierīces: stacionāri un mobili termināļi, rokas inventarizācijas PDA un svītrkodu skeneri.</meta_desc_lv>
+    <seo_desc_en>POS (Point of Sale) terminals and PDA (Personal Digital Assistant) devices are the primary computing hardware used at the point of sale. The category covers fixed Desktop POS terminals running till software at a counter, mobile POS units carried around the store, handheld PDAs used for stock-take, self-checkout kiosks operated by the customer, and barcode scanners that feed product data into them.</seo_desc_en>
+    <seo_desc_lv>POS (Point of Sale) termināļi un PDA (Personal Digital Assistant) ierīces ir galvenās skaitļošanas iekārtas, ko izmanto tirdzniecības vietā. Sadaļa aptver stacionāros Desktop POS termināļus, kas darbina kases programmatūru pie letes, mobilos POS, ko pārnēsā veikalā, rokas PDA, ko izmanto inventarizācijai, pašapkalpošanās kioskus un svītrkodu skenerus, kas padod produktu datus tiem.</seo_desc_lv>
   </category>
-
-
 </categories>
