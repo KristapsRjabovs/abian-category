@@ -20,10 +20,18 @@ if _state_file.exists():
     bc.CONFIRMED_CODES = set(_s.get("confirmed", []))
     bc.ORDER           = dict(_s.get("order", {}))
     bc.OVERRIDES       = dict(_s.get("overrides", {}))
-    # Merge user-created / renamed nodes into bc.TREE. state.json is authoritative:
-    # labels + parent relationships here override the hardcoded tree.
-    for _n in _s.get("tree_nodes", []):
-        bc.TREE[_n["code"]] = (_n["label"], _n.get("parent_code"))
+    # When state.json carries the full live tree (i.e. user has saved at least
+    # once and committed the snapshot), bc.TREE should reflect ONLY those nodes.
+    # Otherwise the legacy hardcoded tree from build_categories.py would leak
+    # through with old codes and the build's baked paths/supmap would mix two
+    # incompatible code schemes.
+    _state_tree_nodes = _s.get("tree_nodes") or []
+    if _state_tree_nodes:
+        bc.TREE = {n["code"]: (n["label"], n.get("parent_code")) for n in _state_tree_nodes}
+    # Live supmap (supplier||category -> [codes]) takes precedence if present.
+    # build.py would otherwise rederive supmap from bc.MAPPING + bc.OVERRIDES,
+    # which can't track per-supplier mappings. The live snapshot is authoritative.
+    _state_supmap = _s.get("supmap") or {}
 
 RAW_DIR  = Path(__file__).parent / "raw"
 OUT_HTML = Path(__file__).parent / "public" / "index.html"
@@ -47,17 +55,21 @@ for path in sorted(RAW_DIR.glob("*.csv")):
 # ---------- initial SUPMAP from MAPPING (+ overrides from tree_state if present) ----------
 deleted_set = set(bc.DELETED_CODES)
 
-supmap: dict[str, list] = {}
+supmap = {}
 for r in sc_rows:
     key = r["supplier"] + "||" + r["category"]
-    codes = bc.MAPPING.get(r["category"], [])
-    if r["category"] in bc.OVERRIDES:
-        codes = bc.OVERRIDES[r["category"]]
-    norm = []
-    for code in codes:
-        c = bc.normalise(code)
-        if c in bc.TREE and c not in deleted_set and c not in norm:
-            norm.append(c)
+    if key in _state_supmap:
+        # Authoritative live snapshot: trust it verbatim, only filter deleted nodes.
+        norm = [c for c in _state_supmap[key] if c in bc.TREE and c not in deleted_set]
+    else:
+        codes = bc.MAPPING.get(r["category"], [])
+        if r["category"] in bc.OVERRIDES:
+            codes = bc.OVERRIDES[r["category"]]
+        norm = []
+        for code in codes:
+            c = bc.normalise(code)
+            if c in bc.TREE and c not in deleted_set and c not in norm:
+                norm.append(c)
     supmap[key] = norm
 
 # ---------- tree JSON (respects deleted + saved order) ----------
