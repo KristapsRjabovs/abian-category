@@ -24,7 +24,7 @@
 
   <category code="computers-servers/servers/server-components">
     <name_en>Server Components</name_en>
-    <name_lv>Server komponentes</name_lv>
+    <name_lv>Serveru komponentes</name_lv>
     <slug_en>server-components</slug_en>
     <slug_lv>server-komponentes</slug_lv>
     <meta_desc_en>Modules that build a complete server: CPU (Central Processing Unit), memory, motherboards, power supplies and storage controllers, sold as upgrades or spares.</meta_desc_en>
@@ -34,8 +34,8 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-cpus">
-    <name_en>Server CPUs (Central Processing Units)</name_en>
-    <name_lv>Server procesori (CPU)</name_lv>
+    <name_en>Server CPUs</name_en>
+    <name_lv>Serveru CPU</name_lv>
     <slug_en>server-cpus</slug_en>
     <slug_lv>server-cpu-procesori</slug_lv>
     <meta_desc_en>Server CPU (Central Processing Unit) chips with more cores, larger memory bandwidth and ECC support, for new builds or socket upgrades on existing boards.</meta_desc_en>
@@ -45,8 +45,8 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-memory">
-    <name_en>Server Memory (RAM)</name_en>
-    <name_lv>Server atmiņa (RAM)</name_lv>
+    <name_en>Server Memory</name_en>
+    <name_lv>Serveru atmiņa (RAM)</name_lv>
     <slug_en>server-memory-ram</slug_en>
     <slug_lv>server-atmina-ram</slug_lv>
     <meta_desc_en>Server-grade RAM (Random Access Memory) with ECC (Error-Correcting Code) and registered or load-reduced buffering for heavy multi-core workloads.</meta_desc_en>
@@ -57,7 +57,7 @@
 
   <category code="computers-servers/servers/server-components/server-motherboards">
     <name_en>Server Motherboards</name_en>
-    <name_lv>Server mātesplates</name_lv>
+    <name_lv>Serveru mātesplates</name_lv>
     <slug_en>server-motherboards</slug_en>
     <slug_lv>server-matesplates</slug_lv>
     <meta_desc_en>Server motherboards with multiple memory slots, CPU sockets, ECC memory support and BMC (Baseboard Management Controller) for remote administration.</meta_desc_en>
@@ -67,8 +67,8 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-psus">
-    <name_en>Server PSUs (Power Supply Units)</name_en>
-    <name_lv>Server barošanas bloki (PSU)</name_lv>
+    <name_en>Server PSUs</name_en>
+    <name_lv>Serveru PSU</name_lv>
     <slug_en>server-psus</slug_en>
     <slug_lv>server-barosanas-bloki-psu</slug_lv>
     <meta_desc_en>Server PSU (Power Supply Unit) modules convert AC mains to DC voltages with hot-swap mounting and redundancy for swap-in replacement during operation.</meta_desc_en>
@@ -78,8 +78,8 @@
   </category>
 
   <category code="computers-servers/servers/server-components/server-storage-controllers">
-    <name_en>Server Storage Controllers (RAID/HBA)</name_en>
-    <name_lv>Server krātuves kontrolieri (RAID/HBA)</name_lv>
+    <name_en>Server Storage Controllers</name_en>
+    <name_lv>Serveru krātuves kontrolieri (RAID/HBA)</name_lv>
     <slug_en>server-storage-controllers-raid-hba</slug_en>
     <slug_lv>server-kratuves-kontrolieri-raid-hba</slug_lv>
     <meta_desc_en>RAID (Redundant Array of Independent Disks) controllers and HBA (Host Bus Adapter) cards that connect disk drives to the server motherboard.</meta_desc_en>
@@ -90,7 +90,7 @@
 
   <category code="computers-servers/servers/server-components/other-server-parts">
     <name_en>Other Server Parts</name_en>
-    <name_lv>Citas Server detaļas</name_lv>
+    <name_lv>Citas serveru detaļas</name_lv>
     <slug_en>other-server-parts</slug_en>
     <slug_lv>citas-server-detalas</slug_lv>
     <meta_desc_en>Chassis, server-grade GPU (Graphics Processing Unit) cards, internal cables, fans, cooling assemblies and other less common server spare parts.</meta_desc_en>
