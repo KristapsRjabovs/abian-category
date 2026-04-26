@@ -122,7 +122,8 @@ export default async (req) => {
                          "category_name_lv", "category_name_en",
                          "url_slug_lv", "url_slug_en",
                          "seo_description_lv", "seo_description_en",
-                         "meta_description_lv", "meta_description_en"])];
+                         "meta_description_lv", "meta_description_en",
+                         "bottom_seo_lv", "bottom_seo_en"])];
   const sorted = [...liveNodes].sort((a, b) => cat_ids.get(a.code) - cat_ids.get(b.code));
   for (const n of sorted) {
     const s = seo[n.code] || {};
@@ -133,6 +134,7 @@ export default async (req) => {
       s.slug_lv || "", s.slug_en || "",
       s.seo_desc_lv || "", s.seo_desc_en || "",
       s.meta_desc_lv || "", s.meta_desc_en || "",
+      s.bottom_seo_lv || "", s.bottom_seo_en || "",
     ]));
   }
 

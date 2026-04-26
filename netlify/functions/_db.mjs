@@ -27,7 +27,8 @@ export async function loadState(sql) {
 
 export async function loadTreeNodes(sql) {
   return await sql`SELECT code, label, parent_code, name_lv, slug_lv, slug_en,
-                          seo_desc_lv, seo_desc_en, meta_desc_lv, meta_desc_en
+                          seo_desc_lv, seo_desc_en, meta_desc_lv, meta_desc_en,
+                          bottom_seo_lv, bottom_seo_en
                    FROM tree_nodes ORDER BY code`;
 }
 
@@ -45,14 +46,16 @@ export async function loadSeoMap(sql) {
   const out = {};
   for (const r of rows) {
     out[r.code] = {
-      name_en:      r.label         || "",
-      name_lv:      r.name_lv       || "",
-      slug_lv:      r.slug_lv       || "",
-      slug_en:      r.slug_en       || "",
-      seo_desc_lv:  r.seo_desc_lv   || "",
-      seo_desc_en:  r.seo_desc_en   || "",
-      meta_desc_lv: r.meta_desc_lv  || "",
-      meta_desc_en: r.meta_desc_en  || "",
+      name_en:       r.label          || "",
+      name_lv:       r.name_lv        || "",
+      slug_lv:       r.slug_lv        || "",
+      slug_en:       r.slug_en        || "",
+      seo_desc_lv:   r.seo_desc_lv    || "",
+      seo_desc_en:   r.seo_desc_en    || "",
+      meta_desc_lv:  r.meta_desc_lv   || "",
+      meta_desc_en:  r.meta_desc_en   || "",
+      bottom_seo_lv: r.bottom_seo_lv  || "",
+      bottom_seo_en: r.bottom_seo_en  || "",
     };
   }
   return out;

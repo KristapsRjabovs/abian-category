@@ -95,13 +95,15 @@ def _cursor(conn):
 # Writable SEO columns. name_en is intentionally absent: it is mirrored from
 # tree_nodes.label at read time so there is one source of truth per language.
 SEO_COLUMNS = [
-    ("name_lv",      "TEXT"),
-    ("slug_lv",      "TEXT"),
-    ("slug_en",      "TEXT"),
-    ("seo_desc_lv",  "TEXT"),
-    ("seo_desc_en",  "TEXT"),
-    ("meta_desc_lv", "TEXT"),
-    ("meta_desc_en", "TEXT"),
+    ("name_lv",       "TEXT"),
+    ("slug_lv",       "TEXT"),
+    ("slug_en",       "TEXT"),
+    ("seo_desc_lv",   "TEXT"),
+    ("seo_desc_en",   "TEXT"),
+    ("meta_desc_lv",  "TEXT"),
+    ("meta_desc_en",  "TEXT"),
+    ("bottom_seo_lv", "TEXT"),  # long-form HTML produced by WYSIWYG editor
+    ("bottom_seo_en", "TEXT"),
 ]
 
 
@@ -127,14 +129,16 @@ def load_seo_map() -> dict:
         cur.execute(f"SELECT {cols} FROM tree_nodes")
         for r in cur.fetchall():
             out[r["code"]] = {
-                "name_en":      r["label"]         or "",
-                "name_lv":      r["name_lv"]       or "",
-                "slug_lv":      r["slug_lv"]       or "",
-                "slug_en":      r["slug_en"]       or "",
-                "seo_desc_lv":  r["seo_desc_lv"]   or "",
-                "seo_desc_en":  r["seo_desc_en"]   or "",
-                "meta_desc_lv": r["meta_desc_lv"]  or "",
-                "meta_desc_en": r["meta_desc_en"]  or "",
+                "name_en":       r["label"]          or "",
+                "name_lv":       r["name_lv"]        or "",
+                "slug_lv":       r["slug_lv"]        or "",
+                "slug_en":       r["slug_en"]        or "",
+                "seo_desc_lv":   r["seo_desc_lv"]    or "",
+                "seo_desc_en":   r["seo_desc_en"]    or "",
+                "meta_desc_lv":  r["meta_desc_lv"]   or "",
+                "meta_desc_en":  r["meta_desc_en"]   or "",
+                "bottom_seo_lv": r["bottom_seo_lv"]  or "",
+                "bottom_seo_en": r["bottom_seo_en"]  or "",
             }
     return out
 

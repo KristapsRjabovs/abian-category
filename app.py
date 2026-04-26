@@ -236,7 +236,8 @@ def api_category_export():
                 "category_name_lv", "category_name_en",
                 "url_slug_lv", "url_slug_en",
                 "seo_description_lv", "seo_description_en",
-                "meta_description_lv", "meta_description_en"])
+                "meta_description_lv", "meta_description_en",
+                "bottom_seo_lv", "bottom_seo_en"])
 
     for n in sorted(by_code.values(), key=lambda x: cat_ids[x["code"]]):
         code = n["code"]
@@ -254,6 +255,8 @@ def api_category_export():
             s.get("seo_desc_en", ""),
             s.get("meta_desc_lv", ""),
             s.get("meta_desc_en", ""),
+            s.get("bottom_seo_lv", ""),
+            s.get("bottom_seo_en", ""),
         ])
 
     return Response(buf.getvalue(), mimetype="text/csv",

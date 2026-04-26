@@ -3,6 +3,7 @@ import { getSql } from "./_db.mjs";
 const SEO_COLS = [
   "name_lv", "slug_lv", "slug_en",
   "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en",
+  "bottom_seo_lv", "bottom_seo_en",
 ];
 
 export default async (req) => {

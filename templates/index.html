@@ -196,7 +196,20 @@
   .um-empty { padding: 20px 12px; color: #10b981; font-weight: 600; text-align: center; font-size: 13px; }
   .um-nodrag-hint { padding: 6px 12px; font-size: 11px; color: #9ca3af; font-style: italic;
                     background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
+  /* WYSIWYG (Quill) */
+  .ql-toolbar.ql-snow { border-color: #d1d5db; border-radius: 4px 4px 0 0; }
+  .ql-container.ql-snow { border-color: #d1d5db; border-radius: 0 0 4px 4px;
+                          font-family: inherit; font-size: 13px; min-height: 120px; }
+  .ql-editor { min-height: 120px; }
+  .seo-bottom-block { margin-bottom: 14px; }
+  .seo-bottom-block label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 4px;
+                            font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .seo-bottom-ro { padding: 8px; border: 1px solid #e5e7eb; border-radius: 4px;
+                   background: #fff; font-size: 13px; line-height: 1.5; min-height: 60px;
+                   max-height: 240px; overflow-y: auto; }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 </head>
 <body>
 <div id="loadingOverlay">Loading saved state…</div>
@@ -932,6 +945,14 @@ function renderSeoPanel(node) {
           <label>Description (LV) <span class="${wcCls(wLv)}">${wLv} words</span></label>
           <div class="seo-val">${escapeHtml(v("seo_desc_lv") || "—")}</div>
         </div>
+        <div class="seo-bottom-block">
+          <label>Bottom SEO Text (EN)</label>
+          <div class="seo-bottom-ro">${v("bottom_seo_en") || "<span style='color:#9ca3af;'>—</span>"}</div>
+        </div>
+        <div class="seo-bottom-block">
+          <label>Bottom SEO Text (LV)</label>
+          <div class="seo-bottom-ro">${v("bottom_seo_lv") || "<span style='color:#9ca3af;'>—</span>"}</div>
+        </div>
       </div>`;
   }
   return `
@@ -959,11 +980,45 @@ function renderSeoPanel(node) {
         <label>Description (LV) <span class="seo-wc ${wcCls(wLv)}" data-wc="seo_desc_lv">${wLv} / 50–70 words</span></label>
         <textarea data-seo="seo_desc_lv" rows="4">${escapeHtml(v("seo_desc_lv"))}</textarea>
       </div>
+      <div class="seo-bottom-block">
+        <label>Bottom SEO Text (EN) <span class="seo-hint">long-form, rich text</span></label>
+        <div data-quill="bottom_seo_en"></div>
+      </div>
+      <div class="seo-bottom-block">
+        <label>Bottom SEO Text (LV) <span class="seo-hint">long-form, rich text</span></label>
+        <div data-quill="bottom_seo_lv"></div>
+      </div>
     </div>`;
 }
 
 function wireSeoPanel(node) {
   const d = document.getElementById("detail");
+  // Bottom SEO WYSIWYG: mount a Quill editor on each placeholder.
+  d.querySelectorAll(".seo-panel [data-quill]").forEach(mount => {
+    const field = mount.dataset.quill;
+    const initial = (seoEdits[node.code] && seoEdits[node.code][field] !== undefined)
+      ? seoEdits[node.code][field]
+      : ((SEO[node.code] || {})[field] || "");
+    const q = new Quill(mount, {
+      theme: "snow",
+      modules: { toolbar: [
+        [{ header: [2, 3, false] }],
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link", "blockquote"],
+        ["clean"],
+      ] },
+    });
+    if (initial) q.root.innerHTML = initial;
+    q.on("text-change", () => {
+      seoEdits[node.code] = seoEdits[node.code] || {};
+      const wasNew = !(field in seoEdits[node.code]);
+      // Treat an empty editor (Quill writes "<p><br></p>") as truly empty
+      const html = q.root.innerHTML;
+      seoEdits[node.code][field] = (html === "<p><br></p>") ? "" : html;
+      if (wasNew) { pendingChanges++; markPending(); }
+    });
+  });
   d.querySelectorAll(".seo-panel input, .seo-panel textarea").forEach(el => {
     const field = el.dataset.seo;
     el.addEventListener("input", () => {
