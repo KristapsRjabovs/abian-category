@@ -1019,19 +1019,9 @@ document.getElementById("saveBtn").onclick = async () => {
     paths:      computePaths(),
     tree_nodes: computeTreeNodes(),
     seo_edits:  seoEdits,
-    // Echo the SEO so Netlify Blobs has it on next reload (Flask ignores).
-    // Only ship non-empty fields so empty placeholders don't shadow baked content.
-    seo:        (() => {
-      const out = {};
-      for (const [code, fields] of Object.entries(SEO || {})) {
-        const kept = {};
-        for (const [k, v] of Object.entries(fields || {})) {
-          if (typeof v === "string" && v.trim()) kept[k] = v;
-        }
-        if (Object.keys(kept).length) out[code] = kept;
-      }
-      return out;
-    })(),
+    // Do NOT echo the full SEO map. Netlify save.mjs accumulates seo_edits
+    // into Blobs delta storage; sending the merged display state would just
+    // re-pollute Blobs with snapshots of baked content from older deploys.
   };
   const pc = document.getElementById("pendingCounter");
   pc.innerHTML = '<span style="color:#fde68a;">Saving\u2026</span>';
