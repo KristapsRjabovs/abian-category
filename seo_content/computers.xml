@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+  <category code="computers">
+    <name_en>Computers, Servers &amp; Tablets</name_en>
+    <name_lv>Datori, serveri un planšetes</name_lv>
+    <slug_en>computers-servers-tablets</slug_en>
+    <slug_lv>datori-serveri-planshetes</slug_lv>
+    <seo_desc_en>Notebooks, desktops, all-in-ones, mini PCs, tablets and rack servers from HP, Lenovo, Dell, ASUS, Acer, Apple, Microsoft, HPE, Fujitsu and Supermicro, plus the docking stations, bags and chargers that ship with them. Procurement teams will find business-grade configurations with vPro and warranty options; home users compare consumer ranges side by side.</seo_desc_en>
+    <seo_desc_lv>Klēpjdatori, galddatori, viss-vienā datori, mini PC, planšetes un stenda serveri no HP, Lenovo, Dell, ASUS, Acer, Apple, Microsoft, HPE, Fujitsu un Supermicro, kā arī dokstacijas, somas un lādētāji, kas ar tiem nāk komplektā. Iepirkumu nodaļas atradīs biznesa klases konfigurācijas ar vPro un paplašinātu garantiju, bet mājas lietotāji salīdzinās patērētāju modeļus blakus.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebooks">
+    <name_en>Notebooks</name_en>
+    <name_lv>Klēpjdatori</name_lv>
+    <slug_en>notebooks</slug_en>
+    <slug_lv>klepjdatori</slug_lv>
+    <seo_desc_en>Business and consumer notebooks from HP, Lenovo, Dell, ASUS, Acer, Apple MacBook, Microsoft Surface and MSI, ranging from ultraportables and convertibles to gaming laptops and rugged field models. Listings show CPU generation, RAM, storage, screen size, weight and battery rating, so buyers compare mobility against performance and pick a warranty tier that suits the deployment.</seo_desc_en>
+    <seo_desc_lv>Biznesa un patērētāju klēpjdatori no HP, Lenovo, Dell, ASUS, Acer, Apple MacBook, Microsoft Surface un MSI — sākot ar ultra plāniem un transformeriem līdz spēļu klēpjdatoriem un izturīgiem lauka modeļiem. Aprakstos norādīta procesora paaudze, atmiņa, datu nesēji, ekrāna izmērs, svars un akumulatora reitings, lai pircējs salīdzina mobilitāti pret veiktspēju un izvēlas piemērotu garantijas līmeni.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories">
+    <name_en>Notebook Accessories</name_en>
+    <name_lv>Klēpjdatoru piederumi</name_lv>
+    <slug_en>notebook-accessories</slug_en>
+    <slug_lv>klepjdatoru-piederumi</slug_lv>
+    <seo_desc_en>Bags, sleeves, docking stations, chargers, replacement batteries, cooling pads and security locks for notebooks from every major brand. The section gathers original OEM parts from HP, Lenovo, Dell, Apple and ASUS alongside compatibles from Targus, Kensington, Port Designs, RivaCase and StarTech, helping IT buyers refresh a fleet without juggling multiple suppliers per order.</seo_desc_en>
+    <seo_desc_lv>Somas, apvalki, dokstacijas, lādētāji, rezerves akumulatori, dzesēšanas paliktņi un drošības slēdzenes klēpjdatoriem no visām lielākajām zīmolu saimēm. Sadaļā apvienotas oriģinālās OEM detaļas no HP, Lenovo, Dell, Apple un ASUS kopā ar saderīgām alternatīvām no Targus, Kensington, Port Designs, RivaCase un StarTech, lai IT iepircēji parku atjauninātu vienā piegādātāja pasūtījumā bez liekas piepūles.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories/bags">
+    <name_en>Bags, Sleeves &amp; Backpacks</name_en>
+    <name_lv>Somas, apvalki un mugursomas</name_lv>
+    <slug_en>laptop-bags-backpacks</slug_en>
+    <slug_lv>klepjdatoru-somas-mugursomas</slug_lv>
+    <seo_desc_en>Laptop bags, neoprene sleeves and backpacks for 11" through 17.3" notebooks from Lenovo, Dell, HP, Port Designs, RivaCase, Case Logic, Thule, Targus and Xiaomi. Listings show the supported screen size, padded compartment count, water resistance and carry style (shoulder strap, backpack, briefcase), so daily commuters and field staff pick a model that fits their device and routine.</seo_desc_en>
+    <seo_desc_lv>Klēpjdatoru somas, neoprēna apvalki un mugursomas 11" līdz 17,3" datoriem no Lenovo, Dell, HP, Port Designs, RivaCase, Case Logic, Thule, Targus un Xiaomi. Aprakstos norādīts atbalstītais ekrāna izmērs, polsterētu nodalījumu skaits, ūdensnoturība un nēsāšanas veids (pleca lente, mugursoma, portfelis), lai ikdienas braucēji un lauka darbinieki izvēlas modeli, kas atbilst datoram un ritmam.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories/batteries">
+    <name_en>Batteries</name_en>
+    <name_lv>Akumulatori</name_lv>
+    <slug_en>laptop-batteries</slug_en>
+    <slug_lv>klepjdatoru-akumulatori</slug_lv>
+    <seo_desc_en>Replacement notebook batteries — original OEM packs from HP, Dell, Lenovo, Apple, ASUS and Acer alongside Green Cell and 2-Power compatibles. Each listing states cell chemistry (Li-ion or Li-Po), capacity in mAh and Wh, voltage and the full list of laptop part numbers it is qualified for, so service technicians order without a second cross-check.</seo_desc_en>
+    <seo_desc_lv>Klēpjdatoru rezerves akumulatori — oriģinālie OEM komplekti no HP, Dell, Lenovo, Apple, ASUS un Acer kopā ar Green Cell un 2-Power saderīgiem variantiem. Katrā ierakstā norādīta šūnu ķīmija (Li-ion vai Li-Po), ietilpība mAh un Wh, spriegums un pilns klēpjdatoru artikulu saraksts, kuram tas piemērots, lai servisa tehniķi pasūta bez papildu pārbaudes.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories/chargers">
+    <name_en>Chargers &amp; Power Adapters</name_en>
+    <name_lv>Lādētāji un strāvas adapteri</name_lv>
+    <slug_en>laptop-chargers-power-adapters</slug_en>
+    <slug_lv>klepjdatoru-laadetaji-adapteri</slug_lv>
+    <seo_desc_en>Original notebook power adapters from HP, Dell, Lenovo, Apple, ASUS and Acer alongside universal USB-C PD chargers and travel models from Targus, Hama and Green Cell. Each listing shows wattage, connector type, output voltage and the laptop families it is rated for, so a replacement order on a failed brick lands the right part.</seo_desc_en>
+    <seo_desc_lv>Oriģinālie klēpjdatoru strāvas adapteri no HP, Dell, Lenovo, Apple, ASUS un Acer, kā arī universālie USB-C PD lādētāji un kompakti ceļojuma modeļi no Targus, Hama un Green Cell. Katrā ierakstā norādīta jauda, savienotāja tips, izejas spriegums un klēpjdatoru saimes, kurām tas paredzēts, lai bojāta lādētāja nomaiņa noritētu ar pareizo detaļu.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories/docks">
+    <name_en>Docking Stations</name_en>
+    <name_lv>Dokstacijas</name_lv>
+    <slug_en>docking-stations</slug_en>
+    <slug_lv>dokstacijas</slug_lv>
+    <seo_desc_en>USB-C, Thunderbolt 3, Thunderbolt 4 and proprietary mechanical docks from Lenovo ThinkPad Universal, Dell WD-series, HP USB-C G5, Targus, StarTech and i-tec. Listings detail the host connection, supported display count and resolution, available power delivery and Ethernet speed, so a hot-desk rollout standardises every workstation on a single dock SKU.</seo_desc_en>
+    <seo_desc_lv>USB-C, Thunderbolt 3, Thunderbolt 4 un patentētu mehānisko savienojumu dokstacijas no Lenovo ThinkPad Universal, Dell WD sērijas, HP USB-C G5, Targus, StarTech un i-tec zīmoliem. Aprakstos norādīts savienojuma veids, atbalstīto displeju skaits un to izšķirtspēja, pieejamā jauda un Ethernet ātrums, lai koplietošanas darbavietās katra darbstacija balstītos uz vienu dokstacijas SKU.</seo_desc_lv>
+  </category>
+
+  <category code="computers/notebook-accessories/other">
+    <name_en>Other Accessories</name_en>
+    <name_lv>Citi piederumi</name_lv>
+    <slug_en>other-laptop-accessories</slug_en>
+    <slug_lv>citi-klepjdatoru-piederumi</slug_lv>
+    <seo_desc_en>Notebook accessories that do not fit the bag, charger or dock categories — cooling pads, Kensington and Targus security cable locks, screen and keyboard cleaners, privacy filters, port adapters and small spare parts. Listings group items by compatible laptop family or screen size, helping IT teams equip a new starter with everything required on the first day.</seo_desc_en>
+    <seo_desc_lv>Klēpjdatoru piederumi, kas neietilpst somu, lādētāju vai dokstaciju sadaļās — dzesēšanas paliktņi, Kensington un Targus drošības slēdzenes, ekrāna un tastatūras tīrītāji, privātuma filtri, portu adapteri un sīkas rezerves daļas. Aprakstos preces sagrupētas pēc saderīgās klēpjdatoru saimes vai ekrāna izmēra, palīdzot IT komandām pilnībā aprīkot jauno darbinieku jau pirmajā darba dienā.</seo_desc_lv>
+  </category>
+
+  <category code="computers/desktops">
+    <name_en>Desktops &amp; Workstations</name_en>
+    <name_lv>Galddatori un darbstacijas</name_lv>
+    <slug_en>desktops-workstations</slug_en>
+    <slug_lv>galddatori-darbstacijas</slug_lv>
+    <seo_desc_en>Tower desktops, all-in-ones and mini PCs from HP EliteDesk and ProDesk, Lenovo ThinkCentre, Dell OptiPlex, ASUS, Acer, Apple iMac and Mac mini, plus dedicated workstations certified for engineering, video and 3D applications. Listings show CPU family, memory, storage, dedicated graphics presence and warranty length so IT and creative buyers pick by workload.</seo_desc_en>
+    <seo_desc_lv>Torņa galddatori, viss-vienā un mini PC datori no HP EliteDesk un ProDesk, Lenovo ThinkCentre, Dell OptiPlex, ASUS, Acer, Apple iMac un Mac mini, kā arī specializētas darbstacijas, sertificētas inženierijai, video un 3D lietojumprogrammām. Aprakstos norādīta procesora saime, atmiņa, datu nesēji, atsevišķas grafikas klātbūtne un garantija, lai IT un radošie pircēji izvēlas pēc darba slodzes.</seo_desc_lv>
+  </category>
+
+  <category code="computers/desktops/standard">
+    <name_en>Desktops</name_en>
+    <name_lv>Galddatori</name_lv>
+    <slug_en>desktop-pcs</slug_en>
+    <slug_lv>galddatori</slug_lv>
+    <seo_desc_en>Standard tower desktops from HP, Lenovo, Dell, ASUS, Acer and other tier-1 brands, plus configurable system-builder units. Listings show form factor, processor, RAM, storage tier, expansion slots and warranty terms, so corporate IT and home users pick a desktop with enough headroom to add memory or a discrete GPU later as workloads grow.</seo_desc_en>
+    <seo_desc_lv>Standarta torņa galddatori no HP, Lenovo, Dell, ASUS, Acer un citiem tier-1 zīmoliem, kā arī konfigurējamas sistēmu komplektētāju iekārtas. Aprakstos norādīts formāta faktors, procesors, atmiņa, datu nesēju līmenis, paplašinājuma sloti un garantija, lai uzņēmumu IT un mājas lietotāji izvēlas galddatoru ar pietiekamu rezervi, lai vēlāk pievienotu atmiņu vai diskrētu GPU.</seo_desc_lv>
+  </category>
+
+  <category code="computers/desktops/aio">
+    <name_en>All-in-One PCs</name_en>
+    <name_lv>Viss-vienā datori</name_lv>
+    <slug_en>all-in-one-pcs</slug_en>
+    <slug_lv>viss-vienaa-datori</slug_lv>
+    <seo_desc_en>All-in-one desktops with integrated displays from HP, Lenovo ThinkCentre, Dell OptiPlex AIO, Apple iMac and ASUS Zen — designed for receptions, classrooms, healthcare stations and tidy office desks where a separate tower would be visually distracting. Each listing shows display size, processor, memory, storage and VESA mounting support to simplify rollout standardisation.</seo_desc_en>
+    <seo_desc_lv>Viss-vienā galddatori ar integrētiem displejiem no HP, Lenovo ThinkCentre, Dell OptiPlex AIO, Apple iMac un ASUS Zen — paredzēti reģistratūrām, klasēm, veselības aprūpes stacijām un sakārtotām biroja vietām, kur atsevišķs tornis būtu vizuāli traucējošs. Katrai pozīcijai norādīts displeja izmērs, procesors, atmiņa, datu nesēji un VESA stiprinājuma atbalsts, lai vienkāršotu izvietojuma standartizēšanu.</seo_desc_lv>
+  </category>
+
+  <category code="computers/desktops/mini">
+    <name_en>Mini PCs &amp; NUC</name_en>
+    <name_lv>Mini PC un NUC</name_lv>
+    <slug_en>mini-pcs-nuc</slug_en>
+    <slug_lv>mini-pc-nuc</slug_lv>
+    <seo_desc_en>Compact desktop PCs for digital signage, hot-desking and home offices — Intel NUC, ASUS PN, HP EliteDesk Mini, Lenovo ThinkCentre Tiny, Dell OptiPlex Micro and Apple Mac mini. Listings show footprint, processor tier, integrated graphics performance, memory and storage configuration, and VESA mounting support behind a monitor for hidden installations.</seo_desc_en>
+    <seo_desc_lv>Kompaktie galddatori digitālajai signalizācijai, koplietojamām darbavietām un mājas birojiem — Intel NUC, ASUS PN, HP EliteDesk Mini, Lenovo ThinkCentre Tiny, Dell OptiPlex Micro un Apple Mac mini modeļi. Aprakstos norādīts izmērs, procesora līmenis, integrētās grafikas veiktspēja, atmiņas un datu nesēju konfigurācija, kā arī VESA stiprinājuma atbalsts aiz monitora slēptiem risinājumiem.</seo_desc_lv>
+  </category>
+
+  <category code="computers/pos">
+    <name_en>Point Of Sale Equipment</name_en>
+    <name_lv>Tirdzniecības vietu aprīkojums</name_lv>
+    <slug_en>point-of-sale-equipment</slug_en>
+    <slug_lv>tirdzniecibas-vietu-aprikojums</slug_lv>
+    <seo_desc_en>POS terminals, mobile data collectors, receipt printers, barcode scanners, cash drawers, customer displays and card readers from HP, Datalogic, Honeywell, Zebra, Bixolon, Posiflex and Star Micronics. The section gives retailers a single source for fitting out a checkout lane, a coffee shop counter or a multi-store rollout with matching peripherals.</seo_desc_en>
+    <seo_desc_lv>POS termināļi, mobilie datu vācēji, čeku printeri, svītrkodu skeneri, kases atvilktnes, klientu displeji un karšu lasītāji no HP, Datalogic, Honeywell, Zebra, Bixolon, Posiflex un Star Micronics zīmoliem. Sadaļa mazumtirgotājiem nodrošina vienu avotu kases vietas, kafejnīcas letes vai vairāku veikalu projekta aprīkošanai ar saskaņotām perifērijām un saderīgu programmatūru, kas darbojas no pirmās dienas bez papildu integrācijas.</seo_desc_lv>
+  </category>
+
+  <category code="computers/pos/accessories">
+    <name_en>POS Accessories</name_en>
+    <name_lv>POS piederumi</name_lv>
+    <slug_en>pos-accessories</slug_en>
+    <slug_lv>pos-piederumi</slug_lv>
+    <seo_desc_en>Receipt printers, barcode scanners, magnetic stripe readers, cash drawers, customer-facing displays and pole mounts from Datalogic, Honeywell, Zebra, Star Micronics, Bixolon and APG. Listings show interface (USB, serial, Ethernet, Bluetooth), paper roll size and POS-software compatibility so an installer can drop the part into an existing setup without re-cabling the till.</seo_desc_en>
+    <seo_desc_lv>Čeku printeri, svītrkodu skeneri, magnētiskās joslas lasītāji, kases atvilktnes, klientu displeji un statīvu stiprinājumi no Datalogic, Honeywell, Zebra, Star Micronics, Bixolon un APG zīmolu klāsta. Aprakstos norādīts interfeiss (USB, seriālais, Ethernet, Bluetooth), papīra ruļļa izmērs un POS programmatūras saderība, lai uzstādītājs detaļu iekļauj esošā risinājumā bez kases pārkabelēšanas darba laikā.</seo_desc_lv>
+  </category>
+
+  <category code="computers/pos/terminals">
+    <name_en>POS Terminals &amp; PDAs</name_en>
+    <name_lv>POS termināļi un PDA</name_lv>
+    <slug_en>pos-terminals-pdas</slug_en>
+    <slug_lv>pos-terminali-pda</slug_lv>
+    <seo_desc_en>All-in-one POS terminals and rugged mobile data collectors from HP RP9, Posiflex, Datalogic, Honeywell and Zebra for retail, hospitality and warehouse use. Listings show CPU, RAM, storage, touch screen size, supported barcode symbologies and ingress protection rating, so retailers and 3PL operators specify a unit that survives daily handling on the floor.</seo_desc_en>
+    <seo_desc_lv>Viss-vienā POS termināļi un izturīgi mobilie datu vācēji no HP RP9, Posiflex, Datalogic, Honeywell un Zebra zīmoliem mazumtirdzniecībai, viesmīlībai un noliktavu darbam. Aprakstos norādīts procesors, atmiņa, datu nesēji, skārienekrāna izmērs, atbalstītās svītrkodu simbolikas un IP aizsardzības klase, lai mazumtirgotāji un loģistikas operatori izvēlas iekārtu, kas iztur ikdienas noslodzi bez bojājumiem.</seo_desc_lv>
+  </category>
+
+  <category code="computers/tablets">
+    <name_en>Tablets</name_en>
+    <name_lv>Planšetes</name_lv>
+    <slug_en>tablets</slug_en>
+    <slug_lv>planshetes</slug_lv>
+    <seo_desc_en>Apple iPad and iPad Pro, Samsung Galaxy Tab, Lenovo Tab and ThinkPad X tablets, Microsoft Surface Pro and Surface Go, Huawei MatePad and Xiaomi Pad models for personal use, education, field service and creative work. Listings show display size, processor, storage tier, cellular versus Wi-Fi only, and the stylus support each model offers.</seo_desc_en>
+    <seo_desc_lv>Apple iPad un iPad Pro, Samsung Galaxy Tab, Lenovo Tab un ThinkPad X planšetes, Microsoft Surface Pro un Surface Go, Huawei MatePad un Xiaomi Pad modeļi personiskai lietošanai, izglītībai, lauka servisam un radošam darbam. Aprakstos norādīts displeja izmērs, procesors, datu nesēju līmenis, šūnu vai tikai Wi-Fi versija un atbalsts irbulim, ko katrs modelis piedāvā.</seo_desc_lv>
+  </category>
+
+  <category code="computers/tablet-accessories">
+    <name_en>Tablet Accessories</name_en>
+    <name_lv>Planšetdatoru piederumi</name_lv>
+    <slug_en>tablet-accessories</slug_en>
+    <slug_lv>planshetu-piederumi</slug_lv>
+    <seo_desc_en>Cases, folio covers, screen protectors, Bluetooth keyboards, styluses and charging stands for iPad, Galaxy Tab, Surface and Lenovo tablets from Apple, Samsung, Logitech, OtterBox, Targus, Tucano and ESR. Listings call out the exact tablet model and generation each accessory fits, so buyers refreshing a fleet avoid the classic case-doesn't-fit return cycle.</seo_desc_en>
+    <seo_desc_lv>Apvalki, folio vāki, ekrāna aizsargi, Bluetooth tastatūras, irbuļi un uzlādes statīvi iPad, Galaxy Tab, Surface un Lenovo planšetēm no Apple, Samsung, Logitech, OtterBox, Targus, Tucano un ESR zīmolu izlases. Aprakstos norādīts precīzs planšetes modelis un paaudze, kuram piederums paredzēts, lai pircēji, atjaunojot parku, izvairītos no klasiskā apvalka nesaderības un atgriešanas problēmas.</seo_desc_lv>
+  </category>
+</categories>
