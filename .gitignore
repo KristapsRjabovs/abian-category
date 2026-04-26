@@ -15,3 +15,6 @@ __pycache__/
 *.pyo
 node_modules/
 .claude/worktrees/
+
+# Batch-generation manifests (one file per submitted Anthropic batch)
+.batches/
