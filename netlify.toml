@@ -1,5 +1,5 @@
 [build]
-  command   = "pip install -r requirements.txt && python3 build.py"
+  command   = "pip install -r requirements.txt && python3 migrate.py && python3 build.py"
   publish   = "public"
   functions = "netlify/functions"
 

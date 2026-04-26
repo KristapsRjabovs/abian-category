@@ -1,14 +1,15 @@
-category.db
+# SQLite scratch files (the .db itself IS committed; it is the source of truth)
 category.db-shm
 category.db-wal
+
+# Generated build artifacts
+public/
+netlify/functions/_data.json
+
+# Environment / OS
 .DS_Store
+.env
 __pycache__/
 *.pyc
 *.pyo
-output/
-E:\
-.env
-public/
-netlify/functions/_data.json
 node_modules/
-

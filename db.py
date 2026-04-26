@@ -14,60 +14,24 @@ def get_conn():
     return conn
 
 
-# Columns added to tree_nodes after the initial schema. Kept as a list so init_db
-# can apply each one idempotently via ALTER TABLE — safe to re-run and safe to
-# deploy against an older DB that already has data.
+# Writable SEO columns. name_en is intentionally absent: it is mirrored from
+# tree_nodes.label at read time so there is one source of truth per language.
 SEO_COLUMNS = [
-    ("name_lv",          "TEXT"),
-    ("name_en",          "TEXT"),
-    ("slug_lv",          "TEXT"),
-    ("slug_en",          "TEXT"),
-    ("seo_desc_lv",      "TEXT"),
-    ("seo_desc_en",      "TEXT"),
-    ("meta_desc_lv",     "TEXT"),
-    ("meta_desc_en",     "TEXT"),
+    ("name_lv",      "TEXT"),
+    ("slug_lv",      "TEXT"),
+    ("slug_en",      "TEXT"),
+    ("seo_desc_lv",  "TEXT"),
+    ("seo_desc_en",  "TEXT"),
+    ("meta_desc_lv", "TEXT"),
+    ("meta_desc_en", "TEXT"),
 ]
 
 
 def init_db():
-    with get_conn() as conn:
-        conn.executescript("""
-            CREATE TABLE IF NOT EXISTS tree_nodes (
-                code       TEXT PRIMARY KEY,
-                label      TEXT NOT NULL,
-                parent_code TEXT
-            );
-
-            CREATE TABLE IF NOT EXISTS supplier_categories (
-                id       INTEGER PRIMARY KEY AUTOINCREMENT,
-                supplier TEXT NOT NULL,
-                category TEXT NOT NULL,
-                UNIQUE(supplier, category)
-            );
-
-            -- Current mappings: one row per (supplier, category, tree_code) triple.
-            -- Cleared and rebuilt on every save.
-            CREATE TABLE IF NOT EXISTS mappings (
-                supplier  TEXT NOT NULL,
-                category  TEXT NOT NULL,
-                tree_code TEXT NOT NULL,
-                PRIMARY KEY (supplier, category, tree_code)
-            );
-
-            -- Tree editor state: confirmed nodes, deleted nodes, child order.
-            CREATE TABLE IF NOT EXISTS tree_state (
-                key   TEXT PRIMARY KEY,
-                value TEXT NOT NULL
-            );
-
-            CREATE INDEX IF NOT EXISTS idx_mappings_code ON mappings(tree_code);
-            CREATE INDEX IF NOT EXISTS idx_sc_supplier ON supplier_categories(supplier);
-        """)
-        # Additive SEO migration
-        existing = {r[1] for r in conn.execute("PRAGMA table_info(tree_nodes)").fetchall()}
-        for col, typ in SEO_COLUMNS:
-            if col not in existing:
-                conn.execute(f"ALTER TABLE tree_nodes ADD COLUMN {col} {typ}")
+    """Apply any pending migrations. Safe to call repeatedly (no-op once
+    everything is up to date)."""
+    import migrate
+    migrate.apply_pending()
 
 
 # ---------- reads ----------

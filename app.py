@@ -1,10 +1,57 @@
 import csv
 import io
 import json
+import re
 from flask import Flask, jsonify, render_template, request, Response
 
 import db
-import seo
+
+
+# ── SEO validation rules (single source of truth) ─────────────────────────────
+SEO_DESC_WORDS  = (50, 70)
+META_DESC_CHARS = (120, 160)
+CANNIBAL_HARD   = 0.75
+
+
+def _word_count(text: str) -> int:
+    return len(re.findall(r"\S+", text or ""))
+
+
+def validate_description(text: str):
+    n = _word_count(text)
+    lo, hi = SEO_DESC_WORDS
+    if n < lo: return False, f"too short ({n} words, min {lo})"
+    if n > hi: return False, f"too long ({n} words, max {hi})"
+    return True, None
+
+
+def validate_meta_description(text: str):
+    n = len((text or "").strip())
+    lo, hi = META_DESC_CHARS
+    if n < lo: return False, f"too short ({n} chars, min {lo})"
+    if n > hi: return False, f"too long ({n} chars, max {hi})"
+    return True, None
+
+
+def _trigrams(text: str) -> set:
+    t = re.sub(r"\s+", " ", (text or "").lower().strip())
+    return {t[i:i+3] for i in range(len(t) - 2)} if len(t) >= 3 else {t}
+
+
+def find_cannibalization(seo_map: dict, lang: str = "en", threshold: float = CANNIBAL_HARD):
+    field = "seo_desc_" + lang
+    items = [(c, (v.get(field) or "")) for c, v in seo_map.items() if v.get(field)]
+    out = []
+    for i, (ca, da) in enumerate(items):
+        ga = _trigrams(da)
+        for cb, db_ in items[i + 1:]:
+            gb = _trigrams(db_)
+            inter = len(ga & gb); union = len(ga | gb)
+            sc = inter / union if union else 0.0
+            if sc >= threshold:
+                out.append((ca, cb, round(sc, 3)))
+    out.sort(key=lambda x: -x[2])
+    return out
 
 app = Flask(__name__)
 
@@ -167,15 +214,15 @@ def api_category_export():
             if not (s.get(f) or "").strip():
                 problems.append({"code": code, "field": f, "reason": "missing"})
         for lang in ("en", "lv"):
-            ok, why = seo.validate_description(s.get(f"seo_desc_{lang}") or "")
+            ok, why = validate_description(s.get(f"seo_desc_{lang}") or "")
             if not ok:
                 problems.append({"code": code, "field": f"seo_desc_{lang}", "reason": why})
-            ok, why = seo.validate_meta_description(s.get(f"meta_desc_{lang}") or "")
+            ok, why = validate_meta_description(s.get(f"meta_desc_{lang}") or "")
             if not ok:
                 problems.append({"code": code, "field": f"meta_desc_{lang}", "reason": why})
 
     for lang in ("en", "lv"):
-        for a, b, sc in seo.find_cannibalization(seo_map, lang=lang, threshold=seo.CANNIBAL_HARD):
+        for a, b, sc in find_cannibalization(seo_map, lang=lang, threshold=CANNIBAL_HARD):
             problems.append({"code": a, "field": f"seo_desc_{lang}",
                              "reason": f"cannibalization with {b} (similarity {sc})"})
 
