@@ -1,6 +1,23 @@
 import { getSql } from "./_db.mjs";
 
-const SEO_COLS = [
+// Whitelisted SEO column updaters. Column names are fixed inline so there
+// is no SQL injection risk; only the value is parameterised.
+function seoUpdate(sql, code, field, value) {
+  switch (field) {
+    case "name_lv":       return sql`UPDATE tree_nodes SET name_lv       = ${value} WHERE code = ${code}`;
+    case "slug_lv":       return sql`UPDATE tree_nodes SET slug_lv       = ${value} WHERE code = ${code}`;
+    case "slug_en":       return sql`UPDATE tree_nodes SET slug_en       = ${value} WHERE code = ${code}`;
+    case "seo_desc_lv":   return sql`UPDATE tree_nodes SET seo_desc_lv   = ${value} WHERE code = ${code}`;
+    case "seo_desc_en":   return sql`UPDATE tree_nodes SET seo_desc_en   = ${value} WHERE code = ${code}`;
+    case "meta_desc_lv":  return sql`UPDATE tree_nodes SET meta_desc_lv  = ${value} WHERE code = ${code}`;
+    case "meta_desc_en":  return sql`UPDATE tree_nodes SET meta_desc_en  = ${value} WHERE code = ${code}`;
+    case "bottom_seo_lv": return sql`UPDATE tree_nodes SET bottom_seo_lv = ${value} WHERE code = ${code}`;
+    case "bottom_seo_en": return sql`UPDATE tree_nodes SET bottom_seo_en = ${value} WHERE code = ${code}`;
+    default: return null;
+  }
+}
+
+const SEO_FIELDS = [
   "name_lv", "slug_lv", "slug_en",
   "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en",
   "bottom_seo_lv", "bottom_seo_en",
@@ -23,7 +40,6 @@ export default async (req) => {
     const deletedSet       = new Set(deleted);
 
     // Safety net: don't let an empty payload wipe a populated database.
-    // Common cause: user clicks Save before /api/state finishes loading.
     if (!force) {
       const [{ count: treeCount }] = await sql`SELECT COUNT(*)::int AS count FROM tree_nodes`;
       const [{ count: mapCount }]  = await sql`SELECT COUNT(*)::int AS count FROM mappings`;
@@ -43,33 +59,26 @@ export default async (req) => {
       }
     }
 
-    // Build the full statement list, then ship it as one transaction so the
-    // DB never observes a half-applied save.
+    // Build the transaction queue. Every entry MUST be a query produced
+    // by the sql`` template tag — sql.transaction() is strict about that.
     const queries = [];
 
-    // ── tree_nodes sync ───────────────────────────────────────────────
-    const existing = new Set(
-      (await sql`SELECT code FROM tree_nodes`).map(r => r.code));
+    // ── tree_nodes upsert ─────────────────────────────────────────────
+    const existingRows = await sql`SELECT code FROM tree_nodes`;
+    const existing = new Set(existingRows.map(r => r.code));
     const live = new Set(treeNodes.map(n => n.code));
-
-    // Bulk-upsert via a single VALUES list
-    if (treeNodes.length) {
-      // Neon serverless tag doesn't accept array-of-tuples directly, so build
-      // a parameterised statement: VALUES ($1,$2,$3),($4,$5,$6),...
-      const vals = [];
-      for (const n of treeNodes) vals.push(n.code, n.label, n.parent_code || null);
-      const tuples = treeNodes.map((_, i) =>
-        `($${i*3+1}, $${i*3+2}, $${i*3+3})`).join(",");
-      queries.push(sql.unsafe(
-        `INSERT INTO tree_nodes(code, label, parent_code) VALUES ${tuples}
-         ON CONFLICT (code) DO UPDATE
-         SET label = EXCLUDED.label, parent_code = EXCLUDED.parent_code`,
-        vals));
+    for (const n of treeNodes) {
+      queries.push(sql`
+        INSERT INTO tree_nodes(code, label, parent_code)
+        VALUES (${n.code}, ${n.label}, ${n.parent_code || null})
+        ON CONFLICT (code) DO UPDATE
+          SET label = EXCLUDED.label, parent_code = EXCLUDED.parent_code`);
     }
     // Drop zombies (in DB, not in payload, not intentionally deleted)
-    const zombies = [...existing].filter(c => !live.has(c) && !deletedSet.has(c));
-    if (zombies.length) {
-      queries.push(sql`DELETE FROM tree_nodes WHERE code = ANY(${zombies})`);
+    for (const code of existing) {
+      if (!live.has(code) && !deletedSet.has(code)) {
+        queries.push(sql`DELETE FROM tree_nodes WHERE code = ${code}`);
+      }
     }
 
     // ── label renames ─────────────────────────────────────────────────
@@ -77,9 +86,7 @@ export default async (req) => {
       queries.push(sql`UPDATE tree_nodes SET label = ${label} WHERE code = ${code}`);
     }
 
-    // ── mappings: drop orphans, replace ───────────────────────────────
-    // We can't easily verify orphan codes against post-tx state, so trust the
-    // tree_nodes upsert above and accept anything in `live` plus pre-existing.
+    // ── mappings: orphan-filter then replace ──────────────────────────
     const validCodes = new Set([...live, ...existing]);
     let orphansDropped = 0;
     const mapRows = [];
@@ -89,33 +96,25 @@ export default async (req) => {
       const supplier = key.slice(0, sep), category = key.slice(sep + 2);
       for (const code of codes || []) {
         if (validCodes.has(code) && !deletedSet.has(code)) {
-          mapRows.push(supplier, category, code);
+          mapRows.push([supplier, category, code]);
         } else {
           orphansDropped++;
         }
       }
     }
     queries.push(sql`DELETE FROM mappings`);
-    if (mapRows.length) {
-      const tuples = [];
-      for (let i = 0; i < mapRows.length; i += 3) {
-        tuples.push(`($${i+1}, $${i+2}, $${i+3})`);
-      }
-      queries.push(sql.unsafe(
-        `INSERT INTO mappings(supplier, category, tree_code) VALUES ${tuples.join(",")}
-         ON CONFLICT DO NOTHING`,
-        mapRows));
+    for (const [s, c, t] of mapRows) {
+      queries.push(sql`
+        INSERT INTO mappings(supplier, category, tree_code)
+        VALUES (${s}, ${c}, ${t}) ON CONFLICT DO NOTHING`);
     }
 
-    // ── SEO edits (whitelist column names) ────────────────────────────
+    // ── SEO edits ─────────────────────────────────────────────────────
     for (const [code, fields] of Object.entries(seoEdits)) {
-      for (const k of SEO_COLS) {
+      for (const k of SEO_FIELDS) {
         if (!(k in (fields || {}))) continue;
-        const v = fields[k] ?? "";
-        // Column whitelisted via SEO_COLS, value parameterised. Safe.
-        queries.push(sql.unsafe(
-          `UPDATE tree_nodes SET ${k} = $1 WHERE code = $2`,
-          [v, code]));
+        const q = seoUpdate(sql, code, k, fields[k] ?? "");
+        if (q) queries.push(q);
       }
     }
 

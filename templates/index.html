@@ -196,17 +196,36 @@
   .um-empty { padding: 20px 12px; color: #10b981; font-weight: 600; text-align: center; font-size: 13px; }
   .um-nodrag-hint { padding: 6px 12px; font-size: 11px; color: #9ca3af; font-style: italic;
                     background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
-  /* WYSIWYG (Quill) */
+  /* WYSIWYG (Quill) — toolbar + container chrome */
   .ql-toolbar.ql-snow { border-color: #d1d5db; border-radius: 4px 4px 0 0; }
   .ql-container.ql-snow { border-color: #d1d5db; border-radius: 0 0 4px 4px;
-                          font-family: inherit; font-size: 13px; min-height: 120px; }
-  .ql-editor { min-height: 120px; }
+                          font-family: inherit; font-size: 13px; min-height: 140px; }
+  /* Editor + read-only viewer share the same typography rules so the
+     authored content renders the same in both modes. The HTML stored in
+     the DB stays clean (just <h2>, <p>, <ul> etc., no classes) — these
+     rules style by tag, not class. */
+  .ql-editor, .seo-bottom-ro { line-height: 1.6; color: #1f2937; }
+  .ql-editor h2, .seo-bottom-ro h2 { font-size: 1.25em; font-weight: 600;
+                                      margin: 1.2em 0 0.5em; line-height: 1.3; }
+  .ql-editor h3, .seo-bottom-ro h3 { font-size: 1.1em;  font-weight: 600;
+                                      margin: 1em 0 0.4em; line-height: 1.3; }
+  .ql-editor h2:first-child, .ql-editor h3:first-child,
+  .seo-bottom-ro h2:first-child, .seo-bottom-ro h3:first-child { margin-top: 0; }
+  .ql-editor p,  .seo-bottom-ro p  { margin: 0 0 0.7em; }
+  .ql-editor p:last-child,  .seo-bottom-ro p:last-child  { margin-bottom: 0; }
+  .ql-editor ul, .ql-editor ol, .seo-bottom-ro ul, .seo-bottom-ro ol {
+    margin: 0.5em 0 0.9em; padding-left: 1.6em; }
+  .ql-editor li, .seo-bottom-ro li { margin: 0.2em 0; }
+  .ql-editor blockquote, .seo-bottom-ro blockquote {
+    margin: 0.8em 0; padding: 0.4em 0.9em; border-left: 3px solid #d1d5db;
+    color: #4b5563; background: #f9fafb; }
+  .ql-editor a, .seo-bottom-ro a { color: #2563eb; text-decoration: underline; }
   .seo-bottom-block { margin-bottom: 14px; }
   .seo-bottom-block label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 4px;
                             font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
-  .seo-bottom-ro { padding: 8px; border: 1px solid #e5e7eb; border-radius: 4px;
-                   background: #fff; font-size: 13px; line-height: 1.5; min-height: 60px;
-                   max-height: 240px; overflow-y: auto; }
+  .seo-bottom-ro { padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 4px;
+                   background: #fff; font-size: 13px; min-height: 60px;
+                   max-height: 280px; overflow-y: auto; }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
@@ -909,6 +928,34 @@ function slugify(text, lv) {
 
 function wordCount(text) { return ((text || "").trim().match(/\S+/g) || []).length; }
 
+// Strip Quill-specific class/data attributes so the HTML stored in the DB
+// stays clean: just <h2>, <h3>, <p>, <ul>, <ol>, <li>, <strong>, <em>,
+// <u>, <a>, <blockquote>, <br>. No classes, no inline styles, no data-*.
+function sanitizeQuillHtml(html) {
+  if (!html) return "";
+  const tpl = document.createElement("template");
+  tpl.innerHTML = html;
+  const allowed = new Set(["H2","H3","P","UL","OL","LI","STRONG","B","EM","I",
+                            "U","A","BLOCKQUOTE","BR"]);
+  const walk = (el) => {
+    // Snapshot children before mutating, recurse depth-first
+    [...el.children].forEach(walk);
+    if (!allowed.has(el.tagName)) {
+      // Unwrap unknown wrappers (keep their children, drop the wrapper)
+      while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el);
+      el.remove();
+      return;
+    }
+    // Strip every attribute except href (only on <a>)
+    [...el.attributes].forEach(a => {
+      if (el.tagName === "A" && a.name === "href") return;
+      el.removeAttribute(a.name);
+    });
+  };
+  [...tpl.content.children].forEach(walk);
+  return tpl.innerHTML;
+}
+
 function renderSeoPanel(node) {
   const s = SEO[node.code] || {};
   const ed = seoEdits[node.code] || {};
@@ -947,11 +994,11 @@ function renderSeoPanel(node) {
         </div>
         <div class="seo-bottom-block">
           <label>Bottom SEO Text (EN)</label>
-          <div class="seo-bottom-ro">${v("bottom_seo_en") || "<span style='color:#9ca3af;'>—</span>"}</div>
+          <div class="seo-bottom-ro">${sanitizeQuillHtml(v("bottom_seo_en")) || "<p style='color:#9ca3af;'>—</p>"}</div>
         </div>
         <div class="seo-bottom-block">
           <label>Bottom SEO Text (LV)</label>
-          <div class="seo-bottom-ro">${v("bottom_seo_lv") || "<span style='color:#9ca3af;'>—</span>"}</div>
+          <div class="seo-bottom-ro">${sanitizeQuillHtml(v("bottom_seo_lv")) || "<p style='color:#9ca3af;'>—</p>"}</div>
         </div>
       </div>`;
   }
@@ -1014,8 +1061,10 @@ function wireSeoPanel(node) {
       seoEdits[node.code] = seoEdits[node.code] || {};
       const wasNew = !(field in seoEdits[node.code]);
       // Treat an empty editor (Quill writes "<p><br></p>") as truly empty
-      const html = q.root.innerHTML;
-      seoEdits[node.code][field] = (html === "<p><br></p>") ? "" : html;
+      let html = q.root.innerHTML;
+      if (html === "<p><br></p>") html = "";
+      else                        html = sanitizeQuillHtml(html);
+      seoEdits[node.code][field] = html;
       if (wasNew) { pendingChanges++; markPending(); }
     });
   });
