@@ -206,6 +206,25 @@
   .um-empty { padding: 20px 12px; color: #10b981; font-weight: 600; text-align: center; font-size: 13px; }
   .um-nodrag-hint { padding: 6px 12px; font-size: 11px; color: #9ca3af; font-style: italic;
                     background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
+  /* Sticky Notes panel — always editable, dedicated save button */
+  .notes-panel { position: sticky; top: 12px; margin-top: 14px; padding: 12px;
+                 border: 1px solid #e5e7eb; border-radius: 6px; background: #fffdf6; }
+  .notes-head { display: flex; align-items: center; justify-content: space-between;
+                font-size: 13px; color: #1f2937; margin-bottom: 6px; }
+  .notes-status { font-size: 11px; color: #6b7280; }
+  .notes-status.ok    { color: #065f46; }
+  .notes-status.dirty { color: #b45309; }
+  .notes-status.err   { color: #991b1b; }
+  .notes-target { font-size: 12px; color: #6b7280; margin-bottom: 6px;
+                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .notes-target strong { color: #1f2937; }
+  .notes-panel textarea { width: 100%; padding: 8px; border: 1px solid #d1d5db;
+                          border-radius: 4px; font-size: 13px; line-height: 1.5;
+                          font-family: inherit; resize: vertical; box-sizing: border-box; }
+  .notes-panel textarea:disabled { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; }
+  .notes-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .notes-actions button { font-size: 12px; padding: 6px 10px; }
+  .notes-actions button:disabled { opacity: 0.5; cursor: not-allowed; }
   /* WYSIWYG (Quill) — toolbar + container chrome */
   .ql-toolbar.ql-snow { border-color: #d1d5db; border-radius: 4px 4px 0 0; }
   .ql-container.ql-snow { border-color: #d1d5db; border-radius: 0 0 4px 4px;
@@ -273,6 +292,20 @@
     </h3>
     <input id="unmappedSearch" type="search" placeholder="Filter…" autocomplete="off">
     <div id="unmappedList"></div>
+
+    <!-- Notes panel — sticky, always editable, dedicated Save -->
+    <div id="notesPanel" class="notes-panel">
+      <div class="notes-head">
+        <strong>Editor Notes</strong>
+        <span id="notesStatus" class="notes-status"></span>
+      </div>
+      <div id="notesTarget" class="notes-target">Select a category to add notes.</div>
+      <textarea id="notesText" rows="8" placeholder="Comments for AI revisions, things to fix, things to verify… one bullet per line." disabled></textarea>
+      <div class="notes-actions">
+        <button id="notesSaveBtn" class="primary" disabled>Save notes</button>
+        <button id="notesResetBtn" class="dl" disabled>Discard</button>
+      </div>
+    </div>
   </aside>
   <!-- Tree panel -->
   <aside class="panel">
@@ -875,8 +908,73 @@ function selectNode(node, ancestors) {
     if (ae && ae.childUl && ae.childUl.classList.contains("hidden")) { ae.childUl.classList.remove("hidden"); ae.toggle.textContent = "\u25BC"; }
   }
   currentNode = node; currentAncestors = ancestors; showDetail(node, ancestors);
+  loadNotesForNode(node);
 }
 function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+// ── Sticky Editor Notes panel ────────────────────────────────────────────────
+let notesNode = null;       // currently loaded node
+let notesBaseline = "";     // value loaded from server, for dirty detection
+
+function loadNotesForNode(node) {
+  notesNode = node;
+  const value = ((SEO[node.code] || {}).notes || "");
+  notesBaseline = value;
+  const ta = document.getElementById("notesText");
+  ta.value = value;
+  ta.disabled = false;
+  document.getElementById("notesTarget").innerHTML =
+    `<strong>${escapeHtml(node.label)}</strong> &nbsp;<span class="seo-hint">${escapeHtml(node.code)}</span>`;
+  setNotesStatus("clean", value ? "loaded" : "empty");
+  document.getElementById("notesSaveBtn").disabled  = true;
+  document.getElementById("notesResetBtn").disabled = true;
+}
+
+function setNotesStatus(kind, text) {
+  const el = document.getElementById("notesStatus");
+  el.className = "notes-status " + kind;
+  el.textContent = text || "";
+}
+
+document.getElementById("notesText").addEventListener("input", (ev) => {
+  if (!notesNode) return;
+  const dirty = ev.target.value !== notesBaseline;
+  document.getElementById("notesSaveBtn").disabled  = !dirty;
+  document.getElementById("notesResetBtn").disabled = !dirty;
+  setNotesStatus(dirty ? "dirty" : "clean", dirty ? "unsaved" : "saved");
+});
+
+document.getElementById("notesResetBtn").onclick = () => {
+  document.getElementById("notesText").value = notesBaseline;
+  document.getElementById("notesSaveBtn").disabled  = true;
+  document.getElementById("notesResetBtn").disabled = true;
+  setNotesStatus("clean", "reverted");
+};
+
+document.getElementById("notesSaveBtn").onclick = async () => {
+  if (!notesNode) return;
+  const code = notesNode.code;
+  const notes = document.getElementById("notesText").value;
+  setNotesStatus("dirty", "saving…");
+  try {
+    const r = await fetch("/api/save-notes", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, notes }),
+    });
+    if (!r.ok) throw new Error(r.status + " " + await r.text());
+    notesBaseline = notes;
+    SEO[code] = SEO[code] || {};
+    SEO[code].notes = notes;
+    document.getElementById("notesSaveBtn").disabled  = true;
+    document.getElementById("notesResetBtn").disabled = true;
+    // refresh tree badge for this node
+    const entry = nodeIdx.get(code);
+    if (entry) entry.labelEl.classList.toggle("with-notes", !!notes.trim());
+    setNotesStatus("ok", "saved");
+  } catch (e) {
+    setNotesStatus("err", "save failed: " + e.message);
+  }
+};
 function showDetail(node, ancestors) {
   const d = document.getElementById("detail");
   const breadcrumbs = [...ancestors, node].map(a => a.label).join(" \u203A ");
@@ -1032,10 +1130,6 @@ function renderSeoPanel(node) {
           <label>Bottom SEO Text (LV)</label>
           <div class="seo-bottom-ro">${sanitizeQuillHtml(v("bottom_seo_lv")) || "<p style='color:#9ca3af;'>—</p>"}</div>
         </div>
-        <div class="seo-desc-block">
-          <label>Editor Notes</label>
-          <div class="seo-val" style="white-space:pre-wrap;">${escapeHtml(v("notes") || "—")}</div>
-        </div>
       </div>`;
   }
   return `
@@ -1071,10 +1165,8 @@ function renderSeoPanel(node) {
         <label>Bottom SEO Text (LV) <span class="seo-hint">long-form, rich text</span></label>
         <div data-quill="bottom_seo_lv"></div>
       </div>
-      <div class="seo-desc-block">
-        <label>Editor Notes <span class="seo-hint">your review comments — exported to AI prompt</span></label>
-        <textarea data-seo="notes" rows="3" placeholder="e.g. The CAD example is too narrow; need to mention more design tools.">${escapeHtml(v("notes"))}</textarea>
-      </div>
+      <!-- Editor Notes lives in the sticky left-sidebar panel and is editable
+           regardless of edit mode; nothing here. -->
     </div>`;
 }
 

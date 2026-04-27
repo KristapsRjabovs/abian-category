@@ -280,6 +280,20 @@ def api_category_export():
                     headers={"Content-Disposition": "attachment; filename=magento_categories.csv"})
 
 
+@app.route("/api/save-notes", methods=["POST"])
+def api_save_notes():
+    """Standalone notes save. Updates a single node's notes column without
+    going through the heavy save guard, so editors can quickly save a
+    review note without touching mappings, tree_nodes, etc."""
+    payload = request.get_json(force=True)
+    code  = (payload.get("code")  or "").strip()
+    notes = payload.get("notes")
+    if not code:
+        return jsonify(ok=False, error="code is required"), 400
+    db.save_seo({code: {"notes": notes if notes is not None else ""}})
+    return jsonify(ok=True)
+
+
 @app.route("/api/notes-export")
 def api_notes_export():
     """Plain-text markdown listing every page with editor notes, in a format
