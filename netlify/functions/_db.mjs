@@ -28,7 +28,7 @@ export async function loadState(sql) {
 export async function loadTreeNodes(sql) {
   return await sql`SELECT code, label, parent_code, name_lv, slug_lv, slug_en,
                           seo_desc_lv, seo_desc_en, meta_desc_lv, meta_desc_en,
-                          bottom_seo_lv, bottom_seo_en
+                          bottom_seo_lv, bottom_seo_en, notes
                    FROM tree_nodes ORDER BY code`;
 }
 
@@ -56,6 +56,7 @@ export async function loadSeoMap(sql) {
       meta_desc_en:  r.meta_desc_en   || "",
       bottom_seo_lv: r.bottom_seo_lv  || "",
       bottom_seo_en: r.bottom_seo_en  || "",
+      notes:         r.notes          || "",
     };
   }
   return out;

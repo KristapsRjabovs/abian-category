@@ -104,6 +104,7 @@ SEO_COLUMNS = [
     ("meta_desc_en",  "TEXT"),
     ("bottom_seo_lv", "TEXT"),  # long-form HTML produced by WYSIWYG editor
     ("bottom_seo_en", "TEXT"),
+    ("notes",         "TEXT"),  # plain-text editor notes for AI export
 ]
 
 
@@ -139,6 +140,7 @@ def load_seo_map() -> dict:
                 "meta_desc_en":  r["meta_desc_en"]   or "",
                 "bottom_seo_lv": r["bottom_seo_lv"]  or "",
                 "bottom_seo_en": r["bottom_seo_en"]  or "",
+                "notes":         r["notes"]          or "",
             }
     return out
 

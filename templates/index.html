@@ -146,6 +146,16 @@
      detail panel. Kept as a hidden input so legacy code referencing entry.chkEl
      still works. */
   .label.confirmed { background: #ecfdf5; border-left: 3px solid #10b981; padding-left: 4px; }
+  /* Content-approved + has-notes badges */
+  .content-ok, .has-notes { display: none; font-size: 11px; margin-left: 6px;
+                            vertical-align: middle; }
+  .label.content-confirmed .content-ok {
+    display: inline-block; color: #065f46; background: #d1fae5; border-radius: 3px;
+    padding: 1px 5px; font-weight: 700; line-height: 1.4; }
+  .label.with-notes .has-notes {
+    display: inline-block; line-height: 1.2; }
+  .label.with-notes { box-shadow: inset 3px 0 0 #f59e0b; padding-left: 4px; }
+  .label.confirmed.content-confirmed { background: #d1fae5; }
   .label.confirmed:hover { background: #d1fae5; }
   .label.selected, .label.selected.confirmed, .label.selected.confirmed:hover { background: #1e3a8a; color: #fff; }
   .label.selected.confirmed { border-left-color: #10b981; }
@@ -250,6 +260,7 @@
     <button id="dlAlsoBtn" class="dl">Download Also CSV</button>
     <button id="dlElkoBtn" class="dl">Download Elko CSV</button>
     <button id="dlCategoriesBtn" class="dl" title="Magento category export">Export Categories</button>
+    <button id="dlNotesBtn" class="dl" title="AI-prompt-ready editor notes">Export Notes</button>
   </div>
 </header>
 
@@ -567,9 +578,23 @@ function render(parentEl, nodes, ancestors) {
     // label
     const lbl = document.createElement("span"); lbl.className = "label"; lbl.dataset.code = node.code;
     if (confirmedCodes.has(node.code)) lbl.classList.add("confirmed");
+    if (contentConfirmedCodes.has(node.code)) lbl.classList.add("content-confirmed");
 
     const textSpan = document.createElement("span"); textSpan.className = "label-text";
     textSpan.textContent = node.label; lbl.appendChild(textSpan);
+
+    // ✓ badge — content has been reviewed and approved
+    const contentBadge = document.createElement("span");
+    contentBadge.className = "content-ok"; contentBadge.title = "Content approved";
+    contentBadge.textContent = "✓";
+    lbl.appendChild(contentBadge);
+
+    // 📝 badge — page has editor notes pending
+    const notesBadge = document.createElement("span");
+    notesBadge.className = "has-notes"; notesBadge.title = "Has editor notes";
+    notesBadge.textContent = "📝";
+    if (((SEO[node.code] || {}).notes || "").trim()) lbl.classList.add("with-notes");
+    lbl.appendChild(notesBadge);
 
     // supplier dots
     const sups = collectSuppliers(node);
@@ -757,6 +782,8 @@ function toggleConfirmed(code, on) {
 }
 function toggleContentConfirmed(code, on) {
   if (on) contentConfirmedCodes.add(code); else contentConfirmedCodes.delete(code);
+  const e = nodeIdx.get(code);
+  if (e) e.labelEl.classList.toggle("content-confirmed", on);
   pendingChanges++; markPending();
 }
 function updateDeletableBadges() {
@@ -1005,6 +1032,10 @@ function renderSeoPanel(node) {
           <label>Bottom SEO Text (LV)</label>
           <div class="seo-bottom-ro">${sanitizeQuillHtml(v("bottom_seo_lv")) || "<p style='color:#9ca3af;'>—</p>"}</div>
         </div>
+        <div class="seo-desc-block">
+          <label>Editor Notes</label>
+          <div class="seo-val" style="white-space:pre-wrap;">${escapeHtml(v("notes") || "—")}</div>
+        </div>
       </div>`;
   }
   return `
@@ -1039,6 +1070,10 @@ function renderSeoPanel(node) {
       <div class="seo-bottom-block">
         <label>Bottom SEO Text (LV) <span class="seo-hint">long-form, rich text</span></label>
         <div data-quill="bottom_seo_lv"></div>
+      </div>
+      <div class="seo-desc-block">
+        <label>Editor Notes <span class="seo-hint">your review comments — exported to AI prompt</span></label>
+        <textarea data-seo="notes" rows="3" placeholder="e.g. The CAD example is too narrow; need to mention more design tools.">${escapeHtml(v("notes"))}</textarea>
       </div>
     </div>`;
 }
@@ -1080,6 +1115,10 @@ function wireSeoPanel(node) {
       const wasNew = !(field in seoEdits[node.code]);
       seoEdits[node.code][field] = el.value;
       if (wasNew) { pendingChanges++; markPending(); }
+      if (field === "notes") {
+        const entry = nodeIdx.get(node.code);
+        if (entry) entry.labelEl.classList.toggle("with-notes", !!el.value.trim());
+      }
       if (field.startsWith("seo_desc_")) {
         const w = wordCount(el.value);
         const wc = d.querySelector(`.seo-wc[data-wc="${field}"]`);
@@ -1177,6 +1216,10 @@ document.getElementById("saveBtn").onclick = async () => {
 
 document.getElementById("dlAlsoBtn").onclick = () => { window.location.href = "/api/download?supplier=also_data"; };
 document.getElementById("dlElkoBtn").onclick = () => { window.location.href = "/api/download?supplier=elko"; };
+
+document.getElementById("dlNotesBtn").onclick = () => {
+  window.location.href = "/api/notes-export";
+};
 
 document.getElementById("dlCategoriesBtn").onclick = async () => {
   // First a HEAD-style call to surface validation errors without forcing download

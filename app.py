@@ -280,6 +280,71 @@ def api_category_export():
                     headers={"Content-Disposition": "attachment; filename=magento_categories.csv"})
 
 
+@app.route("/api/notes-export")
+def api_notes_export():
+    """Plain-text markdown listing every page with editor notes, in a format
+    that pastes cleanly into an AI prompt for content revisions."""
+    nodes = db.load_tree_nodes()
+    deleted = set(db.load_state("deleted", []))
+    paths   = db.build_paths(deleted)
+    confirmed         = set(db.load_state("confirmed", []))
+    content_confirmed = set(db.load_state("content_confirmed", []))
+
+    entries = []
+    for n in nodes:
+        if n["code"] in deleted:
+            continue
+        notes = (n.get("notes") or "").strip()
+        if not notes:
+            continue
+        entries.append({
+            "code":  n["code"],
+            "label": n["label"],
+            "path":  paths.get(n["code"], n["code"]),
+            "notes": notes,
+            "mappings_confirmed": n["code"] in confirmed,
+            "content_confirmed":  n["code"] in content_confirmed,
+        })
+
+    if not entries:
+        body = ("# Category content review notes\n\n"
+                "_No editor notes recorded. Add notes from the SEO panel "
+                "on any tree node to surface them here._\n")
+    else:
+        lines = ["# Category content review notes",
+                 "",
+                 f"You are reviewing SEO content on {len(entries)} category page(s).",
+                 "Each block below contains the page identifier, the current "
+                 "approval status, and the editor's notes. Update the SEO "
+                 "description, meta description and bottom SEO text on each "
+                 "page to address every point in the notes. Keep all existing "
+                 "constraints (50-70 word seo_desc, 120-160 char meta_desc, "
+                 "no brand names, no em-dashes, abbreviations expanded on "
+                 "first use, language-mixed where appropriate).",
+                 ""]
+        for e in entries:
+            lines.append(f"## {e['label']}")
+            lines.append(f"- **Path:** {e['path']}")
+            lines.append(f"- **Code:** `{e['code']}`")
+            lines.append(f"- **Mappings confirmed:** {'yes' if e['mappings_confirmed'] else 'no'}")
+            lines.append(f"- **Content confirmed:** {'yes' if e['content_confirmed'] else 'no'}")
+            lines.append("")
+            lines.append("**Notes:**")
+            for raw_line in e["notes"].splitlines():
+                stripped = raw_line.strip()
+                if stripped:
+                    lines.append(f"> {stripped}")
+                else:
+                    lines.append(">")
+            lines.append("")
+            lines.append("---")
+            lines.append("")
+        body = "\n".join(lines).rstrip() + "\n"
+
+    return Response(body, mimetype="text/markdown; charset=utf-8",
+                    headers={"Content-Disposition": "attachment; filename=category-notes.md"})
+
+
 if __name__ == "__main__":
     db.init_db()
     app.run(debug=True, port=5000)

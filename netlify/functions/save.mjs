@@ -13,6 +13,7 @@ function seoUpdate(sql, code, field, value) {
     case "meta_desc_en":  return sql`UPDATE tree_nodes SET meta_desc_en  = ${value} WHERE code = ${code}`;
     case "bottom_seo_lv": return sql`UPDATE tree_nodes SET bottom_seo_lv = ${value} WHERE code = ${code}`;
     case "bottom_seo_en": return sql`UPDATE tree_nodes SET bottom_seo_en = ${value} WHERE code = ${code}`;
+    case "notes":         return sql`UPDATE tree_nodes SET notes         = ${value} WHERE code = ${code}`;
     default: return null;
   }
 }
@@ -21,6 +22,7 @@ const SEO_FIELDS = [
   "name_lv", "slug_lv", "slug_en",
   "seo_desc_lv", "seo_desc_en", "meta_desc_lv", "meta_desc_en",
   "bottom_seo_lv", "bottom_seo_en",
+  "notes",
 ];
 
 export default async (req) => {
